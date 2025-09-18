@@ -2,7 +2,7 @@
 
 一个基于 VitePress + ECharts 的组织成员研究方向可视化展示项目。
 
-[🔗 访问连接]([https://datawhalechina.github.io/easy-vectordb/](https://datawhalechina.github.io/members-visualization/))
+### [🔗 访问连接](https://datawhalechina.github.io/members-visualization/)
 
 ## 🚀 功能特性
 
