@@ -1,8 +1,8 @@
 {
-  "update_time": "2025-09-19T00:25:42.171400",
+  "update_time": "2025-09-18T16:33:12.363252",
   "days_range": 7,
-  "total_commits": 70,
-  "total_repos": 4,
+  "total_commits": 146,
+  "total_repos": 13,
   "user_commits": {
     "KMnO4-zx": {
       "total_commits": 2,
@@ -63,25 +63,32 @@
       "avg_commits_per_day": 1.0
     },
     "FutureUnreal": {
-      "total_commits": 14,
+      "total_commits": 30,
       "repos": [
-        "all-in-rag"
+        "all-in-rag",
+        "base-nlp"
       ],
-      "repo_count": 1,
+      "repo_count": 2,
       "daily_commits": {
         "2025-09-18": 2,
-        "2025-09-15": 9,
-        "2025-09-13": 1,
-        "2025-09-12": 2
+        "2025-09-15": 11,
+        "2025-09-13": 9,
+        "2025-09-12": 2,
+        "2025-09-11": 3,
+        "2025-09-14": 3
       },
       "hourly_distribution": {
-        "15": 2,
+        "15": 6,
         "4": 1,
         "13": 5,
-        "12": 2,
+        "12": 3,
         "11": 2,
         "6": 1,
-        "5": 1
+        "5": 1,
+        "16": 5,
+        "14": 1,
+        "18": 2,
+        "17": 3
       },
       "commit_messages": [
         {
@@ -145,10 +152,10 @@
           "url": "https://github.com/datawhalechina/all-in-rag/commit/82c1cb31a84c4f55cf02046d3181df539e187253"
         }
       ],
-      "first_commit_date": "2025-09-12T05:38:10+00:00",
+      "first_commit_date": "2025-09-11T16:33:59+00:00",
       "last_commit_date": "2025-09-18T15:25:09+00:00",
-      "active_days": 4,
-      "avg_commits_per_day": 3.5
+      "active_days": 6,
+      "avg_commits_per_day": 5.0
     },
     "sojakaese": {
       "total_commits": 2,
@@ -183,20 +190,22 @@
       "avg_commits_per_day": 2.0
     },
     "jjyaoao": {
-      "total_commits": 27,
+      "total_commits": 28,
       "repos": [
-        "hello-agents"
+        "hello-agents",
+        "handy-multi-agent"
       ],
-      "repo_count": 1,
+      "repo_count": 2,
       "daily_commits": {
-        "2025-09-16": 10,
+        "2025-09-16": 11,
         "2025-09-12": 17
       },
       "hourly_distribution": {
         "9": 5,
         "7": 5,
         "15": 4,
-        "14": 13
+        "14": 13,
+        "16": 1
       },
       "commit_messages": [
         {
@@ -261,29 +270,32 @@
         }
       ],
       "first_commit_date": "2025-09-12T14:00:55+00:00",
-      "last_commit_date": "2025-09-16T09:23:11+00:00",
+      "last_commit_date": "2025-09-16T16:43:39+00:00",
       "active_days": 2,
-      "avg_commits_per_day": 13.5
+      "avg_commits_per_day": 14.0
     },
     "1985312383": {
-      "total_commits": 19,
+      "total_commits": 22,
       "repos": [
+        "torch-rechub",
         "members-visualization"
       ],
-      "repo_count": 1,
+      "repo_count": 2,
       "daily_commits": {
         "2025-09-18": 8,
         "2025-09-17": 6,
-        "2025-09-12": 5
+        "2025-09-12": 5,
+        "2025-09-15": 3
       },
       "hourly_distribution": {
         "12": 1,
-        "10": 5,
+        "10": 7,
         "3": 2,
         "1": 2,
         "8": 5,
         "7": 2,
-        "9": 2
+        "9": 2,
+        "14": 1
       },
       "commit_messages": [
         {
@@ -349,21 +361,25 @@
       ],
       "first_commit_date": "2025-09-12T08:45:16+00:00",
       "last_commit_date": "2025-09-18T12:05:58+00:00",
-      "active_days": 3,
-      "avg_commits_per_day": 6.333333333333333
+      "active_days": 4,
+      "avg_commits_per_day": 5.5
     },
     "muxiaoxiong": {
-      "total_commits": 5,
+      "total_commits": 10,
       "repos": [
-        "members-visualization"
+        "members-visualization",
+        "easy-vectordb"
       ],
-      "repo_count": 1,
+      "repo_count": 2,
       "daily_commits": {
-        "2025-09-18": 5
+        "2025-09-18": 5,
+        "2025-09-12": 5
       },
       "hourly_distribution": {
-        "6": 4,
-        "2": 1
+        "6": 5,
+        "2": 1,
+        "8": 3,
+        "7": 1
       },
       "commit_messages": [
         {
@@ -395,24 +411,556 @@
           "repo": "members-visualization",
           "date": "2025-09-18",
           "url": "https://github.com/datawhalechina/members-visualization/commit/257e4b9c0ecdaf9c3e3d7b3dd9a4382088541622"
+        },
+        {
+          "message": "Update milvus 索引介绍.md",
+          "repo": "easy-vectordb",
+          "date": "2025-09-12",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/d4877fdf80d94f511946b52a701c74f9b6024424"
+        },
+        {
+          "message": "Update milvus 索引介绍.md",
+          "repo": "easy-vectordb",
+          "date": "2025-09-12",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/bec1ee2c9083a5309369c2e3f27c0ae5f4055f4f"
+        },
+        {
+          "message": "Update Milvus 介绍.md",
+          "repo": "easy-vectordb",
+          "date": "2025-09-12",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/16021855880b2febd016121fa326de4d9af8e2b4"
+        },
+        {
+          "message": "修正格式",
+          "repo": "easy-vectordb",
+          "date": "2025-09-12",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/a71e43172ce03ffa5add8771be28bbd85d4076c3"
+        },
+        {
+          "message": "矫正格式",
+          "repo": "easy-vectordb",
+          "date": "2025-09-12",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/fd555a962664a7a8d4c98241d46a66a1d8e38c1f"
         }
       ],
-      "first_commit_date": "2025-09-18T02:03:20+00:00",
+      "first_commit_date": "2025-09-12T06:02:40+00:00",
       "last_commit_date": "2025-09-18T06:47:23+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 5.0
+    },
+    "bokang-ugent": {
+      "total_commits": 1,
+      "repos": [
+        "fun-rec"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-09-17": 1
+      },
+      "hourly_distribution": {
+        "15": 1
+      },
+      "commit_messages": [
+        {
+          "message": "修整intro svg中的模型名称",
+          "repo": "fun-rec",
+          "date": "2025-09-17",
+          "url": "https://github.com/datawhalechina/fun-rec/commit/e5a42c788bb770a33dd5537542b2ad5d049bddb2"
+        }
+      ],
+      "first_commit_date": "2025-09-17T15:35:47+00:00",
+      "last_commit_date": "2025-09-17T15:35:47+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
+    },
+    "ruyiluo": {
+      "total_commits": 3,
+      "repos": [
+        "fun-rec"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-09-17": 1,
+        "2025-09-16": 1,
+        "2025-09-15": 1
+      },
+      "hourly_distribution": {
+        "15": 2,
+        "16": 1
+      },
+      "commit_messages": [
+        {
+          "message": "修复图片大小问题及代码中的数据路径问题",
+          "repo": "fun-rec",
+          "date": "2025-09-17",
+          "url": "https://github.com/datawhalechina/fun-rec/commit/346d3ab10c9f70f7cbe5b9f5b5536b09e6c9a919"
+        },
+        {
+          "message": "修复esmm的描述问题 & pdf中的图片大小问题",
+          "repo": "fun-rec",
+          "date": "2025-09-16",
+          "url": "https://github.com/datawhalechina/fun-rec/commit/5f6d1b98e00339e2c308392b08c7eb0e01ed3600"
+        },
+        {
+          "message": "fix bug and image size",
+          "repo": "fun-rec",
+          "date": "2025-09-15",
+          "url": "https://github.com/datawhalechina/fun-rec/commit/9e7a3e3776fcf303c48557ce9ab8fe1fdf929d22"
+        }
+      ],
+      "first_commit_date": "2025-09-15T16:25:46+00:00",
+      "last_commit_date": "2025-09-17T15:17:12+00:00",
+      "active_days": 3,
+      "avg_commits_per_day": 1.0
+    },
+    "Ethan-Chen-plus": {
+      "total_commits": 3,
+      "repos": [
+        "ai-hardware-robotics"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-09-16": 1,
+        "2025-09-13": 1,
+        "2025-09-12": 1
+      },
+      "hourly_distribution": {
+        "6": 2,
+        "8": 1
+      },
+      "commit_messages": [
+        {
+          "message": "Merge pull request #7 from Ethanwhh/Ethanwhh",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-09-16",
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/a757611cb10e8fd376aa6742c46360e673f850c4"
+        },
+        {
+          "message": "Merge pull request #6 from muzilyd/main",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/0606a697e45aee39c497c83d9983fbbcd0ea6019"
+        },
+        {
+          "message": "update 0912",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-09-12",
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/3760a65ebf7d81d2524beba0ce88868fd9f618ae"
+        }
+      ],
+      "first_commit_date": "2025-09-12T06:59:38+00:00",
+      "last_commit_date": "2025-09-16T06:35:59+00:00",
+      "active_days": 3,
+      "avg_commits_per_day": 1.0
+    },
+    "Ethanwhh": {
+      "total_commits": 1,
+      "repos": [
+        "ai-hardware-robotics"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-09-14": 1
+      },
+      "hourly_distribution": {
+        "8": 1
+      },
+      "commit_messages": [
+        {
+          "message": "修改markdown格式问题",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-09-14",
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/340d50e7b442628ebe5afa0e5f710870b4c5b3e3"
+        }
+      ],
+      "first_commit_date": "2025-09-14T08:19:05+00:00",
+      "last_commit_date": "2025-09-14T08:19:05+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
+    },
+    "muzilyd": {
+      "total_commits": 6,
+      "repos": [
+        "ai-hardware-robotics"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-09-13": 6
+      },
+      "hourly_distribution": {
+        "8": 5,
+        "7": 1
+      },
+      "commit_messages": [
+        {
+          "message": "Delete 02-机器人基础和控制、手眼协调/Cartpole三种控制算法实战/code/__pycache__ directory",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/e5a79220ff716415ee6b42328f28ed4b4cd1396d"
+        },
+        {
+          "message": "Delete 02-机器人基础和控制、手眼协调/Cartpole三种控制算法实战/code/tempCodeRunnerFile.py",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/fbbde5e13f932d15cd27156e41d789a43eee6d88"
+        },
+        {
+          "message": "Update cartpole建模与控制.md",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/2b3b13a77264da14f76eeb335b0c9575b1c50c7e"
+        },
+        {
+          "message": "Update cartpole建模与控制.md",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/4a37c47f7e7855d21bbb9d2246e1d09960ab4289"
+        },
+        {
+          "message": "Update cartpole建模与控制.md",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/3d2405c8b6a90bf8a60a8d8f6497671cf85d1d9a"
+        },
+        {
+          "message": "Add files via upload",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/47a116987e58b8500a16b69809c4233b814bac0a"
+        }
+      ],
+      "first_commit_date": "2025-09-13T07:48:42+00:00",
+      "last_commit_date": "2025-09-13T08:18:47+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 6.0
+    },
+    "ly24-sudo": {
+      "total_commits": 19,
+      "repos": [
+        "dive-into-bishop-dl"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-09-17": 10,
+        "2025-09-15": 5,
+        "2025-09-14": 1,
+        "2025-09-13": 1,
+        "2025-09-12": 2
+      },
+      "hourly_distribution": {
+        "13": 4,
+        "11": 3,
+        "9": 2,
+        "8": 1,
+        "15": 7,
+        "0": 2
+      },
+      "commit_messages": [
+        {
+          "message": "Update ch10_2.md",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-17",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/9c7441ae6b05582b16c8100a60715723addfbfe6"
+        },
+        {
+          "message": "Update ch10_2.md",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-17",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/7e2ba57956a24ce297c153c85924a3a6cfc2cf15"
+        },
+        {
+          "message": "Update ch10_2.md",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-17",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/258b2fce904e1b8baf2f26ce4da1609d53ad31c3"
+        },
+        {
+          "message": "Update ch10_2.md",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-17",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/0d89488e1c6b2da3026f666f05e6a7dfbc8b70be"
+        },
+        {
+          "message": "Update ch10_2.md",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-17",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/9cb314cdd1fe76aac266bed8b4cdee3d6a2b61ac"
+        },
+        {
+          "message": "Update ch10_2.md",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-17",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/3fc513f87d34acd2e1c667ded596ebdfd19a8130"
+        },
+        {
+          "message": "Update ch10_2.md",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-17",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/5cde03c8945e80331c3aa40fcf13baada9013952"
+        },
+        {
+          "message": "Update ch10_2.md",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-17",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/8fc663759acc7890565ffff9afcc8febe9e75771"
+        },
+        {
+          "message": "Update ch10_2.md",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-17",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/9e8af291a65a5cfa2e1629f748e12b9aa42ec439"
+        },
+        {
+          "message": "Delete docs/ch10/image1",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-17",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/a92ea96a4946ff1f396a0bf29a7aa38b6b4a8c74"
+        }
+      ],
+      "first_commit_date": "2025-09-12T15:56:59+00:00",
+      "last_commit_date": "2025-09-17T13:44:30+00:00",
+      "active_days": 5,
+      "avg_commits_per_day": 3.8
+    },
+    "hrjtju": {
+      "total_commits": 5,
+      "repos": [
+        "dive-into-bishop-dl"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-09-13": 5
+      },
+      "hourly_distribution": {
+        "9": 4,
+        "8": 1
+      },
+      "commit_messages": [
+        {
+          "message": "Merge pull request #8 from hrjtju/main",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/c5b59dd5bb4f023acfe55ddbb22eb278149c38e2"
+        },
+        {
+          "message": "update sidebar",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/24db005b3f87ed974f89a93b235f03fbb265035c"
+        },
+        {
+          "message": "Merge branch 'main' of https://github.com/datawhalechina/dive-into-bishop-dl",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/50008307f842040152de60126c6c17282471ed82"
+        },
+        {
+          "message": "Merge branch 'ly24-sudo-patch-1' of https://github.com/datawhalechina/dive-into-bishop-dl into temp",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/19646d97d3e58ecaccf671f0f23d8df77e2bd141"
+        },
+        {
+          "message": "update readme",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/eaeea80f6fb97bb81e2dc9195f564989aac58404"
+        }
+      ],
+      "first_commit_date": "2025-09-13T08:52:12+00:00",
+      "last_commit_date": "2025-09-13T09:19:46+00:00",
       "active_days": 1,
       "avg_commits_per_day": 5.0
+    },
+    "loliw": {
+      "total_commits": 1,
+      "repos": [
+        "torch-rechub"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-09-15": 1
+      },
+      "hourly_distribution": {
+        "13": 1
+      },
+      "commit_messages": [
+        {
+          "message": "docs: fix Milvus.ipynb some bug",
+          "repo": "torch-rechub",
+          "date": "2025-09-15",
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/d49534e281046a86d17455d61e2ac2cd03b35d0c"
+        }
+      ],
+      "first_commit_date": "2025-09-15T13:48:40+00:00",
+      "last_commit_date": "2025-09-15T13:48:40+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
+    },
+    "Halukisan": {
+      "total_commits": 4,
+      "repos": [
+        "easy-vectordb"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-09-14": 2,
+        "2025-09-12": 2
+      },
+      "hourly_distribution": {
+        "6": 2,
+        "12": 2
+      },
+      "commit_messages": [
+        {
+          "message": "Merge pull request #64 from Halukisan/dev",
+          "repo": "easy-vectordb",
+          "date": "2025-09-14",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/264b3d03262ebb2a7a36d50dd772535f0dd7c556"
+        },
+        {
+          "message": "Merge branch 'main' into dev",
+          "repo": "easy-vectordb",
+          "date": "2025-09-14",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/798a96e7cf3743557fa0ba4446505ebd1f2290ea"
+        },
+        {
+          "message": "Merge pull request #63 from Halukisan/dev",
+          "repo": "easy-vectordb",
+          "date": "2025-09-12",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/28f650c9782e88f55e7066b4591f27aba84d8fd1"
+        },
+        {
+          "message": "Merge pull request #62 from Halukisan/dev",
+          "repo": "easy-vectordb",
+          "date": "2025-09-12",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/6777b248a1ed20b2e24104c318843868104badb3"
+        }
+      ],
+      "first_commit_date": "2025-09-12T12:12:10+00:00",
+      "last_commit_date": "2025-09-14T06:28:45+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 2.0
+    },
+    "liuxiao": {
+      "total_commits": 4,
+      "repos": [
+        "easy-vectordb"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-09-14": 2,
+        "2025-09-12": 2
+      },
+      "hourly_distribution": {
+        "6": 2,
+        "12": 2
+      },
+      "commit_messages": [
+        {
+          "message": "update:chapter1:介绍",
+          "repo": "easy-vectordb",
+          "date": "2025-09-14",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/02d60965a81c9d18b89bfce62666c0b7fb288e39"
+        },
+        {
+          "message": "update:chapter1:介绍",
+          "repo": "easy-vectordb",
+          "date": "2025-09-14",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/8d8f8dfc5f34f8a06efbf56e211e2906bb0f3b6d"
+        },
+        {
+          "message": "update",
+          "repo": "easy-vectordb",
+          "date": "2025-09-12",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/28aeccf944e132e110c15c0b0001ba190eec98ab"
+        },
+        {
+          "message": "update:索引",
+          "repo": "easy-vectordb",
+          "date": "2025-09-12",
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/e607bc4d42fc45e0dee90597903e4799c1f98d9c"
+        }
+      ],
+      "first_commit_date": "2025-09-12T12:11:17+00:00",
+      "last_commit_date": "2025-09-14T06:16:40+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 2.0
+    },
+    "Liyulingyue": {
+      "total_commits": 2,
+      "repos": [
+        "desktop-pet"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-09-16": 2
+      },
+      "hourly_distribution": {
+        "14": 1,
+        "13": 1
+      },
+      "commit_messages": [
+        {
+          "message": "add proxy of openai",
+          "repo": "desktop-pet",
+          "date": "2025-09-16",
+          "url": "https://github.com/datawhalechina/desktop-pet/commit/b6e9f2daa75ad3b98419c28b43da9ee5966891b3"
+        },
+        {
+          "message": "start_new_projects",
+          "repo": "desktop-pet",
+          "date": "2025-09-16",
+          "url": "https://github.com/datawhalechina/desktop-pet/commit/fc0c8a7026a6075fe010199f08486b61c7e9491a"
+        }
+      ],
+      "first_commit_date": "2025-09-16T13:59:22+00:00",
+      "last_commit_date": "2025-09-16T14:43:08+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 2.0
+    },
+    "liliweiwei2006": {
+      "total_commits": 2,
+      "repos": [
+        "wow-rag"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-09-13": 2
+      },
+      "hourly_distribution": {
+        "10": 2
+      },
+      "commit_messages": [
+        {
+          "message": "add chunk func",
+          "repo": "wow-rag",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/wow-rag/commit/cf9486b43f0753af7d5be095c43e8f5dd90e55f4"
+        },
+        {
+          "message": "add chunk function",
+          "repo": "wow-rag",
+          "date": "2025-09-13",
+          "url": "https://github.com/datawhalechina/wow-rag/commit/57002c14f32917de5d6f7f7ef2231fbda7058ba9"
+        }
+      ],
+      "first_commit_date": "2025-09-13T10:03:29+00:00",
+      "last_commit_date": "2025-09-13T10:11:46+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 2.0
     }
   },
   "optimization_stats": {
     "api_calls": {
       "repos_list": 1,
-      "contributors": 15,
-      "commits": 15,
-      "users": 34,
-      "user_repos": 34,
-      "total": 99
+      "contributors": 165,
+      "commits": 165,
+      "users": 198,
+      "user_repos": 198,
+      "total": 727
     },
-    "execution_time": "115.1s",
+    "execution_time": "204.2s",
     "optimization_enabled": true
   }
 }
