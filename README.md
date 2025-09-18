@@ -223,7 +223,7 @@ npm run docs:serve
 <div align="center">
 
 <a href="https://github.com/datawhalechina/members-visualization/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=datawhalechina/easy-vectordb" />
+  <img src="https://contrib.rocks/image?repo=datawhalechina/members-visualization" />
 </a>
 
 </div>
