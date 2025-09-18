@@ -13,8 +13,8 @@
 
     <!-- 成员头像 -->
     <div class="avatar-section">
-      <img 
-        :src="getAvatarUrl(member.github_username)" 
+      <img
+        :src="getAvatarUrl(member.avatar)"
         :alt="member.display_name"
         class="avatar"
         @error="handleImageError"
@@ -255,13 +255,16 @@ const getMedal = (rank) => {
   return medals[rank] || rank
 }
 
-const getAvatarUrl = (username) => {
-  if (!username) {
-    const basePath = import.meta.env.BASE_URL || '/'
-    return `${basePath}default-avatar.svg`.replace(/\/+/g, '/')
+const getAvatarUrl = (avatar) => {
+  const basePath = import.meta.env.BASE_URL || '/'
+  const defaultAvatar = `${basePath}default-avatar.svg`.replace(/\/+/g, '/')
+
+  if (!avatar) return defaultAvatar
+
+  if (avatar.startsWith('http')) {
+    return avatar
   }
-  
-  return `https://github.com/${username}.png?size=96`
+  return `${basePath}${avatar}`.replace(/\/+/g, '/')
 }
 
 const handleImageError = (event) => {
