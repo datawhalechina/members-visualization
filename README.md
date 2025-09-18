@@ -55,7 +55,6 @@ members-visualization/
 │       ├── MembersList.vue     # 成员列表组件
 │       └── DataExport.vue      # 数据导出组件
 ├── scripts/
-│   ├── fetch-members.js        # 数据拉取脚本 (Node.js)
 │   └── fetch-members.py        # 数据拉取脚本 (Python)
 ├── package.json
 ├── .gitignore
@@ -216,6 +215,18 @@ npm run docs:serve
 ## 🤝 贡献
 
 欢迎提交 Issue 和 Pull Request！
+
+## 所有贡献者
+
+感谢所有为本项目做出贡献的开发者们！
+
+<div align="center">
+
+<a href="https://github.com/datawhalechina/members-visualization/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=datawhalechina/easy-vectordb" />
+</a>
+
+</div>
 
 ## 📞 联系我们
 
