@@ -39,6 +39,59 @@ CONFIG = {
     'MAX_USER_REPOS': 100,  # 获取用户仓库的最大数量
     'COMMIT_DAYS_RANGE': 7,  # 获取最近N天的commit数据
     'MAX_COMMITS_PER_REPO': 200,  # 每个仓库最大commit数
+    # 添加机器人账户过滤规则
+    'BOT_USERNAMES': {
+        'actions-user',
+        'dependabot',
+        'dependabot[bot]',
+        'github-actions',
+        'github-actions[bot]',
+        'renovate[bot]',
+        'greenkeeper[bot]',
+        'codecov[bot]',
+        'snyk-bot',
+        'whitesource-bolt-for-github[bot]',
+        'allcontributors[bot]',
+        'semantic-release-bot',
+        'imgbot[bot]',
+        'stale[bot]',
+        'pre-commit-ci[bot]',
+        'pyup-bot',
+        'pyup.io-bot',
+        'mergify[bot]',
+        'sonarcloud[bot]',
+        'deepsource-autofix[bot]',
+        'gitpod-io[bot]',
+        'web-flow',
+        'noreply',
+        'no-reply',
+        'github-merge-queue[bot]',
+        'auto-merge-bot',
+        'auto-update-bot',
+        'update-bot',
+        'security-bot',
+        'lint-bot',
+        'test-bot',
+        'ci-bot',
+        'deploy-bot',
+        'release-bot',
+        'changelog-bot'
+    },
+    'BOT_PATTERNS': [
+        r'.*\[bot\]$',      # 以[bot]结尾的用户名
+        r'^bot-.*',         # 以bot-开头的用户名
+        r'.*-bot$',         # 以-bot结尾的用户名
+        r'^.*bot.*$',       # 包含bot的用户名（更宽泛的匹配）
+        r'^ci-.*',          # 以ci-开头的用户名
+        r'^.*-ci$',         # 以-ci结尾的用户名
+        r'^auto-.*',        # 以auto-开头的用户名
+        r'^.*-auto$',       # 以-auto结尾的用户名
+        r'^deploy-.*',      # 以deploy-开头的用户名
+        r'^.*-deploy$',     # 以-deploy结尾的用户名
+        r'^test-.*',        # 以test-开头的用户名
+        r'^.*-test$',       # 以-test结尾的用户名
+        r'^\d+\+.*@users\.noreply\.github\.com$',  # GitHub noreply邮箱格式
+    ],
     'DEFAULT_DOMAINS': {
         'machine-learning': '机器学习',
         'deep-learning': '深度学习',
@@ -151,14 +204,14 @@ def get_org_repos(org_name):
     print(f"总共找到 {len(all_repos)} 个原创仓库")
     return all_repos
 
-def get_repo_contributors(owner, repo_name):
-    """获取仓库贡献者列表（支持分页）"""
+def get_repo_contributors(org_name, repo_name):
+    """获取仓库贡献者（过滤机器人账户）"""
     all_contributors = []
     page = 1
     per_page = 100
 
     while True:
-        url = f"{CONFIG['API_BASE']}/repos/{owner}/{repo_name}/contributors?per_page={per_page}&page={page}"
+        url = f"{CONFIG['API_BASE']}/repos/{org_name}/{repo_name}/contributors?per_page={per_page}&page={page}"
         contributors = fetch_api(url)
 
         if not contributors or len(contributors) == 0:
@@ -177,10 +230,17 @@ def get_repo_contributors(owner, repo_name):
             print(f"    ⚠️ 仓库 {repo_name} 贡献者过多，已达页数限制")
             break
 
-    # 过滤掉贡献数低于阈值的贡献者
+    # 过滤掉贡献数低于阈值的贡献者和机器人账户
     qualified_contributors = []
     for contributor in all_contributors:
+        username = contributor['login']
         contributions = contributor.get('contributions', 0)
+        
+        # 检查是否为机器人账户
+        if is_bot_account(username):
+            print(f"    🤖 跳过机器人账户: {username}")
+            continue
+            
         if contributions >= CONFIG['MIN_CONTRIBUTIONS']:
             qualified_contributors.append({
                 'login': contributor['login'],
@@ -464,17 +524,24 @@ def main():
 
         for i, (username, contrib_info) in enumerate(contributors_list[:max_contributors]):
             print(f"\n👤 处理贡献者 {i + 1}/{max_contributors}: {username}")
+            
+            # 再次检查是否为机器人账户（双重保险）
+            if is_bot_account(username):
+                print(f"  🤖 跳过机器人账户: {username}")
+                continue
+                
             print(f"  📈 总贡献: {contrib_info['total_contributions']} 行")
             print(f"  📁 参与仓库: {len(contrib_info['repos'])} 个 - {', '.join(contrib_info['repos'][:3])}{'...' if len(contrib_info['repos']) > 3 else ''}")
 
             try:
                 # 获取用户详细信息
                 user_details = get_user_details(username)
-                if user_details:
-                    print(f"  ✓ 获取用户详情: {user_details.get('name', username)}")
-                else:
-                    print(f"  ⚠️ 用户详情获取失败，使用基本信息")
-
+                
+                # 使用用户详情进行更精确的机器人检测
+                if user_details and is_bot_account(username, user_details):
+                    print(f"  🤖 检测到机器人账户，跳过: {username}")
+                    continue
+                
                 # 获取用户个人仓库（用于计算 Stars 等统计信息）
                 user_repos = get_user_repos(username)
                 print(f"  ✓ 获取个人仓库: {len(user_repos)} 个")
@@ -1132,6 +1199,67 @@ def main_with_commits():
         else:
             print("💥 没有现有数据可用，构建失败")
             sys.exit(1)
+
+def is_bot_account(username, user_details=None):
+    """判断是否为机器人账户"""
+    import re
+
+    # 检查用户名是否在机器人列表中
+    if username.lower() in CONFIG['BOT_USERNAMES']:
+        return True
+
+    # 检查用户名是否匹配机器人模式
+    for pattern in CONFIG['BOT_PATTERNS']:
+        if re.match(pattern, username, re.IGNORECASE):
+            return True
+
+    # 检查是否为GitHub noreply邮箱格式的用户名
+    if re.match(r'^\d+\+.*@users\.noreply\.github\.com$', username):
+        return True
+
+    # 检查是否为纯数字用户名（通常是系统生成的）
+    if username.isdigit() and len(username) > 6:
+        return True
+
+    # 如果有用户详情，进行更详细的检查
+    if user_details:
+        account_type = user_details.get('type', '').lower()
+        if account_type == 'bot':
+            return True
+
+        # 检查用户简介中是否包含机器人关键词
+        bio = (user_details.get('bio') or '').lower()
+        bot_keywords = [
+            'bot', 'automated', 'automation', 'ci/cd', 'continuous integration',
+            'github action', 'github actions', 'auto-merge', 'auto merge',
+            'dependency update', 'security scan', 'code analysis',
+            'automated testing', 'deployment bot', 'release automation'
+        ]
+        if any(keyword in bio for keyword in bot_keywords):
+            return True
+
+        # 检查用户名字段是否包含机器人关键词
+        name = (user_details.get('name') or '').lower()
+        if name and any(keyword in name for keyword in ['bot', 'automation', 'ci/cd']):
+            return True
+
+        # 检查公司字段是否为GitHub或其他自动化服务
+        company = (user_details.get('company') or '').lower()
+        if company in ['@actions', '@github', '@dependabot', '@renovatebot']:
+            return True
+
+        # 检查是否为零关注者且零关注的账户（通常是机器人）
+        followers = user_details.get('followers', 0)
+        following = user_details.get('following', 0)
+        public_repos = user_details.get('public_repos', 0)
+
+        # 如果是零关注者、零关注、且仓库数很少的账户，可能是机器人
+        if followers == 0 and following == 0 and public_repos <= 1:
+            # 进一步检查用户名是否符合机器人特征
+            if any(keyword in username.lower() for keyword in ['action', 'bot', 'ci', 'auto', 'deploy', 'test']):
+                return True
+
+    return False
 
 if __name__ == '__main__':
     # 检查命令行参数

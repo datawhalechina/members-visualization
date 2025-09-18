@@ -109,10 +109,15 @@ const validMembers = computed(() => {
   for (const [userKey, stats] of Object.entries(commitsData.value.user_commits)) {
     // 过滤条件：至少1个commit
     if (stats.total_commits >= 1) {
+      // 从membersData中查找对应的成员信息
+      const memberInfo = props.membersData.find(m => m.id === userKey)
+
       const member = {
         user_key: userKey,
         display_name: extractDisplayName(userKey),
         github_username: extractGithubUsername(userKey),
+        // 添加头像信息
+        avatar: memberInfo?.avatar || null,
         ...stats,
         // 计算卷王分数
         score: calculateRollKingScore(stats)
@@ -120,7 +125,6 @@ const validMembers = computed(() => {
 
       // 根据研究方向筛选
       if (props.selectedDomain) {
-        const memberInfo = props.membersData.find(m => m.id === userKey)
         if (memberInfo && memberInfo.domain && memberInfo.domain.includes(props.selectedDomain)) {
           members.push(member)
         }

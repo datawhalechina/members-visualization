@@ -124,6 +124,11 @@ const getAvatarUrl = (avatar) => {
 
   if (!avatar) return defaultAvatar
 
+  // 优先处理本地缓存的头像文件
+  if (avatar.startsWith('avatars/')) {
+    return `${basePath}${avatar}`.replace(/\/+/g, '/')
+  }
+
   if (avatar.startsWith('http')) {
     return avatar
   }
