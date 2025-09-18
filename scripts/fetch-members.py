@@ -333,6 +333,37 @@ def download_avatar(avatar_url, username):
         print(f"  ⚠️ 头像下载失败 {username}: {e}")
         return None
 
+def ensure_avatar_exists(username, avatar_url):
+    """确保指定用户的头像文件存在，如果不存在则下载"""
+    if not username or not avatar_url:
+        return False
+
+    # 确保头像目录存在
+    CONFIG['AVATARS_DIR'].mkdir(parents=True, exist_ok=True)
+
+    # 头像文件路径
+    avatar_filename = f"{username}.jpg"
+    avatar_path = CONFIG['AVATARS_DIR'] / avatar_filename
+
+    # 如果头像已存在，无需下载
+    if avatar_path.exists():
+        return True
+
+    try:
+        # 静默下载头像，避免过多输出
+        response = requests.get(avatar_url, timeout=10)
+        response.raise_for_status()
+
+        with open(avatar_path, 'wb') as f:
+            f.write(response.content)
+
+        print(f"      📸 新增头像: {username}")
+        return True
+
+    except Exception as e:
+        # 静默处理错误，避免中断数据收集流程
+        return False
+
 def get_user_details(username):
     """获取用户详细信息"""
     url = f"{CONFIG['API_BASE']}/users/{username}"
@@ -955,13 +986,20 @@ def collect_unified_data(org_name, include_commits=False):
                             # 尝试获取GitHub用户名
                             if commit.get('author') and commit['author']:
                                 commit_data['github_username'] = commit['author']['login']
+                                # 获取头像URL用于后续下载
+                                commit_data['author_avatar_url'] = commit['author'].get('avatar_url')
                             else:
                                 commit_data['github_username'] = None
+                                commit_data['author_avatar_url'] = None
 
                             # 检查是否为机器人账户的提交
                             if commit_data['github_username'] and is_bot_account(commit_data['github_username']):
                                 print(f"      🤖 跳过机器人提交: {commit_data['github_username']}")
                                 continue
+
+                            # 检查并下载新发现贡献者的头像
+                            if commit_data['github_username'] and commit_data['author_avatar_url']:
+                                ensure_avatar_exists(commit_data['github_username'], commit_data['author_avatar_url'])
 
                             # 解析日期
                             commit_date = datetime.fromisoformat(commit_data['author']['date'].replace('Z', '+00:00'))

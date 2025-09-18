@@ -1,9 +1,9 @@
 name: Daily Data Update
 
 on:
-  # 每日 00:00 UTC 自动运行
+  # 每日 22:00 UTC 自动运行（北京时间凌晨 6:00）
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 22 * * *'
   
   # 允许手动触发
   workflow_dispatch:
