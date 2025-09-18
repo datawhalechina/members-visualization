@@ -26,13 +26,25 @@ const getAvatarUrl = (member) => {
   return member.avatar || `https://github.com/${member.id}.png`
 }
 
+// 获取显示名称（优先使用name，为空时使用id）
+const getDisplayName = (member) => {
+  // 检查name字段是否为空、null、undefined或"None"
+  const name = member.name
+  if (!name || name === 'null' || name === 'undefined' || name === 'None' || name.trim() === '') {
+    return member.id
+  }
+  return name
+}
+
 onMounted(() => {
   // 直接使用CSV中的数据，不再实时调用GitHub API
+  const displayName = getDisplayName(props.member)
+
   githubData.value = {
     login: props.member.id,
     avatar_url: getAvatarUrl(props.member),
     html_url: props.member.github,
-    name: props.member.name || props.member.id,
+    name: displayName,
     bio: props.member.bio || '',
     location: props.member.location || '',
     company: props.member.company || '',
@@ -50,21 +62,21 @@ onMounted(() => {
   <div class="member-card">
     <div class="member-header">
       <div class="avatar-container">
-        <img 
-          v-if="githubData?.avatar_url" 
-          :src="githubData.avatar_url" 
-          :alt="member.name"
+        <img
+          v-if="githubData?.avatar_url"
+          :src="githubData.avatar_url"
+          :alt="githubData?.name || member.id"
           class="avatar"
         />
         <div v-else class="avatar-placeholder">
-          {{ member.name.charAt(0) }}
+          {{ (githubData?.name || member.id).charAt(0) }}
         </div>
       </div>
       
       <div class="member-info">
         <h3 class="member-name">
           <a :href="member.github" target="_blank" rel="noopener noreferrer">
-            {{ member.name }}
+            {{ githubData?.name || member.id }}
           </a>
         </h3>
         <p v-if="githubData?.bio" class="member-bio">{{ githubData.bio }}</p>

@@ -53,7 +53,7 @@ jobs:
       - name: Check if data exists
         id: check-data
         run: |
-          if [ -f "data/members.csv" ]; then
+          if [ -f "docs/public/data/members.csv" ]; then
             echo "data-exists=true" >> $GITHUB_OUTPUT
             echo "✅ 使用现有数据文件"
           else

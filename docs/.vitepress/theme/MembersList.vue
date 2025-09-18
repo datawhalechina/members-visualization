@@ -24,10 +24,15 @@ const filteredMembers = computed(() => {
   // 按姓名搜索
   if (searchQuery.value.trim()) {
     const query = searchQuery.value.toLowerCase().trim()
-    filtered = filtered.filter(member => 
-      member.name.toLowerCase().includes(query) ||
-      member.id.toLowerCase().includes(query)
-    )
+    filtered = filtered.filter(member => {
+      // 获取显示名称（优先使用name，为空时使用id）
+      const displayName = (member.name && member.name !== 'null' && member.name !== 'undefined' && member.name !== 'None' && member.name.trim() !== '')
+        ? member.name
+        : member.id
+
+      return displayName.toLowerCase().includes(query) ||
+             member.id.toLowerCase().includes(query)
+    })
   }
 
   // 按研究方向筛选

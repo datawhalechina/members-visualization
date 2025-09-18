@@ -34,11 +34,11 @@ import MembersList from './.vitepress/theme/MembersList.vue'
 
 ## 数据更新
 
-要更新数据，请编辑 `data/members.csv` 文件：
+数据文件会通过 GitHub Actions 自动更新：
 
-1. 保持 CSV 格式：`id,name,github,domain`
-2. 多个研究方向用分号 `;` 分隔
-3. 提交更改后，GitHub Actions 会自动重新部署
+1. 每日自动运行数据收集脚本
+2. 手动触发工作流也可以更新数据
+3. 数据直接保存到 `docs/public/data/` 目录供前端使用
 
 ## 示例数据格式
 

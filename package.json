@@ -4,12 +4,12 @@
   "description": "组织成员研究方向可视化展示",
   "main": "index.js",
   "scripts": {
-    "docs:dev": "npm run copy-data && vitepress dev docs",
-    "docs:build": "npm run copy-data && cross-env NODE_ENV=production vitepress build docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "cross-env NODE_ENV=production vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "fetch-data": "node scripts/fetch-members.js",
+    "fetch-data": "python scripts/fetch-members.py",
     "fetch-data:python": "python scripts/fetch-members.py",
-    "copy-data": "node -e \"const fs=require('fs'); const path=require('path'); const srcDir=path.join(__dirname,'data'); const destDir=path.join(__dirname,'docs','public','data'); if(!fs.existsSync(destDir)) fs.mkdirSync(destDir,{recursive:true}); if(fs.existsSync(path.join(srcDir,'members.csv'))) fs.copyFileSync(path.join(srcDir,'members.csv'),path.join(destDir,'members.csv'));\""
+    "fetch-data:test": "python scripts/fetch-members.py --test"
   },
   "keywords": [
     "datawhale",

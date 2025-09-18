@@ -47,8 +47,9 @@ members-visualization/
 ├── docs/
 │   ├── index.md                # 首页
 │   └── members.md              # 成员可视化页面
-├── data/
-│   └── members.csv             # 数据源 (CSV 格式)
+├── docs/public/data/
+│   ├── members.csv             # 成员数据 (CSV 格式)
+│   └── commits_weekly.json     # 提交活跃度数据 (JSON 格式)
 ├── .vitepress/
 │   ├── config.js               # VitePress 配置
 │   └── theme/
@@ -76,7 +77,7 @@ members-visualization/
 
 ## 📊 数据格式
 
-数据存储在 `data/members.csv` 文件中，格式如下：
+数据存储在 `docs/public/data/members.csv` 文件中，格式如下：
 
 ```csv
 id,name,github,domain
@@ -130,11 +131,14 @@ user3,王五,https://github.com/user3,"推荐系统;NLP"
 
 **手动更新数据**：
 ```bash
-# 使用 Node.js 脚本
+# 使用 Python 脚本（推荐）
 npm run fetch-data
 
-# 或使用 Python 脚本
-npm run fetch-data:python
+# 或直接运行 Python 脚本
+python scripts/fetch-members.py
+
+# 快速测试模式（处理较少数据）
+npm run fetch-data:test
 ```
 
 **环境变量配置**：
@@ -160,9 +164,11 @@ npm run docs:serve
 
 ### 更新数据
 
-1. 编辑 `data/members.csv` 文件
-2. 按照指定格式添加或修改成员信息
-3. 提交更改到 `main` 分支
+数据通过 GitHub Actions 自动更新：
+
+1. **自动更新**：每日定时运行数据收集脚本
+2. **手动触发**：在 Actions 页面手动触发工作流
+3. **数据存储**：直接保存到 `docs/public/data/` 目录供前端使用
 4. GitHub Actions 会自动重新构建和部署
 
 ### 自定义配置

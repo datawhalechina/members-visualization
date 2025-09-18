@@ -29,8 +29,8 @@ except ImportError:
 CONFIG = {
     'ORG_NAME': os.getenv('GITHUB_ORG', 'datawhalechina'),
     'GITHUB_TOKEN': os.getenv('GITHUB_TOKEN'),
-    'OUTPUT_FILE': Path(__file__).parent.parent / 'data' / 'members.csv',
-    'COMMITS_FILE': Path(__file__).parent.parent / 'data' / 'commits_weekly.json',  # 周commit数据文件
+    'OUTPUT_FILE': Path(__file__).parent.parent / 'docs' / 'public' / 'data' / 'members.csv',
+    'COMMITS_FILE': Path(__file__).parent.parent / 'docs' / 'public' / 'data' / 'commits_weekly.json',  # 周commit数据文件
     'AVATARS_DIR': Path(__file__).parent.parent / 'docs' / 'public' / 'avatars',  # 头像缓存目录
     'API_BASE': 'https://api.github.com',
     'MIN_CONTRIBUTIONS': int(os.getenv('MIN_CONTRIBUTIONS', '10')),  # 最小贡献行数阈值（降低以包含更多贡献者）
@@ -40,57 +40,54 @@ CONFIG = {
     'COMMIT_DAYS_RANGE': 7,  # 获取最近N天的commit数据
     'MAX_COMMITS_PER_REPO': 200,  # 每个仓库最大commit数
     # 添加机器人账户过滤规则
+    # 严格的机器人账户列表 - 只包含确认的官方机器人
     'BOT_USERNAMES': {
+        # GitHub 官方机器人
         'actions-user',
-        'dependabot',
-        'dependabot[bot]',
         'github-actions',
         'github-actions[bot]',
+        'web-flow',
+        'github-merge-queue[bot]',
+
+        # Dependabot 系列
+        'dependabot',
+        'dependabot[bot]',
+        'dependabot-preview[bot]',
+
+        # 常见的第三方官方机器人（带[bot]后缀的）
         'renovate[bot]',
         'greenkeeper[bot]',
         'codecov[bot]',
-        'snyk-bot',
         'whitesource-bolt-for-github[bot]',
         'allcontributors[bot]',
-        'semantic-release-bot',
         'imgbot[bot]',
         'stale[bot]',
         'pre-commit-ci[bot]',
-        'pyup-bot',
-        'pyup.io-bot',
         'mergify[bot]',
         'sonarcloud[bot]',
         'deepsource-autofix[bot]',
         'gitpod-io[bot]',
-        'web-flow',
+        'restyled-io[bot]',
+
+        # 确认的第三方机器人（无[bot]后缀但确认是机器人）
+        'snyk-bot',
+        'semantic-release-bot',
+        'pyup-bot',
+        'pyup.io-bot',
+        'houndci-bot',
+        'coveralls',
+        'travis-ci',
+        'circleci',
+
+        # 明确的无效账户
         'noreply',
         'no-reply',
-        'github-merge-queue[bot]',
-        'auto-merge-bot',
-        'auto-update-bot',
-        'update-bot',
-        'security-bot',
-        'lint-bot',
-        'test-bot',
-        'ci-bot',
-        'deploy-bot',
-        'release-bot',
-        'changelog-bot'
+        'invalid-email-address'
     },
+    # 严格的机器人模式 - 只匹配明确的机器人格式
     'BOT_PATTERNS': [
-        r'.*\[bot\]$',      # 以[bot]结尾的用户名
-        r'^bot-.*',         # 以bot-开头的用户名
-        r'.*-bot$',         # 以-bot结尾的用户名
-        r'^.*bot.*$',       # 包含bot的用户名（更宽泛的匹配）
-        r'^ci-.*',          # 以ci-开头的用户名
-        r'^.*-ci$',         # 以-ci结尾的用户名
-        r'^auto-.*',        # 以auto-开头的用户名
-        r'^.*-auto$',       # 以-auto结尾的用户名
-        r'^deploy-.*',      # 以deploy-开头的用户名
-        r'^.*-deploy$',     # 以-deploy结尾的用户名
-        r'^test-.*',        # 以test-开头的用户名
-        r'^.*-test$',       # 以-test结尾的用户名
-        r'^\d+\+.*@users\.noreply\.github\.com$',  # GitHub noreply邮箱格式
+        r'.*\[bot\]$',      # 以[bot]结尾的用户名（GitHub官方机器人格式）
+        r'^\d+\+.*@users\.noreply\.github\.com$',  # GitHub noreply邮箱格式的用户名
     ],
     'DEFAULT_DOMAINS': {
         'machine-learning': '机器学习',
@@ -189,6 +186,12 @@ def get_org_repos(org_name):
         all_repos.extend(original_repos)
 
         print(f"获取第 {page} 页：{len(repos)} 个仓库（{len(original_repos)} 个原创）")
+
+        # 测试模式：限制总仓库数
+        if CONFIG.get('TEST_MODE', False) and len(all_repos) >= CONFIG.get('TEST_MAX_REPOS', 5):
+            print(f"🧪 测试模式：已达到仓库数限制 ({CONFIG.get('TEST_MAX_REPOS', 5)} 个)，停止获取")
+            all_repos = all_repos[:CONFIG.get('TEST_MAX_REPOS', 5)]  # 确保不超过限制
+            break
 
         # 如果返回的仓库数少于每页限制，说明已经是最后一页
         if len(repos) < per_page:
@@ -433,6 +436,26 @@ def infer_domains_from_repos(repo_names, user_bio='', user_repos=None):
 
     return list(domains)
 
+def clean_csv_field(text):
+    """清理CSV字段中的换行符和其他问题字符"""
+    if not text:
+        return ''
+
+    # 转换为字符串并清理
+    text = str(text)
+
+    # 替换换行符为空格
+    text = text.replace('\n', ' ').replace('\r', ' ')
+
+    # 替换多个连续空格为单个空格
+    import re
+    text = re.sub(r'\s+', ' ', text)
+
+    # 去除首尾空格
+    text = text.strip()
+
+    return text
+
 def save_to_csv(members, output_file):
     """保存数据到 CSV 文件"""
     with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
@@ -448,19 +471,19 @@ def save_to_csv(members, output_file):
         # 写入数据
         for member in members:
             writer.writerow([
-                member['id'],
-                member['name'],
-                member['github'],
+                clean_csv_field(member['id']),
+                clean_csv_field(member['name']),
+                clean_csv_field(member['github']),
                 ';'.join(member['domains']),
                 ';'.join(member.get('repositories', [])),
                 member.get('public_repos', 0),
                 member.get('total_stars', 0),
                 member.get('followers', 0),
                 member.get('following', 0),
-                member.get('avatar', ''),
-                member.get('bio', ''),
-                member.get('location', ''),
-                member.get('company', '')
+                clean_csv_field(member.get('avatar', '')),
+                clean_csv_field(member.get('bio', '')),
+                clean_csv_field(member.get('location', '')),
+                clean_csv_field(member.get('company', ''))
             ])
 
 def check_existing_data():
@@ -480,13 +503,14 @@ def backup_existing_data():
     return None
 
 def main():
-    """主函数"""
-    print("🚀 开始执行数据拉取脚本...")
+    """主函数 - 统一版本，始终收集commit数据"""
+    print("🚀 开始执行数据拉取脚本（包含commit数据）...")
     print(f"📁 输出文件: {CONFIG['OUTPUT_FILE']}")
+    print(f"📊 Commit数据文件: {CONFIG['COMMITS_FILE']}")
     print(f"🏢 组织名称: {CONFIG['ORG_NAME']}")
     print(f"🔑 Token 状态: {'已配置' if CONFIG['GITHUB_TOKEN'] else '未配置'}")
 
-    # 当未安装 requests 时优雅降级：若有现有数据则继续构建，否则失败
+    # 当未安装 requests 时优雅降级
     if requests is None:
         print("⚠️ 缺少 requests 库，跳过网络请求。")
         if check_existing_data():
@@ -495,56 +519,47 @@ def main():
         else:
             print("💥 没有现有数据可用，构建失败")
             sys.exit(1)
+
     has_existing_data = check_existing_data()
+    overall_start_time = time.time()
 
     try:
-        print("🚀 开始拉取成员数据...")
-
         if has_existing_data:
             backup_existing_data()
 
-        # 从组织仓库收集贡献者数据
-        contributors_data = collect_contributors_from_repos(CONFIG['ORG_NAME'])
+        # 统一数据收集（同时获取成员和commit数据）
+        contributors_data, all_commits, api_stats = collect_unified_data(CONFIG['ORG_NAME'], include_commits=True)
 
         if not contributors_data:
             print("⚠️  未找到任何贡献者数据")
-
             if has_existing_data:
-                print("✅ 保持使用现有数据")
-                return
+                print("🔄 使用现有数据继续构建...")
+                sys.exit(0)
             else:
-                raise Exception("没有现有数据可用，且无法获取新数据")
+                print("💥 没有现有数据可用，构建失败")
+                sys.exit(1)
 
-        # 处理每个贡献者
+        # 处理成员数据
+        print(f"\n👥 开始处理 {len(contributors_data)} 个成员的详细信息...")
         processed_members = []
-        contributors_list = list(contributors_data.items())
-        # 处理所有贡献者（可通过环境变量限制）
-        max_contributors = min(len(contributors_list), int(os.getenv('MAX_CONTRIBUTORS', '200')))
-        print(f"\n📊 准备处理 {max_contributors} 个贡献者（总共 {len(contributors_list)} 个）")
 
-        for i, (username, contrib_info) in enumerate(contributors_list[:max_contributors]):
-            print(f"\n👤 处理贡献者 {i + 1}/{max_contributors}: {username}")
-            
-            # 再次检查是否为机器人账户（双重保险）
-            if is_bot_account(username):
-                print(f"  🤖 跳过机器人账户: {username}")
-                continue
-                
-            print(f"  📈 总贡献: {contrib_info['total_contributions']} 行")
-            print(f"  📁 参与仓库: {len(contrib_info['repos'])} 个 - {', '.join(contrib_info['repos'][:3])}{'...' if len(contrib_info['repos']) > 3 else ''}")
+        for username, contrib_info in contributors_data.items():
+            print(f"\n👤 处理成员: {username}")
 
             try:
                 # 获取用户详细信息
                 user_details = get_user_details(username)
-                
-                # 使用用户详情进行更精确的机器人检测
-                if user_details and is_bot_account(username, user_details):
-                    print(f"  🤖 检测到机器人账户，跳过: {username}")
-                    continue
-                
-                # 获取用户个人仓库（用于计算 Stars 等统计信息）
+                api_stats['users'] += 1
+                api_stats['total'] += 1
+
+                if user_details:
+                    print(f"  ✓ 获取用户信息: {user_details.get('name', 'N/A')}")
+
+                # 获取用户仓库信息
                 user_repos = get_user_repos(username)
-                print(f"  ✓ 获取个人仓库: {len(user_repos)} 个")
+                api_stats['user_repos'] += 1
+                api_stats['total'] += 1
+                print(f"  ✓ 获取用户仓库: {len(user_repos) if user_repos else 0} 个")
 
                 # 计算用户统计信息
                 user_stats = calculate_user_stats(user_details, user_repos)
@@ -568,42 +583,66 @@ def main():
                     'public_repos': user_stats['public_repos'],  # 个人公开仓库数
                     'total_stars': user_stats['total_stars'],  # 总 Stars 数
                     'followers': user_stats['followers'],  # 关注者数
-                    'following': user_stats['following'],  # 关注中数
-                    'avatar': local_avatar or avatar_url,  # 头像路径（优先本地缓存）
-                    'bio': user_details.get('bio', '') if user_details else '',  # 个人简介
-                    'location': user_details.get('location', '') if user_details else '',  # 位置
-                    'company': user_details.get('company', '') if user_details else ''  # 公司
+                    'following': user_stats['following'],  # 关注数
+                    'avatar': local_avatar,  # 本地头像路径
+                    'bio': user_details.get('bio') if user_details else '',
+                    'location': user_details.get('location') if user_details else '',
+                    'company': user_details.get('company') if user_details else ''
                 })
 
-                # 动态延迟以避免 API 速率限制
-                delay = 0.1 if CONFIG['GITHUB_TOKEN'] else 0.3
-                time.sleep(delay)
-
             except Exception as e:
-                print(f"⚠️  处理贡献者 {username} 时出错: {e}")
-                print(f"  错误类型: {type(e).__name__}")
-                import traceback
-                print(f"  详细错误: {traceback.format_exc()}")
-                # 继续处理其他贡献者
+                print(f"  ❌ 处理成员 {username} 时出错: {e}")
+                continue
 
-        if not processed_members:
-            raise Exception("没有成功处理任何成员数据")
+        if processed_members:
+            # 保存成员数据
+            save_to_csv(processed_members, CONFIG['OUTPUT_FILE'])
+            print(f"✅ 成功处理 {len(processed_members)} 个成员")
 
-        # 保存到 CSV
-        save_to_csv(processed_members, CONFIG['OUTPUT_FILE'])
+            # 处理并保存commit数据
+            if all_commits:
+                print(f"\n📊 处理 {len(all_commits)} 个commit数据...")
+                user_commits = aggregate_commits_by_user(all_commits)
 
-        print(f"✅ 成功生成 CSV 文件: {CONFIG['OUTPUT_FILE']}")
-        print(f"📊 处理了 {len(processed_members)} 个成员")
+                commits_data = {
+                    'update_time': datetime.now().isoformat(),
+                    'days_range': CONFIG['COMMIT_DAYS_RANGE'],
+                    'total_commits': len(all_commits),
+                    'total_repos': len(set(commit['repo'] for commit in all_commits)),
+                    'user_commits': user_commits,
+                    'optimization_stats': {
+                        'api_calls': api_stats,
+                        'execution_time': f"{time.time() - overall_start_time:.1f}s",
+                        'optimization_enabled': True
+                    }
+                }
+
+                save_commits_data(commits_data)
+
+            # 显示执行统计
+            total_time = time.time() - overall_start_time
+            print(f"\n🎉 执行完成!")
+            print(f"📊 性能统计:")
+            print(f"  - 总API调用: {api_stats['total']} 次")
+            print(f"  - 总执行时间: {total_time:.1f} 秒")
+
+        else:
+            print("❌ 没有成功处理任何成员")
+            if has_existing_data:
+                print("🔄 使用现有数据继续构建...")
+                sys.exit(0)
+            else:
+                print("💥 构建失败")
+                sys.exit(1)
 
     except Exception as e:
-        print(f"❌ 数据拉取失败: {e}")
+        print(f"💥 脚本执行失败: {e}")
         import traceback
-        print(f"详细错误信息: {traceback.format_exc()}")
+        traceback.print_exc()
 
         if has_existing_data:
             print("🔄 使用现有数据继续构建...")
-            print("💡 提示：设置 GITHUB_TOKEN 环境变量可以避免 API 速率限制")
-            sys.exit(0)  # 不中断构建流程
+            sys.exit(0)
         else:
             print("💥 没有现有数据可用，构建失败")
             sys.exit(1)
@@ -866,6 +905,11 @@ def collect_unified_data(org_name, include_commits=False):
                     if contributor['contributions'] >= CONFIG['MIN_CONTRIBUTIONS']:
                         username = contributor['login']
 
+                        # 检查是否为机器人账户
+                        if is_bot_account(username):
+                            print(f"    🤖 跳过机器人账户: {username}")
+                            continue
+
                         if username not in contributors_data:
                             contributors_data[username] = {
                                 'user_info': contributor,
@@ -913,6 +957,11 @@ def collect_unified_data(org_name, include_commits=False):
                                 commit_data['github_username'] = commit['author']['login']
                             else:
                                 commit_data['github_username'] = None
+
+                            # 检查是否为机器人账户的提交
+                            if commit_data['github_username'] and is_bot_account(commit_data['github_username']):
+                                print(f"      🤖 跳过机器人提交: {commit_data['github_username']}")
+                                continue
 
                             # 解析日期
                             commit_date = datetime.fromisoformat(commit_data['author']['date'].replace('Z', '+00:00'))
@@ -973,6 +1022,10 @@ def aggregate_commits_by_user(all_commits):
             else:
                 continue  # 跳过无法识别用户的commit
 
+        # 双重检查：确保不是机器人账户
+        if is_bot_account(username):
+            continue  # 跳过机器人账户的commit
+
         stats = user_stats[username]
 
         # 更新统计
@@ -1022,20 +1075,12 @@ def save_commits_data(commits_data):
         # 确保目录存在
         CONFIG['COMMITS_FILE'].parent.mkdir(parents=True, exist_ok=True)
 
-        # 保存到主数据文件
+        # 直接保存到前端目录
         with open(CONFIG['COMMITS_FILE'], 'w', encoding='utf-8') as f:
             json.dump(commits_data, f, ensure_ascii=False, indent=2)
 
-        # 同时保存到public目录供前端使用
-        public_file = Path(__file__).parent.parent / 'docs' / 'public' / 'data' / 'commits_weekly.json'
-        public_file.parent.mkdir(parents=True, exist_ok=True)
-
-        with open(public_file, 'w', encoding='utf-8') as f:
-            json.dump(commits_data, f, ensure_ascii=False, indent=2)
-
         print(f"💾 Commit数据已保存:")
-        print(f"  - 主文件: {CONFIG['COMMITS_FILE']}")
-        print(f"  - 前端文件: {public_file}")
+        print(f"  - 文件路径: {CONFIG['COMMITS_FILE']}")
         print(f"  - 活跃用户: {commits_data.get('user_commits', {}) and len(commits_data['user_commits'])} 人")
         print(f"  - 总commit数: {commits_data.get('total_commits', 0)}")
 
@@ -1045,225 +1090,91 @@ def save_commits_data(commits_data):
         print(f"❌ 保存commit数据失败: {e}")
         return False
 
-def main_with_commits():
-    """主函数 - 优化版本，包含commit数据收集"""
-    print("🚀 开始执行优化的数据拉取脚本（包含commit数据）...")
-    print(f"📁 输出文件: {CONFIG['OUTPUT_FILE']}")
-    print(f"📊 Commit数据文件: {CONFIG['COMMITS_FILE']}")
-    print(f"🏢 组织名称: {CONFIG['ORG_NAME']}")
-    print(f"🔑 Token 状态: {'已配置' if CONFIG['GITHUB_TOKEN'] else '未配置'}")
 
-    # 当未安装 requests 时优雅降级
-    if requests is None:
-        print("⚠️ 缺少 requests 库，跳过网络请求。")
-        if check_existing_data():
-            print("🔄 使用现有数据继续构建...")
-            sys.exit(0)
-        else:
-            print("💥 没有现有数据可用，构建失败")
-            sys.exit(1)
-
-    has_existing_data = check_existing_data()
-    overall_start_time = time.time()
-
-    try:
-        if has_existing_data:
-            backup_existing_data()
-
-        # 统一数据收集（同时获取成员和commit数据）
-        contributors_data, all_commits, api_stats = collect_unified_data(CONFIG['ORG_NAME'], include_commits=True)
-
-        if not contributors_data:
-            print("⚠️  未找到任何贡献者数据")
-            if has_existing_data:
-                print("🔄 使用现有数据继续构建...")
-                sys.exit(0)
-            else:
-                print("💥 没有现有数据可用，构建失败")
-                sys.exit(1)
-
-        # 处理成员数据
-        print(f"\n👥 开始处理 {len(contributors_data)} 个成员的详细信息...")
-        processed_members = []
-
-        for username, contrib_info in contributors_data.items():
-            print(f"\n👤 处理成员: {username}")
-
-            try:
-                # 获取用户详细信息
-                user_details = get_user_details(username)
-                api_stats['users'] += 1
-                api_stats['total'] += 1
-
-                if user_details:
-                    print(f"  ✓ 获取用户信息: {user_details.get('name', 'N/A')}")
-
-                # 获取用户仓库信息
-                user_repos = get_user_repos(username)
-                api_stats['user_repos'] += 1
-                api_stats['total'] += 1
-                print(f"  ✓ 获取用户仓库: {len(user_repos) if user_repos else 0} 个")
-
-                # 计算用户统计信息
-                user_stats = calculate_user_stats(user_details, user_repos)
-                print(f"  ✓ 统计信息: {user_stats['public_repos']} 仓库, {user_stats['total_stars']} Stars, {user_stats['followers']} 关注者")
-
-                # 下载并缓存头像
-                avatar_url = user_details.get('avatar_url') if user_details else contrib_info['user_info'].get('avatar_url')
-                local_avatar = download_avatar(avatar_url, username)
-
-                # 推断研究方向（基于仓库 topics、参与的仓库名称和用户简介）
-                user_bio = user_details.get('bio') if user_details else ''
-                domains = infer_domains_from_repos(contrib_info['repos'], user_bio, user_repos)
-                print(f"  ✓ 推断研究方向: {', '.join(domains)}")
-
-                processed_members.append({
-                    'id': username,
-                    'name': user_details.get('name') if user_details else username,
-                    'github': contrib_info['user_info']['html_url'],
-                    'domains': domains,
-                    'repositories': contrib_info['repos'],  # 参与的组织仓库列表
-                    'public_repos': user_stats['public_repos'],  # 个人公开仓库数
-                    'total_stars': user_stats['total_stars'],  # 总 Stars 数
-                    'followers': user_stats['followers'],  # 关注者数
-                    'following': user_stats['following'],  # 关注数
-                    'avatar': local_avatar,  # 本地头像路径
-                    'bio': user_details.get('bio') if user_details else '',
-                    'location': user_details.get('location') if user_details else '',
-                    'company': user_details.get('company') if user_details else ''
-                })
-
-            except Exception as e:
-                print(f"  ❌ 处理成员 {username} 时出错: {e}")
-                continue
-
-        if processed_members:
-            # 保存成员数据
-            save_to_csv(processed_members, CONFIG['OUTPUT_FILE'])
-            print(f"✅ 成功处理 {len(processed_members)} 个成员")
-
-            # 处理并保存commit数据
-            if all_commits:
-                print(f"\n📊 处理 {len(all_commits)} 个commit数据...")
-                user_commits = aggregate_commits_by_user(all_commits)
-
-                commits_data = {
-                    'update_time': datetime.now().isoformat(),
-                    'days_range': CONFIG['COMMIT_DAYS_RANGE'],
-                    'total_commits': len(all_commits),
-                    'total_repos': len(set(commit['repo'] for commit in all_commits)),
-                    'user_commits': user_commits,
-                    'optimization_stats': {
-                        'api_calls': api_stats,
-                        'execution_time': f"{time.time() - overall_start_time:.1f}s",
-                        'optimization_enabled': True
-                    }
-                }
-
-                save_commits_data(commits_data)
-
-            # 显示优化效果
-            total_time = time.time() - overall_start_time
-            print(f"\n🎉 优化版本执行完成!")
-            print(f"📊 性能统计:")
-            print(f"  - 总API调用: {api_stats['total']} 次")
-            print(f"  - 仓库列表: {api_stats['repos_list']} 次")
-            print(f"  - 贡献者API: {api_stats['contributors']} 次")
-            print(f"  - Commit API: {api_stats['commits']} 次")
-            print(f"  - 用户详情: {api_stats['users']} 次")
-            print(f"  - 用户仓库: {api_stats['user_repos']} 次")
-            print(f"  - 总执行时间: {total_time:.1f} 秒")
-
-            # 估算优化效果
-            estimated_old_calls = api_stats['repos_list'] * 2 + api_stats['contributors'] + api_stats['commits'] + api_stats['users'] + api_stats['user_repos']
-            saved_calls = estimated_old_calls - api_stats['total']
-            print(f"  - 预估节省API调用: {saved_calls} 次 ({saved_calls/estimated_old_calls*100:.1f}%)")
-
-        else:
-            print("❌ 没有成功处理任何成员")
-            if has_existing_data:
-                print("🔄 使用现有数据继续构建...")
-                sys.exit(0)
-            else:
-                print("💥 构建失败")
-                sys.exit(1)
-
-    except Exception as e:
-        print(f"💥 脚本执行失败: {e}")
-        import traceback
-        traceback.print_exc()
-
-        if has_existing_data:
-            print("🔄 使用现有数据继续构建...")
-            sys.exit(0)
-        else:
-            print("💥 没有现有数据可用，构建失败")
-            sys.exit(1)
 
 def is_bot_account(username, user_details=None):
-    """判断是否为机器人账户"""
+    """
+    严格判断是否为机器人账户
+    原则：宁可漏过少数机器人，也不要误判任何真实用户
+    """
     import re
 
-    # 检查用户名是否在机器人列表中
+    # 1. 精确匹配已知的机器人用户名（不区分大小写）
     if username.lower() in CONFIG['BOT_USERNAMES']:
         return True
 
-    # 检查用户名是否匹配机器人模式
+    # 2. 检查用户名是否匹配严格的机器人模式
     for pattern in CONFIG['BOT_PATTERNS']:
         if re.match(pattern, username, re.IGNORECASE):
             return True
 
-    # 检查是否为GitHub noreply邮箱格式的用户名
-    if re.match(r'^\d+\+.*@users\.noreply\.github\.com$', username):
-        return True
-
-    # 检查是否为纯数字用户名（通常是系统生成的）
-    if username.isdigit() and len(username) > 6:
-        return True
-
-    # 如果有用户详情，进行更详细的检查
+    # 3. 如果有用户详情，进行GitHub官方的机器人类型检查
     if user_details:
+        # GitHub官方的账户类型检查（最可靠的方法）
         account_type = user_details.get('type', '').lower()
         if account_type == 'bot':
             return True
 
-        # 检查用户简介中是否包含机器人关键词
-        bio = (user_details.get('bio') or '').lower()
-        bot_keywords = [
-            'bot', 'automated', 'automation', 'ci/cd', 'continuous integration',
-            'github action', 'github actions', 'auto-merge', 'auto merge',
-            'dependency update', 'security scan', 'code analysis',
-            'automated testing', 'deployment bot', 'release automation'
-        ]
-        if any(keyword in bio for keyword in bot_keywords):
-            return True
-
-        # 检查用户名字段是否包含机器人关键词
-        name = (user_details.get('name') or '').lower()
-        if name and any(keyword in name for keyword in ['bot', 'automation', 'ci/cd']):
-            return True
-
-        # 检查公司字段是否为GitHub或其他自动化服务
+        # 检查公司字段是否为GitHub官方机器人服务
         company = (user_details.get('company') or '').lower()
         if company in ['@actions', '@github', '@dependabot', '@renovatebot']:
             return True
 
-        # 检查是否为零关注者且零关注的账户（通常是机器人）
-        followers = user_details.get('followers', 0)
-        following = user_details.get('following', 0)
-        public_repos = user_details.get('public_repos', 0)
-
-        # 如果是零关注者、零关注、且仓库数很少的账户，可能是机器人
-        if followers == 0 and following == 0 and public_repos <= 1:
-            # 进一步检查用户名是否符合机器人特征
-            if any(keyword in username.lower() for keyword in ['action', 'bot', 'ci', 'auto', 'deploy', 'test']):
-                return True
+    # 4. 其他情况一律认为是真实用户
+    # 移除了以下可能误判的规则：
+    # - 纯数字用户名检查（可能是真实用户的ID）
+    # - 用户简介关键词检查（可能误判研究AI/机器人的真实用户）
+    # - 关注者/关注数检查（新用户也可能为零）
+    # - 用户名字段关键词检查（可能误判真实姓名）
 
     return False
 
+def test():
+    """测试函数 - 使用较小的配置值进行快速本地测试"""
+    print("🧪 开始测试模式...")
+
+    # 临时覆盖配置值以加快测试速度（只限制总仓库数和总贡献者数）
+    original_config = {}
+    test_config = {
+        'MAX_REPOS_PER_PAGE': 100,   # 保持正常的每页仓库数
+        'MAX_CONTRIBUTORS_PER_REPO': 10,  # 限制每个仓库的贡献者数（控制总贡献者数）
+    }
+
+    # 设置测试模式标志，用于限制总仓库数
+    CONFIG['TEST_MODE'] = True
+    CONFIG['TEST_MAX_REPOS'] = 15  # 测试模式下最多处理5个仓库
+
+    # 保存原始配置并应用测试配置
+    for key, value in test_config.items():
+        original_config[key] = CONFIG[key]
+        CONFIG[key] = value
+        print(f"  📝 {key}: {original_config[key]} → {value}")
+
+    print(f"  ℹ️  保持原有配置:")
+    print(f"     MIN_CONTRIBUTIONS = {CONFIG['MIN_CONTRIBUTIONS']} (贡献阈值不变)")
+    print(f"     COMMIT_DAYS_RANGE = {CONFIG['COMMIT_DAYS_RANGE']} 天")
+    print(f"  🎯 测试预期: 最多处理 {test_config['MAX_REPOS_PER_PAGE']} 个仓库，每个仓库最多 {test_config['MAX_CONTRIBUTORS_PER_REPO']} 个贡献者")
+
+    try:
+        # 运行主函数（现在默认包含commit数据收集）
+        main()
+    finally:
+        # 恢复原始配置
+        for key, value in original_config.items():
+            CONFIG[key] = value
+        # 清理测试模式标志
+        CONFIG.pop('TEST_MODE', None)
+        CONFIG.pop('TEST_MAX_REPOS', None)
+        print("🔄 已恢复原始配置")
+
 if __name__ == '__main__':
     # 检查命令行参数
-    if len(sys.argv) > 1 and sys.argv[1] == '--with-commits':
-        main_with_commits()
+    if len(sys.argv) > 1:
+        if sys.argv[1] == '--test':
+            test()
+        else:
+            print("❌ 未知参数。支持的参数：--test")
+            print("💡 提示：脚本现在默认收集commit数据，无需 --with-commits 参数")
+            sys.exit(1)
     else:
         main()
