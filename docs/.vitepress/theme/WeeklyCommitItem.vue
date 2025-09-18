@@ -88,33 +88,36 @@
       </div>
       
       <div class="popup-content">
-        <div class="detail-section">
-          <h6>📊 统计概览</h6>
-          <ul>
-            <li>总commit数：{{ member.total_commits }}</li>
-            <li>参与仓库：{{ member.repo_count }} 个</li>
-            <li>活跃天数：{{ member.active_days }} 天</li>
-            <li>平均每日：{{ member.avg_commits_per_day?.toFixed(1) }} commits</li>
-          </ul>
-        </div>
-        
-        <div class="detail-section" v-if="member.repos?.length">
-          <h6>📁 主要仓库</h6>
-          <div class="repo-tags">
-            <a
-              v-for="repo in member.repos.slice(0, 5)"
-              :key="repo"
-              :href="`https://github.com/datawhalechina/${repo}`"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="repo-tag repo-link-tag"
-              :title="`访问仓库: ${repo}`"
-            >
-              {{ repo }}
-              <svg class="external-link-icon" viewBox="0 0 24 24" width="10" height="10">
-                <path fill="currentColor" d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-              </svg>
-            </a>
+        <!-- 统计概览和主要仓库 - 左右并排布局 -->
+        <div class="top-sections">
+          <div class="detail-section stats-section">
+            <h6>📊 统计概览</h6>
+            <ul>
+              <li>总commit数：{{ member.total_commits }}</li>
+              <li>参与仓库：{{ member.repo_count }} 个</li>
+              <li>活跃天数：{{ member.active_days }} 天</li>
+              <li>平均每日：{{ member.avg_commits_per_day?.toFixed(1) }} commits</li>
+            </ul>
+          </div>
+
+          <div class="detail-section repos-section" v-if="member.repos?.length">
+            <h6>📁 主要仓库</h6>
+            <div class="repo-tags">
+              <a
+                v-for="repo in member.repos.slice(0, 5)"
+                :key="repo"
+                :href="`https://github.com/datawhalechina/${repo}`"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="repo-tag repo-link-tag"
+                :title="`访问仓库: ${repo}`"
+              >
+                {{ repo }}
+                <svg class="external-link-icon" viewBox="0 0 24 24" width="10" height="10">
+                  <path fill="currentColor" d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
         
@@ -217,9 +220,21 @@ const calculatePopupPosition = async () => {
     return
   }
 
+  // 找到所有成员项
+  const allItems = leaderboardContainer.querySelectorAll('.weekly-commit-item')
+  const currentIndex = Array.from(allItems).indexOf(itemRef.value)
+  const totalItems = allItems.length
+
+  // 如果是最后两个成员，直接向上弹出
+  if (currentIndex >= totalItems - 2) {
+    popupPosition.value = 'top'
+    return
+  }
+
+  // 对于其他成员，基于空间计算
   const itemRect = itemRef.value.getBoundingClientRect()
   const containerRect = leaderboardContainer.getBoundingClientRect()
-  const popupHeight = 400 // 弹窗最大高度
+  const popupHeight = 320 // 调整后的弹窗高度（因为布局优化后高度减少）
   const margin = 20 // 安全边距
 
   // 计算在容器内的可用空间
@@ -560,7 +575,7 @@ const getTrendIcon = () => {
   max-width: 95vw;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   z-index: 1000;
-  max-height: 600px;
+  max-height: 320px;
   overflow-y: auto;
 }
 
@@ -631,8 +646,30 @@ const getTrendIcon = () => {
   justify-content: center;
 }
 
+/* 顶部区域左右并排布局 */
+.top-sections {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.stats-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.repos-section {
+  flex: 1;
+  min-width: 0;
+}
+
 .detail-section {
   margin-bottom: 12px;
+}
+
+/* 当只有统计概览时，占满整个宽度 */
+.top-sections .stats-section:only-child {
+  flex: 1;
 }
 
 .detail-section h6 {
@@ -788,6 +825,17 @@ const getTrendIcon = () => {
   .details-popup {
     width: 280px;
     max-width: calc(100vw - 40px);
+  }
+
+  /* 移动端弹窗内容布局调整 */
+  .top-sections {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .stats-section,
+  .repos-section {
+    flex: none;
   }
 }
 </style>
