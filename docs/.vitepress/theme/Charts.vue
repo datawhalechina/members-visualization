@@ -418,6 +418,14 @@ const createNetworkChartOption = () => {
         color: isDark.value ? '#cccccc' : '#666666'
       }
     },
+    // 添加全局网格配置，类似柱状图
+    grid: {
+      left: '15%',
+      right: '15%',
+      top: '25%',
+      bottom: '20%',
+      containLabel: true
+    },
     tooltip: {
       trigger: 'item',
       formatter: function(params) {
@@ -456,19 +464,24 @@ const createNetworkChartOption = () => {
         { name: '成员', itemStyle: { color: '#5470c6' } },
         { name: '研究方向', itemStyle: { color: '#91cc75' } }
       ],
-      roam: true,
+      roam: true, // 保留缩放功能
       focusNodeAdjacency: true,
-      draggable: true,
-      left: '5%',
-      right: '18%',
-      top: '20%',
-      bottom: '8%',
+      draggable: true, // 保留拖拽功能
+      // 移除series级别的边界设置，使用全局grid配置
       force: {
-        repulsion: 800,
-        gravity: 0.08,
-        edgeLength: [40, 150],
-        layoutAnimation: true
+        repulsion: 400,
+        gravity: 0.2,
+        edgeLength: [20, 80],
+        layoutAnimation: true,
+        friction: 0.8,
+        // 添加边界约束
+        initLayout: 'circular'
       },
+      // 确保节点在指定区域内
+      left: 100,
+      right: 100,
+      top: 150,
+      bottom: 120,
       label: {
         show: true,
         position: 'right',
@@ -950,7 +963,9 @@ function parseCSVLine(line) {
           console.error('网络图初始化失败')
           return
         }
-        networkChart.setOption(createNetworkChartOption())
+
+        const networkOption = createNetworkChartOption()
+        networkChart.setOption(networkOption)
       } catch (error) {
         console.error('网络图初始化出错:', error)
       }
@@ -1159,6 +1174,17 @@ onUnmounted(() => {
   max-width: 100%;
   overflow: hidden;
   position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 确保chart-large内部的ECharts容器也受约束 */
+.chart-large > div {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
 }
 
 /* 网络图专用样式 */
@@ -1166,11 +1192,47 @@ onUnmounted(() => {
   height: 750px;
   min-height: 700px;
   max-height: 750px;
-  overflow: hidden;
+  overflow: hidden !important;
   position: relative;
   margin-bottom: 30px;
-  padding: 10px 0;
+  padding: 80px 60px;
   box-sizing: border-box;
+  /* 强制边界约束 */
+  clip-path: inset(0);
+  /* 添加视觉边界提示 */
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+}
+
+/* 网络图内部容器约束 */
+.chart[data-chart-type="network"] > div {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  overflow: hidden !important;
+  position: relative;
+  /* 强制裁剪超出边界的内容 */
+  clip-path: inset(0);
+}
+
+/* 网络图内部所有SVG和Canvas元素的约束 */
+.chart[data-chart-type="network"] svg,
+.chart[data-chart-type="network"] canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  overflow: hidden !important;
+  clip-path: inset(0);
+  object-fit: contain;
+}
+
+/* 强制约束所有网络图内的元素 */
+.chart[data-chart-type="network"] * {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  overflow: hidden !important;
 }
 
 /* 词云图专用样式 */

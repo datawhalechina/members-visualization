@@ -1,6 +1,7 @@
 <template>
-  <div 
-    class="weekly-commit-item" 
+  <div
+    ref="itemRef"
+    class="weekly-commit-item"
     :class="`rank-${rank}`"
     :style="{ animationDelay: `${animationDelay}ms` }"
   >
@@ -75,7 +76,12 @@
     </div>
 
     <!-- 详细信息悬浮框 -->
-    <div class="details-popup" v-if="props.showDetails">
+    <div
+      ref="popupRef"
+      class="details-popup"
+      :class="`popup-${popupPosition}`"
+      v-if="props.showDetails"
+    >
       <div class="popup-header">
         <h5>{{ member.display_name }} 的本周战绩</h5>
         <button @click="emit('toggle-details', props.member.user_key)" class="close-btn">×</button>
@@ -95,28 +101,46 @@
         <div class="detail-section" v-if="member.repos?.length">
           <h6>📁 主要仓库</h6>
           <div class="repo-tags">
-            <span 
-              v-for="repo in member.repos.slice(0, 5)" 
+            <a
+              v-for="repo in member.repos.slice(0, 5)"
               :key="repo"
-              class="repo-tag"
+              :href="`https://github.com/datawhalechina/${repo}`"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="repo-tag repo-link-tag"
+              :title="`访问仓库: ${repo}`"
             >
               {{ repo }}
-            </span>
+              <svg class="external-link-icon" viewBox="0 0 24 24" width="10" height="10">
+                <path fill="currentColor" d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+              </svg>
+            </a>
           </div>
         </div>
         
         <div class="detail-section" v-if="member.commit_messages?.length">
           <h6>💬 最近提交</h6>
           <div class="commit-messages">
-            <div 
-              v-for="commit in member.commit_messages.slice(0, 3)" 
+            <div
+              v-for="commit in member.commit_messages.slice(0, 3)"
               :key="commit.url"
               class="commit-message"
             >
-              <div class="commit-text">{{ commit.message }}</div>
-              <div class="commit-meta">
-                {{ commit.repo }} • {{ commit.date }}
-              </div>
+              <a
+                :href="commit.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="commit-link"
+                :title="`查看提交详情: ${commit.message}`"
+              >
+                <div class="commit-text">{{ commit.message }}</div>
+                <div class="commit-meta">
+                  <span class="repo-link">{{ commit.repo }}</span> • {{ commit.date }}
+                  <svg class="external-link-icon" viewBox="0 0 24 24" width="12" height="12">
+                    <path fill="currentColor" d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                  </svg>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -145,7 +169,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick, watch } from 'vue'
 
 // Props
 const props = defineProps({
@@ -169,6 +193,53 @@ const props = defineProps({
 
 // Emits
 const emit = defineEmits(['toggle-details'])
+
+// 弹窗定位相关
+const popupRef = ref(null)
+const itemRef = ref(null)
+const popupPosition = ref('bottom') // 'bottom' 或 'top'
+
+// 智能计算弹窗位置
+const calculatePopupPosition = async () => {
+  if (!props.showDetails) return
+
+  await nextTick()
+
+  if (!itemRef.value) return
+
+  // 找到榜单容器
+  const leaderboardContainer = itemRef.value.closest('.leaderboard-content') ||
+                               itemRef.value.closest('.commits-list') ||
+                               itemRef.value.closest('.weekly-commits-card')
+
+  if (!leaderboardContainer) {
+    popupPosition.value = 'bottom'
+    return
+  }
+
+  const itemRect = itemRef.value.getBoundingClientRect()
+  const containerRect = leaderboardContainer.getBoundingClientRect()
+  const popupHeight = 400 // 弹窗最大高度
+  const margin = 20 // 安全边距
+
+  // 计算在容器内的可用空间
+  const spaceBelow = containerRect.bottom - itemRect.bottom
+  const spaceAbove = itemRect.top - containerRect.top
+
+  // 如果下方空间不足，且上方空间充足，则向上显示
+  if (spaceBelow < popupHeight + margin && spaceAbove > popupHeight + margin) {
+    popupPosition.value = 'top'
+  } else {
+    popupPosition.value = 'bottom'
+  }
+}
+
+// 监听弹窗显示状态变化
+watch(() => props.showDetails, (newVal) => {
+  if (newVal) {
+    calculatePopupPosition()
+  }
+})
 
 // 计算属性
 const sortedDailyCommits = computed(() => {
@@ -471,24 +542,51 @@ const getTrendIcon = () => {
 /* 详细信息弹窗 */
 .details-popup {
   position: absolute;
-  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   background: var(--vp-c-bg);
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
-  padding: 16px;
-  width: 300px;
-  max-width: 90vw;
+  padding: 18px;
+  width: 600px;
+  max-width: 95vw;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   z-index: 1000;
-  animation: popupSlideIn 0.3s ease-out;
+  max-height: 600px;
+  overflow-y: auto;
 }
 
-@keyframes popupSlideIn {
+/* 弹窗向下显示（默认） */
+.details-popup.popup-bottom {
+  top: 100%;
+  margin-top: 8px;
+  animation: popupSlideInBottom 0.3s ease-out;
+}
+
+/* 弹窗向上显示 */
+.details-popup.popup-top {
+  bottom: 100%;
+  margin-bottom: 8px;
+  animation: popupSlideInTop 0.3s ease-out;
+}
+
+/* 向下滑入动画 */
+@keyframes popupSlideInBottom {
   from {
     opacity: 0;
     transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* 向上滑入动画 */
+@keyframes popupSlideInTop {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
   }
   to {
     opacity: 1;
@@ -541,6 +639,11 @@ const getTrendIcon = () => {
   padding-left: 16px;
   font-size: 12px;
   color: var(--vp-c-text-2);
+  line-height: 1.3;
+}
+
+.detail-section ul li {
+  margin-bottom: 2px;
 }
 
 .repo-tags {
@@ -558,6 +661,21 @@ const getTrendIcon = () => {
   font-weight: 500;
 }
 
+/* 仓库链接样式 */
+.repo-link-tag {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.2s ease;
+}
+
+.repo-link-tag:hover {
+  background: rgba(255, 107, 107, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(255, 107, 107, 0.2);
+}
+
 .commit-messages {
   display: flex;
   flex-direction: column;
@@ -570,6 +688,20 @@ const getTrendIcon = () => {
   border-radius: 4px;
 }
 
+/* Commit链接样式 */
+.commit-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.commit-link:hover {
+  background: var(--vp-c-bg-alt);
+  transform: translateX(2px);
+}
+
 .commit-text {
   font-size: 11px;
   color: var(--vp-c-text-1);
@@ -580,6 +712,25 @@ const getTrendIcon = () => {
 .commit-meta {
   font-size: 10px;
   color: var(--vp-c-text-2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.repo-link {
+  color: #ff6b6b;
+  font-weight: 500;
+}
+
+/* 外部链接图标 */
+.external-link-icon {
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.commit-link:hover .external-link-icon,
+.repo-link-tag:hover .external-link-icon {
+  opacity: 1;
 }
 
 /* 动画 */
@@ -628,9 +779,7 @@ const getTrendIcon = () => {
   
   .details-popup {
     width: 280px;
-    left: 0;
-    transform: none;
-    margin-left: 10px;
+    max-width: calc(100vw - 40px);
   }
 }
 </style>
