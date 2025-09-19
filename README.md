@@ -126,6 +126,7 @@
 │   ├── public/                    # 静态资源
 │   │   ├── data/                  # 数据文件
 │   │   │   ├── members.csv        # 成员基础数据
+│   │   │   ├── datawhale_member.csv # 正式成员采集数据
 │   │   │   └── commits_weekly.json # 提交活跃度数据
 │   │   └── avatars/               # 成员头像缓存
 │   ├── index.md                   # 首页
