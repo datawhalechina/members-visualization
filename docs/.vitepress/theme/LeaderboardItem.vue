@@ -1,6 +1,6 @@
 <template>
   <div 
-    class="leaderboard-item" 
+    class="leaderboard-item leaderboard-item-base"
     :class="[`rank-${rank}`, `theme-${colorScheme}`]"
     :style="{ animationDelay: `${animationDelay}ms` }"
   >
@@ -20,6 +20,9 @@
       />
       <div v-if="showTrend" class="trend-indicator" :class="getTrendClass()">
         {{ getTrendIcon() }}
+      </div>
+      <div v-else-if="icon" class="leaderboard-indicator">
+        {{ icon }}
       </div>
     </div>
 
@@ -106,6 +109,10 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
+  icon: {
+    type: String,
+    default: ''
+  },
   animationDelay: {
     type: Number,
     default: 0
@@ -159,48 +166,23 @@ const getTrendIcon = () => {
 </script>
 
 <style scoped>
+/* 通用榜单特有样式 - 基础样式由 leaderboard-item-base 提供 */
 .leaderboard-item {
-  display: flex;
-  align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--vp-c-divider-light);
-  transition: all 0.3s ease;
+  border-left: 3px solid var(--vp-c-brand-1);
   animation: slideInLeft 0.6s ease-out;
-  position: relative;
 }
 
 .leaderboard-item:hover {
-  background: var(--vp-c-bg-soft);
-  border-radius: 8px;
-  padding-left: 8px;
-  padding-right: 8px;
+  border-left-color: var(--vp-c-brand-2);
 }
 
-.leaderboard-item:last-child {
-  border-bottom: none;
-}
+/* 排名样式 - 由基础样式类 leaderboard-base.css 提供 */
 
-/* 排名样式 */
-.rank-1 {
-  background: linear-gradient(90deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
-}
-
-.rank-2 {
-  background: linear-gradient(90deg, rgba(192, 192, 192, 0.1) 0%, transparent 100%);
-}
-
-.rank-3 {
-  background: linear-gradient(90deg, rgba(205, 127, 50, 0.1) 0%, transparent 100%);
-}
-
+/* 排名徽章样式 - 基础布局由 leaderboard-base.css 提供 */
 .rank-badge {
   width: 40px;
   height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 12px;
-  flex-shrink: 0;
+  /* display, align-items, justify-content, margin-right, flex-shrink 由基础样式类提供 */
 }
 
 .medal {
@@ -208,9 +190,6 @@ const getTrendIcon = () => {
 }
 
 .rank-number {
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--vp-c-text-1);
   background: var(--vp-c-bg-soft);
   width: 32px;
   height: 32px;
@@ -219,12 +198,14 @@ const getTrendIcon = () => {
   align-items: center;
   justify-content: center;
   border: 2px solid var(--vp-c-divider);
+  color: var(--vp-c-text-1);
+  font-weight: 700;
+  font-size: 14px;
 }
 
+/* 头像区域样式 - 基础布局由 leaderboard-base.css 提供 */
 .avatar-section {
-  position: relative;
-  margin-right: 12px;
-  flex-shrink: 0;
+  /* position, margin-right, flex-shrink 由基础样式类提供 */
 }
 
 .avatar {
@@ -255,11 +236,22 @@ const getTrendIcon = () => {
   font-size: 10px;
 }
 
-.member-info {
-  flex: 1;
-  min-width: 0;
-  margin-right: 12px;
+.leaderboard-indicator {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
 }
+
+/* 成员信息样式 - 由基础样式类 leaderboard-base.css 提供 */
 
 .name-section {
   margin-bottom: 4px;
@@ -309,10 +301,10 @@ const getTrendIcon = () => {
   white-space: nowrap;
 }
 
+/* 分数区域样式 - 基础布局由 leaderboard-base.css 提供 */
 .score-section {
-  text-align: right;
-  margin-right: 12px;
-  flex-shrink: 0;
+  text-align: right; /* 特殊对齐方式 */
+  /* margin-right, flex-shrink 由基础样式类提供 */
 }
 
 .score-value {
@@ -421,9 +413,25 @@ const getTrendIcon = () => {
 }
 
 /* 主题特定样式 */
+.theme-fire .leaderboard-item {
+  border-left-color: #ff6b6b;
+}
+
+.theme-fire .leaderboard-item:hover {
+  border-left-color: #e53e3e;
+}
+
 .theme-fire .rank-number {
   border-color: #ff6b6b;
   color: #ff6b6b;
+}
+
+.theme-blue .leaderboard-item {
+  border-left-color: #4ecdc4;
+}
+
+.theme-blue .leaderboard-item:hover {
+  border-left-color: #38b2ac;
 }
 
 .theme-blue .rank-number {
@@ -431,9 +439,25 @@ const getTrendIcon = () => {
   color: #4ecdc4;
 }
 
+.theme-green .leaderboard-item {
+  border-left-color: #95e1d3;
+}
+
+.theme-green .leaderboard-item:hover {
+  border-left-color: #68d391;
+}
+
 .theme-green .rank-number {
   border-color: #95e1d3;
   color: #95e1d3;
+}
+
+.theme-purple .leaderboard-item {
+  border-left-color: #a8e6cf;
+}
+
+.theme-purple .leaderboard-item:hover {
+  border-left-color: #9ae6b4;
 }
 
 .theme-purple .rank-number {
@@ -441,8 +465,37 @@ const getTrendIcon = () => {
   color: #a8e6cf;
 }
 
+.theme-gold .leaderboard-item {
+  border-left-color: #ffd93d;
+}
+
+.theme-gold .leaderboard-item:hover {
+  border-left-color: #fbbf24;
+}
+
 .theme-gold .rank-number {
   border-color: #ffd93d;
   color: #ffd93d;
+}
+
+/* 主题特定的头像角标样式 */
+.theme-fire .leaderboard-indicator {
+  border-color: #ff6b6b;
+}
+
+.theme-blue .leaderboard-indicator {
+  border-color: #4ecdc4;
+}
+
+.theme-green .leaderboard-indicator {
+  border-color: #95e1d3;
+}
+
+.theme-purple .leaderboard-indicator {
+  border-color: #a8e6cf;
+}
+
+.theme-gold .leaderboard-indicator {
+  border-color: #ffd93d;
 }
 </style>

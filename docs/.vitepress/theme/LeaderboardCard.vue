@@ -1,12 +1,12 @@
 <template>
-  <div class="leaderboard-card" :class="`theme-${colorScheme}`">
+  <div class="leaderboard-card leaderboard-card-base" :class="`theme-${colorScheme}`">
     <!-- 卡片头部 -->
-    <div class="card-header">
-      <div class="title-section">
-        <span class="icon">{{ icon }}</span>
+    <div class="card-header card-header-base">
+      <div class="title-section title-section-base">
+        <span class="icon icon-base">{{ icon }}</span>
         <div>
-          <h3 class="title">{{ title }}</h3>
-          <p class="description">{{ description }}</p>
+          <h3 class="title title-base">{{ title }}</h3>
+          <p class="description description-base">{{ description }}</p>
         </div>
       </div>
       <div class="stats-badge">
@@ -29,6 +29,7 @@
           :rank="member.rank"
           :color-scheme="colorScheme"
           :show-trend="showTrend"
+          :icon="icon"
           :animation-delay="index * 100"
         />
       </div>
@@ -38,10 +39,10 @@
     <div class="card-footer">
       <div class="ranking-info">
         <span v-if="members.length > 0">
-          🏆 冠军：{{ members[0]?.name || members[0]?.id }}
+          冠军：{{ members[0]?.name || members[0]?.id }}
         </span>
         <span v-if="members.length > 1">
-          📈 最高分：{{ Math.round(members[0]?.score || 0) }}
+          最高分：{{ Math.round(members[0]?.score || 0) }}
         </span>
       </div>
       
@@ -105,47 +106,21 @@ const toggleExpanded = () => {
 </script>
 
 <style scoped>
+/* 通用榜单特有样式 - 基础样式由 leaderboard-card-base 提供 */
 .leaderboard-card {
-  background: var(--vp-c-bg);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  position: relative;
+  /* 基础样式由 leaderboard-card-base 提供 */
 }
 
+/* 通用榜单悬停效果 - 基础悬停由 leaderboard-card-base 提供 */
 .leaderboard-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  /* 使用基础样式类的悬停效果 */
 }
 
-/* 主题色彩 */
-.theme-fire {
-  border-top: 2px solid #ff6b6b;
-}
+/* 主题色彩 - 移除上边框，只保留左侧强调线通过LeaderboardItem实现 */
 
-.theme-blue {
-  border-top: 2px solid #4ecdc4;
-}
-
-.theme-green {
-  border-top: 2px solid #95e1d3;
-}
-
-.theme-purple {
-  border-top: 2px solid #a8e6cf;
-}
-
-.theme-gold {
-  border-top: 2px solid #ffd93d;
-}
-
+/* 通用榜单头部样式 - 基础样式由 card-header-base 提供 */
 .card-header {
-  padding: 20px;
-  background: var(--vp-c-bg-soft);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  /* 使用默认背景，主题色通过主题特定样式覆盖 */
 }
 
 .title-section {
@@ -196,8 +171,8 @@ const toggleExpanded = () => {
 }
 
 .leaderboard-content {
-  padding: 0 20px;
-  /* 移除固定高度和滚动条，让内容自然展开 */
+  padding: 16px 20px;
+  /* 统一顶部间距，避免与头部重叠 */
 }
 
 .empty-state {

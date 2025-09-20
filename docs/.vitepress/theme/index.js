@@ -2,6 +2,7 @@
 import { h } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import './custom.css'
+import './styles/leaderboard-base.css'
 
 export default {
   extends: DefaultTheme,
@@ -11,6 +12,7 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
-    // 应用增强配置
+    // 目前无需额外增强逻辑
   }
 }
+

@@ -1,0 +1,499 @@
+/* 榜单组件基础样式 - 统一所有榜单组件的基础交互和布局 */
+
+/* ===== 主题色参数系统 ===== */
+:root {
+  --leaderboard-theme-color: var(--vp-c-brand-1);
+  --leaderboard-theme-color-light: var(--vp-c-brand-soft);
+  --leaderboard-theme-shadow: rgba(0, 0, 0, 0.15);
+}
+
+/* 夜猫榜主题 */
+.theme-night {
+  --leaderboard-theme-color: #6366f1;
+  --leaderboard-theme-color-light: rgba(99, 102, 241, 0.1);
+  --leaderboard-theme-shadow: rgba(99, 102, 241, 0.2);
+}
+
+/* 卷王榜主题 */
+.theme-fire {
+  --leaderboard-theme-color: #ff6b6b;
+  --leaderboard-theme-color-light: rgba(255, 107, 107, 0.1);
+  --leaderboard-theme-shadow: rgba(255, 107, 107, 0.2);
+}
+
+/* 通用榜单主题 */
+.theme-blue {
+  --leaderboard-theme-color: #4ecdc4;
+  --leaderboard-theme-color-light: rgba(78, 205, 196, 0.1);
+  --leaderboard-theme-shadow: rgba(78, 205, 196, 0.2);
+}
+
+.theme-green {
+  --leaderboard-theme-color: #95e1d3;
+  --leaderboard-theme-color-light: rgba(149, 225, 211, 0.1);
+  --leaderboard-theme-shadow: rgba(149, 225, 211, 0.2);
+}
+
+.theme-purple {
+  --leaderboard-theme-color: #a8e6cf;
+  --leaderboard-theme-color-light: rgba(168, 230, 207, 0.1);
+  --leaderboard-theme-shadow: rgba(168, 230, 207, 0.2);
+}
+
+.theme-gold {
+  --leaderboard-theme-color: #ffd93d;
+  --leaderboard-theme-color-light: rgba(255, 217, 61, 0.1);
+  --leaderboard-theme-shadow: rgba(255, 217, 61, 0.2);
+}
+
+/* ===== 成员卡片基础样式 ===== */
+.leaderboard-item-base {
+  display: flex !important;
+  align-items: center !important;
+  padding: 10px 16px !important;
+  margin-bottom: 6px !important;
+  background: var(--vp-c-bg) !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  cursor: pointer !important;
+  will-change: transform, background-color, border-color !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* 展开状态：提升整卡叠放顺序，避免弹窗被相邻卡片遮挡 */
+.leaderboard-item-base.is-expanded {
+  z-index: 2000 !important;
+  overflow: visible !important;
+}
+
+
+.leaderboard-item-base:hover,
+.night-owl-item.leaderboard-item-base:hover,
+.weekly-commit-item.leaderboard-item-base:hover,
+.leaderboard-item.leaderboard-item-base:hover {
+  background: var(--vp-c-bg-soft) !important;
+  transform: translateX(4px) !important;
+}
+
+.leaderboard-item-base:last-child {
+  border-bottom: none;
+}
+
+/* ===== 前三名成员卡片背景色增强 ===== */
+.leaderboard-item-base.rank-1,
+.rank-1.leaderboard-item-base {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%) !important;
+}
+
+.leaderboard-item-base.rank-2,
+.rank-2.leaderboard-item-base {
+  background: linear-gradient(90deg, rgba(192, 192, 192, 0.1) 0%, transparent 100%) !important;
+}
+
+.leaderboard-item-base.rank-3,
+.rank-3.leaderboard-item-base {
+  background: linear-gradient(90deg, rgba(205, 127, 50, 0.1) 0%, transparent 100%) !important;
+}
+
+/* ===== 排名徽章基础样式 ===== */
+.rank-badge-base,
+.leaderboard-item-base .rank-badge {
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 16px !important;
+  flex-shrink: 0 !important;
+}
+
+.medal-base {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.rank-number-base {
+  background: var(--vp-c-bg-soft);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--vp-c-text-1);
+}
+
+/* ===== 头像基础样式 ===== */
+.avatar-container-base {
+  position: relative;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.avatar-base {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  transition: transform 0.3s ease !important;
+}
+
+.leaderboard-item-base:hover .avatar-base,
+.leaderboard-item-base:hover .avatar {
+  transform: scale(1.1) !important;
+}
+
+.avatar-indicator-base {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--vp-c-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+/* ===== 头像区域基础样式 ===== */
+.avatar-section-base,
+.leaderboard-item-base .avatar-section {
+  position: relative !important;
+  margin-right: 16px !important;
+  flex-shrink: 0 !important;
+}
+
+/* ===== 成员信息基础样式 ===== */
+.member-info-base,
+.leaderboard-item-base .member-info,
+.night-owl-item.leaderboard-item-base .member-info,
+.weekly-commit-item.leaderboard-item-base .member-info,
+.leaderboard-item.leaderboard-item-base .member-info {
+  flex: 1 !important;
+  min-width: 0 !important;
+  margin-right: 12px !important;
+}
+
+/* ===== 成员统计基础样式 ===== */
+.member-stats-base,
+.leaderboard-item-base .member-stats {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 12px !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+.stat-item-base,
+.leaderboard-item-base .stat-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.member-name-base {
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  margin-bottom: 4px;
+}
+
+.member-stats-base {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--vp-c-text-2);
+}
+
+.stat-item-base {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ===== 分数区域基础样式 ===== */
+.score-section-base,
+.leaderboard-item-base .score-section,
+.night-owl-item.leaderboard-item-base .score-section,
+.weekly-commit-item.leaderboard-item-base .score-section,
+.leaderboard-item.leaderboard-item-base .score-section {
+  text-align: right !important;
+  min-width: 60px !important;
+  margin-right: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+.score-value-base,
+.leaderboard-item-base .score-value {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: var(--leaderboard-theme-color) !important;
+  margin-bottom: 2px !important;
+}
+
+.score-label-base {
+  font-size: 10px;
+  color: var(--vp-c-text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===== 操作区域基础样式 ===== */
+.actions-section-base,
+.leaderboard-item-base .actions-section {
+  display: flex !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* ===== GitHub按钮统一样式 ===== */
+.github-link-base,
+.leaderboard-item-base .github-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 6px !important;
+  background: var(--vp-c-bg-soft) !important;
+  color: var(--vp-c-text-2) !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  z-index: 3 !important;
+}
+
+.github-link-base:hover,
+.leaderboard-item-base .github-link:hover {
+  background: var(--leaderboard-theme-color) !important;
+  color: white !important;
+  transform: scale(1.1) !important;
+}
+
+/* GitHub图标统一样式 */
+.github-icon-base,
+.leaderboard-item-base .github-link svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* ===== 点击覆盖层基础样式 ===== */
+.click-overlay-base {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+/* ===== 详情弹窗基础样式 ===== */
+.details-popup-base {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.popup-bottom-base {
+  top: 100%;
+  margin-top: 8px;
+  animation: popupSlideInBottom 0.3s ease-out;
+}
+
+.popup-top-base {
+  bottom: 100%;
+  margin-bottom: 8px;
+  animation: popupSlideInTop 0.3s ease-out;
+}
+
+/* ===== 弹窗动画基础样式 ===== */
+@keyframes popupSlideInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popupSlideInTop {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.popup-header-base {
+  padding: 16px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-header-base h5 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.close-btn-base {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-btn-base:hover {
+  background: var(--vp-c-bg-elv);
+  color: var(--vp-c-text-1);
+}
+
+/* ===== 榜单卡片基础样式 ===== */
+.leaderboard-card-base {
+  background: var(--vp-c-bg) !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+}
+
+.leaderboard-card-base:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 25px var(--leaderboard-theme-shadow) !important;
+}
+
+.card-header-base {
+  padding: 20px !important;
+  background: var(--vp-c-bg-soft) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+}
+
+.title-section-base {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+
+/* ===== Emoji图标传递机制 ===== */
+.icon-base {
+  font-size: 24px !important;
+  line-height: 1 !important;
+}
+
+/* 卡片标题区域emoji图标 */
+.leaderboard-card-base .icon,
+.leaderboard-card-base .icon-base {
+  font-size: 24px !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+}
+
+/* 成员头像角标emoji图标 */
+.leaderboard-item-base .avatar-indicator-base,
+.leaderboard-item-base .moon-indicator,
+.leaderboard-item-base .fire-indicator,
+.leaderboard-item-base .leaderboard-indicator {
+  position: absolute !important;
+  bottom: -2px !important;
+  right: -2px !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: var(--vp-c-bg) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 10px !important;
+}
+
+.title-base {
+  margin: 0 0 4px 0 !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: var(--vp-c-text-1) !important;
+}
+
+.description-base {
+  margin: 0 !important;
+  font-size: 14px !important;
+  color: var(--vp-c-text-2) !important;
+  line-height: 1.4 !important;
+}
+
+/* ===== 卡片头部主题色渐变 ===== */
+.leaderboard-card-base .card-header {
+  background: linear-gradient(135deg, var(--leaderboard-theme-color-light) 0%, var(--vp-c-bg-soft) 100%) !important;
+}
+
+/* ===== 统计徽章主题色 ===== */
+.leaderboard-card-base .stats-badge {
+  background: linear-gradient(135deg, var(--leaderboard-theme-color), var(--leaderboard-theme-color-light)) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.leaderboard-card-base .stats-badge .count {
+  color: white !important;
+}
+
+/* ===== 响应式设计基础样式 ===== */
+@media (max-width: 768px) {
+  .leaderboard-item-base {
+    flex-wrap: wrap;
+    padding: 10px 16px;
+  }
+
+  .member-info-base {
+    order: 1;
+    flex: 1 1 100%;
+    margin: 8px 0;
+  }
+
+  .score-section-base {
+    order: 2;
+    margin: 8px 0;
+  }
+
+  .actions-section-base {
+    order: 3;
+    margin: 8px 0;
+  }
+}

@@ -1,12 +1,12 @@
 <template>
-  <div class="weekly-commits-card" :class="`theme-fire`">
+  <div class="weekly-commits-card leaderboard-card-base" :class="`theme-fire`">
     <!-- 卡片头部 -->
-    <div class="card-header">
-      <div class="title-section">
-        <span class="icon animated-fire">🔥</span>
+    <div class="card-header card-header-base">
+      <div class="title-section title-section-base">
+        <span class="icon icon-base animated-fire">🔥</span>
         <div>
-          <h3 class="title">一周卷王榜</h3>
-          <p class="description">基于最近7天commit活动的超级卷王排行</p>
+          <h3 class="title title-base">一周卷王榜</h3>
+          <p class="description description-base">基于最近7天commit活动的超级卷王排行</p>
         </div>
       </div>
       <div class="stats-badge">
@@ -254,27 +254,19 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* 卷王榜特有样式 - 基础样式由 leaderboard-card-base 提供 */
 .weekly-commits-card {
-  background: var(--vp-c-bg);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  position: relative;
-  border-top: 2px solid #ff6b6b;
+  /* 移除顶部彩色边框，与其他榜单保持一致 */
 }
 
+/* 卷王榜特有悬停效果 - 基础悬停由 leaderboard-card-base 提供 */
 .weekly-commits-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2) !important;
 }
 
+/* 卷王榜特有头部样式 - 基础样式由 card-header-base 提供 */
 .card-header {
-  padding: 20px;
-  background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, var(--vp-c-bg-soft) 100%);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, var(--vp-c-bg-soft) 100%) !important;
 }
 
 .title-section {
@@ -364,8 +356,8 @@ onMounted(() => {
 }
 
 .leaderboard-content {
-  padding: 0 20px;
-  /* 移除固定高度和滚动条，让内容自然展开 */
+  padding: 16px 20px;
+  /* 统一顶部间距，避免与头部重叠 */
 }
 
 .loading-state, .error-state, .empty-state {

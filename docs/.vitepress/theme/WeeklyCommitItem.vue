@@ -1,8 +1,8 @@
 <template>
   <div
     ref="itemRef"
-    class="weekly-commit-item"
-    :class="`rank-${rank}`"
+    class="weekly-commit-item leaderboard-item-base"
+    :class="[ `rank-${rank}`, { 'is-expanded': props.showDetails } ]"
     :style="{ animationDelay: `${animationDelay}ms` }"
   >
     <!-- 排名徽章 -->
@@ -32,7 +32,7 @@
           </span>
         </div>
       </div>
-      
+
       <div class="commit-stats">
         <div class="stat-item">
           <span class="stat-icon">📊</span>
@@ -53,14 +53,14 @@
     <div class="daily-chart-section">
       <div class="chart-title">每日分布</div>
       <div class="daily-chart">
-        <div 
-          v-for="(count, date) in sortedDailyCommits" 
-          :key="date"
-          class="day-bar"
-          :style="{ height: `${getBarHeight(count)}%` }"
-          :title="`${date}: ${count} commits`"
+        <div
+          v-for="d in weeklyDailySeries"
+          :key="d.date"
+          :class="d.hasData ? 'day-bar' : 'day-dash'"
+          :style="d.hasData ? { height: `${getBarHeight(d.count)}%` } : {}"
+          :title="d.hasData ? `${d.date}: ${d.count} commits` : `${d.date}: 无数据`"
         >
-          <div class="bar-fill"></div>
+          <div v-if="d.hasData" class="bar-fill"></div>
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@
     <div class="score-section">
       <div class="score-value">{{ member.score }}</div>
       <div class="score-label">卷王分</div>
-      
+
       <div class="trend-indicator" :class="getTrendClass()">
         {{ getTrendIcon() }}
       </div>
@@ -86,7 +86,7 @@
         <h5>{{ member.display_name }} 的本周战绩</h5>
         <button @click="emit('toggle-details', props.member.user_key)" class="close-btn">×</button>
       </div>
-      
+
       <div class="popup-content">
         <!-- 统计概览和主要仓库 - 左右并排布局 -->
         <div class="top-sections">
@@ -120,7 +120,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="detail-section" v-if="member.commit_messages?.length">
           <h6>💬 最近提交</h6>
           <div class="commit-messages">
@@ -152,13 +152,11 @@
 
     <!-- GitHub 链接 -->
     <div class="actions-section">
-      <button @click="emit('toggle-details', props.member.user_key)" class="details-btn" title="查看详情">
-        📋
-      </button>
-      <a 
+
+      <a
         v-if="member.github_username"
-        :href="`https://github.com/${member.github_username}`" 
-        target="_blank" 
+        :href="`https://github.com/${member.github_username}`"
+        target="_blank"
         rel="noopener noreferrer"
         class="github-link"
         title="访问GitHub"
@@ -168,6 +166,9 @@
         </svg>
       </a>
     </div>
+
+    <!-- 点击区域 -->
+    <div class="click-overlay" @click="emit('toggle-details', props.member.user_key)"></div>
   </div>
 </template>
 
@@ -259,10 +260,45 @@ watch(() => props.showDetails, (newVal) => {
 // 计算属性
 const sortedDailyCommits = computed(() => {
   if (!props.member.daily_commits) return []
-  
+
   const entries = Object.entries(props.member.daily_commits)
   return entries.sort(([a], [b]) => a.localeCompare(b))
 })
+
+// 统一 7 天时间轴（优先以数据中的最大日期为止，回溯 6 天）
+const formatDate = (d) => {
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
+const weeklyDates = computed(() => {
+  const keys = props.member.daily_commits ? Object.keys(props.member.daily_commits) : []
+  let end = new Date()
+  if (keys.length) {
+    const parsed = keys.map(k => new Date(k)).filter(d => !isNaN(d))
+    if (parsed.length) end = parsed.sort((a, b) => a - b)[parsed.length - 1]
+  }
+  const arr = []
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(end)
+    d.setDate(d.getDate() - i)
+    arr.push(formatDate(d))
+  }
+  return arr
+})
+
+// 将无记录的日期标为占位（day-dash）
+const weeklyDailySeries = computed(() => {
+  const dc = props.member.daily_commits || {}
+  return weeklyDates.value.map(date => {
+    const hasData = Object.prototype.hasOwnProperty.call(dc, date)
+    const count = hasData ? (dc[date] || 0) : 0
+    return { date, count, hasData }
+  })
+})
+
 
 // 方法
 const getMedal = (rank) => {
@@ -293,9 +329,8 @@ const handleImageError = (event) => {
 }
 
 const getBarHeight = (count) => {
-  if (!props.member.daily_commits) return 0
-  
-  const maxCount = Math.max(...Object.values(props.member.daily_commits))
+  const withData = weeklyDailySeries.value.filter(d => d.hasData).map(d => d.count)
+  const maxCount = withData.length ? Math.max(...withData) : 0
   return maxCount > 0 ? (count / maxCount) * 100 : 0
 }
 
@@ -303,7 +338,7 @@ const getTrendClass = () => {
   // 基于活跃天数和平均commit数判断趋势
   const avgCommits = props.member.avg_commits_per_day || 0
   const activeDays = props.member.active_days || 0
-  
+
   if (avgCommits >= 3 && activeDays >= 5) return 'up'
   if (avgCommits >= 2 && activeDays >= 3) return 'stable'
   return 'down'
@@ -317,48 +352,23 @@ const getTrendIcon = () => {
 </script>
 
 <style scoped>
+/* 卷王榜特有样式 - 基础样式由 leaderboard-item-base 提供 */
 .weekly-commit-item {
-  display: flex;
-  align-items: center;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--vp-c-divider-light);
-  transition: all 0.3s ease;
+  border-left: 3px solid #ff6b6b;
   animation: slideInLeft 0.6s ease-out;
-  position: relative;
 }
 
 .weekly-commit-item:hover {
-  background: linear-gradient(90deg, rgba(255, 107, 107, 0.05) 0%, transparent 100%);
-  border-radius: 8px;
-  padding-left: 8px;
-  padding-right: 8px;
+  border-left-color: #e53e3e;
 }
 
-.weekly-commit-item:last-child {
-  border-bottom: none;
-}
+/* 排名样式 - 由基础样式类 leaderboard-base.css 提供 */
 
-/* 排名样式 */
-.rank-1 {
-  background: linear-gradient(90deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
-}
-
-.rank-2 {
-  background: linear-gradient(90deg, rgba(192, 192, 192, 0.1) 0%, transparent 100%);
-}
-
-.rank-3 {
-  background: linear-gradient(90deg, rgba(205, 127, 50, 0.1) 0%, transparent 100%);
-}
-
+/* 排名徽章样式 - 基础布局由 leaderboard-base.css 提供 */
 .rank-badge {
   width: 40px;
   height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 12px;
-  flex-shrink: 0;
+  /* display, align-items, justify-content, margin-right, flex-shrink 由基础样式类提供 */
 }
 
 .medal {
@@ -366,10 +376,7 @@ const getTrendIcon = () => {
 }
 
 .rank-number {
-  font-size: 16px;
-  font-weight: bold;
-  color: #ff6b6b;
-  background: rgba(255, 107, 107, 0.1);
+  background: var(--vp-c-bg-soft);
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -377,12 +384,14 @@ const getTrendIcon = () => {
   align-items: center;
   justify-content: center;
   border: 2px solid #ff6b6b;
+  color: #ff6b6b;
+  font-weight: 700;
+  font-size: 14px;
 }
 
+/* 头像区域样式 - 基础布局由 leaderboard-base.css 提供 */
 .avatar-section {
-  position: relative;
-  margin-right: 12px;
-  flex-shrink: 0;
+  /* position, margin-right, flex-shrink 由基础样式类提供 */
 }
 
 .avatar {
@@ -419,11 +428,7 @@ const getTrendIcon = () => {
   100% { transform: scale(1.2); }
 }
 
-.member-info {
-  flex: 1;
-  min-width: 0;
-  margin-right: 12px;
-}
+/* 成员信息样式 - 由基础样式类 leaderboard-base.css 提供 */
 
 .member-name {
   margin: 0 0 4px 0;
@@ -441,18 +446,38 @@ const getTrendIcon = () => {
   color: var(--vp-c-text-2);
 }
 
+/* 提交统计样式 - 基础布局由 leaderboard-base.css 提供 */
 .commit-stats {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap; /* 避免换行导致成员卡高度拉伸 */
+  overflow: hidden;
 }
 
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+.commit-stats .stat-item {
   font-size: 12px;
   color: var(--vp-c-text-2);
+  margin: 0;
+}
+
+.commit-stats .stat-value {
+  white-space: nowrap;
+}
+
+/* 无数据日的短横线占位 */
+.day-dash {
+  width: 8px;
+  height: 2px;
+  background: var(--vp-c-divider);
+  border-radius: 2px;
+  align-self: center;
+  opacity: 0.6;
+}
+
+
+.stat-item {
+  /* display, align-items, gap, font-size, color 由基础样式类提供 */
 }
 
 .stat-icon {
@@ -497,24 +522,20 @@ const getTrendIcon = () => {
   height: 100%;
 }
 
+/* 分数区域样式 - 基础布局由 leaderboard-base.css 提供 */
 .score-section {
-  text-align: center;
-  margin-right: 12px;
-  flex-shrink: 0;
-  position: relative;
+  /* text-align, margin-right, flex-shrink, position 由基础样式类提供 */
 }
 
+/* 分数样式 - 由基础样式类 leaderboard-base.css 提供 */
 .score-value {
-  font-size: 20px;
-  font-weight: bold;
-  color: #ff6b6b;
-  line-height: 1;
+  /* font-size, font-weight, color 由基础样式类提供 */
+  line-height: 1; /* 保留特殊行高 */
 }
 
 .score-label {
-  font-size: 10px;
-  color: var(--vp-c-text-2);
-  margin-top: 2px;
+  /* font-size, color 由基础样式类提供 */
+  margin-top: 2px; /* 保留特殊间距 */
 }
 
 .trend-indicator {
@@ -524,13 +545,12 @@ const getTrendIcon = () => {
   font-size: 12px;
 }
 
+/* 操作区域样式 - 基础布局由 leaderboard-base.css 提供 */
 .actions-section {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
+  /* display, gap, flex-shrink, position, z-index 由基础样式类提供 */
 }
 
-.details-btn, .github-link {
+.github-link {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -544,17 +564,23 @@ const getTrendIcon = () => {
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 14px;
-}
-
-.details-btn:hover {
-  background: #ff6b6b;
-  color: white;
+  position: relative;
+  z-index: 3;
 }
 
 .github-link:hover {
-  background: var(--vp-c-brand-1);
+  background: #ff6b6b;
   color: white;
   transform: scale(1.1);
+}
+
+.click-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
 }
 
 .github-icon {
@@ -796,32 +822,32 @@ const getTrendIcon = () => {
     flex-wrap: wrap;
     padding: 16px 0;
   }
-  
+
   .member-info {
     order: 1;
     flex: 1 1 100%;
     margin: 8px 0;
   }
-  
+
   .daily-chart-section {
     order: 2;
     margin: 8px 0;
   }
-  
+
   .score-section {
     order: 3;
     margin: 8px 0;
   }
-  
+
   .actions-section {
     order: 4;
   }
-  
+
   .commit-stats {
     flex-direction: column;
     gap: 4px;
   }
-  
+
   .details-popup {
     width: 280px;
     max-width: calc(100vw - 40px);

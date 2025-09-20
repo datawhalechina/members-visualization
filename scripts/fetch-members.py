@@ -1007,6 +1007,15 @@ def collect_unified_data(org_name, include_commits=False):
                             commit_data['date_str'] = commit_date.strftime('%Y-%m-%d')
                             commit_data['hour'] = commit_date.hour
 
+                            # 转换为北京时间（UTC+8）
+                            beijing_time = commit_date + timedelta(hours=8)
+                            commit_data['beijing_hour'] = beijing_time.hour
+                            commit_data['beijing_time'] = beijing_time.isoformat()
+
+                            # 判断是否为深夜时段（北京时间22:00-06:00）
+                            is_night_owl = beijing_time.hour >= 22 or beijing_time.hour < 6
+                            commit_data['is_night_owl'] = is_night_owl
+
                             all_commits.append(commit_data)
 
                         except Exception as e:
@@ -1044,6 +1053,8 @@ def aggregate_commits_by_user(all_commits):
         'repos': set(),
         'daily_commits': defaultdict(int),
         'hourly_distribution': defaultdict(int),
+        'beijing_hourly_distribution': defaultdict(int),
+        'night_owl_commits': 0,
         'commit_messages': [],
         'first_commit_date': None,
         'last_commit_date': None
@@ -1071,6 +1082,11 @@ def aggregate_commits_by_user(all_commits):
         stats['repos'].add(commit['repo'])
         stats['daily_commits'][commit['date_str']] += 1
         stats['hourly_distribution'][commit['hour']] += 1
+        stats['beijing_hourly_distribution'][commit['beijing_hour']] += 1
+
+        # 统计深夜提交
+        if commit.get('is_night_owl', False):
+            stats['night_owl_commits'] += 1
 
         # 保存commit消息（最多10个）
         if len(stats['commit_messages']) < 10:
@@ -1078,6 +1094,9 @@ def aggregate_commits_by_user(all_commits):
                 'message': commit['message'],
                 'repo': commit['repo'],
                 'date': commit['date_str'],
+                'time': commit.get('beijing_time', ''),
+                'beijing_hour': commit.get('beijing_hour', 0),
+                'is_night_owl': commit.get('is_night_owl', False),
                 'url': commit['url']
             })
 
@@ -1098,6 +1117,9 @@ def aggregate_commits_by_user(all_commits):
                 'repo_count': len(stats['repos']),
                 'daily_commits': dict(stats['daily_commits']),
                 'hourly_distribution': dict(stats['hourly_distribution']),
+                'beijing_hourly_distribution': dict(stats['beijing_hourly_distribution']),
+                'night_owl_commits': stats['night_owl_commits'],
+                'night_owl_percentage': round((stats['night_owl_commits'] / stats['total_commits']) * 100, 1) if stats['total_commits'] > 0 else 0,
                 'commit_messages': stats['commit_messages'],
                 'first_commit_date': stats['first_commit_date'].isoformat() if stats['first_commit_date'] else None,
                 'last_commit_date': stats['last_commit_date'].isoformat() if stats['last_commit_date'] else None,

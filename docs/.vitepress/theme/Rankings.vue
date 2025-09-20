@@ -49,6 +49,15 @@
         />
       </div>
 
+      <!-- 夜猫榜（特殊位置） -->
+      <div class="night-owl-section">
+        <NightOwlCard
+          :members-data="members"
+          :selected-domain="selectedDomain"
+          :top-count="topCount"
+        />
+      </div>
+
       <!-- 榜单网格 -->
       <div class="leaderboards-grid">
         <LeaderboardCard
@@ -78,6 +87,7 @@
 import { ref, computed, onMounted } from 'vue'
 import LeaderboardCard from './LeaderboardCard.vue'
 import WeeklyCommitsCard from './WeeklyCommitsCard.vue'
+import NightOwlCard from './NightOwlCard.vue'
 
 // 响应式数据
 const loading = ref(true)
@@ -114,47 +124,47 @@ const filteredMembers = computed(() => {
 const leaderboards = computed(() => [
   {
     id: 'popularity',
-    title: '🔥 人气王榜',
+    title: '人气王榜',
     description: '综合 Followers 和 Stars 的人气排行',
     icon: '👑',
     colorScheme: 'fire',
-    showTrend: true,
+    showTrend: false,
     data: calculatePopularityRanking()
   },
   {
     id: 'productive',
-    title: '💼 多产榜', 
+    title: '多产榜',
     description: '基于公开仓库数量的创作力排行',
-    icon: '🚀',
+    icon: '🏆',
     colorScheme: 'blue',
-    showTrend: true,
+    showTrend: false,
     data: calculateProductiveRanking()
   },
   {
     id: 'social',
-    title: '🤝 社交达人榜',
+    title: '社交达人榜',
     description: '基于 Following 数量的社交活跃度排行',
-    icon: '🌟',
+    icon: '💬',
     colorScheme: 'green',
-    showTrend: true,
+    showTrend: false,
     data: calculateSocialRanking()
   },
   {
     id: 'rising',
-    title: '⭐ 新星榜',
+    title: '新星榜',
     description: '综合活跃度指标的潜力新星排行',
     icon: '🌠',
     colorScheme: 'purple',
-    showTrend: true,
+    showTrend: false,
     data: calculateRisingStarRanking()
   },
   {
     id: 'comprehensive',
-    title: '🌟 综合实力榜',
+    title: '综合实力榜',
     description: '多维度综合评分的全能排行',
-    icon: '🏆',
+    icon: '🌟',
     colorScheme: 'gold',
-    showTrend: true,
+    showTrend: false,
     data: calculateComprehensiveRanking()
   }
 ])
@@ -398,6 +408,10 @@ onMounted(() => {
 }
 
 .weekly-commits-section {
+  margin-bottom: 40px;
+}
+
+.night-owl-section {
   margin-bottom: 40px;
 }
 
