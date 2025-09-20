@@ -105,6 +105,7 @@ import LeaderboardCard from './LeaderboardCard.vue'
 import WeeklyCommitsCard from './WeeklyCommitsCard.vue'
 import NightOwlCard from './NightOwlCard.vue'
 import { loadOrganizationMembers, isOrganizationMember } from './utils/csvParser.js'
+import { withBase } from 'vitepress'
 
 // 响应式数据
 const loading = ref(true)
@@ -346,7 +347,8 @@ const loadData = async () => {
     }
 
     // 加载组织成员数据
-    organizationMembers.value = await loadOrganizationMembers()
+    const orgMembersCsvPath = withBase('/data/datawhale_member.csv')
+    organizationMembers.value = await loadOrganizationMembers(orgMembersCsvPath)
     
   } catch (err) {
     error.value = err.message

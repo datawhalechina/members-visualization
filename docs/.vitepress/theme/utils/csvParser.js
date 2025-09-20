@@ -52,6 +52,8 @@ export function extractGithubUsernames(csvData) {
   return usernames
 }
 
+
+
 /**
  * 异步加载并解析组织成员CSV文件
  * @param {string} csvPath - CSV文件路径
@@ -59,6 +61,8 @@ export function extractGithubUsernames(csvData) {
  */
 export async function loadOrganizationMembers(csvPath = '/data/datawhale_member.csv') {
   try {
+    console.log(`Loading organization members from: ${csvPath}`)
+
     const response = await fetch(csvPath)
     if (!response.ok) {
       throw new Error(`Failed to fetch CSV: ${response.status}`)
