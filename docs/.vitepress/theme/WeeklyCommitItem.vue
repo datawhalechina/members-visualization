@@ -4,6 +4,7 @@
     class="weekly-commit-item leaderboard-item-base"
     :class="[ `rank-${rank}`, { 'is-expanded': props.showDetails } ]"
     :style="{ animationDelay: `${animationDelay}ms` }"
+    @click="onItemClick"
   >
     <!-- 排名徽章 -->
     <div class="rank-badge">
@@ -27,26 +28,18 @@
       <div class="name-section">
         <h4 class="member-name">{{ member.display_name }}</h4>
         <div class="member-meta">
-          <span class="github-username" v-if="member.github_username">
-            @{{ member.github_username }}
-          </span>
+          <span v-if="member.location" class="location">📍 {{ member.location }}</span>
+          <span v-if="member.company" class="company">🏢 {{ member.company }}</span>
+        </div>
+      </div>
+      <div class="domains-section" v-if="member.domain">
+        <div class="domains">
+          <span v-for="domain in getDomains(member.domain)" :key="domain" class="domain-tag">{{ domain }}</span>
         </div>
       </div>
 
-      <div class="commit-stats">
-        <div class="stat-item">
-          <span class="stat-icon">📊</span>
-          <span class="stat-value">{{ member.total_commits }} commits</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-icon">📁</span>
-          <span class="stat-value">{{ member.repo_count }} 仓库</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-icon">📅</span>
-          <span class="stat-value">{{ member.active_days }} 活跃天</span>
-        </div>
-      </div>
+
+
     </div>
 
     <!-- 每日commit分布图 -->
@@ -68,7 +61,23 @@
     <!-- 分数和趋势 -->
     <div class="score-section">
       <div class="score-value">{{ member.score }}</div>
-      <div class="score-label">卷王分</div>
+      <div class="score-label">{{ weeklyScoreLabel }}</div>
+
+      <!-- 详细数据 -->
+      <div class="detailed-stats">
+        <div class="stat-item" v-if="member.followers">
+          <span class="stat-icon">👥</span>
+          <span class="stat-value">{{ member.followers }}</span>
+        </div>
+        <div class="stat-item" v-if="member.total_stars">
+          <span class="stat-icon">⭐</span>
+          <span class="stat-value">{{ member.total_stars }}</span>
+        </div>
+        <div class="stat-item" v-if="member.public_repos">
+          <span class="stat-icon">📁</span>
+          <span class="stat-value">{{ member.public_repos }}</span>
+        </div>
+      </div>
 
       <div class="trend-indicator" :class="getTrendClass()">
         {{ getTrendIcon() }}
@@ -82,6 +91,7 @@
       :class="`popup-${popupPosition}`"
       v-if="props.showDetails"
     >
+
       <div class="popup-header">
         <h5>{{ member.display_name }} 的本周战绩</h5>
         <button @click="emit('toggle-details', props.member.user_key)" class="close-btn">×</button>
@@ -168,14 +178,23 @@
     </div>
 
     <!-- 点击区域 -->
-    <div class="click-overlay" @click="emit('toggle-details', props.member.user_key)"></div>
+    <div class="click-overlay" aria-hidden="true"></div>
   </div>
+
+
 </template>
 
 <script setup>
 import { ref, computed, nextTick, watch } from 'vue'
 
 // Props
+
+// 研究领域拆分（与 LeaderboardItem.vue 一致）
+const getDomains = (domainString) => {
+  if (!domainString) return []
+  return domainString.split(';').map(d => d.trim()).filter(Boolean)
+}
+
 const props = defineProps({
   member: {
     type: Object,
@@ -196,6 +215,13 @@ const props = defineProps({
 })
 
 // Emits
+
+// 整卡点击（排除 GitHub 按钮与弹窗区域）
+const onItemClick = (e) => {
+  if (e.target.closest && (e.target.closest('.github-link') || e.target.closest('.details-popup'))) return
+  emit('toggle-details', props.member.user_key)
+}
+
 const emit = defineEmits(['toggle-details'])
 
 // 弹窗定位相关
@@ -258,12 +284,6 @@ watch(() => props.showDetails, (newVal) => {
 })
 
 // 计算属性
-const sortedDailyCommits = computed(() => {
-  if (!props.member.daily_commits) return []
-
-  const entries = Object.entries(props.member.daily_commits)
-  return entries.sort(([a], [b]) => a.localeCompare(b))
-})
 
 // 统一 7 天时间轴（优先以数据中的最大日期为止，回溯 6 天）
 const formatDate = (d) => {
@@ -300,8 +320,22 @@ const weeklyDailySeries = computed(() => {
 })
 
 
+
+const weeklyScoreLabel = computed(() => {
+  const parts = []
+  const commits = props.member.total_commits
+  const repos = props.member.repo_count
+  const days = props.member.active_days
+  if (typeof commits === 'number') parts.push(`${commits} 次`)
+  if (typeof repos === 'number') parts.push(`${repos} 仓库`)
+  if (typeof days === 'number') parts.push(`${days} 天`)
+  return parts.join(' • ')
+})
+
 // 方法
 const getMedal = (rank) => {
+
+
   const medals = { 1: '🥇', 2: '🥈', 3: '🥉' }
   return medals[rank] || rank
 }
@@ -390,9 +424,6 @@ const getTrendIcon = () => {
 }
 
 /* 头像区域样式 - 基础布局由 leaderboard-base.css 提供 */
-.avatar-section {
-  /* position, margin-right, flex-shrink 由基础样式类提供 */
-}
 
 .avatar {
   width: 48px;
@@ -469,16 +500,13 @@ const getTrendIcon = () => {
 .day-dash {
   width: 8px;
   height: 2px;
-  background: var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
   border-radius: 2px;
-  align-self: center;
-  opacity: 0.6;
+  align-self: flex-end;
+  opacity: 0.7;
 }
 
 
-.stat-item {
-  /* display, align-items, gap, font-size, color 由基础样式类提供 */
-}
 
 .stat-icon {
   font-size: 10px;
@@ -523,9 +551,6 @@ const getTrendIcon = () => {
 }
 
 /* 分数区域样式 - 基础布局由 leaderboard-base.css 提供 */
-.score-section {
-  /* text-align, margin-right, flex-shrink, position 由基础样式类提供 */
-}
 
 /* 分数样式 - 由基础样式类 leaderboard-base.css 提供 */
 .score-value {
@@ -546,9 +571,6 @@ const getTrendIcon = () => {
 }
 
 /* 操作区域样式 - 基础布局由 leaderboard-base.css 提供 */
-.actions-section {
-  /* display, gap, flex-shrink, position, z-index 由基础样式类提供 */
-}
 
 .github-link {
   display: flex;
@@ -580,7 +602,8 @@ const getTrendIcon = () => {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .github-icon {

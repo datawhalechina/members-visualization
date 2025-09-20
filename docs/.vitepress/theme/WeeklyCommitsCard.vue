@@ -11,7 +11,7 @@
       </div>
       <div class="stats-badge">
         <span class="count">{{ validMembers.length }}</span>
-        <span class="label">人上榜</span>
+        <span class="label">大卷王</span>
       </div>
     </div>
 
@@ -37,8 +37,10 @@
       
       <div v-else-if="validMembers.length === 0" class="empty-state">
         <div class="empty-icon">😴</div>
-        <p>本周暂无commit活动</p>
-        <p class="empty-hint">快去写代码吧！</p>
+        <p v-if="showOnlyOrgMembers">组织成员本周暂无commit活动</p>
+        <p v-else>本周暂无commit活动</p>
+        <p class="empty-hint" v-if="showOnlyOrgMembers">组织成员们快去写代码吧！</p>
+        <p class="empty-hint" v-else>快去写代码吧！</p>
       </div>
       
       <div v-else class="commits-list">
@@ -76,6 +78,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import WeeklyCommitItem from './WeeklyCommitItem.vue'
+import { isOrganizationMember } from './utils/csvParser.js'
 
 // Props
 const props = defineProps({
@@ -90,6 +93,14 @@ const props = defineProps({
   topCount: {
     type: Number,
     default: 20
+  },
+  showOnlyOrgMembers: {
+    type: Boolean,
+    default: false
+  },
+  organizationMembers: {
+    type: Set,
+    default: () => new Set()
   }
 })
 
@@ -109,15 +120,34 @@ const validMembers = computed(() => {
   for (const [userKey, stats] of Object.entries(commitsData.value.user_commits)) {
     // 过滤条件：至少1个commit
     if (stats.total_commits >= 1) {
-      // 从membersData中查找对应的成员信息
+      // 从membersData中查找对应的成员信息 - 内连接第一步：必须在主数据中存在
       const memberInfo = props.membersData.find(m => m.id === userKey)
+
+      // 内连接第二步：如果启用组织成员筛选，必须同时满足以下条件：
+      // 1. 在主数据中存在 (memberInfo)
+      // 2. 在组织成员名单中存在
+      // 3. 有实际的commit活动数据
+      if (props.showOnlyOrgMembers) {
+        if (!memberInfo || !isOrganizationMember(userKey, props.organizationMembers)) {
+          continue // 跳过不满足内连接条件的成员
+        }
+      }
 
       const member = {
         user_key: userKey,
         display_name: extractDisplayName(userKey),
         github_username: extractGithubUsername(userKey),
-        // 添加头像信息
+        // 头像
         avatar: memberInfo?.avatar || null,
+        // 基础资料（与人气王一致）
+        location: memberInfo?.location || null,
+        company: memberInfo?.company || null,
+        domain: memberInfo?.domain || '',
+        // 人气与仓库统计（字段兼容多种命名）
+        followers: (memberInfo?.followers ?? memberInfo?.followers_count ?? 0),
+        total_stars: (memberInfo?.total_stars ?? memberInfo?.stars ?? 0),
+        public_repos: (memberInfo?.public_repos ?? memberInfo?.repo_count ?? 0),
+        // 业务统计
         ...stats,
         // 计算卷王分数
         score: calculateRollKingScore(stats)
@@ -257,6 +287,7 @@ onMounted(() => {
 /* 卷王榜特有样式 - 基础样式由 leaderboard-card-base 提供 */
 .weekly-commits-card {
   /* 移除顶部彩色边框，与其他榜单保持一致 */
+  border-top: none;
 }
 
 /* 卷王榜特有悬停效果 - 基础悬停由 leaderboard-card-base 提供 */

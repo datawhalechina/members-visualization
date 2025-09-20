@@ -37,8 +37,10 @@
       
       <div v-else-if="validMembers.length === 0" class="empty-state">
         <div class="empty-icon">😴</div>
-        <p>本周暂无深夜提交活动</p>
-        <p class="empty-hint">早睡早起身体好！</p>
+        <p v-if="showOnlyOrgMembers">组织成员本周暂无深夜提交活动</p>
+        <p v-else>本周暂无深夜提交活动</p>
+        <p class="empty-hint" v-if="showOnlyOrgMembers">组织成员们早睡早起身体好！</p>
+        <p class="empty-hint" v-else>早睡早起身体好！</p>
       </div>
       
       <div v-else class="commits-list">
@@ -76,6 +78,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import NightOwlItem from './NightOwlItem.vue'
+import { isOrganizationMember } from './utils/csvParser.js'
 
 // Props
 const props = defineProps({
@@ -90,6 +93,14 @@ const props = defineProps({
   topCount: {
     type: Number,
     default: 20
+  },
+  showOnlyOrgMembers: {
+    type: Boolean,
+    default: false
+  },
+  organizationMembers: {
+    type: Set,
+    default: () => new Set()
   }
 })
 
@@ -109,15 +120,34 @@ const validMembers = computed(() => {
   for (const [userKey, stats] of Object.entries(commitsData.value.user_commits)) {
     // 过滤条件：至少1个深夜commit
     if (stats.night_owl_commits >= 1) {
-      // 从membersData中查找对应的成员信息
+      // 从membersData中查找对应的成员信息 - 内连接第一步：必须在主数据中存在
       const memberInfo = props.membersData.find(m => m.id === userKey)
+
+      // 内连接第二步：如果启用组织成员筛选，必须同时满足以下条件：
+      // 1. 在主数据中存在 (memberInfo)
+      // 2. 在组织成员名单中存在
+      // 3. 有实际的深夜commit活动数据
+      if (props.showOnlyOrgMembers) {
+        if (!memberInfo || !isOrganizationMember(userKey, props.organizationMembers)) {
+          continue // 跳过不满足内连接条件的成员
+        }
+      }
 
       const member = {
         user_key: userKey,
         display_name: extractDisplayName(userKey),
         github_username: extractGithubUsername(userKey),
-        // 添加头像信息
+        // 头像
         avatar: memberInfo?.avatar || null,
+        // 基础资料（与人气王一致）
+        location: memberInfo?.location || null,
+        company: memberInfo?.company || null,
+        domain: memberInfo?.domain || '',
+        // 人气与仓库统计（字段兼容多种命名）
+        followers: (memberInfo?.followers ?? memberInfo?.followers_count ?? 0),
+        total_stars: (memberInfo?.total_stars ?? memberInfo?.stars ?? 0),
+        public_repos: (memberInfo?.public_repos ?? memberInfo?.repo_count ?? 0),
+        // 业务统计
         ...stats,
         // 计算夜猫分数
         night_owl_score: calculateNightOwlScore(stats)

@@ -238,11 +238,106 @@
   margin-bottom: 2px !important;
 }
 
-.score-label-base {
-  font-size: 10px;
-  color: var(--vp-c-text-2);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.score-label-base,
+.leaderboard-item-base .score-label {
+  font-size: 10px !important;
+  color: var(--vp-c-text-2) !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 4px !important;
+}
+
+
+/* ===== 详细统计基础样式 ===== */
+.detailed-stats-base,
+.leaderboard-item-base .detailed-stats {
+  display: flex !important;
+  gap: 8px !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  flex-wrap: wrap;
+  margin-top: 4px !important;
+}
+
+.leaderboard-item-base .detailed-stats .stat-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  font-size: 11px !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+.leaderboard-item-base .detailed-stats .stat-icon {
+  font-size: 10px !important;
+}
+
+.leaderboard-item-base .detailed-stats .stat-value {
+  font-size: 11px !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+/* ===== 左侧人气汇总（与人气王一致） ===== */
+.leaderboard-item-base .popularity-summary {
+  font-size: 12px !important;
+  color: var(--vp-c-text-2) !important;
+  margin-top: 4px !important;
+}
+
+.leaderboard-item-base .inline-stats {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
+  margin-top: 4px !important;
+}
+
+.leaderboard-item-base .inline-stats .stat-icon {
+  font-size: 12px !important;
+}
+
+.leaderboard-item-base .inline-stats .stat-value {
+  font-size: 12px !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+/* ===== 成员基本信息（位置、领域标签）统一样式 ===== */
+.leaderboard-item-base .member-meta {
+  display: flex !important;
+  gap: 12px !important;
+  margin-top: 2px !important;
+  color: var(--vp-c-text-2) !important;
+  font-size: 12px !important;
+}
+
+.leaderboard-item-base .member-meta .location,
+.leaderboard-item-base .member-meta .company {
+  color: var(--vp-c-text-2) !important;
+  font-size: 12px !important;
+}
+
+.leaderboard-item-base .domains-section {
+  margin-top: 6px !important;
+}
+
+.leaderboard-item-base .domains {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+}
+
+.leaderboard-item-base .domain-tag {
+  background: var(--vp-c-brand-soft) !important;
+  color: var(--vp-c-brand-1) !important;
+  padding: 2px 6px !important;
+  border-radius: 10px !important;
+  font-size: 11px !important;
+}
+
+
+
+/* ===== 点击覆盖层（统一禁用指针事件） ===== */
+.leaderboard-item-base .click-overlay {
+  pointer-events: none !important;
+  z-index: 0 !important;
 }
 
 /* ===== 操作区域基础样式 ===== */

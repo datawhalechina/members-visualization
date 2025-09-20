@@ -25,18 +25,21 @@
 
     <!-- 成员信息 -->
     <div class="member-info">
-      <h4 class="member-name">{{ member.display_name }}</h4>
-      <div class="member-stats">
-        <span class="stat-item">
-          <span class="stat-value">{{ member.night_owl_commits }}</span>
-          <span class="stat-label">深夜commit</span>
-        </span>
-        <span class="stat-divider">•</span>
-        <span class="stat-item">
-          <span class="stat-value">{{ member.night_owl_percentage }}%</span>
-          <span class="stat-label">深夜比例</span>
-        </span>
+      <div class="name-section">
+        <h4 class="member-name">{{ member.display_name }}</h4>
+        <div class="member-meta">
+          <span v-if="member.location" class="location">📍 {{ member.location }}</span>
+          <span v-if="member.company" class="company">🏢 {{ member.company }}</span>
+        </div>
       </div>
+
+      <div class="domains-section" v-if="member.domain">
+        <div class="domains">
+          <span v-for="domain in getDomains(member.domain)" :key="domain" class="domain-tag">{{ domain }}</span>
+        </div>
+      </div>
+
+
     </div>
 
     <!-- 深夜时段分布图 -->
@@ -58,7 +61,23 @@
     <!-- 分数和趋势 -->
     <div class="score-section">
       <div class="score-value night-score">{{ member.night_owl_score }}</div>
-      <div class="score-label">夜猫分</div>
+      <div class="score-label">{{ nightScoreLabel }}</div>
+
+      <!-- 详细数据 -->
+      <div class="detailed-stats">
+        <div class="stat-item" v-if="member.followers">
+          <span class="stat-icon">👥</span>
+          <span class="stat-value">{{ member.followers }}</span>
+        </div>
+        <div class="stat-item" v-if="member.total_stars">
+          <span class="stat-icon">⭐</span>
+          <span class="stat-value">{{ member.total_stars }}</span>
+        </div>
+        <div class="stat-item" v-if="member.public_repos">
+          <span class="stat-icon">📁</span>
+          <span class="stat-value">{{ member.public_repos }}</span>
+        </div>
+      </div>
 
       <div class="trend-indicator night-trend" :class="getNightTrendClass()">
         {{ getNightTrendIcon() }}
@@ -156,6 +175,13 @@
 <script setup>
 import { ref, computed, nextTick, watch } from 'vue'
 
+
+// 研究领域拆分（与 LeaderboardItem.vue 一致）
+const getDomains = (domainString) => {
+  if (!domainString) return []
+  return domainString.split(';').map(d => d.trim()).filter(Boolean)
+}
+
 // Props
 const props = defineProps({
   member: {
@@ -200,6 +226,16 @@ const nightOwlCommits = computed(() => {
   return (props.member.commit_messages || []).filter(commit => commit.is_night_owl)
 })
 
+const nightScoreLabel = computed(() => {
+  const parts = []
+  const commits = props.member.night_owl_commits
+  const perc = props.member.night_owl_percentage
+  if (typeof commits === 'number') parts.push(`${commits} 深夜`)
+  if (typeof perc === 'number') parts.push(`${perc}%`)
+  return parts.join(' • ')
+})
+
+
 // 工具函数
 const getMedal = (rank) => {
   const medals = { 1: '🥇', 2: '🥈', 3: '🥉' }
@@ -234,9 +270,9 @@ const getNightTrendClass = () => {
 
 const getNightTrendIcon = () => {
   const percentage = props.member.night_owl_percentage || 0
-  if (percentage >= 50) return '🔥'
-  if (percentage >= 30) return '⭐'
-  return '💤'
+  if (percentage >= 50) return '↗'
+  if (percentage >= 30) return '→'
+  return '↘'
 }
 
 const formatNightTime = (hour) => {
@@ -422,10 +458,7 @@ watch(() => props.showDetails, (newVal) => {
   /* display, align-items, gap 由基础样式类提供 */
 }
 
-.stat-value {
-  font-weight: 600;
-  color: #6366f1;
-}
+/* .stat-value 样式由基础样式类提供，避免覆盖 */
 
 .stat-divider {
   opacity: 0.5;

@@ -25,7 +25,7 @@
             </option>
           </select>
         </div>
-        
+
         <div class="filter-group">
           <label>显示数量：</label>
           <select v-model="topCount" @change="applyFilters">
@@ -35,7 +35,19 @@
           </select>
         </div>
 
-        <button v-if="selectedDomain" @click="clearFilters" class="clear-filters-btn">
+        <div class="filter-group checkbox-group">
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              v-model="showOnlyOrgMembers"
+              @change="applyFilters"
+              class="checkbox-input"
+            />
+            <span class="checkbox-text">仅显示组织成员</span>
+          </label>
+        </div>
+
+        <button v-if="selectedDomain || showOnlyOrgMembers" @click="clearFilters" class="clear-filters-btn">
           清除筛选
         </button>
       </div>
@@ -46,6 +58,8 @@
           :members-data="members"
           :selected-domain="selectedDomain"
           :top-count="topCount"
+          :show-only-org-members="showOnlyOrgMembers"
+          :organization-members="organizationMembers"
         />
       </div>
 
@@ -55,6 +69,8 @@
           :members-data="members"
           :selected-domain="selectedDomain"
           :top-count="topCount"
+          :show-only-org-members="showOnlyOrgMembers"
+          :organization-members="organizationMembers"
         />
       </div>
 
@@ -88,6 +104,7 @@ import { ref, computed, onMounted } from 'vue'
 import LeaderboardCard from './LeaderboardCard.vue'
 import WeeklyCommitsCard from './WeeklyCommitsCard.vue'
 import NightOwlCard from './NightOwlCard.vue'
+import { loadOrganizationMembers, isOrganizationMember } from './utils/csvParser.js'
 
 // 响应式数据
 const loading = ref(true)
@@ -96,6 +113,8 @@ const members = ref([])
 const commitsData = ref(null)
 const selectedDomain = ref('')
 const topCount = ref(20)
+const showOnlyOrgMembers = ref(false)
+const organizationMembers = ref(new Set())
 
 // 计算属性
 const allDomains = computed(() => {
@@ -110,13 +129,27 @@ const allDomains = computed(() => {
 
 const filteredMembers = computed(() => {
   let filtered = members.value
-  
+
+  // 研究方向筛选
   if (selectedDomain.value) {
-    filtered = filtered.filter(member => 
+    filtered = filtered.filter(member =>
       member.domain && member.domain.includes(selectedDomain.value)
     )
   }
-  
+
+  // 组织成员筛选 - 使用内连接（INNER JOIN）逻辑
+  if (showOnlyOrgMembers.value) {
+    filtered = filtered.filter(member => {
+      // 双向存在性检查：
+      // 1. 成员必须存在于组织成员名单中
+      // 2. 成员必须在主数据中有完整信息
+      return isOrganizationMember(member.id, organizationMembers.value) &&
+             member.avatar && // 确保有头像
+             member.id && // 确保有ID
+             member.domain // 确保有研究领域信息
+    })
+  }
+
   return filtered
 })
 
@@ -311,6 +344,9 @@ const loadData = async () => {
     if (commitsResponse.ok) {
       commitsData.value = await commitsResponse.json()
     }
+
+    // 加载组织成员数据
+    organizationMembers.value = await loadOrganizationMembers()
     
   } catch (err) {
     error.value = err.message
@@ -326,6 +362,7 @@ const applyFilters = () => {
 
 const clearFilters = () => {
   selectedDomain.value = ''
+  showOnlyOrgMembers.value = false
 }
 
 // 生命周期
@@ -390,6 +427,32 @@ onMounted(() => {
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   font-size: 14px;
+}
+
+/* 复选框样式 */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+}
+
+.checkbox-input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--vp-c-brand-1);
+  cursor: pointer;
+}
+
+.checkbox-text {
+  user-select: none;
 }
 
 .clear-filters-btn, .retry-btn {
