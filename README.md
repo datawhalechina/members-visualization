@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🌟 Datawhale 成员可视化平台
+# 🌟 Datawhale 贡献者可视化平台
 
-*智能化的开源社区成员分析与展示系统*
+*智能化的开源社区贡献者分析与展示系统*
 
 [![GitHub stars](https://img.shields.io/github/stars/datawhalechina/members-visualization?style=for-the-badge&logo=github)](https://github.com/datawhalechina/members-visualization/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/datawhalechina/members-visualization?style=for-the-badge&logo=github)](https://github.com/datawhalechina/members-visualization/network)
@@ -22,7 +22,7 @@
 
 ## 📖 项目简介
 
-**Datawhale 成员可视化平台** 是一个现代化的开源社区成员分析与展示系统，专为开源组织和技术社区设计。通过智能化的数据收集和精美的可视化展示，帮助社区管理者和成员更好地了解社区生态和发展趋势。
+**Datawhale 贡献者可视化平台** 是一个现代化的开源社区贡献者分析与展示系统，专为开源组织和技术社区设计。通过智能化的数据收集和精美的可视化展示，帮助社区管理者和成员更好地了解社区生态和发展趋势。
 
 ### 🎯 核心价值
 
@@ -125,7 +125,7 @@
 │   │       └── 📤 DataExport.vue  # 数据导出组件
 │   ├── public/                    # 静态资源
 │   │   ├── data/                  # 数据文件
-│   │   │   ├── members.csv        # 成员基础数据
+│   │   │   ├── members.csv        # 贡献者基础数据
 │   │   │   ├── datawhale_member.csv # 正式成员采集数据
 │   │   │   └── commits_weekly.json # 提交活跃度数据
 │   │   └── avatars/               # 成员头像缓存
@@ -140,7 +140,7 @@
 
 ## 📊 数据模型
 
-### 📋 成员数据结构 (`members.csv`)
+### 📋 贡献者数据结构 (`members.csv`)
 
 ```csv
 id,name,github,domain,repositories,public_repos,total_stars,followers,following,avatar,bio,location,company
