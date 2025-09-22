@@ -16,7 +16,7 @@
     <div class="avatar-section">
       <img
         :src="getAvatarUrl(member.avatar)"
-        :alt="member.display_name"
+        :alt="displayName"
         class="avatar"
         @error="handleImageError"
       />
@@ -26,7 +26,7 @@
     <!-- 成员信息 -->
     <div class="member-info">
       <div class="name-section">
-        <h4 class="member-name">{{ member.display_name }}</h4>
+        <h4 class="member-name">{{ displayName }}</h4>
         <div class="member-meta">
           <span v-if="member.location" class="location">📍 {{ member.location }}</span>
           <span v-if="member.company" class="company">🏢 {{ member.company }}</span>
@@ -93,7 +93,7 @@
     >
 
       <div class="popup-header">
-        <h5>{{ member.display_name }} 的本周战绩</h5>
+        <h5>{{ displayName }} 的本周战绩</h5>
         <button @click="emit('toggle-details', props.member.user_key)" class="close-btn">×</button>
       </div>
 
@@ -284,6 +284,21 @@ watch(() => props.showDetails, (newVal) => {
 })
 
 // 计算属性
+const displayName = computed(() => {
+  // 优先使用name字段，为空时使用id字段
+  const name = props.member.name
+  if (name && name !== 'null' && name !== 'undefined' && name !== 'None' && name.trim() !== '') {
+    return name
+  }
+
+  // 如果name为空，使用id字段
+  if (props.member.id) {
+    return props.member.id
+  }
+
+  // 最后回退到display_name
+  return props.member.display_name || props.member.user_key || '未知用户'
+})
 
 // 统一 7 天时间轴（优先以数据中的最大日期为止，回溯 6 天）
 const formatDate = (d) => {

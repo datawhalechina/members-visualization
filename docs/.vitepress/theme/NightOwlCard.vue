@@ -135,7 +135,10 @@ const validMembers = computed(() => {
 
       const member = {
         user_key: userKey,
-        display_name: extractDisplayName(userKey),
+        // 添加原始字段供组件内部使用
+        id: memberInfo?.id || userKey,
+        name: memberInfo?.name || null,
+        display_name: extractDisplayName(userKey, memberInfo),
         github_username: extractGithubUsername(userKey),
         // 头像
         avatar: memberInfo?.avatar || null,
@@ -195,7 +198,18 @@ const lastUpdateTime = computed(() => {
 })
 
 // 工具函数
-const extractDisplayName = (userKey) => {
+const extractDisplayName = (userKey, memberInfo) => {
+  // 优先使用memberInfo中的name字段
+  if (memberInfo?.name && memberInfo.name !== 'null' && memberInfo.name !== 'undefined' && memberInfo.name !== 'None' && memberInfo.name.trim() !== '') {
+    return memberInfo.name
+  }
+
+  // 如果name为空，使用memberInfo中的id字段
+  if (memberInfo?.id) {
+    return memberInfo.id
+  }
+
+  // 最后回退到从userKey提取
   if (userKey.includes('@')) {
     return userKey.split('@')[0]
   }

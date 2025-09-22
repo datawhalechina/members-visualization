@@ -16,7 +16,7 @@
     <div class="avatar-section">
       <img
         :src="getAvatarUrl(member.avatar)"
-        :alt="member.display_name"
+        :alt="displayName"
         class="avatar"
         @error="handleImageError"
       />
@@ -26,7 +26,7 @@
     <!-- 成员信息 -->
     <div class="member-info">
       <div class="name-section">
-        <h4 class="member-name">{{ member.display_name }}</h4>
+        <h4 class="member-name">{{ displayName }}</h4>
         <div class="member-meta">
           <span v-if="member.location" class="location">📍 {{ member.location }}</span>
           <span v-if="member.company" class="company">🏢 {{ member.company }}</span>
@@ -108,7 +108,7 @@
       v-if="props.showDetails"
     >
       <div class="popup-header">
-        <h5>{{ member.display_name }} 的深夜战绩</h5>
+        <h5>{{ displayName }} 的深夜战绩</h5>
         <button @click="emit('toggle-details', props.member.user_key)" class="close-btn">×</button>
       </div>
 
@@ -222,6 +222,22 @@ const popupPosition = ref('bottom') // 'bottom' 或 'top'
 const nightHours = [22, 23, 0, 1, 2, 3, 4, 5]
 
 // 计算属性
+const displayName = computed(() => {
+  // 优先使用name字段，为空时使用id字段
+  const name = props.member.name
+  if (name && name !== 'null' && name !== 'undefined' && name !== 'None' && name.trim() !== '') {
+    return name
+  }
+
+  // 如果name为空，使用id字段
+  if (props.member.id) {
+    return props.member.id
+  }
+
+  // 最后回退到display_name
+  return props.member.display_name || props.member.user_key || '未知用户'
+})
+
 const nightOwlCommits = computed(() => {
   return (props.member.commit_messages || []).filter(commit => commit.is_night_owl)
 })
