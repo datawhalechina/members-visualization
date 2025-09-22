@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: "Datawhale 贡献者可视化"
+  name: "Datawhale贡献可视化"
   text: "组织贡献者研究方向展示平台"
   tagline: 基于现代化技术栈构建的智能数据可视化平台，实时展示 Datawhale 贡献者信息与研究方向分布
   image:
