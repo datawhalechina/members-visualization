@@ -2,9 +2,9 @@
 layout: home
 
 hero:
-  name: "Datawhale 成员可视化"
-  text: "组织成员研究方向展示平台"
-  tagline: 基于现代化技术栈构建的智能数据可视化平台，实时展示 Datawhale 组织成员信息与研究方向分布
+  name: "Datawhale 贡献者可视化"
+  text: "组织贡献者研究方向展示平台"
+  tagline: 基于现代化技术栈构建的智能数据可视化平台，实时展示 Datawhale 贡献者信息与研究方向分布
   image:
     src: /logo.png
     alt: Datawhale Logo
@@ -19,10 +19,10 @@ hero:
 features:
   - icon: 📊
     title: 多维度数据可视化
-    details: 提供饼图、柱状图、词云、关系网络图、趋势分析等5种图表类型，全方位展示成员研究方向分布
+    details: 提供饼图、柱状图、词云、关系网络图、趋势分析等5种图表类型，全方位展示贡献者研究方向分布
   - icon: 🔗
     title: 深度 GitHub 集成
-    details: 实时同步 GitHub 数据，展示成员头像、仓库统计、项目信息等，打造完整的开发者画像
+    details: 实时同步 GitHub 数据，展示贡献者头像、仓库统计、项目信息等，打造完整的开发者画像
   - icon: 🔍
     title: 智能搜索筛选
     details: 支持按姓名、研究方向等多维度实时搜索筛选，快速定位目标成员信息
