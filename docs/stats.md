@@ -7,7 +7,7 @@ import DataExport from './.vitepress/theme/DataExport.vue'
 
 ## 📊 数据概览
 
-以下图表展示了组织成员的研究方向分布情况：
+以下图表展示了贡献者的研究方向分布情况：
 
 <Charts />
 
