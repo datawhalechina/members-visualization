@@ -1,10 +1,10 @@
-# 🏆 成员榜单
+# 🏆 贡献者榜单
 
 <script setup>
 import Rankings from './.vitepress/theme/Rankings.vue'
 </script>
 
-欢迎来到 Datawhale 成员榜单页面！这里展示了基于 GitHub 数据的各种有趣排行榜，让我们一起看看谁是最闪亮的那颗星⭐
+欢迎来到 Datawhale 贡献者榜单页面！这里展示了基于 GitHub 数据的各种有趣排行榜，让我们一起看看谁是最闪亮的那颗星⭐
 
 ## 📊 实时榜单
 
@@ -54,7 +54,7 @@ import Rankings from './.vitepress/theme/Rankings.vue'
 - **上榜条件**：至少关注 20 个用户
 
 ### ⭐ 新星榜
-**计算规则**：综合活跃度指标，适合新加入的成员
+**计算规则**：综合活跃度指标，适合新加入的贡献者
 - **评分公式**：(Followers + Stars) / max(Repositories, 1) × 活跃度系数
 - **活跃度系数**：基于最近的仓库活动和社交互动
 - **更新频率**：每日更新
