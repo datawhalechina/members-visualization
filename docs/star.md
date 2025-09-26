@@ -3,7 +3,7 @@
 如果 Datawhale 贡献者可视化平台对您有帮助，欢迎给我们点一个 Star 支持一下！您的认可就是我们持续改进的动力 ✨
 
 <div align="center" style="margin: 20px 0;">
-  <img src="/star.png" alt="点 Star 示意图" style="max-width: 60%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+  <img src="/star.png" alt="点 Star 示意图" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
 </div>
 
 ## 📈 项目成长轨迹
