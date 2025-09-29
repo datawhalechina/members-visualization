@@ -1,4 +1,4 @@
-# 贡献者可视化
+# 👥 贡献者列表
 
 <script setup>
 import Charts from './.vitepress/theme/Charts.vue'

@@ -1,15 +1,15 @@
 {
   "name": "members-visualization",
   "version": "1.0.0",
-  "description": "组织成员研究方向可视化展示",
+  "description": "组织数据可视化展示",
   "main": "index.js",
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "cross-env NODE_ENV=production vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "fetch-data": "python scripts/fetch-members.py",
-    "fetch-data:python": "python scripts/fetch-members.py",
-    "fetch-data:test": "python scripts/fetch-members.py --test"
+    "fetch-data": "python scripts/fetch_members/fetch_members.py",
+    "fetch-data:python": "python scripts/fetch_members/fetch_members.py",
+    "fetch-data:test": "python scripts/fetch_members/fetch_members.py --test"
   },
   "keywords": [
     "datawhale",

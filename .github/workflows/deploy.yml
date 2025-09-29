@@ -63,7 +63,7 @@ jobs:
 
       - name: Fetch latest member data (only if no data exists)
         if: steps.check-data.outputs.data-exists == 'false'
-        run: python scripts/fetch-members.py
+        run: python scripts/fetch_members/fetch_members.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ORG: datawhalechina

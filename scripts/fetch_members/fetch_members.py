@@ -29,9 +29,9 @@ except ImportError:
 CONFIG = {
     'ORG_NAME': os.getenv('GITHUB_ORG', 'datawhalechina'),
     'GITHUB_TOKEN': os.getenv('GITHUB_TOKEN'),
-    'OUTPUT_FILE': Path(__file__).parent.parent / 'docs' / 'public' / 'data' / 'members.csv',
-    'COMMITS_FILE': Path(__file__).parent.parent / 'docs' / 'public' / 'data' / 'commits_weekly.json',  # 周commit数据文件
-    'AVATARS_DIR': Path(__file__).parent.parent / 'docs' / 'public' / 'avatars',  # 头像缓存目录
+    'OUTPUT_FILE': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'data' / 'members.csv',
+    'COMMITS_FILE': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'data' / 'commits_weekly.json',  # 周commit数据文件
+    'AVATARS_DIR': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'avatars',  # 头像缓存目录
     'API_BASE': 'https://api.github.com',
     'MIN_CONTRIBUTIONS': int(os.getenv('MIN_CONTRIBUTIONS', '10')),  # 最小贡献行数阈值（降低以包含更多贡献者）
     'MAX_REPOS_PER_PAGE': 100,  # 每页最大仓库数

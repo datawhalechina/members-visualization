@@ -1,4 +1,4 @@
-# 📈 数据统计
+# 📈 贡献者数据
 
 <script setup>
 import Charts from './.vitepress/theme/Charts.vue'
