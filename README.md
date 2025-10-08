@@ -2,7 +2,7 @@
 
 # 🌟 Datawhale 贡献者可视化平台
 
-*智能化的开源社区贡献者分析与展示系统*
+_智能化的开源社区贡献者分析与展示系统_
 
 [![GitHub stars](https://img.shields.io/github/stars/datawhalechina/members-visualization?style=for-the-badge&logo=github)](https://github.com/datawhalechina/members-visualization/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/datawhalechina/members-visualization?style=for-the-badge&logo=github)](https://github.com/datawhalechina/members-visualization/network)
@@ -39,6 +39,7 @@
 <td width="50%">
 
 ### 📊 智能数据可视化
+
 - 🥧 **增强饼图** - 研究方向分布，支持交互钻取
 - 📊 **动态柱状图** - 成员统计排序，渐变色彩设计
 - ☁️ **智能词云** - 热门方向展示，字体大小反映热度
@@ -50,6 +51,7 @@
 <td width="50%">
 
 ### 🔍 强大搜索筛选
+
 - ⚡ **实时搜索** - 毫秒级响应，支持模糊匹配
 - 🎯 **精确筛选** - 多维度条件组合筛选
 - 📋 **智能建议** - 搜索关键词自动补全
@@ -63,6 +65,7 @@
 <td width="50%">
 
 ### 👥 GitHub 深度集成
+
 - 🖼️ **头像管理** - 自动下载缓存，支持默认头像
 - 🔗 **一键跳转** - 直达 GitHub 个人主页
 - 📈 **仓库统计** - Stars、Forks、仓库数实时统计
@@ -74,6 +77,7 @@
 <td width="50%">
 
 ### 🛠️ 现代化技术架构
+
 - 🚀 **自动化流水线** - GitHub Actions 全自动部署
 - 📱 **响应式设计** - 完美适配桌面端和移动端
 - ⚡ **极速加载** - VitePress 静态生成，CDN 加速
@@ -118,11 +122,11 @@
 │   ├── .vitepress/                # VitePress 配置
 │   │   ├── config.js              # 站点配置
 │   │   └── theme/                 # 自定义主题
-│   │       ├── 📊 Charts.vue      # 数据可视化组件
-│   │       ├── 👤 MemberCard.vue  # 成员卡片组件
-│   │       ├── 📋 MembersList.vue # 成员列表组件
-│   │       ├── 📈 WeeklyCommitItem.vue # 活跃度组件
-│   │       └── 📤 DataExport.vue  # 数据导出组件
+│   │       ├── members/           # 成员可视化组件目录
+│   │       ├── organization/      # 组织可视化组件目录
+│   │       ├── projects/          # 项目可视化组件目录
+│   │       ├── rankings/          # 排名可视化组件目录
+│   │       ├── stats/             # 贡献者数据组件目录
 │   ├── public/                    # 静态资源
 │   │   ├── data/                  # 数据文件
 │   │   │   ├── members.csv        # 贡献者基础数据（已废弃）
@@ -141,12 +145,26 @@
 
 ## 📊 数据模型
 
-### 📋 贡献者数据结构 (`members.csv`)
+### 📋 贡献者数据结构 (`members.json`)
 
-```csv
-id,name,github,domain,repositories,public_repos,total_stars,followers,following,avatar,bio,location,company
-logan-zou,Logan Zou,https://github.com/logan-zou,深度学习;LLM,happy-llm;llm-cookbook,18,557,242,5,avatars/logan-zou.jpg,"AI Researcher",Beijing China,rednote
-KMnO4-zx,不要葱姜蒜,https://github.com/KMnO4-zx,LLM,happy-llm,78,1751,596,41,avatars/KMnO4-zx.jpg,靡不有初鲜克有终,"Beijing, China",
+```json
+[
+  {
+    "id": "logan-zou",
+    "name": "Logan Zou",
+    "github": "https://github.com/logan-zou",
+    "domain": "深度学习;LLM",
+    "repositories": "llm-cookbook;self-llm;llm-universe;happy-llm;thorough-pytorch",
+    "public_repos": 18,
+    "total_stars": 571,
+    "followers": 246,
+    "following": 5,
+    "avatar": "avatars/logan-zou.jpg",
+    "bio": "",
+    "location": "Beijing, China",
+    "company": "rednote"
+  }
+]
 ```
 
 | 字段           | 类型   | 说明                        |
@@ -225,6 +243,7 @@ vim .env
 ```
 
 **环境变量说明：**
+
 ```bash
 # GitHub API Token（推荐配置，避免速率限制）
 GITHUB_TOKEN=ghp_your_personal_access_token_here
@@ -268,6 +287,7 @@ python scripts/fetch-members.py --test
 ```
 
 **数据收集说明：**
+
 - 🕐 **执行时间**：完整模式约 2-5 分钟，测试模式约 30 秒
 - 📊 **数据范围**：自动获取组织所有公开仓库的贡献者信息
 - 🤖 **智能过滤**：自动过滤机器人账户，确保数据质量
@@ -287,6 +307,7 @@ npm run docs:dev
 ```
 
 **部署说明：**
+
 - ⚡ **自动部署**：推送到 `main` 分支自动触发 GitHub Actions
 - 🕐 **构建时间**：通常 2-3 分钟完成构建和部署
 - 🌐 **访问地址**：`https://your-username.github.io/members-visualization/`
@@ -313,15 +334,15 @@ npm run docs:dev
 ```javascript
 // .vitepress/config.js - 站点配置
 export default {
-  title: '你的组织名称 成员可视化',
-  description: '自定义描述信息',
+  title: "你的组织名称 成员可视化",
+  description: "自定义描述信息",
   themeConfig: {
     nav: [
-      { text: '首页', link: '/' },
-      { text: '成员', link: '/members' }
-    ]
-  }
-}
+      { text: "首页", link: "/" },
+      { text: "成员", link: "/members" },
+    ],
+  },
+};
 ```
 
 </details>
@@ -334,10 +355,10 @@ export default {
 <script setup>
 // 自定义图表配置
 const chartOptions = {
-  color: ['#ff6b6b', '#4ecdc4', '#45b7d1'], // 自定义颜色
-  animation: true,                          // 启用动画
+  color: ["#ff6b6b", "#4ecdc4", "#45b7d1"], // 自定义颜色
+  animation: true, // 启用动画
   // 更多配置...
-}
+};
 </script>
 ```
 
@@ -365,11 +386,13 @@ MAX_CONTRIBUTORS_PER_REPO=100         # 每个仓库最大贡献者数
 <td width="50%">
 
 **🥧 研究方向分布图**
+
 - 环形饼图设计，直观展示各领域占比
 - 支持悬停交互，显示详细统计信息
 - 平滑动画效果，提升用户体验
 
 **📊 成员统计柱状图**
+
 - 渐变色彩设计，美观且易读
 - 按数量排序，突出热门研究方向
 - 支持点击钻取，查看详细成员列表
@@ -378,11 +401,13 @@ MAX_CONTRIBUTORS_PER_REPO=100         # 每个仓库最大贡献者数
 <td width="50%">
 
 **☁️ 热门方向词云**
+
 - 字体大小反映研究方向热度
 - 动态布局算法，避免文字重叠
 - 支持点击筛选，快速定位相关成员
 
 **🕸️ 成员关系网络图**
+
 - 力导向布局，展示复杂关联关系
 - 节点大小反映成员活跃度
 - 交互式拖拽，自由探索数据关系
@@ -419,18 +444,18 @@ MAX_CONTRIBUTORS_PER_REPO=100         # 每个仓库最大贡献者数
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import * as echarts from 'echarts'
+import { ref, onMounted } from "vue";
+import * as echarts from "echarts";
 
-const chartRef = ref(null)
+const chartRef = ref(null);
 
 onMounted(() => {
-  const chart = echarts.init(chartRef.value)
+  const chart = echarts.init(chartRef.value);
   const option = {
     // 你的图表配置
-  }
-  chart.setOption(option)
-})
+  };
+  chart.setOption(option);
+});
 </script>
 ```
 
@@ -444,17 +469,17 @@ onMounted(() => {
 const fetchData = async () => {
   try {
     // 从 API 获取数据
-    const response = await fetch('/api/your-endpoint')
-    const data = await response.json()
+    const response = await fetch("/api/your-endpoint");
+    const data = await response.json();
 
     // 处理数据
-    return processData(data)
+    return processData(data);
   } catch (error) {
-    console.error('数据获取失败:', error)
+    console.error("数据获取失败:", error);
     // 降级到本地数据
-    return await import('/data/fallback.json')
+    return await import("/data/fallback.json");
   }
-}
+};
 ```
 
 </details>
@@ -490,7 +515,6 @@ const fetchData = async () => {
 
 </div>
 
-
 ## ⭐ Star History
 
 <div align="center">
@@ -505,6 +529,6 @@ const fetchData = async () => {
 
 **🌟 如果这个项目对您有帮助，请给我们一个 Star！**
 
-*由 [Datawhale](https://github.com/datawhalechina) 开源社区用 ❤️ 维护*
+_由 [Datawhale](https://github.com/datawhalechina) 开源社区用 ❤️ 维护_
 
 </div>

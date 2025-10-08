@@ -78,7 +78,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import NightOwlItem from './NightOwlItem.vue'
-import { isOrganizationMember } from './utils/csvParser.js'
+import { isOrganizationMember } from '../utils/index.js'
 
 // Props
 const props = defineProps({

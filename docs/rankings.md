@@ -1,7 +1,7 @@
 # 🏆 贡献者榜单
 
 <script setup>
-import Rankings from './.vitepress/theme/Rankings.vue'
+import Rankings from './.vitepress/theme/rankings/Rankings.vue'
 </script>
 
 欢迎来到 Datawhale 贡献者榜单页面！这里展示了基于 GitHub 数据的各种有趣排行榜，让我们一起看看谁是最闪亮的那颗星⭐

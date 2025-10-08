@@ -1,8 +1,7 @@
 # 👥 贡献者列表
 
 <script setup>
-import Charts from './.vitepress/theme/Charts.vue'
-import MembersList from './.vitepress/theme/MembersList.vue'
+import MembersList from './.vitepress/theme/members/MembersList.vue'
 </script>
 
 

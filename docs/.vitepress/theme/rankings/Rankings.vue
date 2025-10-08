@@ -82,7 +82,7 @@ import { ref, computed, onMounted } from 'vue'
 import LeaderboardCard from './LeaderboardCard.vue'
 import WeeklyCommitsCard from './WeeklyCommitsCard.vue'
 import NightOwlCard from './NightOwlCard.vue'
-import { loadJSONOrganizationMembers, isOrganizationMember } from './utils/csvParser.js'
+import { loadJSONOrganizationMembers, isOrganizationMember } from '../utils/index.js'
 import { withBase } from 'vitepress'
 
 // 响应式数据
