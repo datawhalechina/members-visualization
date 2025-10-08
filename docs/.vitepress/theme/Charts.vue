@@ -934,8 +934,6 @@ onMounted(async () => {
           return
         }
 
-
-
         trendChart.setOption(createTrendChartOption())
       } catch (error) {
         console.error('趋势图初始化出错:', error)
@@ -943,14 +941,14 @@ onMounted(async () => {
     }
 
     // 响应式处理
-    const handleResize = () => {
+    window.handleResize = () => {
       pieChart?.resize()
       barChart?.resize()
       wordCloudChart?.resize()
       networkChart?.resize()
       trendChart?.resize()
     }
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', window.handleResize)
 
   } catch (err) {
     console.error('Error loading data:', err)
@@ -968,7 +966,7 @@ onUnmounted(() => {
   trendChart?.dispose()
 
   // 移除事件监听器
-  window.removeEventListener('resize', handleResize)
+  window.removeEventListener('resize', window.handleResize)
 })
 </script>
 
