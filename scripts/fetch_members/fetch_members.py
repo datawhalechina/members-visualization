@@ -30,10 +30,14 @@ CONFIG = {
     'ORG_NAME': os.getenv('GITHUB_ORG', 'datawhalechina'),
     'GITHUB_TOKEN': os.getenv('GITHUB_TOKEN'),
     'OUTPUT_FILE': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'data' / 'members.csv',
-    'COMMITS_FILE': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'data' / 'commits_weekly.json',  # 周commit数据文件
-    'AVATARS_DIR': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'avatars',  # 头像缓存目录
+    'OUTPUT_JSON_FILE': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'data' / 'members.json',
+    # 周commit数据文件
+    'COMMITS_FILE': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'data' / 'commits_weekly.json',
+    # 头像缓存目录
+    'AVATARS_DIR': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'avatars',
     'API_BASE': 'https://api.github.com',
-    'MIN_CONTRIBUTIONS': int(os.getenv('MIN_CONTRIBUTIONS', '10')),  # 最小贡献行数阈值（降低以包含更多贡献者）
+    # 最小贡献行数阈值（降低以包含更多贡献者）
+    'MIN_CONTRIBUTIONS': int(os.getenv('MIN_CONTRIBUTIONS', '10')),
     'MAX_REPOS_PER_PAGE': 100,  # 每页最大仓库数
     'MAX_CONTRIBUTORS_PER_REPO': 100,  # 每个仓库最大贡献者数
     'MAX_USER_REPOS': 100,  # 获取用户仓库的最大数量
@@ -109,17 +113,19 @@ CONFIG = {
     }
 }
 
+
 def get_headers():
     """获取请求头"""
     headers = {
         'User-Agent': 'members-visualization-bot',
         'Accept': 'application/vnd.github.v3+json'
     }
-    
+
     if CONFIG['GITHUB_TOKEN']:
         headers['Authorization'] = f"Bearer {CONFIG['GITHUB_TOKEN']}"
 
     return headers
+
 
 def fetch_api(url, retries=3):
     """发送 API 请求（带重试逻辑）"""
@@ -166,6 +172,7 @@ def fetch_api(url, retries=3):
 
     return None
 
+
 def get_org_repos(org_name):
     """获取组织仓库列表（支持分页）"""
     print(f"正在获取组织 {org_name} 的仓库列表...")
@@ -182,14 +189,16 @@ def get_org_repos(org_name):
             break
 
         # 过滤掉 fork 的仓库，只保留原创仓库
-        original_repos = [repo for repo in repos if not repo.get('fork', False)]
+        original_repos = [
+            repo for repo in repos if not repo.get('fork', False)]
         all_repos.extend(original_repos)
 
         print(f"获取第 {page} 页：{len(repos)} 个仓库（{len(original_repos)} 个原创）")
 
         # 测试模式：限制总仓库数
         if CONFIG.get('TEST_MODE', False) and len(all_repos) >= CONFIG.get('TEST_MAX_REPOS', 5):
-            print(f"🧪 测试模式：已达到仓库数限制 ({CONFIG.get('TEST_MAX_REPOS', 5)} 个)，停止获取")
+            print(
+                f"🧪 测试模式：已达到仓库数限制 ({CONFIG.get('TEST_MAX_REPOS', 5)} 个)，停止获取")
             all_repos = all_repos[:CONFIG.get('TEST_MAX_REPOS', 5)]  # 确保不超过限制
             break
 
@@ -206,6 +215,7 @@ def get_org_repos(org_name):
 
     print(f"总共找到 {len(all_repos)} 个原创仓库")
     return all_repos
+
 
 def get_repo_contributors(org_name, repo_name):
     """获取仓库贡献者（过滤机器人账户）"""
@@ -238,12 +248,12 @@ def get_repo_contributors(org_name, repo_name):
     for contributor in all_contributors:
         username = contributor['login']
         contributions = contributor.get('contributions', 0)
-        
+
         # 检查是否为机器人账户
         if is_bot_account(username):
             print(f"    🤖 跳过机器人账户: {username}")
             continue
-            
+
         if contributions >= CONFIG['MIN_CONTRIBUTIONS']:
             qualified_contributors.append({
                 'login': contributor['login'],
@@ -252,8 +262,10 @@ def get_repo_contributors(org_name, repo_name):
                 'avatar_url': contributor['avatar_url']
             })
 
-    print(f"    📊 总贡献者: {len(all_contributors)}, 符合条件(≥{CONFIG['MIN_CONTRIBUTIONS']}行): {len(qualified_contributors)}")
+    print(
+        f"    📊 总贡献者: {len(all_contributors)}, 符合条件(≥{CONFIG['MIN_CONTRIBUTIONS']}行): {len(qualified_contributors)}")
     return qualified_contributors
+
 
 def collect_contributors_from_repos(org_name):
     """从组织仓库中收集贡献者数据"""
@@ -265,7 +277,8 @@ def collect_contributors_from_repos(org_name):
         print("❌ 未找到任何仓库")
         return {}
 
-    contributors_data = {}  # {username: {repos: [repo_names], total_contributions: int, user_info: dict}}
+    # {username: {repos: [repo_names], total_contributions: int, user_info: dict}}
+    contributors_data = {}
 
     for i, repo in enumerate(repos):
         repo_name = repo['name']
@@ -274,7 +287,8 @@ def collect_contributors_from_repos(org_name):
         try:
             # 获取仓库贡献者
             contributors = get_repo_contributors(org_name, repo_name)
-            print(f"  ✓ 找到 {len(contributors)} 个符合条件的贡献者（≥{CONFIG['MIN_CONTRIBUTIONS']}行）")
+            print(
+                f"  ✓ 找到 {len(contributors)} 个符合条件的贡献者（≥{CONFIG['MIN_CONTRIBUTIONS']}行）")
 
             for contributor in contributors:
                 username = contributor['login']
@@ -304,6 +318,7 @@ def collect_contributors_from_repos(org_name):
     print(f"\n🎉 收集完成！总共发现 {len(contributors_data)} 个贡献者")
     return contributors_data
 
+
 def download_avatar(avatar_url, username):
     """下载并缓存用户头像"""
     if not avatar_url or not requests:
@@ -332,6 +347,7 @@ def download_avatar(avatar_url, username):
     except Exception as e:
         print(f"  ⚠️ 头像下载失败 {username}: {e}")
         return None
+
 
 def ensure_avatar_exists(username, avatar_url):
     """确保指定用户的头像文件存在，如果不存在则下载"""
@@ -364,10 +380,12 @@ def ensure_avatar_exists(username, avatar_url):
         # 静默处理错误，避免中断数据收集流程
         return False
 
+
 def get_user_details(username):
     """获取用户详细信息"""
     url = f"{CONFIG['API_BASE']}/users/{username}"
     return fetch_api(url)
+
 
 def get_user_repos(username, max_repos=None):
     """获取用户仓库信息"""
@@ -377,6 +395,7 @@ def get_user_repos(username, max_repos=None):
     url = f"{CONFIG['API_BASE']}/users/{username}/repos?sort=updated&per_page={max_repos}"
     repos = fetch_api(url)
     return repos if repos else []
+
 
 def calculate_user_stats(user_details, user_repos):
     """计算用户统计信息"""
@@ -398,9 +417,11 @@ def calculate_user_stats(user_details, user_repos):
 
     # 计算总 Stars（从用户仓库中累加）
     if user_repos:
-        stats['total_stars'] = sum(repo.get('stargazers_count', 0) for repo in user_repos)
+        stats['total_stars'] = sum(
+            repo.get('stargazers_count', 0) for repo in user_repos)
 
     return stats
+
 
 def infer_domains_from_repos(repo_names, user_bio='', user_repos=None):
     """根据仓库 topics、名称和用户简介推断研究方向"""
@@ -467,6 +488,7 @@ def infer_domains_from_repos(repo_names, user_bio='', user_repos=None):
 
     return list(domains)
 
+
 def clean_csv_field(text):
     """清理CSV字段中的换行符和其他问题字符"""
     if not text:
@@ -486,6 +508,7 @@ def clean_csv_field(text):
     text = text.strip()
 
     return text
+
 
 def save_to_csv(members, output_file):
     """保存数据到 CSV 文件"""
@@ -517,26 +540,64 @@ def save_to_csv(members, output_file):
                 clean_csv_field(member.get('company', ''))
             ])
 
+
+def save_to_json(members, output_file):
+    """保存数据到 json 文件"""
+    # 写入数据
+    input_data = []
+
+    with open(output_file, 'w', newline='', encoding='utf-8') as jsonfile:
+        for member in members:
+            input_data.append({
+                'id': clean_csv_field(member['id']),
+                'name': clean_csv_field(member['name']),
+                'github': clean_csv_field(member['github']),
+                'domain': ';'.join(member['domains']),
+                'repositories': ';'.join(member.get('repositories', [])),
+                'public_repos': member.get('public_repos', 0),
+                'total_stars': member.get('total_stars', 0),
+                'followers': member.get('followers', 0),
+                'following': member.get('following', 0),
+                'avatar': clean_csv_field(member.get('avatar', '')),
+                'bio': clean_csv_field(member.get('bio', '')),
+                'location': clean_csv_field(member.get('location', '')),
+                'company': clean_csv_field(member.get('company', ''))
+            })
+        json.dump(input_data, jsonfile, ensure_ascii=False, indent=4)
+
+
 def check_existing_data():
     """检查现有数据文件"""
-    return os.path.exists(CONFIG['OUTPUT_FILE'])
+    return os.path.exists(CONFIG['OUTPUT_FILE']) or os.path.exists(CONFIG['OUTPUT_JSON_FILE'])
+
 
 def backup_existing_data():
     """备份现有数据"""
     if os.path.exists(CONFIG['OUTPUT_FILE']):
         # 将Path对象转换为字符串进行操作
         output_file_str = str(CONFIG['OUTPUT_FILE'])
-        backup_path = output_file_str.replace('.csv', f'.backup.{int(time.time())}.csv')
+        backup_path = output_file_str.replace(
+            '.csv', f'.backup.{int(time.time())}.csv')
         import shutil
         shutil.copy2(CONFIG['OUTPUT_FILE'], backup_path)
         print(f"📋 已备份现有数据: {backup_path}")
         return backup_path
+    if os.path.exists(CONFIG['OUTPUT_JSON_FILE']):
+        # 将Path对象转换为字符串进行操作
+        output_file_str = str(CONFIG['OUTPUT_JSON_FILE'])
+        backup_path = output_file_str.replace(
+            '.json', f'.backup.{int(time.time())}.json')
+        import shutil
+        shutil.copy2(CONFIG['OUTPUT_JSON_FILE'], backup_path)
+        print(f"📋 已备份现有json数据: {backup_path}")
+        return backup_path
     return None
+
 
 def main():
     """主函数 - 统一版本，始终收集commit数据"""
     print("🚀 开始执行数据拉取脚本（包含commit数据）...")
-    print(f"📁 输出文件: {CONFIG['OUTPUT_FILE']}")
+    print(f"📁 输出文件: {CONFIG['OUTPUT_FILE']}, {CONFIG['OUTPUT_JSON_FILE']}")
     print(f"📊 Commit数据文件: {CONFIG['COMMITS_FILE']}")
     print(f"🏢 组织名称: {CONFIG['ORG_NAME']}")
     print(f"🔑 Token 状态: {'已配置' if CONFIG['GITHUB_TOKEN'] else '未配置'}")
@@ -559,7 +620,8 @@ def main():
             backup_existing_data()
 
         # 统一数据收集（同时获取成员和commit数据）
-        contributors_data, all_commits, api_stats = collect_unified_data(CONFIG['ORG_NAME'], include_commits=True)
+        contributors_data, all_commits, api_stats = collect_unified_data(
+            CONFIG['ORG_NAME'], include_commits=True)
 
         if not contributors_data:
             print("⚠️  未找到任何贡献者数据")
@@ -594,15 +656,18 @@ def main():
 
                 # 计算用户统计信息
                 user_stats = calculate_user_stats(user_details, user_repos)
-                print(f"  ✓ 统计信息: {user_stats['public_repos']} 仓库, {user_stats['total_stars']} Stars, {user_stats['followers']} 关注者")
+                print(
+                    f"  ✓ 统计信息: {user_stats['public_repos']} 仓库, {user_stats['total_stars']} Stars, {user_stats['followers']} 关注者")
 
                 # 下载并缓存头像
-                avatar_url = user_details.get('avatar_url') if user_details else contrib_info['user_info'].get('avatar_url')
+                avatar_url = user_details.get(
+                    'avatar_url') if user_details else contrib_info['user_info'].get('avatar_url')
                 local_avatar = download_avatar(avatar_url, username)
 
                 # 推断研究方向（基于仓库 topics、参与的仓库名称和用户简介）
                 user_bio = user_details.get('bio') if user_details else ''
-                domains = infer_domains_from_repos(contrib_info['repos'], user_bio, user_repos)
+                domains = infer_domains_from_repos(
+                    contrib_info['repos'], user_bio, user_repos)
                 print(f"  ✓ 推断研究方向: {', '.join(domains)}")
 
                 processed_members.append({
@@ -628,6 +693,8 @@ def main():
         if processed_members:
             # 保存成员数据
             save_to_csv(processed_members, CONFIG['OUTPUT_FILE'])
+            save_to_json(processed_members, CONFIG['OUTPUT_JSON_FILE'])
+
             print(f"✅ 成功处理 {len(processed_members)} 个成员")
 
             # 处理并保存commit数据
@@ -678,6 +745,7 @@ def main():
             print("💥 没有现有数据可用，构建失败")
             sys.exit(1)
 
+
 def get_recent_commits_for_repo(org_name, repo_name, days=7):
     """获取指定仓库最近N天的commit数据"""
 
@@ -692,17 +760,20 @@ def get_recent_commits_for_repo(org_name, repo_name, days=7):
     }
 
     try:
-        response = requests.get(url, headers=get_headers(), params=params, timeout=30)
+        response = requests.get(
+            url, headers=get_headers(), params=params, timeout=30)
         if response.status_code == 200:
             commits = response.json()
             print(f"  📊 仓库 {repo_name}: 获取到 {len(commits)} 个commit")
             return commits
         else:
-            print(f"  ⚠️  仓库 {repo_name}: 获取commit失败 (状态码: {response.status_code})")
+            print(
+                f"  ⚠️  仓库 {repo_name}: 获取commit失败 (状态码: {response.status_code})")
             return []
     except Exception as e:
         print(f"  ❌ 仓库 {repo_name}: 获取commit异常: {e}")
         return []
+
 
 def process_commits_data(commits, repo_name):
     """处理commit数据，提取关键信息"""
@@ -714,7 +785,8 @@ def process_commits_data(commits, repo_name):
             # 提取commit信息
             commit_data = {
                 'sha': commit['sha'][:8],  # 短SHA
-                'message': commit['commit']['message'].split('\n')[0][:100],  # 第一行消息，限制长度
+                # 第一行消息，限制长度
+                'message': commit['commit']['message'].split('\n')[0][:100],
                 'author': {
                     'name': commit['commit']['author']['name'],
                     'email': commit['commit']['author']['email'],
@@ -732,7 +804,8 @@ def process_commits_data(commits, repo_name):
                 commit_data['github_username'] = None
 
             # 解析日期
-            commit_date = datetime.fromisoformat(commit_data['author']['date'].replace('Z', '+00:00'))
+            commit_date = datetime.fromisoformat(
+                commit_data['author']['date'].replace('Z', '+00:00'))
             commit_data['date_parsed'] = commit_date
             commit_data['date_str'] = commit_date.strftime('%Y-%m-%d')
             commit_data['hour'] = commit_date.hour
@@ -744,6 +817,7 @@ def process_commits_data(commits, repo_name):
             continue
 
     return processed_commits
+
 
 def collect_weekly_commits_data(org_name, days=7):
     """收集组织所有仓库的周commit数据"""
@@ -792,6 +866,7 @@ def collect_weekly_commits_data(org_name, days=7):
         'user_commits': user_commits,
         'raw_commits': all_commits[:1000]  # 只保存前1000个原始commit用于调试
     }
+
 
 def aggregate_commits_by_user(commits):
     """按用户聚合commit数据"""
@@ -856,6 +931,7 @@ def aggregate_commits_by_user(commits):
 
     return result
 
+
 def save_commits_data(commits_data):
     """保存commit数据到JSON文件"""
     try:
@@ -871,6 +947,7 @@ def save_commits_data(commits_data):
     except Exception as e:
         print(f"❌ 保存commit数据失败: {e}")
         return False
+
 
 def collect_unified_data(org_name, include_commits=False):
     """
@@ -909,7 +986,8 @@ def collect_unified_data(org_name, include_commits=False):
 
     # 计算时间范围（用于commit过滤）
     if include_commits:
-        since_date = datetime.now() - timedelta(days=CONFIG['COMMIT_DAYS_RANGE'])
+        since_date = datetime.now() - \
+            timedelta(days=CONFIG['COMMIT_DAYS_RANGE'])
         since_iso = since_date.isoformat() + 'Z'
 
     # 单次遍历所有仓库，同时收集贡献者和commit数据
@@ -921,7 +999,8 @@ def collect_unified_data(org_name, include_commits=False):
             # 1. 获取仓库贡献者信息
             print(f"  👥 获取贡献者...")
             contributors_url = f"{CONFIG['API_BASE']}/repos/{org_name}/{repo_name}/contributors"
-            contributors_params = {'per_page': CONFIG['MAX_CONTRIBUTORS_PER_REPO']}
+            contributors_params = {
+                'per_page': CONFIG['MAX_CONTRIBUTORS_PER_REPO']}
 
             contributors_full_url = f"{contributors_url}?per_page={contributors_params['per_page']}"
             contributors = fetch_api(contributors_full_url)
@@ -987,24 +1066,29 @@ def collect_unified_data(org_name, include_commits=False):
                             if commit.get('author') and commit['author']:
                                 commit_data['github_username'] = commit['author']['login']
                                 # 获取头像URL用于后续下载
-                                commit_data['author_avatar_url'] = commit['author'].get('avatar_url')
+                                commit_data['author_avatar_url'] = commit['author'].get(
+                                    'avatar_url')
                             else:
                                 commit_data['github_username'] = None
                                 commit_data['author_avatar_url'] = None
 
                             # 检查是否为机器人账户的提交
                             if commit_data['github_username'] and is_bot_account(commit_data['github_username']):
-                                print(f"      🤖 跳过机器人提交: {commit_data['github_username']}")
+                                print(
+                                    f"      🤖 跳过机器人提交: {commit_data['github_username']}")
                                 continue
 
                             # 检查并下载新发现贡献者的头像
                             if commit_data['github_username'] and commit_data['author_avatar_url']:
-                                ensure_avatar_exists(commit_data['github_username'], commit_data['author_avatar_url'])
+                                ensure_avatar_exists(
+                                    commit_data['github_username'], commit_data['author_avatar_url'])
 
                             # 解析日期
-                            commit_date = datetime.fromisoformat(commit_data['author']['date'].replace('Z', '+00:00'))
+                            commit_date = datetime.fromisoformat(
+                                commit_data['author']['date'].replace('Z', '+00:00'))
                             commit_data['date_parsed'] = commit_date
-                            commit_data['date_str'] = commit_date.strftime('%Y-%m-%d')
+                            commit_data['date_str'] = commit_date.strftime(
+                                '%Y-%m-%d')
                             commit_data['hour'] = commit_date.hour
 
                             # 转换为北京时间（UTC+8）
@@ -1027,7 +1111,8 @@ def collect_unified_data(org_name, include_commits=False):
             # 每处理10个仓库显示进度
             if processed_repos % 10 == 0:
                 elapsed = time.time() - start_time
-                print(f"  📈 进度: {processed_repos}/{len(repos)} 仓库 | 耗时: {elapsed:.1f}s | API调用: {api_calls['total']}")
+                print(
+                    f"  📈 进度: {processed_repos}/{len(repos)} 仓库 | 耗时: {elapsed:.1f}s | API调用: {api_calls['total']}")
 
         except Exception as e:
             print(f"  ❌ 处理仓库 {repo_name} 时出错: {e}")
@@ -1044,6 +1129,7 @@ def collect_unified_data(org_name, include_commits=False):
     print(f"  - 总耗时: {elapsed_time:.1f} 秒")
 
     return contributors_data, all_commits if include_commits else None, api_calls
+
 
 def aggregate_commits_by_user(all_commits):
     """聚合commit数据按用户分组"""
@@ -1129,6 +1215,7 @@ def aggregate_commits_by_user(all_commits):
 
     return result
 
+
 def save_commits_data(commits_data):
     """保存commit数据到文件"""
     try:
@@ -1141,7 +1228,8 @@ def save_commits_data(commits_data):
 
         print(f"💾 Commit数据已保存:")
         print(f"  - 文件路径: {CONFIG['COMMITS_FILE']}")
-        print(f"  - 活跃用户: {commits_data.get('user_commits', {}) and len(commits_data['user_commits'])} 人")
+        print(
+            f"  - 活跃用户: {commits_data.get('user_commits', {}) and len(commits_data['user_commits'])} 人")
         print(f"  - 总commit数: {commits_data.get('total_commits', 0)}")
 
         return True
@@ -1149,7 +1237,6 @@ def save_commits_data(commits_data):
     except Exception as e:
         print(f"❌ 保存commit数据失败: {e}")
         return False
-
 
 
 def is_bot_account(username, user_details=None):
@@ -1189,6 +1276,7 @@ def is_bot_account(username, user_details=None):
 
     return False
 
+
 def test():
     """测试函数 - 使用较小的配置值进行快速本地测试"""
     print("🧪 开始测试模式...")
@@ -1213,7 +1301,8 @@ def test():
     print(f"  ℹ️  保持原有配置:")
     print(f"     MIN_CONTRIBUTIONS = {CONFIG['MIN_CONTRIBUTIONS']} (贡献阈值不变)")
     print(f"     COMMIT_DAYS_RANGE = {CONFIG['COMMIT_DAYS_RANGE']} 天")
-    print(f"  🎯 测试预期: 最多处理 {test_config['MAX_REPOS_PER_PAGE']} 个仓库，每个仓库最多 {test_config['MAX_CONTRIBUTORS_PER_REPO']} 个贡献者")
+    print(
+        f"  🎯 测试预期: 最多处理 {test_config['MAX_REPOS_PER_PAGE']} 个仓库，每个仓库最多 {test_config['MAX_CONTRIBUTORS_PER_REPO']} 个贡献者")
 
     try:
         # 运行主函数（现在默认包含commit数据收集）
@@ -1226,6 +1315,7 @@ def test():
         CONFIG.pop('TEST_MODE', None)
         CONFIG.pop('TEST_MAX_REPOS', None)
         print("🔄 已恢复原始配置")
+
 
 if __name__ == '__main__':
     # 检查命令行参数

@@ -37,12 +37,7 @@
 
         <div class="filter-group checkbox-group">
           <label class="checkbox-label">
-            <input
-              type="checkbox"
-              v-model="showOnlyOrgMembers"
-              @change="applyFilters"
-              class="checkbox-input"
-            />
+            <input type="checkbox" v-model="showOnlyOrgMembers" @change="applyFilters" class="checkbox-input" />
             <span class="checkbox-text">仅显示组织成员</span>
           </label>
         </div>
@@ -54,38 +49,21 @@
 
       <!-- 一周卷王榜（特殊位置） -->
       <div class="weekly-commits-section">
-        <WeeklyCommitsCard
-          :members-data="members"
-          :selected-domain="selectedDomain"
-          :top-count="topCount"
-          :show-only-org-members="showOnlyOrgMembers"
-          :organization-members="organizationMembers"
-        />
+        <WeeklyCommitsCard :members-data="members" :selected-domain="selectedDomain" :top-count="topCount"
+          :show-only-org-members="showOnlyOrgMembers" :organization-members="organizationMembers" />
       </div>
 
       <!-- 夜猫榜（特殊位置） -->
       <div class="night-owl-section">
-        <NightOwlCard
-          :members-data="members"
-          :selected-domain="selectedDomain"
-          :top-count="topCount"
-          :show-only-org-members="showOnlyOrgMembers"
-          :organization-members="organizationMembers"
-        />
+        <NightOwlCard :members-data="members" :selected-domain="selectedDomain" :top-count="topCount"
+          :show-only-org-members="showOnlyOrgMembers" :organization-members="organizationMembers" />
       </div>
 
       <!-- 榜单网格 -->
       <div class="leaderboards-grid">
-        <LeaderboardCard
-          v-for="leaderboard in leaderboards"
-          :key="leaderboard.id"
-          :title="leaderboard.title"
-          :description="leaderboard.description"
-          :icon="leaderboard.icon"
-          :members="leaderboard.data"
-          :color-scheme="leaderboard.colorScheme"
-          :show-trend="leaderboard.showTrend"
-        />
+        <LeaderboardCard v-for="leaderboard in leaderboards" :key="leaderboard.id" :title="leaderboard.title"
+          :description="leaderboard.description" :icon="leaderboard.icon" :members="leaderboard.data"
+          :color-scheme="leaderboard.colorScheme" :show-trend="leaderboard.showTrend" />
       </div>
 
       <!-- 数据更新时间和说明 -->
@@ -104,7 +82,7 @@ import { ref, computed, onMounted } from 'vue'
 import LeaderboardCard from './LeaderboardCard.vue'
 import WeeklyCommitsCard from './WeeklyCommitsCard.vue'
 import NightOwlCard from './NightOwlCard.vue'
-import { loadOrganizationMembers, isOrganizationMember } from './utils/csvParser.js'
+import { loadJSONOrganizationMembers, isOrganizationMember } from './utils/csvParser.js'
 import { withBase } from 'vitepress'
 
 // 响应式数据
@@ -145,9 +123,9 @@ const filteredMembers = computed(() => {
       // 1. 成员必须存在于组织成员名单中
       // 2. 成员必须在主数据中有完整信息
       return isOrganizationMember(member.id, organizationMembers.value) &&
-             member.avatar && // 确保有头像
-             member.id && // 确保有ID
-             member.domain // 确保有研究领域信息
+        member.avatar && // 确保有头像
+        member.id && // 确保有ID
+        member.domain // 确保有研究领域信息
     })
   }
 
@@ -264,7 +242,7 @@ function calculateRisingStarRanking() {
       const repos = Math.max(member.public_repos || 1, 1)
       const activity = (member.followers || 0) + (member.total_stars || 0)
       const score = activity / repos * (repos < 20 ? 1.5 : 1) // 新人加成
-      
+
       return {
         ...member,
         score,
@@ -285,9 +263,9 @@ function calculateComprehensiveRanking() {
       const repos = (member.public_repos || 0) * 0.2
       const following = (member.following || 0) * 0.15
       const participation = (member.repositories ? member.repositories.split(';').length : 0) * 0.1
-      
+
       const score = stars + followers + repos + following + participation
-      
+
       return {
         ...member,
         score,
@@ -305,14 +283,14 @@ const loadData = async () => {
   try {
     loading.value = true
     error.value = null
-    
+
     const basePath = import.meta.env.BASE_URL || '/'
-    const csvPath = `${basePath}data/members.csv`.replace(/\/+/g, '/')
+    const jsonPath = `${basePath}data/members.json`.replace(/\/+/g, '/')
     const commitsPath = `${basePath}data/commits_weekly.json`.replace(/\/+/g, '/')
 
     // 并行加载成员数据和commits数据
     const [membersResponse, commitsResponse] = await Promise.all([
-      fetch(csvPath),
+      fetch(jsonPath),
       fetch(commitsPath)
     ])
 
@@ -320,26 +298,17 @@ const loadData = async () => {
       throw new Error(`HTTP error! status: ${membersResponse.status}`)
     }
 
-    const csvText = await membersResponse.text()
-    const lines = csvText.trim().split('\n')
-    const headers = lines[0].split(',')
-
-    members.value = lines.slice(1).map(line => {
-      const values = line.split(',')
-      const member = {}
-      headers.forEach((header, index) => {
-        const key = header.trim()
-        let value = values[index] ? values[index].trim().replace(/^"|"$/g, '') : ''
-
-        // 转换数字字段
-        if (['public_repos', 'total_stars', 'followers', 'following'].includes(key)) {
-          value = parseInt(value) || 0
+    const membersJSON = await membersResponse.json()
+    members.value = membersJSON.map((item => {
+      Object.keys(item).forEach((key) => {
+        let value = item[key] || ''
+        if (typeof value === 'string') {
+          value = value.trim().replace(/^"|"$/g, '')
         }
-
-        member[key] = value
+        item[key] = value
       })
-      return member
-    })
+      return item
+    }))
 
     // 加载commits数据（用于获取更新时间）
     if (commitsResponse.ok) {
@@ -347,9 +316,9 @@ const loadData = async () => {
     }
 
     // 加载组织成员数据
-    const orgMembersCsvPath = withBase('/data/datawhale_member.csv')
-    organizationMembers.value = await loadOrganizationMembers(orgMembersCsvPath)
-    
+    const orgMembersJSONPath = withBase('/data/datawhale_member.json')
+    organizationMembers.value = await loadJSONOrganizationMembers(orgMembersJSONPath)
+
   } catch (err) {
     error.value = err.message
     console.error('加载数据失败:', err)
@@ -380,7 +349,8 @@ onMounted(() => {
   padding: 20px;
 }
 
-.loading-state, .error-state {
+.loading-state,
+.error-state {
   text-align: center;
   padding: 60px 20px;
 }
@@ -396,8 +366,13 @@ onMounted(() => {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .filters-section {
@@ -457,7 +432,8 @@ onMounted(() => {
   user-select: none;
 }
 
-.clear-filters-btn, .retry-btn {
+.clear-filters-btn,
+.retry-btn {
   padding: 8px 16px;
   background: var(--vp-c-brand-1);
   color: white;
@@ -468,7 +444,8 @@ onMounted(() => {
   transition: background-color 0.3s;
 }
 
-.clear-filters-btn:hover, .retry-btn:hover {
+.clear-filters-btn:hover,
+.retry-btn:hover {
   background: var(--vp-c-brand-2);
 }
 
@@ -506,17 +483,17 @@ onMounted(() => {
   .rankings-container {
     padding: 15px;
   }
-  
+
   .leaderboards-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .filters-section {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .filter-group {
     justify-content: space-between;
   }

@@ -8,8 +8,8 @@
     "docs:build": "cross-env NODE_ENV=production vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "fetch-data": "python scripts/fetch_members/fetch_members.py",
-    "fetch-data:python": "python scripts/fetch_members/fetch_members.py",
-    "fetch-data:test": "python scripts/fetch_members/fetch_members.py --test"
+    "fetch-data:test": "python scripts/fetch_members/fetch_members.py --test",
+    "fetch-organization": "python scripts/fetch_organization/fetch_organization.py"
   },
   "keywords": [
     "datawhale",

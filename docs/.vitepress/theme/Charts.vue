@@ -79,7 +79,7 @@ const createPieChartOption = () => {
     },
     tooltip: {
       trigger: 'item',
-      formatter: function(params) {
+      formatter: function (params) {
         const percent = params.percent
         const value = params.value
         return `${params.seriesName}<br/>${params.name}: ${value} 人 (${percent}%)`
@@ -156,7 +156,7 @@ const createBarChartOption = () => {
           color: 'rgba(0, 0, 0, 0.1)'
         }
       },
-      formatter: function(params) {
+      formatter: function (params) {
         const data = params[0]
         const total = members.value.length
         const percent = ((data.value / total) * 100).toFixed(1)
@@ -260,7 +260,7 @@ const createWordCloudOption = () => {
       }
     },
     tooltip: {
-      formatter: function(params) {
+      formatter: function (params) {
         return `${params.name}: ${params.value} 人`
       },
       backgroundColor: isDark.value ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.9)',
@@ -428,7 +428,7 @@ const createNetworkChartOption = () => {
     },
     tooltip: {
       trigger: 'item',
-      formatter: function(params) {
+      formatter: function (params) {
         if (params.dataType === 'node') {
           if (params.data.category === 0) {
             const memberDomains = members.value.find(m => m.name === params.data.name)?.domain || []
@@ -695,82 +695,33 @@ onMounted(async () => {
 
     // 动态获取 CSV 数据路径，适配开发和生产环境
     const basePath = import.meta.env.BASE_URL || '/'
-    const csvPath = `${basePath}data/members.csv`.replace(/\/+/g, '/')
+    const jsonPath = `${basePath}data/members.json`.replace(/\/+/g, '/')
 
-    console.log('Fetching data from:', csvPath)
+    console.log('Fetching data from:', jsonPath)
 
-    const res = await fetch(csvPath)
+    const res = await fetch(jsonPath)
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`)
     }
-    const text = await res.text()
 
-    // 解析 CSV 数据（处理带引号的字段）
-    const lines = text.trim().split('\n')
-    const headers = parseCSVLine(lines[0])
-
-    const parsedMembers = lines.slice(1).map((line, index) => {
-      const values = parseCSVLine(line)
-
-      const obj = {}
-      headers.forEach((h, i) => {
-        obj[h] = values[i] || ''
+    const responseJSON = await res.json()
+    const parsedMembers = responseJSON.map(item => {
+      Object.keys(item).forEach((key) => {
+        let value = item[key] || '';
+        if (typeof value === 'string') {
+          value = value.trim().replace(/^"|"$/g, '')
+        }
+        if (['domain', 'repositories'].includes(key)) {
+          if (value) {
+            value = value.split(';').map(d => d.trim()).filter(d => d)
+          } else {
+            value = []
+          }
+        }
+        item[key] = value
       })
-
-      // 处理特殊字段
-      obj.domain = obj.domain ? obj.domain.split(';').map(d => d.trim()).filter(d => d) : []
-      obj.repositories = obj.repositories ? obj.repositories.split(';').map(r => r.trim()).filter(r => r) : []
-
-      // 转换数值字段
-      obj.public_repos = parseInt(obj.public_repos) || 0
-      obj.total_stars = parseInt(obj.total_stars) || 0
-      obj.followers = parseInt(obj.followers) || 0
-      obj.following = parseInt(obj.following) || 0
-
-      return obj
+      return item
     })
-
-// 更强健的CSV解析函数
-function parseCSVLine(line) {
-  const result = []
-  let current = ''
-  let inQuotes = false
-  let i = 0
-
-  while (i < line.length) {
-    const char = line[i]
-
-    if (char === '"') {
-      if (inQuotes && i + 1 < line.length && line[i + 1] === '"') {
-        // 处理转义的双引号 ""
-        current += '"'
-        i += 2
-        continue
-      } else {
-        // 切换引号状态
-        inQuotes = !inQuotes
-      }
-    } else if (char === ',' && !inQuotes) {
-      // 字段分隔符
-      result.push(current.trim())
-      current = ''
-    } else {
-      current += char
-    }
-    i++
-  }
-
-  // 添加最后一个字段
-  result.push(current.trim())
-
-  // 清理字段值（移除首尾引号）
-  return result.map(field => {
-    if (field.startsWith('"') && field.endsWith('"')) {
-      return field.slice(1, -1)
-    }
-    return field
-  })
-}
 
     members.value = parsedMembers
     console.log('Parsed members:', members.value)
@@ -1026,11 +977,11 @@ onUnmounted(() => {
     <div v-if="loading" class="loading">
       <p>正在加载数据...</p>
     </div>
-    
+
     <div v-else-if="error" class="error">
       <p>加载数据时出错: {{ error }}</p>
     </div>
-    
+
     <div v-else>
       <!-- 统计概览 -->
       <div class="stats-overview">
@@ -1179,7 +1130,7 @@ onUnmounted(() => {
 }
 
 /* 确保chart-large内部的ECharts容器也受约束 */
-.chart-large > div {
+.chart-large>div {
   width: 100% !important;
   height: 100% !important;
   max-width: 100%;
@@ -1205,7 +1156,7 @@ onUnmounted(() => {
 }
 
 /* 网络图内部容器约束 */
-.chart[data-chart-type="network"] > div {
+.chart[data-chart-type="network"]>div {
   width: 100% !important;
   height: 100% !important;
   max-width: 100% !important;
@@ -1248,7 +1199,8 @@ onUnmounted(() => {
   background: transparent;
 }
 
-.loading, .error {
+.loading,
+.error {
   text-align: center;
   padding: 60px;
   font-size: 18px;

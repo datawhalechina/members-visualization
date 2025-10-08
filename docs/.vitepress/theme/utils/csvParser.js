@@ -80,6 +80,32 @@ export async function loadOrganizationMembers(csvPath = '/data/datawhale_member.
   }
 }
 
+
+/**
+ * 异步加载并解析组织成员JSON文件
+ * @param {string} jsonPath - JSON文件路径
+ * @returns {Promise<Set>} GitHub用户名集合
+ */
+export async function loadJSONOrganizationMembers(jsonPath = '/data/datawhale_member.json') {
+  try {
+    console.log(`Loading organization members from: ${jsonPath}`)
+
+    const response = await fetch(jsonPath)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch json: ${response.status}`)
+    }
+
+    const jsonData = await response.json()
+    const usernames = extractGithubUsernames(jsonData)
+
+    console.log(`Loaded ${usernames.size} organization members from JSON`)
+    return usernames
+  } catch (error) {
+    console.error('Error loading organization members:', error)
+    return new Set() // 返回空集合，不影响正常功能
+  }
+}
+
 /**
  * 检查用户是否为组织成员
  * @param {string} username - GitHub用户名

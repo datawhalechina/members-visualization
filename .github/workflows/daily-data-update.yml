@@ -67,7 +67,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add docs/public/data/members.csv docs/public/data/commits_weekly.json docs/public/avatars/
+          git add docs/public/data/members.json docs/public/data/commits_weekly.json docs/public/avatars/
           git commit -m "🤖 Auto-update member data and avatars - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           git push
 

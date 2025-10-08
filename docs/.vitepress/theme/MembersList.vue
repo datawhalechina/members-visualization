@@ -31,13 +31,13 @@ const filteredMembers = computed(() => {
         : member.id
 
       return displayName.toLowerCase().includes(query) ||
-             member.id.toLowerCase().includes(query)
+        member.id.toLowerCase().includes(query)
     })
   }
 
   // 按研究方向筛选
   if (selectedDomain.value) {
-    filtered = filtered.filter(member => 
+    filtered = filtered.filter(member =>
       member.domain.includes(selectedDomain.value)
     )
   }
@@ -50,78 +50,31 @@ const loadMembers = async () => {
   try {
     // 根据环境动态获取base路径
     const basePath = import.meta.env.BASE_URL || '/'
-    const csvPath = `${basePath}data/members.csv`.replace(/\/+/g, '/')
-    
-    const response = await fetch(csvPath)
+    const jsonPath = `${basePath}data/members.json`.replace(/\/+/g, '/')
+
+    const response = await fetch(jsonPath)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
-    
-    const text = await response.text()
-    const lines = text.trim().split('\n')
-    const headers = parseCSVLine(lines[0])
 
-    const parsedMembers = lines.slice(1).map(line => {
-      const values = parseCSVLine(line)
-      const obj = {}
-      headers.forEach((h, i) => {
-        obj[h] = values[i] || ''
+    const responseJSON = await response.json()
+    const parsedMembers = responseJSON.map(item => {
+      Object.keys(item).forEach((key) => {
+        let value = item[key] || '';
+        if (typeof value === 'string') {
+          value = value.trim().replace(/^"|"$/g, '')
+        }
+        if (['domain', 'repositories'].includes(key)) {
+          if (value) {
+            value = value.split(';').map(d => d.trim()).filter(d => d)
+          } else {
+            value = []
+          }
+        }
+        item[key] = value
       })
-
-      // 处理特殊字段
-      obj.domain = obj.domain ? obj.domain.split(';').map(d => d.trim()).filter(d => d) : []
-      obj.repositories = obj.repositories ? obj.repositories.split(';').map(r => r.trim()).filter(r => r) : []
-
-      // 转换数值字段
-      obj.public_repos = parseInt(obj.public_repos) || 0
-      obj.total_stars = parseInt(obj.total_stars) || 0
-      obj.followers = parseInt(obj.followers) || 0
-      obj.following = parseInt(obj.following) || 0
-
-      return obj
+      return item
     })
-
-// 更强健的CSV解析函数
-function parseCSVLine(line) {
-  const result = []
-  let current = ''
-  let inQuotes = false
-  let i = 0
-
-  while (i < line.length) {
-    const char = line[i]
-
-    if (char === '"') {
-      if (inQuotes && i + 1 < line.length && line[i + 1] === '"') {
-        // 处理转义的双引号 ""
-        current += '"'
-        i += 2
-        continue
-      } else {
-        // 切换引号状态
-        inQuotes = !inQuotes
-      }
-    } else if (char === ',' && !inQuotes) {
-      // 字段分隔符
-      result.push(current.trim())
-      current = ''
-    } else {
-      current += char
-    }
-    i++
-  }
-
-  // 添加最后一个字段
-  result.push(current.trim())
-
-  // 清理字段值（移除首尾引号）
-  return result.map(field => {
-    if (field.startsWith('"') && field.endsWith('"')) {
-      return field.slice(1, -1)
-    }
-    return field
-  })
-}
 
     members.value = parsedMembers
     loading.value = false
@@ -148,15 +101,10 @@ onMounted(() => {
     <!-- 搜索和筛选 -->
     <div class="filters">
       <div class="search-box">
-        <input
-          v-model="searchQuery"
-          type="text"
-          placeholder="搜索成员姓名或ID..."
-          class="search-input"
-        />
+        <input v-model="searchQuery" type="text" placeholder="搜索成员姓名或ID..." class="search-input" />
         <div class="search-icon">🔍</div>
       </div>
-      
+
       <div class="filter-box">
         <select v-model="selectedDomain" class="domain-select">
           <option value="">所有研究方向</option>
@@ -165,12 +113,8 @@ onMounted(() => {
           </option>
         </select>
       </div>
-      
-      <button 
-        v-if="searchQuery || selectedDomain" 
-        @click="clearFilters"
-        class="clear-btn"
-      >
+
+      <button v-if="searchQuery || selectedDomain" @click="clearFilters" class="clear-btn">
         清除筛选
       </button>
     </div>
@@ -196,11 +140,7 @@ onMounted(() => {
 
     <!-- 成员列表 -->
     <div v-else-if="filteredMembers.length > 0" class="members-grid">
-      <MemberCard 
-        v-for="member in filteredMembers" 
-        :key="member.id" 
-        :member="member"
-      />
+      <MemberCard v-for="member in filteredMembers" :key="member.id" :member="member" />
     </div>
 
     <!-- 无结果 -->
@@ -308,7 +248,9 @@ onMounted(() => {
   font-size: 14px;
 }
 
-.loading, .error, .no-results {
+.loading,
+.error,
+.no-results {
   text-align: center;
   padding: 60px 20px;
   border-radius: 12px;
@@ -343,12 +285,12 @@ onMounted(() => {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .search-box,
   .filter-box {
     min-width: auto;
   }
-  
+
   .members-grid {
     grid-template-columns: 1fr;
     gap: 16px;

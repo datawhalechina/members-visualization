@@ -11,26 +11,30 @@ const loadData = async () => {
   try {
     // 根据环境动态获取base路径
     const basePath = import.meta.env.BASE_URL || '/'
-    const csvPath = `${basePath}data/members.csv`.replace(/\/+/g, '/')
+    const jsonPath = `${basePath}data/members.json`.replace(/\/+/g, '/')
 
-    const response = await fetch(csvPath)
+    const response = await fetch(jsonPath)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
-    const text = await response.text()
+    const responseJSON = await response.json()
 
-    // 解析CSV数据
-    const lines = text.trim().split('\n')
-    const headers = lines[0].split(',').map(h => h.replace(/"/g, ''))
-
-    const parsedMembers = lines.slice(1).map(line => {
-      const values = line.split(',').map(v => v.replace(/"/g, ''))
-      const obj = {}
-      headers.forEach((h, i) => {
-        obj[h] = values[i] || ''
+    const parsedMembers = responseJSON.map(item => {
+      Object.keys(item).forEach((key) => {
+        let value = item[key] || ''
+        if (typeof value === 'string') {
+          value = value.trim().replace(/^"|"$/g, '')
+        }
+        if (['domain'].includes(key)) {
+          if (value) {
+            value = value.split(';').map(d => d.trim()).filter(d => d)
+          } else {
+            value = []
+          }
+        }
+        item[key] = value
       })
-      obj.domain = obj.domain ? obj.domain.split(';').map(d => d.trim()).filter(d => d) : []
-      return obj
+      return item
     })
 
     members.value = parsedMembers
@@ -85,11 +89,11 @@ const stats = computed(() => {
 // 导出为 CSV
 const exportToCSV = () => {
   isExporting.value = true
-  
+
   try {
     const headers = ['ID', '姓名', 'GitHub链接', '研究方向']
     const rows = [headers.join(',')]
-    
+
     members.value.forEach(member => {
       const row = [
         member.id,
@@ -99,11 +103,11 @@ const exportToCSV = () => {
       ]
       rows.push(row.join(','))
     })
-    
+
     const csvContent = rows.join('\n')
     const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' })
     const link = document.createElement('a')
-    
+
     if (link.download !== undefined) {
       const url = URL.createObjectURL(blob)
       link.setAttribute('href', url)
@@ -124,7 +128,7 @@ const exportToCSV = () => {
 // 导出统计报告为 JSON
 const exportStatsToJSON = () => {
   isExporting.value = true
-  
+
   try {
     const reportData = {
       exportDate: new Date().toISOString(),
@@ -144,11 +148,11 @@ const exportStatsToJSON = () => {
         domainCount: member.domain.length
       }))
     }
-    
+
     const jsonContent = JSON.stringify(reportData, null, 2)
     const blob = new Blob([jsonContent], { type: 'application/json' })
     const link = document.createElement('a')
-    
+
     if (link.download !== undefined) {
       const url = URL.createObjectURL(blob)
       link.setAttribute('href', url)
@@ -180,11 +184,11 @@ const copyStatsToClipboard = async () => {
 - 最热门方向: ${stats.value.mostPopularDomain}
 
 研究方向分布:
-${stats.value.domainStats.map(item => 
-  `- ${item.domain}: ${item.count}人 (${item.percentage}%)`
-).join('\n')}
+${stats.value.domainStats.map(item =>
+      `- ${item.domain}: ${item.count}人 (${item.percentage}%)`
+    ).join('\n')}
     `.trim()
-    
+
     await navigator.clipboard.writeText(statsText)
     alert('统计数据已复制到剪贴板')
   } catch (error) {
@@ -227,21 +231,14 @@ ${stats.value.domainStats.map(item =>
     <div class="domain-details">
       <h4>研究方向详细统计</h4>
       <div class="domain-list">
-        <div 
-          v-for="item in stats.domainStats" 
-          :key="item.domain"
-          class="domain-item"
-        >
+        <div v-for="item in stats.domainStats" :key="item.domain" class="domain-item">
           <div class="domain-name">{{ item.domain }}</div>
           <div class="domain-stats">
             <span class="count">{{ item.count }} 人</span>
             <span class="percentage">{{ item.percentage }}%</span>
           </div>
           <div class="progress-bar">
-            <div 
-              class="progress-fill" 
-              :style="{ width: item.percentage + '%' }"
-            ></div>
+            <div class="progress-fill" :style="{ width: item.percentage + '%' }"></div>
           </div>
         </div>
       </div>
@@ -251,34 +248,22 @@ ${stats.value.domainStats.map(item =>
     <div class="export-actions">
       <h4>导出选项</h4>
       <div class="action-buttons">
-        <button 
-          @click="exportToCSV" 
-          :disabled="isExporting"
-          class="export-btn csv-btn"
-        >
+        <button @click="exportToCSV" :disabled="isExporting" class="export-btn csv-btn">
           <span class="btn-icon">📊</span>
           导出 CSV 数据
         </button>
-        
-        <button 
-          @click="exportStatsToJSON" 
-          :disabled="isExporting"
-          class="export-btn json-btn"
-        >
+
+        <button @click="exportStatsToJSON" :disabled="isExporting" class="export-btn json-btn">
           <span class="btn-icon">📋</span>
           导出统计报告
         </button>
-        
-        <button 
-          @click="copyStatsToClipboard" 
-          :disabled="isExporting"
-          class="export-btn copy-btn"
-        >
+
+        <button @click="copyStatsToClipboard" :disabled="isExporting" class="export-btn copy-btn">
           <span class="btn-icon">📄</span>
           复制统计数据
         </button>
       </div>
-      
+
       <div v-if="isExporting" class="exporting-indicator">
         正在导出数据...
       </div>
@@ -479,11 +464,11 @@ ${stats.value.domainStats.map(item =>
   .action-buttons {
     flex-direction: column;
   }
-  
+
   .export-btn {
     justify-content: center;
   }
-  
+
   .stat-grid {
     grid-template-columns: repeat(2, 1fr);
   }
