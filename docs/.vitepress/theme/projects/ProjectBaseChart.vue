@@ -3,14 +3,14 @@ import { ref, onMounted, nextTick } from 'vue'
 import * as echarts from 'echarts'
 
 const props = defineProps({
-    type: {
-        type: String,
-        required: true
-    },
     extraConfig: {
         type: Object,
         required: true,
-    }
+    },
+    loadChartData: {
+        type: Function,
+        required: true,
+    },
 })
 
 let chartInstance = null;
@@ -30,16 +30,6 @@ const getEChartsTheme = () => {
     return isDark.value ? 'dark' : 'light'
 }
 
-const loadChartData = async () => {
-    const basePath = import.meta.env.BASE_URL || '/'
-    const commitsPath = `${basePath}data/datawhalechina/organization_datasource.json`.replace(/\/+/g, '/')
-    const response = await fetch(commitsPath)
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-    }
-    const responseJSON = await response.json()
-    return responseJSON[props.type]
-}
 
 const generateSeriesList = async (dataSource) => {
     const seriesList = [];
@@ -110,7 +100,7 @@ const initChart = async () => {
     try {
         loading.value = true
         error.value = null
-        chartDataSource.value = await loadChartData()
+        chartDataSource.value = await props.loadChartData()
         const chartOption = await getChartOption(chartDataSource.value)
         chartInstance = echarts.init(chartRef.value, getEChartsTheme())
         chartInstance.setOption(chartOption)

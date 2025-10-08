@@ -11,8 +11,19 @@ const extraConfg = ref({
         containLabel: true
     },
 })
+
+const loadChartData = async () => {
+    const basePath = import.meta.env.BASE_URL || '/'
+    const commitsPath = `${basePath}data/datawhalechina/organization_datasource.json`.replace(/\/+/g, '/')
+    const response = await fetch(commitsPath)
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    const responseJSON = await response.json()
+    return responseJSON.newProjectAddTop3Info
+}
 </script>
 
 <template>
-    <ProjectBaseChart type="newProjectAddTop3Info" :extra-config="extraConfg" />
+    <ProjectBaseChart :extra-config="extraConfg" :load-chart-data="loadChartData" />
 </template>
