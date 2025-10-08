@@ -22,7 +22,6 @@ onMounted(async () => {
         loading.value = true
         error.value = null
         organizationData.value = await loadData()
-        console.log('>>>', organizationData.value)
     } catch (err) {
         error.value = err.message
     } finally {
