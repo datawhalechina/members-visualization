@@ -35,7 +35,6 @@ watch(() => props.organizationData, (newData) => {
       </tr>
     </thead>
     <tbody>
-      <!-- 为datawhalechina行添加高亮类 -->
       <tr 
         v-for="item in tableData" 
         :key="item.name"
@@ -108,10 +107,30 @@ watch(() => props.organizationData, (newData) => {
   border-radius: 12px;
 }
 
-/* 新增高亮行样式 */
+/* 高亮行样式 */
 .highlight-row {
   background-color: rgba(78, 205, 196, 0.1);
   border-left: 3px solid #4ecdc4;
+  transition: transform 0.2s ease; /* 悬浮动画过渡 */
+}
+
+/* datawhalechina 文字样式 */
+.highlight-row .name-cell {
+  color: rgb(34, 101, 203); /* 指定RGB颜色 */
+  font-weight: bold; /* 加粗 */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* 文字阴影 */
+  font-size: 15px; /* 略微放大字体增强突出效果 */
+  transition: all 0.3s ease; /* 过渡效果 */
+}
+
+/* 悬浮效果 */
+.highlight-row:hover {
+  transform: translateX(3px); /* 轻微右移 */
+  background-color: rgba(78, 205, 196, 0.15); /* 加深背景色 */
+}
+
+.highlight-row:hover .name-cell {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* 加深阴影 */
 }
 
 @media (max-width: 768px) {
@@ -135,7 +154,6 @@ watch(() => props.organizationData, (newData) => {
     font-size: 12px;
   }
 
-  /* 响应式调整高亮样式 */
   .highlight-row {
     border-left-width: 2px;
   }
