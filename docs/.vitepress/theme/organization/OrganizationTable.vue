@@ -35,7 +35,12 @@ watch(() => props.organizationData, (newData) => {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in tableData" :key="item.name">
+      <!-- 为datawhalechina行添加高亮类 -->
+      <tr 
+        v-for="item in tableData" 
+        :key="item.name"
+        :class="{ 'highlight-row': item.name === 'datawhalechina' }"
+      >
         <td>
           <span class="rank-number">{{ item.rank }}</span>
         </td>
@@ -103,6 +108,12 @@ watch(() => props.organizationData, (newData) => {
   border-radius: 12px;
 }
 
+/* 新增高亮行样式 */
+.highlight-row {
+  background-color: rgba(78, 205, 196, 0.1);
+  border-left: 3px solid #4ecdc4;
+}
+
 @media (max-width: 768px) {
   .search-box {
     max-width: 100%;
@@ -122,6 +133,11 @@ watch(() => props.organizationData, (newData) => {
     height: 24px;
     line-height: 24px;
     font-size: 12px;
+  }
+
+  /* 响应式调整高亮样式 */
+  .highlight-row {
+    border-left-width: 2px;
   }
 }
 </style>
