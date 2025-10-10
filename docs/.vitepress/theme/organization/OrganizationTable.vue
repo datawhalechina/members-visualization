@@ -43,7 +43,22 @@ watch(() => props.organizationData, (newData) => {
         <td>
           <span class="rank-number">{{ item.rank }}</span>
         </td>
-        <td class="name-cell">{{ item.name }}</td>
+        <td class="name-cell">
+          <!-- 只有datawhalechina添加链接 -->
+          <template v-if="item.name === 'datawhalechina'">
+            <a 
+              href="https://github.com/datawhalechina" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="datawhale-link"
+            >
+              {{ item.name }}
+            </a>
+          </template>
+          <template v-else>
+            {{ item.name }}
+          </template>
+        </td>
         <td>{{ formatNumber(item.star_count) }}</td>
         <td>+{{ formatNumber(item.starAdd) }}</td>
         <td>
@@ -91,6 +106,17 @@ watch(() => props.organizationData, (newData) => {
   font-weight: 500;
 }
 
+/* 链接样式 */
+.datawhale-link {
+  color: rgb(34, 101, 203);
+  text-decoration: none; /* 去除下划线 */
+  transition: all 0.2s ease;
+}
+
+.datawhale-link:hover {
+  text-decoration: underline; /* 悬浮时显示下划线 */
+}
+
 .positive {
   color: var(--vp-c-success-1);
   font-weight: 500;
@@ -107,19 +133,16 @@ watch(() => props.organizationData, (newData) => {
   border-radius: 12px;
 }
 
-/* 高亮行样式 - 增加整体边框和阴影 */
+/* 高亮行样式 - 整体边框和阴影 */
 .highlight-row {
   background-color: rgba(78, 205, 196, 0.1);
-  /* 整体边框加粗 */
   border: 2px solid #4ecdc4;
-  /* 阴影效果 */
   box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
-  transition: all 0.3s ease; /* 过渡动画 */
+  transition: all 0.3s ease;
 }
 
 /* 文字样式 */
 .highlight-row .name-cell {
-  color: rgb(34, 101, 203);
   font-weight: bold;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   font-size: 15px;
@@ -128,9 +151,9 @@ watch(() => props.organizationData, (newData) => {
 
 /* 悬浮效果增强 */
 .highlight-row:hover {
-  transform: translateY(-2px); /* 轻微上浮 */
-  box-shadow: 0 6px 16px rgba(78, 205, 196, 0.4); /* 加深阴影 */
-  border-color: #38b2ac; /* 边框颜色加深 */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(78, 205, 196, 0.4);
+  border-color: #38b2ac;
 }
 
 .highlight-row:hover .name-cell {
@@ -158,7 +181,6 @@ watch(() => props.organizationData, (newData) => {
     font-size: 12px;
   }
 
-  /* 响应式调整高亮样式 */
   .highlight-row {
     border-width: 1.5px;
     box-shadow: 0 3px 8px rgba(78, 205, 196, 0.25);
