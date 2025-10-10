@@ -107,30 +107,34 @@ watch(() => props.organizationData, (newData) => {
   border-radius: 12px;
 }
 
-/* 高亮行样式 */
+/* 高亮行样式 - 增加整体边框和阴影 */
 .highlight-row {
   background-color: rgba(78, 205, 196, 0.1);
-  border-left: 3px solid #4ecdc4;
-  transition: transform 0.2s ease; /* 悬浮动画过渡 */
+  /* 整体边框加粗 */
+  border: 2px solid #4ecdc4;
+  /* 阴影效果 */
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+  transition: all 0.3s ease; /* 过渡动画 */
 }
 
-/* datawhalechina 文字样式 */
+/* 文字样式 */
 .highlight-row .name-cell {
-  color: rgb(34, 101, 203); /* 指定RGB颜色 */
-  font-weight: bold; /* 加粗 */
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* 文字阴影 */
-  font-size: 15px; /* 略微放大字体增强突出效果 */
-  transition: all 0.3s ease; /* 过渡效果 */
+  color: rgb(34, 101, 203);
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  font-size: 15px;
+  transition: all 0.3s ease;
 }
 
-/* 悬浮效果 */
+/* 悬浮效果增强 */
 .highlight-row:hover {
-  transform: translateX(3px); /* 轻微右移 */
-  background-color: rgba(78, 205, 196, 0.15); /* 加深背景色 */
+  transform: translateY(-2px); /* 轻微上浮 */
+  box-shadow: 0 6px 16px rgba(78, 205, 196, 0.4); /* 加深阴影 */
+  border-color: #38b2ac; /* 边框颜色加深 */
 }
 
 .highlight-row:hover .name-cell {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* 加深阴影 */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -154,8 +158,10 @@ watch(() => props.organizationData, (newData) => {
     font-size: 12px;
   }
 
+  /* 响应式调整高亮样式 */
   .highlight-row {
-    border-left-width: 2px;
+    border-width: 1.5px;
+    box-shadow: 0 3px 8px rgba(78, 205, 196, 0.25);
   }
 }
 </style>
