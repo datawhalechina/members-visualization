@@ -11,7 +11,7 @@ import DataExport from './.vitepress/theme/stats/DataExport.vue'
 
 <Charts />
 
-## 使用说明
+## ⭐ 使用说明
 
 ### 饼图
 - 显示各研究方向的贡献者数量分布
