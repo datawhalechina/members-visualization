@@ -62,9 +62,9 @@ watch(() => props.organizationData, (newData) => {
         <td>{{ formatNumber(item.star_count) }}</td>
         <td>+{{ formatNumber(item.starAdd) }}</td>
         <td>
-          <span :class="{ 'positive': item.rankAdd > 0, 'negative': item.rankAdd < 0 }">
-            {{ item.rankAdd > 0 ? '+' : '' }}{{ item.rankAdd }}
-          </span>
+          <span v-if="item.rankAdd < 0" class="positive">{{ `↑${Math.abs(item.rankAdd)}` }} </span>
+          <span v-if="item.rankAdd > 0" class="negative">{{ `↓${Math.abs(item.rankAdd)}` }} </span>
+          <span v-if="item.rankAdd === 0">{{ `${Math.abs(item.rankAdd)}` }} </span>
         </td>
       </tr>
     </tbody>
