@@ -2,17 +2,32 @@ from datetime import datetime
 from pathlib import Path
 
 
+def read_file(file_path):
+    """读取文件内容"""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return f.read()
+    except FileNotFoundError:
+        print(f"文件未找到: {file_path}")
+        return None
+
+
 def ensure_dir_and_write_file(file_path, data):
-    print(f'写入文件: {file_path}')
     """确保目录存在并写入文件"""
+    print(f'写入文件: {file_path}')
     path = Path(file_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, 'w', encoding='utf-8') as f:
         f.write(data)
 
 
-# 根据月份获取过去12个月的数据，比如2025-1,2025-2等
+def ensure_dir_and_write_files(file_path_list, data):
+    for file_path in file_path_list:
+        ensure_dir_and_write_file(file_path, data)
+
+
 def get_object_by_month_key(month_object, month_count=12):
+    """根据月份获取过去n个月的数据,比如2025-1,2025-2"""
     result = {}
     month_key = []
     # 获取当前日期
