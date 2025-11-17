@@ -21,7 +21,6 @@ const formatNumber = (num) => {
 watch(() => props.organizationData, (newData) => {
   tableData.value = newData
 }, { deep: true })
-
 </script>
 
 <template>
@@ -36,15 +35,23 @@ watch(() => props.organizationData, (newData) => {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in tableData" :key="item.name" :class="{ 'highlight-row': item.name === 'datawhalechina' }">
+      <tr 
+        v-for="item in tableData" 
+        :key="item.name"
+        :class="{ 'highlight-row': item.name === 'datawhalechina' }"
+      >
         <td>
           <span class="rank-number">{{ item.rank }}</span>
         </td>
         <td class="name-cell">
           <!-- 只有datawhalechina添加链接 -->
           <template v-if="item.name === 'datawhalechina'">
-            <a href="https://github.com/datawhalechina" target="_blank" rel="noopener noreferrer"
-              class="datawhale-link">
+            <a 
+              href="https://github.com/datawhalechina" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="datawhale-link"
+            >
               {{ item.name }}
             </a>
           </template>
@@ -102,14 +109,12 @@ watch(() => props.organizationData, (newData) => {
 /* 链接样式 */
 .datawhale-link {
   color: rgb(34, 101, 203);
-  text-decoration: none;
-  /* 去除下划线 */
+  text-decoration: none; /* 去除下划线 */
   transition: all 0.2s ease;
 }
 
 .datawhale-link:hover {
-  text-decoration: underline;
-  /* 悬浮时显示下划线 */
+  text-decoration: underline; /* 悬浮时显示下划线 */
 }
 
 .positive {
