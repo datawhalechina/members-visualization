@@ -4,6 +4,24 @@
 import ProjectStar from './.vitepress/theme/projects/ProjectStar.vue'
 import ProjectStarAddTop5 from './.vitepress/theme/projects/ProjectStarAddTop5.vue'
 import NewProjectStarAddTop3 from './.vitepress/theme/projects/NewProjectStarAddTop3.vue'
+import { ref, onMounted } from 'vue'
+
+// 使用 ref 响应式变量存储数据
+const startTime = ref('加载中...')
+const endTime = ref('加载中...')
+
+onMounted(async () => {
+  try {
+    const response = await fetch('/data/datawhalechina/fetch_time_key.json')
+    if (response.ok) {
+      const res = await response.json()
+      startTime.value = res[res.length - 2]
+      endTime.value = res[res.length - 1]
+    }
+  } catch (error) {
+    console.error('获取时间数据失败:', error)
+  }
+})
 </script>
 
 ## 项目 Star 数
@@ -14,15 +32,15 @@ import NewProjectStarAddTop3 from './.vitepress/theme/projects/NewProjectStarAdd
 
 <ProjectStar />
 
-## 项目本年度 Star 增长数 Top5
+## 项目 Star 增长数 Top5
 
-以下是近一年 Datawhale 所有 Star 数大于 1000 的项目 Star 增长数前 5 名：
+以下是从 {{ startTime }} 至 {{ endTime }} 统计周期内 Datawhale 所有 Star 数大于 1000 的项目 Star 增长数前 5 名：
 
 <ProjectStarAddTop5 />
 
-## 本季度新项目 Star 增长数 Top3
+## 新项目 Star 增长数 Top3
 
-以下是近三个月 Datawhale 所有新增项目中 Star 增长数前 3 名：
+以下是从 {{ startTime }} 至 {{ endTime }} 统计周期内 Datawhale 所有“新秀”项目中 Star 增长数前 3 名：
 
 <NewProjectStarAddTop3 />
 
