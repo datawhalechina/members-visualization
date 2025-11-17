@@ -12,7 +12,7 @@ const endTime = ref('加载中...')
 
 onMounted(async () => {
   try {
-    const response = await fetch('/data/datawhalechina/fetch_time_key.json')
+    const response = await fetch('/members-visualization/data/datawhalechina/fetch_time_key.json')
     if (response.ok) {
       const res = await response.json()
       startTime.value = res[res.length - 2]
