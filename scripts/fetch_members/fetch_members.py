@@ -37,8 +37,9 @@ CONFIG = {
     'AVATARS_DIR': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'avatars',
     'API_BASE': 'https://api.github.com',
     # 最小贡献行数阈值（降低以包含更多贡献者）
-    # 修改为 1，确保所有有贡献的用户都被采集，包括只有少量 commit 的新贡献者
-    'MIN_CONTRIBUTIONS': int(os.getenv('MIN_CONTRIBUTIONS', '1')),
+    # 修改为 0，确保所有贡献者都被采集，包括只有少量代码变更的新贡献者
+    # 注意：GitHub API 的 contributions 字段表示代码行数变更，不是 commit 数量
+    'MIN_CONTRIBUTIONS': int(os.getenv('MIN_CONTRIBUTIONS', '0')),
     'MAX_REPOS_PER_PAGE': 100,  # 每页最大仓库数
     'MAX_CONTRIBUTORS_PER_REPO': 100,  # 每个仓库最大贡献者数
     'MAX_USER_REPOS': 100,  # 获取用户仓库的最大数量
