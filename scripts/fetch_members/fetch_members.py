@@ -400,7 +400,7 @@ def get_user_repos(username, max_repos=None):
 
 
 def calculate_user_stats(user_details, user_repos):
-    """计算用户统计信息"""
+    """计算用户统计信息（个人仓库数据，用于参考）"""
     if not user_details:
         return {
             'public_repos': 0,
@@ -417,10 +417,51 @@ def calculate_user_stats(user_details, user_repos):
         'total_stars': 0
     }
 
-    # 计算总 Stars（从用户仓库中累加）
+    # 计算总 Stars（从用户个人仓库中累加）
     if user_repos:
         stats['total_stars'] = sum(
             repo.get('stargazers_count', 0) for repo in user_repos)
+
+    return stats
+
+
+def calculate_org_contribution_stats(username, contrib_info, org_repos_cache):
+    """
+    计算用户在组织仓库中的贡献统计
+
+    Args:
+        username: 用户名
+        contrib_info: 贡献者信息，包含参与的仓库列表和贡献数
+        org_repos_cache: 组织仓库缓存，格式为 {repo_name: repo_data}
+
+    Returns:
+        dict: 组织贡献统计数据
+    """
+    stats = {
+        'org_repos_count': 0,        # 参与的组织仓库数量
+        'org_total_stars': 0,         # 参与的组织仓库总 stars
+        'org_total_forks': 0,         # 参与的组织仓库总 forks
+        'org_total_contributions': 0, # 在组织中的总贡献数（代码行数）
+        'org_avg_stars_per_repo': 0   # 平均每个参与仓库的 stars
+    }
+
+    if not contrib_info or not contrib_info.get('repos'):
+        return stats
+
+    participated_repos = contrib_info.get('repos', [])
+    stats['org_repos_count'] = len(participated_repos)
+    stats['org_total_contributions'] = contrib_info.get('total_contributions', 0)
+
+    # 累加参与的组织仓库的 stars 和 forks
+    for repo_name in participated_repos:
+        if repo_name in org_repos_cache:
+            repo_data = org_repos_cache[repo_name]
+            stats['org_total_stars'] += repo_data.get('stargazers_count', 0)
+            stats['org_total_forks'] += repo_data.get('forks_count', 0)
+
+    # 计算平均值
+    if stats['org_repos_count'] > 0:
+        stats['org_avg_stars_per_repo'] = stats['org_total_stars'] / stats['org_repos_count']
 
     return stats
 
@@ -517,10 +558,12 @@ def save_to_csv(members, output_file):
     with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
 
-        # 写入表头（包含所有字段）
+        # 写入表头（包含所有字段，包括组织贡献数据）
         writer.writerow([
             'id', 'name', 'github', 'domain', 'repositories',
             'public_repos', 'total_stars', 'followers', 'following',
+            'org_repos_count', 'org_total_stars', 'org_total_forks',
+            'org_total_contributions', 'org_avg_stars_per_repo',
             'avatar', 'bio', 'location', 'company'
         ])
 
@@ -536,6 +579,11 @@ def save_to_csv(members, output_file):
                 member.get('total_stars', 0),
                 member.get('followers', 0),
                 member.get('following', 0),
+                member.get('org_repos_count', 0),
+                member.get('org_total_stars', 0),
+                member.get('org_total_forks', 0),
+                member.get('org_total_contributions', 0),
+                round(member.get('org_avg_stars_per_repo', 0), 2),
                 clean_csv_field(member.get('avatar', '')),
                 clean_csv_field(member.get('bio', '')),
                 clean_csv_field(member.get('location', '')),
@@ -556,10 +604,18 @@ def save_to_json(members, output_file):
                 'github': clean_csv_field(member['github']),
                 'domain': ';'.join(member['domains']),
                 'repositories': ';'.join(member.get('repositories', [])),
+                # 个人数据
                 'public_repos': member.get('public_repos', 0),
                 'total_stars': member.get('total_stars', 0),
                 'followers': member.get('followers', 0),
                 'following': member.get('following', 0),
+                # 组织贡献数据
+                'org_repos_count': member.get('org_repos_count', 0),
+                'org_total_stars': member.get('org_total_stars', 0),
+                'org_total_forks': member.get('org_total_forks', 0),
+                'org_total_contributions': member.get('org_total_contributions', 0),
+                'org_avg_stars_per_repo': round(member.get('org_avg_stars_per_repo', 0), 2),
+                # 其他信息
                 'avatar': clean_csv_field(member.get('avatar', '')),
                 'bio': clean_csv_field(member.get('bio', '')),
                 'location': clean_csv_field(member.get('location', '')),
@@ -622,7 +678,7 @@ def main():
             backup_existing_data()
 
         # 统一数据收集（同时获取成员和commit数据）
-        contributors_data, all_commits, api_stats = collect_unified_data(
+        contributors_data, all_commits, org_repos_cache, api_stats = collect_unified_data(
             CONFIG['ORG_NAME'], include_commits=True)
 
         if not contributors_data:
@@ -656,10 +712,16 @@ def main():
                 api_stats['total'] += 1
                 print(f"  ✓ 获取用户仓库: {len(user_repos) if user_repos else 0} 个")
 
-                # 计算用户统计信息
+                # 计算用户统计信息（个人仓库数据）
                 user_stats = calculate_user_stats(user_details, user_repos)
                 print(
-                    f"  ✓ 统计信息: {user_stats['public_repos']} 仓库, {user_stats['total_stars']} Stars, {user_stats['followers']} 关注者")
+                    f"  ✓ 个人统计: {user_stats['public_repos']} 仓库, {user_stats['total_stars']} Stars, {user_stats['followers']} 关注者")
+
+                # 计算组织贡献统计
+                org_stats = calculate_org_contribution_stats(
+                    username, contrib_info, org_repos_cache)
+                print(
+                    f"  ✓ 组织贡献: {org_stats['org_repos_count']} 个仓库, {org_stats['org_total_stars']} Stars, {org_stats['org_total_contributions']} 贡献数")
 
                 # 下载并缓存头像
                 avatar_url = user_details.get(
@@ -678,10 +740,18 @@ def main():
                     'github': contrib_info['user_info']['html_url'],
                     'domains': domains,
                     'repositories': contrib_info['repos'],  # 参与的组织仓库列表
+                    # 个人数据（保留用于参考）
                     'public_repos': user_stats['public_repos'],  # 个人公开仓库数
-                    'total_stars': user_stats['total_stars'],  # 总 Stars 数
+                    'total_stars': user_stats['total_stars'],  # 个人仓库总 Stars 数
                     'followers': user_stats['followers'],  # 关注者数
                     'following': user_stats['following'],  # 关注数
+                    # 组织贡献数据（用于榜单排名）
+                    'org_repos_count': org_stats['org_repos_count'],  # 参与的组织仓库数量
+                    'org_total_stars': org_stats['org_total_stars'],  # 参与的组织仓库总 stars
+                    'org_total_forks': org_stats['org_total_forks'],  # 参与的组织仓库总 forks
+                    'org_total_contributions': org_stats['org_total_contributions'],  # 在组织中的总贡献数
+                    'org_avg_stars_per_repo': org_stats['org_avg_stars_per_repo'],  # 平均每个参与仓库的 stars
+                    # 其他信息
                     'avatar': local_avatar,  # 本地头像路径
                     'bio': user_details.get('bio') if user_details else '',
                     'location': user_details.get('location') if user_details else '',
@@ -984,6 +1054,7 @@ def collect_unified_data(org_name, include_commits=False):
     # 初始化数据结构
     contributors_data = {}  # 贡献者信息
     all_commits = []       # 所有commit记录
+    org_repos_cache = {}   # 组织仓库缓存 {repo_name: repo_data}
     processed_repos = 0
 
     # 计算时间范围（用于commit过滤）
@@ -998,6 +1069,15 @@ def collect_unified_data(org_name, include_commits=False):
         print(f"\n📦 处理仓库: {repo_name} ({processed_repos + 1}/{len(repos)})")
 
         try:
+            # 缓存仓库数据（用于后续计算组织贡献统计）
+            org_repos_cache[repo_name] = {
+                'name': repo_name,
+                'stargazers_count': repo.get('stargazers_count', 0),
+                'forks_count': repo.get('forks_count', 0),
+                'watchers_count': repo.get('watchers_count', 0),
+                'open_issues_count': repo.get('open_issues_count', 0)
+            }
+
             # 1. 获取仓库贡献者信息
             print(f"  👥 获取贡献者...")
             contributors_url = f"{CONFIG['API_BASE']}/repos/{org_name}/{repo_name}/contributors"
@@ -1141,13 +1221,14 @@ def collect_unified_data(org_name, include_commits=False):
     elapsed_time = time.time() - start_time
     print(f"\n📊 数据收集完成:")
     print(f"  - 处理仓库: {processed_repos}/{len(repos)}")
+    print(f"  - 缓存组织仓库: {len(org_repos_cache)} 个")
     print(f"  - 发现贡献者: {len(contributors_data)} 人")
     if include_commits:
         print(f"  - 收集commit: {len(all_commits)} 个")
     print(f"  - API调用统计: {api_calls}")
     print(f"  - 总耗时: {elapsed_time:.1f} 秒")
 
-    return contributors_data, all_commits if include_commits else None, api_calls
+    return contributors_data, all_commits if include_commits else None, org_repos_cache, api_calls
 
 
 def aggregate_commits_by_user(all_commits):
