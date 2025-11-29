@@ -118,15 +118,34 @@ const filteredMembers = computed(() => {
 
   // 组织成员筛选 - 使用内连接（INNER JOIN）逻辑
   if (showOnlyOrgMembers.value) {
+    console.log(`🔍 组织成员筛选已启用`)
+    console.log(`📋 组织成员名单大小: ${organizationMembers.value.size}`)
+    console.log(`📊 筛选前成员总数: ${filtered.length}`)
+
     filtered = filtered.filter(member => {
+      const isOrgMember = isOrganizationMember(member.id, organizationMembers.value)
+      const hasAvatar = !!member.avatar
+      const hasId = !!member.id
+      const hasDomain = !!member.domain
+
+      // 调试：打印前3个成员的筛选结果
+      if (filtered.indexOf(member) < 3) {
+        console.log(`  检查成员 ${member.id}:`, {
+          isOrgMember,
+          hasAvatar,
+          hasId,
+          hasDomain,
+          passed: isOrgMember && hasAvatar && hasId && hasDomain
+        })
+      }
+
       // 双向存在性检查：
       // 1. 成员必须存在于组织成员名单中
       // 2. 成员必须在主数据中有完整信息
-      return isOrganizationMember(member.id, organizationMembers.value) &&
-        member.avatar && // 确保有头像
-        member.id && // 确保有ID
-        member.domain // 确保有研究领域信息
+      return isOrgMember && hasAvatar && hasId && hasDomain
     })
+
+    console.log(`✅ 筛选后成员总数: ${filtered.length}`)
   }
 
   return filtered

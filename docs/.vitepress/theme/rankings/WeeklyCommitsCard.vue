@@ -116,6 +116,7 @@ const validMembers = computed(() => {
   if (!commitsData.value?.user_commits) return []
 
   const members = []
+  let debugCount = 0
 
   for (const [userKey, stats] of Object.entries(commitsData.value.user_commits)) {
     // 过滤条件：至少1个commit
@@ -128,7 +129,21 @@ const validMembers = computed(() => {
       // 2. 在组织成员名单中存在
       // 3. 有实际的commit活动数据
       if (props.showOnlyOrgMembers) {
-        if (!memberInfo || !isOrganizationMember(userKey, props.organizationMembers)) {
+        const hasMemberInfo = !!memberInfo
+        const isOrgMember = isOrganizationMember(userKey, props.organizationMembers)
+
+        // 调试：打印前3个用户的筛选结果
+        if (debugCount < 3) {
+          console.log(`🔥 一周卷王榜 - 检查用户 ${userKey}:`, {
+            hasMemberInfo,
+            isOrgMember,
+            hasAvatar: memberInfo?.avatar,
+            passed: hasMemberInfo && isOrgMember
+          })
+          debugCount++
+        }
+
+        if (!memberInfo || !isOrgMember) {
           continue // 跳过不满足内连接条件的成员
         }
       }
