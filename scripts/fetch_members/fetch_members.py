@@ -37,7 +37,9 @@ CONFIG = {
     'AVATARS_DIR': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'avatars',
     'API_BASE': 'https://api.github.com',
     # 最小贡献行数阈值（降低以包含更多贡献者）
-    'MIN_CONTRIBUTIONS': int(os.getenv('MIN_CONTRIBUTIONS', '10')),
+    # 修改为 0，确保所有贡献者都被采集，包括只有少量代码变更的新贡献者
+    # 注意：GitHub API 的 contributions 字段表示代码行数变更，不是 commit 数量
+    'MIN_CONTRIBUTIONS': int(os.getenv('MIN_CONTRIBUTIONS', '0')),
     'MAX_REPOS_PER_PAGE': 100,  # 每页最大仓库数
     'MAX_CONTRIBUTORS_PER_REPO': 100,  # 每个仓库最大贡献者数
     'MAX_USER_REPOS': 100,  # 获取用户仓库的最大数量
@@ -1082,6 +1084,23 @@ def collect_unified_data(org_name, include_commits=False):
                             if commit_data['github_username'] and commit_data['author_avatar_url']:
                                 ensure_avatar_exists(
                                     commit_data['github_username'], commit_data['author_avatar_url'])
+
+                                # 如果这个用户不在 contributors_data 中，添加进去
+                                # 这样可以确保所有有 commit 的用户都会被采集到 members.json
+                                if commit_data['github_username'] not in contributors_data:
+                                    contributors_data[commit_data['github_username']] = {
+                                        'user_info': {
+                                            'login': commit_data['github_username'],
+                                            'html_url': f"https://github.com/{commit_data['github_username']}",
+                                            'avatar_url': commit_data['author_avatar_url']
+                                        },
+                                        'repos': [repo_name],
+                                        'total_contributions': 1  # 至少有 1 个 commit
+                                    }
+                                    print(f"      ➕ 新增贡献者（来自commit）: {commit_data['github_username']}")
+                                elif repo_name not in contributors_data[commit_data['github_username']]['repos']:
+                                    # 如果用户已存在但这个仓库不在列表中，添加仓库
+                                    contributors_data[commit_data['github_username']]['repos'].append(repo_name)
 
                             # 解析日期
                             commit_date = datetime.fromisoformat(
