@@ -70,3 +70,12 @@
   transform: translateY(-8px);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
 }
+
+/* 表格样式 */
+th,
+td {
+  /* white-space: nowrap !important; */
+  /* 不让th，td内容换行显示 */
+  width: 10%;
+  /* 强制均匀分配宽度 */
+}

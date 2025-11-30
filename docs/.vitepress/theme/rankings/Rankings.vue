@@ -156,7 +156,7 @@ const leaderboards = computed(() => [
   {
     id: 'popularity',
     title: '人气王榜',
-    description: '综合 Followers 和 Stars 的人气排行',
+    description: '综合个人 Followers 和组织仓库 Stars 的影响力排行',
     icon: '👑',
     colorScheme: 'fire',
     showTrend: false,
@@ -165,7 +165,7 @@ const leaderboards = computed(() => [
   {
     id: 'productive',
     title: '多产榜',
-    description: '基于公开仓库数量的创作力排行',
+    description: '基于参与组织仓库数量的贡献广度排行',
     icon: '🏆',
     colorScheme: 'blue',
     showTrend: false,
@@ -183,7 +183,7 @@ const leaderboards = computed(() => [
   {
     id: 'rising',
     title: '新星榜',
-    description: '综合活跃度指标的潜力新星排行',
+    description: '基于组织贡献活跃度的潜力新星排行',
     icon: '🌠',
     colorScheme: 'purple',
     showTrend: false,
@@ -192,7 +192,7 @@ const leaderboards = computed(() => [
   {
     id: 'comprehensive',
     title: '综合实力榜',
-    description: '多维度综合评分的全能排行',
+    description: '基于组织贡献的多维度综合评分排行',
     icon: '🌟',
     colorScheme: 'gold',
     showTrend: false,
@@ -217,11 +217,12 @@ const nextUpdateTime = computed(() => {
 
 // 排名计算函数
 function calculatePopularityRanking() {
+  // 使用组织贡献数据：followers（个人社交影响力）+ org_total_stars（组织仓库影响力）
   return filteredMembers.value
     .map(member => ({
       ...member,
-      score: (member.followers || 0) * 0.6 + (member.total_stars || 0) * 0.4,
-      scoreDisplay: `${member.followers || 0} followers + ${member.total_stars || 0} stars`
+      score: (member.followers || 0) * 0.6 + (member.org_total_stars || 0) * 0.4,
+      scoreDisplay: `${member.followers || 0} followers + ${member.org_total_stars || 0} 组织stars`
     }))
     .filter(member => member.score > 0)
     .sort((a, b) => b.score - a.score)
@@ -230,19 +231,21 @@ function calculatePopularityRanking() {
 }
 
 function calculateProductiveRanking() {
+  // 使用组织贡献数据：参与的组织仓库数量
   return filteredMembers.value
     .map(member => ({
       ...member,
-      score: member.public_repos || 0,
-      scoreDisplay: `${member.public_repos || 0} 个仓库`
+      score: member.org_repos_count || 0,
+      scoreDisplay: `参与 ${member.org_repos_count || 0} 个组织仓库`
     }))
-    .filter(member => member.score >= 5)
+    .filter(member => member.score >= 1)
     .sort((a, b) => b.score - a.score)
     .slice(0, topCount.value)
     .map((member, index) => ({ ...member, rank: index + 1 }))
 }
 
 function calculateSocialRanking() {
+  // 社交达人榜保持使用个人 following 数据（这是个人社交属性）
   return filteredMembers.value
     .map(member => ({
       ...member,
@@ -256,11 +259,12 @@ function calculateSocialRanking() {
 }
 
 function calculateRisingStarRanking() {
+  // 使用组织贡献数据：基于组织仓库参与度和影响力的新星评分
   return filteredMembers.value
     .map(member => {
-      const repos = Math.max(member.public_repos || 1, 1)
-      const activity = (member.followers || 0) + (member.total_stars || 0)
-      const score = activity / repos * (repos < 20 ? 1.5 : 1) // 新人加成
+      const orgRepos = Math.max(member.org_repos_count || 1, 1)
+      const activity = (member.followers || 0) + (member.org_total_stars || 0)
+      const score = activity / orgRepos * (orgRepos < 5 ? 1.5 : 1) // 新人加成（参与少于5个组织仓库）
 
       return {
         ...member,
@@ -275,15 +279,16 @@ function calculateRisingStarRanking() {
 }
 
 function calculateComprehensiveRanking() {
+  // 使用组织贡献数据进行综合评分
   return filteredMembers.value
     .map(member => {
-      const stars = (member.total_stars || 0) * 0.3
-      const followers = (member.followers || 0) * 0.25
-      const repos = (member.public_repos || 0) * 0.2
-      const following = (member.following || 0) * 0.15
-      const participation = (member.repositories ? member.repositories.split(';').length : 0) * 0.1
+      const orgStars = (member.org_total_stars || 0) * 0.3  // 组织仓库stars影响力
+      const followers = (member.followers || 0) * 0.25      // 个人社交影响力
+      const orgRepos = (member.org_repos_count || 0) * 0.2  // 组织仓库参与度
+      const following = (member.following || 0) * 0.15      // 社交活跃度
+      const contributions = (member.org_total_contributions || 0) * 0.1  // 代码贡献量
 
-      const score = stars + followers + repos + following + participation
+      const score = orgStars + followers + orgRepos + following + contributions
 
       return {
         ...member,

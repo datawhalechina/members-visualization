@@ -54,19 +54,19 @@
       <div class="score-value">{{ Math.round(member.score || 0) }}</div>
       <div class="score-label">{{ member.scoreDisplay || '分数' }}</div>
       
-      <!-- 详细数据 -->
+      <!-- 详细数据 - 显示组织贡献数据 -->
       <div class="detailed-stats">
-        <div class="stat-item" v-if="member.followers">
+        <div class="stat-item" v-if="member.followers" title="Followers">
           <span class="stat-icon">👥</span>
           <span class="stat-value">{{ member.followers }}</span>
         </div>
-        <div class="stat-item" v-if="member.total_stars">
+        <div class="stat-item" v-if="member.org_total_stars" title="组织仓库总Stars">
           <span class="stat-icon">⭐</span>
-          <span class="stat-value">{{ member.total_stars }}</span>
+          <span class="stat-value">{{ member.org_total_stars }}</span>
         </div>
-        <div class="stat-item" v-if="member.public_repos">
+        <div class="stat-item" v-if="member.org_repos_count" title="参与组织仓库数">
           <span class="stat-icon">📁</span>
-          <span class="stat-value">{{ member.public_repos }}</span>
+          <span class="stat-value">{{ member.org_repos_count }}</span>
         </div>
       </div>
     </div>
