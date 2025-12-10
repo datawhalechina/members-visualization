@@ -1,52 +1,9 @@
 {
-  "update_time": "2025-12-09T22:20:17.502858",
+  "update_time": "2025-12-10T22:19:31.297244",
   "days_range": 7,
-  "total_commits": 87,
+  "total_commits": 80,
   "total_repos": 11,
   "user_commits": {
-    "KMnO4-zx": {
-      "total_commits": 2,
-      "repos": [
-        "happy-llm",
-        "self-llm"
-      ],
-      "repo_count": 2,
-      "daily_commits": {
-        "2025-12-04": 2
-      },
-      "hourly_distribution": {
-        "2": 2
-      },
-      "beijing_hourly_distribution": {
-        "10": 2
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "贡献者信息，修正项目负责人的描述并添加新贡献",
-          "repo": "self-llm",
-          "date": "2025-12-04",
-          "time": "2025-12-04T10:54:44+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/self-llm/commit/192bd93f311f642032b70e71ee08dd1a9a036264"
-        },
-        {
-          "message": "update readme",
-          "repo": "happy-llm",
-          "date": "2025-12-04",
-          "time": "2025-12-04T10:58:17+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/happy-llm/commit/de9d9e00482653c6b4aa1ef20e6bc4afbde73d32"
-        }
-      ],
-      "first_commit_date": "2025-12-04T02:54:44+00:00",
-      "last_commit_date": "2025-12-04T02:58:17+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 2.0
-    },
     "jjyaoao": {
       "total_commits": 2,
       "repos": [
@@ -124,306 +81,179 @@
       "active_days": 1,
       "avg_commits_per_day": 1.0
     },
-    "1985312383": {
-      "total_commits": 19,
+    "KMnO4-zx": {
+      "total_commits": 2,
       "repos": [
-        "torch-rechub",
-        "med-imaging-primer"
+        "happy-llm",
+        "self-llm"
       ],
       "repo_count": 2,
       "daily_commits": {
-        "2025-12-09": 6,
-        "2025-12-08": 1,
-        "2025-12-06": 2,
-        "2025-12-05": 3,
-        "2025-12-04": 5,
-        "2025-12-03": 2
+        "2025-12-04": 2
       },
       "hourly_distribution": {
-        "17": 1,
-        "16": 3,
-        "14": 1,
-        "1": 3,
-        "13": 1,
-        "15": 2,
-        "18": 2,
-        "11": 1,
-        "9": 3,
-        "8": 1,
-        "6": 1
+        "2": 2
       },
       "beijing_hourly_distribution": {
-        "1": 1,
-        "0": 3,
-        "22": 1,
-        "9": 3,
-        "21": 1,
-        "23": 2,
-        "2": 2,
-        "19": 1,
-        "17": 3,
-        "16": 1,
-        "14": 1
-      },
-      "night_owl_commits": 9,
-      "night_owl_percentage": 47.4,
-      "commit_messages": [
-        {
-          "message": "Merge pull request #145 from 1985312383/main",
-          "repo": "torch-rechub",
-          "date": "2025-12-09",
-          "time": "2025-12-10T01:00:20+00:00",
-          "beijing_hour": 1,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/86f1cbd4daa1cd6873c7208b5b633c46a3b05992"
-        },
-        {
-          "message": "Update deploy.yml",
-          "repo": "torch-rechub",
-          "date": "2025-12-09",
-          "time": "2025-12-10T00:59:06+00:00",
-          "beijing_hour": 0,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/43ecdad8397e6e921f41c6b69d3d54785eb2ed76"
-        },
-        {
-          "message": "Add generative model docs and update zh model docs",
-          "repo": "torch-rechub",
-          "date": "2025-12-09",
-          "time": "2025-12-10T00:52:23+00:00",
-          "beijing_hour": 0,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/fa0c4ab41927ae22e0fa40754b76c5d45dfe57fb"
-        },
-        {
-          "message": "Add Chinese docs for core features, data, and evaluation",
-          "repo": "torch-rechub",
-          "date": "2025-12-09",
-          "time": "2025-12-10T00:36:49+00:00",
-          "beijing_hour": 0,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/171d046ffdf71884782ffda8739a7c8a4f3401b8"
-        },
-        {
-          "message": "Merge pull request #143 from ywuenthought/feature/stream-parquet-dataset",
-          "repo": "torch-rechub",
-          "date": "2025-12-09",
-          "time": "2025-12-09T22:35:40+00:00",
-          "beijing_hour": 22,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/d6a4ce549f12a59ee78c3ab9393e96ac0f9ecd15"
-        },
-        {
-          "message": "Merge pull request #144 from datawhalechina/dependabot/github_actions/astral-sh/setup-uv-7",
-          "repo": "torch-rechub",
-          "date": "2025-12-09",
-          "time": "2025-12-09T09:38:07+00:00",
-          "beijing_hour": 9,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/0bec8709102eb4f66d8dcdd5aaff1107b096d8a7"
-        },
-        {
-          "message": "Refactor docs structure and update navigation",
-          "repo": "torch-rechub",
-          "date": "2025-12-08",
-          "time": "2025-12-08T21:57:50+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/00bc6c022f2176144d1e34d57da4534743b11507"
-        },
-        {
-          "message": "Update deploy.yml",
-          "repo": "torch-rechub",
-          "date": "2025-12-06",
-          "time": "2025-12-06T23:51:57+00:00",
-          "beijing_hour": 23,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/3ca57abba8fb606c7c4312c2213fe8b18fc6f7d2"
-        },
-        {
-          "message": "Refactor zh docs structure and update navigation",
-          "repo": "torch-rechub",
-          "date": "2025-12-06",
-          "time": "2025-12-06T23:45:00+00:00",
-          "beijing_hour": 23,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/334c3cc01056b6c4442e64bc55009a8df03e4c75"
-        },
-        {
-          "message": "Update favicon and logo images",
-          "repo": "torch-rechub",
-          "date": "2025-12-05",
-          "time": "2025-12-06T02:41:04+00:00",
-          "beijing_hour": 2,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/b6df8501f0ff4ad220f34b0d2142e49d124888c3"
-        }
-      ],
-      "first_commit_date": "2025-12-03T06:34:19+00:00",
-      "last_commit_date": "2025-12-09T17:00:20+00:00",
-      "active_days": 6,
-      "avg_commits_per_day": 3.1666666666666665
-    },
-    "ywuenthought": {
-      "total_commits": 10,
-      "repos": [
-        "torch-rechub"
-      ],
-      "repo_count": 1,
-      "daily_commits": {
-        "2025-12-09": 2,
-        "2025-12-08": 3,
-        "2025-12-07": 5
-      },
-      "hourly_distribution": {
-        "8": 1,
-        "7": 1,
-        "9": 2,
-        "5": 1,
-        "21": 1,
-        "20": 1,
-        "19": 3
-      },
-      "beijing_hourly_distribution": {
-        "16": 1,
-        "15": 1,
-        "17": 2,
-        "13": 1,
-        "5": 1,
-        "4": 1,
-        "3": 3
-      },
-      "night_owl_commits": 5,
-      "night_owl_percentage": 50.0,
-      "commit_messages": [
-        {
-          "message": "test: add unit tests for loading the parquet dataset",
-          "repo": "torch-rechub",
-          "date": "2025-12-09",
-          "time": "2025-12-09T16:22:35+00:00",
-          "beijing_hour": 16,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/5297f649c3454dffe616b818b1c4b32b315b0dbe"
-        },
-        {
-          "message": "dev: allow for converting empty pa arrays",
-          "repo": "torch-rechub",
-          "date": "2025-12-09",
-          "time": "2025-12-09T15:31:24+00:00",
-          "beijing_hour": 15,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/d9e9eeb0fa14469fcc0d88b1050884c4dd41effd"
-        },
-        {
-          "message": "test: add tests for converting a pyarrow array to a pytorch tensor",
-          "repo": "torch-rechub",
-          "date": "2025-12-08",
-          "time": "2025-12-08T17:26:09+00:00",
-          "beijing_hour": 17,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/ceecdf7bf23a865820ba018ca81aa2e0997cc4ac"
-        },
-        {
-          "message": "fix: use `torch.nan` to replace `None` and thus all arrays are cast to `torch.float32` arrays",
-          "repo": "torch-rechub",
-          "date": "2025-12-08",
-          "time": "2025-12-08T17:19:57+00:00",
-          "beijing_hour": 17,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/1f28decc8674910a33b6aa538fbd26670daa55c3"
-        },
-        {
-          "message": "feat: implement the utility function to convert a pyarrow array to a pytorch tensor",
-          "repo": "torch-rechub",
-          "date": "2025-12-08",
-          "time": "2025-12-08T13:37:28+00:00",
-          "beijing_hour": 13,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/5f2bde3d2a1dc4eb9b49a95a171972bd759a3653"
-        },
-        {
-          "message": "feat: implement the iterable dataset class to stream parquet files",
-          "repo": "torch-rechub",
-          "date": "2025-12-07",
-          "time": "2025-12-08T05:35:36+00:00",
-          "beijing_hour": 5,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/0f6f6734ddeb2c0de0b6121f1ae758291377d327"
-        },
-        {
-          "message": "chore: add `pyarrow-stubs` as a dev dep for type hinting",
-          "repo": "torch-rechub",
-          "date": "2025-12-07",
-          "time": "2025-12-08T04:05:16+00:00",
-          "beijing_hour": 4,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/cc6e17518e6657872487518a0366af32c16d0cf7"
-        },
-        {
-          "message": "chore: initialize the subpackage `data`",
-          "repo": "torch-rechub",
-          "date": "2025-12-07",
-          "time": "2025-12-08T03:09:30+00:00",
-          "beijing_hour": 3,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/378cf8b673e8609ccd9866cb9d69a8e68805eac5"
-        },
-        {
-          "message": "chore: update `uv.lock` by running `uv lock`",
-          "repo": "torch-rechub",
-          "date": "2025-12-07",
-          "time": "2025-12-08T03:01:42+00:00",
-          "beijing_hour": 3,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/f3ea059d3120831150a915ba1e7e7ae9d6ae3e30"
-        },
-        {
-          "message": "chore: add an optional dep group `bigdata` that includes `pyarrow`",
-          "repo": "torch-rechub",
-          "date": "2025-12-07",
-          "time": "2025-12-08T03:00:38+00:00",
-          "beijing_hour": 3,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/51f0c51923c1f5b266d6271da85dd3117a46935e"
-        }
-      ],
-      "first_commit_date": "2025-12-07T19:00:38+00:00",
-      "last_commit_date": "2025-12-09T08:22:35+00:00",
-      "active_days": 3,
-      "avg_commits_per_day": 3.3333333333333335
-    },
-    "Eyre921": {
-      "total_commits": 1,
-      "repos": [
-        "vibe-vibe"
-      ],
-      "repo_count": 1,
-      "daily_commits": {
-        "2025-12-07": 1
-      },
-      "hourly_distribution": {
-        "8": 1
-      },
-      "beijing_hourly_distribution": {
-        "16": 1
+        "10": 2
       },
       "night_owl_commits": 0,
       "night_owl_percentage": 0.0,
       "commit_messages": [
         {
-          "message": "Sync: 完整更新基础版教程内容",
-          "repo": "vibe-vibe",
-          "date": "2025-12-07",
-          "time": "2025-12-07T16:35:08+00:00",
-          "beijing_hour": 16,
+          "message": "update readme",
+          "repo": "happy-llm",
+          "date": "2025-12-04",
+          "time": "2025-12-04T10:58:17+00:00",
+          "beijing_hour": 10,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/vibe-vibe/commit/cc8fc03bad94bf21cce96f556f54a3c4a62a8228"
+          "url": "https://github.com/datawhalechina/happy-llm/commit/de9d9e00482653c6b4aa1ef20e6bc4afbde73d32"
+        },
+        {
+          "message": "贡献者信息，修正项目负责人的描述并添加新贡献",
+          "repo": "self-llm",
+          "date": "2025-12-04",
+          "time": "2025-12-04T10:54:44+00:00",
+          "beijing_hour": 10,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/self-llm/commit/192bd93f311f642032b70e71ee08dd1a9a036264"
         }
       ],
-      "first_commit_date": "2025-12-07T08:35:08+00:00",
-      "last_commit_date": "2025-12-07T08:35:08+00:00",
+      "first_commit_date": "2025-12-04T02:54:44+00:00",
+      "last_commit_date": "2025-12-04T02:58:17+00:00",
       "active_days": 1,
-      "avg_commits_per_day": 1.0
+      "avg_commits_per_day": 2.0
+    },
+    "FutureUnreal": {
+      "total_commits": 13,
+      "repos": [
+        "all-in-rag",
+        "base-nlp"
+      ],
+      "repo_count": 2,
+      "daily_commits": {
+        "2025-12-10": 1,
+        "2025-12-09": 1,
+        "2025-12-08": 1,
+        "2025-12-06": 8,
+        "2025-12-05": 2
+      },
+      "hourly_distribution": {
+        "14": 1,
+        "9": 1,
+        "13": 1,
+        "19": 1,
+        "18": 6,
+        "15": 1,
+        "11": 2
+      },
+      "beijing_hourly_distribution": {
+        "22": 1,
+        "17": 1,
+        "21": 1,
+        "3": 1,
+        "2": 6,
+        "23": 1,
+        "19": 2
+      },
+      "night_owl_commits": 9,
+      "night_owl_percentage": 69.2,
+      "commit_messages": [
+        {
+          "message": "update",
+          "repo": "all-in-rag",
+          "date": "2025-12-10",
+          "time": "2025-12-10T22:48:06+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/all-in-rag/commit/f568b230f29ac3f6a36be258fdf2c3b515126094"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-09",
+          "time": "2025-12-09T17:47:28+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/cdc782bad007846087ac039d12bf21b38b28c54c"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-08",
+          "time": "2025-12-08T21:43:19+00:00",
+          "beijing_hour": 21,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/18cb711dde239e43ee9fc94ce060d2ab1fe3b686"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-06",
+          "time": "2025-12-07T03:44:45+00:00",
+          "beijing_hour": 3,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/66058d2b6fa282159474523815e9bab83701a7a0"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-06",
+          "time": "2025-12-07T02:54:07+00:00",
+          "beijing_hour": 2,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/161a0a358efe6355282219eda91b5f506453ccb3"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-06",
+          "time": "2025-12-07T02:49:23+00:00",
+          "beijing_hour": 2,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/287345008a8f3922f515a0341ec7d3ff849e1b50"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-06",
+          "time": "2025-12-07T02:20:58+00:00",
+          "beijing_hour": 2,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/7291e2aaea09d410d44792183f5e7d218ec22247"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-06",
+          "time": "2025-12-07T02:17:28+00:00",
+          "beijing_hour": 2,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/0ba8ee7807e2767665e39989a2b6ac816331d00d"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-06",
+          "time": "2025-12-07T02:04:00+00:00",
+          "beijing_hour": 2,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/691e4906e0951965b910543cf3740077cb173cce"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-06",
+          "time": "2025-12-07T02:00:43+00:00",
+          "beijing_hour": 2,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/06a9e04fad652c5f46b66b16bf23e4ebb7618d59"
+        }
+      ],
+      "first_commit_date": "2025-12-05T11:52:00+00:00",
+      "last_commit_date": "2025-12-10T14:48:06+00:00",
+      "active_days": 5,
+      "avg_commits_per_day": 2.6
     },
     "muxiaoxiong": {
       "total_commits": 8,
@@ -572,190 +402,347 @@
       "active_days": 1,
       "avg_commits_per_day": 2.0
     },
-    "chg0901": {
-      "total_commits": 3,
+    "1iyouzhen": {
+      "total_commits": 2,
       "repos": [
-        "med-imaging-primer"
+        "dive-into-bishop-dl"
       ],
       "repo_count": 1,
       "daily_commits": {
-        "2025-12-03": 3
+        "2025-12-10": 1,
+        "2025-12-05": 1
       },
       "hourly_distribution": {
-        "9": 1,
-        "6": 1,
-        "3": 1
+        "13": 1,
+        "9": 1
       },
       "beijing_hourly_distribution": {
-        "17": 1,
-        "14": 1,
-        "11": 1
+        "21": 1,
+        "17": 1
       },
       "night_owl_commits": 0,
       "night_owl_percentage": 0.0,
       "commit_messages": [
         {
-          "message": "docs: 规范化章节末尾数据集表格格式和添加details容器",
-          "repo": "med-imaging-primer",
-          "date": "2025-12-03",
-          "time": "2025-12-03T17:12:57+00:00",
+          "message": "Update ch8_1.md",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-12-10",
+          "time": "2025-12-10T21:40:11+00:00",
+          "beijing_hour": 21,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/7e9f26640ab84eefb45c62d9689ed90b8618a2a8"
+        },
+        {
+          "message": "Update ch8_1.md",
+          "repo": "dive-into-bishop-dl",
+          "date": "2025-12-05",
+          "time": "2025-12-05T17:51:48+00:00",
           "beijing_hour": 17,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/med-imaging-primer/commit/341668bf6ab87935ace92a4ccac9ac0aa0aac15b"
-        },
-        {
-          "message": "docs(guide): 添加医学图像处理章节相关数据集和论文资源",
-          "repo": "med-imaging-primer",
-          "date": "2025-12-03",
-          "time": "2025-12-03T14:24:16+00:00",
-          "beijing_hour": 14,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/med-imaging-primer/commit/28ed34379a07f1ebfbab5f36133d04577c043a89"
-        },
-        {
-          "message": "docs(guide): 更新医学影像预处理和分类章节的图片与内容",
-          "repo": "med-imaging-primer",
-          "date": "2025-12-03",
-          "time": "2025-12-03T11:42:16+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/med-imaging-primer/commit/3cbb6f85643966d4541c59820c43875105051146"
+          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/cf9000d0820e5a5bec6df6ac0ce65b9ac828bb5f"
         }
       ],
-      "first_commit_date": "2025-12-03T03:42:16+00:00",
-      "last_commit_date": "2025-12-03T09:12:57+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 3.0
+      "first_commit_date": "2025-12-05T09:51:48+00:00",
+      "last_commit_date": "2025-12-10T13:40:11+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 1.0
     },
-    "FutureUnreal": {
-      "total_commits": 14,
+    "Eyre921": {
+      "total_commits": 1,
       "repos": [
-        "base-nlp"
+        "vibe-vibe"
       ],
       "repo_count": 1,
       "daily_commits": {
-        "2025-12-09": 1,
-        "2025-12-08": 1,
-        "2025-12-06": 8,
-        "2025-12-05": 2,
-        "2025-12-03": 2
+        "2025-12-07": 1
       },
       "hourly_distribution": {
-        "9": 1,
-        "13": 1,
-        "19": 1,
-        "18": 6,
-        "15": 1,
-        "11": 3,
-        "6": 1
+        "8": 1
       },
       "beijing_hourly_distribution": {
-        "17": 1,
-        "21": 1,
-        "3": 1,
-        "2": 6,
-        "23": 1,
-        "19": 3,
-        "14": 1
+        "16": 1
       },
-      "night_owl_commits": 8,
-      "night_owl_percentage": 57.1,
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
       "commit_messages": [
         {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-09",
-          "time": "2025-12-09T17:47:28+00:00",
-          "beijing_hour": 17,
+          "message": "Sync: 完整更新基础版教程内容",
+          "repo": "vibe-vibe",
+          "date": "2025-12-07",
+          "time": "2025-12-07T16:35:08+00:00",
+          "beijing_hour": 16,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/cdc782bad007846087ac039d12bf21b38b28c54c"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-08",
-          "time": "2025-12-08T21:43:19+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/18cb711dde239e43ee9fc94ce060d2ab1fe3b686"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-06",
-          "time": "2025-12-07T03:44:45+00:00",
-          "beijing_hour": 3,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/66058d2b6fa282159474523815e9bab83701a7a0"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-06",
-          "time": "2025-12-07T02:54:07+00:00",
-          "beijing_hour": 2,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/161a0a358efe6355282219eda91b5f506453ccb3"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-06",
-          "time": "2025-12-07T02:49:23+00:00",
-          "beijing_hour": 2,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/287345008a8f3922f515a0341ec7d3ff849e1b50"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-06",
-          "time": "2025-12-07T02:20:58+00:00",
-          "beijing_hour": 2,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/7291e2aaea09d410d44792183f5e7d218ec22247"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-06",
-          "time": "2025-12-07T02:17:28+00:00",
-          "beijing_hour": 2,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/0ba8ee7807e2767665e39989a2b6ac816331d00d"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-06",
-          "time": "2025-12-07T02:04:00+00:00",
-          "beijing_hour": 2,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/691e4906e0951965b910543cf3740077cb173cce"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-06",
-          "time": "2025-12-07T02:00:43+00:00",
-          "beijing_hour": 2,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/06a9e04fad652c5f46b66b16bf23e4ebb7618d59"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-06",
-          "time": "2025-12-06T23:46:28+00:00",
-          "beijing_hour": 23,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/b228f818d9f159bb85a951d49036af7970c0e697"
+          "url": "https://github.com/datawhalechina/vibe-vibe/commit/cc8fc03bad94bf21cce96f556f54a3c4a62a8228"
         }
       ],
-      "first_commit_date": "2025-12-03T06:47:36+00:00",
-      "last_commit_date": "2025-12-09T09:47:28+00:00",
+      "first_commit_date": "2025-12-07T08:35:08+00:00",
+      "last_commit_date": "2025-12-07T08:35:08+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
+    },
+    "1985312383": {
+      "total_commits": 17,
+      "repos": [
+        "torch-rechub"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-12-09": 6,
+        "2025-12-08": 1,
+        "2025-12-06": 2,
+        "2025-12-05": 3,
+        "2025-12-04": 5
+      },
+      "hourly_distribution": {
+        "17": 1,
+        "16": 3,
+        "14": 1,
+        "1": 3,
+        "13": 1,
+        "15": 2,
+        "18": 2,
+        "11": 1,
+        "9": 2,
+        "8": 1
+      },
+      "beijing_hourly_distribution": {
+        "1": 1,
+        "0": 3,
+        "22": 1,
+        "9": 3,
+        "21": 1,
+        "23": 2,
+        "2": 2,
+        "19": 1,
+        "17": 2,
+        "16": 1
+      },
+      "night_owl_commits": 9,
+      "night_owl_percentage": 52.9,
+      "commit_messages": [
+        {
+          "message": "Merge pull request #145 from 1985312383/main",
+          "repo": "torch-rechub",
+          "date": "2025-12-09",
+          "time": "2025-12-10T01:00:20+00:00",
+          "beijing_hour": 1,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/86f1cbd4daa1cd6873c7208b5b633c46a3b05992"
+        },
+        {
+          "message": "Update deploy.yml",
+          "repo": "torch-rechub",
+          "date": "2025-12-09",
+          "time": "2025-12-10T00:59:06+00:00",
+          "beijing_hour": 0,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/43ecdad8397e6e921f41c6b69d3d54785eb2ed76"
+        },
+        {
+          "message": "Add generative model docs and update zh model docs",
+          "repo": "torch-rechub",
+          "date": "2025-12-09",
+          "time": "2025-12-10T00:52:23+00:00",
+          "beijing_hour": 0,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/fa0c4ab41927ae22e0fa40754b76c5d45dfe57fb"
+        },
+        {
+          "message": "Add Chinese docs for core features, data, and evaluation",
+          "repo": "torch-rechub",
+          "date": "2025-12-09",
+          "time": "2025-12-10T00:36:49+00:00",
+          "beijing_hour": 0,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/171d046ffdf71884782ffda8739a7c8a4f3401b8"
+        },
+        {
+          "message": "Merge pull request #143 from ywuenthought/feature/stream-parquet-dataset",
+          "repo": "torch-rechub",
+          "date": "2025-12-09",
+          "time": "2025-12-09T22:35:40+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/d6a4ce549f12a59ee78c3ab9393e96ac0f9ecd15"
+        },
+        {
+          "message": "Merge pull request #144 from datawhalechina/dependabot/github_actions/astral-sh/setup-uv-7",
+          "repo": "torch-rechub",
+          "date": "2025-12-09",
+          "time": "2025-12-09T09:38:07+00:00",
+          "beijing_hour": 9,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/0bec8709102eb4f66d8dcdd5aaff1107b096d8a7"
+        },
+        {
+          "message": "Refactor docs structure and update navigation",
+          "repo": "torch-rechub",
+          "date": "2025-12-08",
+          "time": "2025-12-08T21:57:50+00:00",
+          "beijing_hour": 21,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/00bc6c022f2176144d1e34d57da4534743b11507"
+        },
+        {
+          "message": "Update deploy.yml",
+          "repo": "torch-rechub",
+          "date": "2025-12-06",
+          "time": "2025-12-06T23:51:57+00:00",
+          "beijing_hour": 23,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/3ca57abba8fb606c7c4312c2213fe8b18fc6f7d2"
+        },
+        {
+          "message": "Refactor zh docs structure and update navigation",
+          "repo": "torch-rechub",
+          "date": "2025-12-06",
+          "time": "2025-12-06T23:45:00+00:00",
+          "beijing_hour": 23,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/334c3cc01056b6c4442e64bc55009a8df03e4c75"
+        },
+        {
+          "message": "Update favicon and logo images",
+          "repo": "torch-rechub",
+          "date": "2025-12-05",
+          "time": "2025-12-06T02:41:04+00:00",
+          "beijing_hour": 2,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/b6df8501f0ff4ad220f34b0d2142e49d124888c3"
+        }
+      ],
+      "first_commit_date": "2025-12-04T08:52:55+00:00",
+      "last_commit_date": "2025-12-09T17:00:20+00:00",
       "active_days": 5,
-      "avg_commits_per_day": 2.8
+      "avg_commits_per_day": 3.4
+    },
+    "ywuenthought": {
+      "total_commits": 10,
+      "repos": [
+        "torch-rechub"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-12-09": 2,
+        "2025-12-08": 3,
+        "2025-12-07": 5
+      },
+      "hourly_distribution": {
+        "8": 1,
+        "7": 1,
+        "9": 2,
+        "5": 1,
+        "21": 1,
+        "20": 1,
+        "19": 3
+      },
+      "beijing_hourly_distribution": {
+        "16": 1,
+        "15": 1,
+        "17": 2,
+        "13": 1,
+        "5": 1,
+        "4": 1,
+        "3": 3
+      },
+      "night_owl_commits": 5,
+      "night_owl_percentage": 50.0,
+      "commit_messages": [
+        {
+          "message": "test: add unit tests for loading the parquet dataset",
+          "repo": "torch-rechub",
+          "date": "2025-12-09",
+          "time": "2025-12-09T16:22:35+00:00",
+          "beijing_hour": 16,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/5297f649c3454dffe616b818b1c4b32b315b0dbe"
+        },
+        {
+          "message": "dev: allow for converting empty pa arrays",
+          "repo": "torch-rechub",
+          "date": "2025-12-09",
+          "time": "2025-12-09T15:31:24+00:00",
+          "beijing_hour": 15,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/d9e9eeb0fa14469fcc0d88b1050884c4dd41effd"
+        },
+        {
+          "message": "test: add tests for converting a pyarrow array to a pytorch tensor",
+          "repo": "torch-rechub",
+          "date": "2025-12-08",
+          "time": "2025-12-08T17:26:09+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/ceecdf7bf23a865820ba018ca81aa2e0997cc4ac"
+        },
+        {
+          "message": "fix: use `torch.nan` to replace `None` and thus all arrays are cast to `torch.float32` arrays",
+          "repo": "torch-rechub",
+          "date": "2025-12-08",
+          "time": "2025-12-08T17:19:57+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/1f28decc8674910a33b6aa538fbd26670daa55c3"
+        },
+        {
+          "message": "feat: implement the utility function to convert a pyarrow array to a pytorch tensor",
+          "repo": "torch-rechub",
+          "date": "2025-12-08",
+          "time": "2025-12-08T13:37:28+00:00",
+          "beijing_hour": 13,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/5f2bde3d2a1dc4eb9b49a95a171972bd759a3653"
+        },
+        {
+          "message": "feat: implement the iterable dataset class to stream parquet files",
+          "repo": "torch-rechub",
+          "date": "2025-12-07",
+          "time": "2025-12-08T05:35:36+00:00",
+          "beijing_hour": 5,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/0f6f6734ddeb2c0de0b6121f1ae758291377d327"
+        },
+        {
+          "message": "chore: add `pyarrow-stubs` as a dev dep for type hinting",
+          "repo": "torch-rechub",
+          "date": "2025-12-07",
+          "time": "2025-12-08T04:05:16+00:00",
+          "beijing_hour": 4,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/cc6e17518e6657872487518a0366af32c16d0cf7"
+        },
+        {
+          "message": "chore: initialize the subpackage `data`",
+          "repo": "torch-rechub",
+          "date": "2025-12-07",
+          "time": "2025-12-08T03:09:30+00:00",
+          "beijing_hour": 3,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/378cf8b673e8609ccd9866cb9d69a8e68805eac5"
+        },
+        {
+          "message": "chore: update `uv.lock` by running `uv lock`",
+          "repo": "torch-rechub",
+          "date": "2025-12-07",
+          "time": "2025-12-08T03:01:42+00:00",
+          "beijing_hour": 3,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/f3ea059d3120831150a915ba1e7e7ae9d6ae3e30"
+        },
+        {
+          "message": "chore: add an optional dep group `bigdata` that includes `pyarrow`",
+          "repo": "torch-rechub",
+          "date": "2025-12-07",
+          "time": "2025-12-08T03:00:38+00:00",
+          "beijing_hour": 3,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/51f0c51923c1f5b266d6271da85dd3117a46935e"
+        }
+      ],
+      "first_commit_date": "2025-12-07T19:00:38+00:00",
+      "last_commit_date": "2025-12-09T08:22:35+00:00",
+      "active_days": 3,
+      "avg_commits_per_day": 3.3333333333333335
     },
     "hrjtju": {
       "total_commits": 1,
@@ -787,72 +774,6 @@
       ],
       "first_commit_date": "2025-12-06T10:39:05+00:00",
       "last_commit_date": "2025-12-06T10:39:05+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 1.0
-    },
-    "mypopydev": {
-      "total_commits": 1,
-      "repos": [
-        "math-for-ai"
-      ],
-      "repo_count": 1,
-      "daily_commits": {
-        "2025-12-03": 1
-      },
-      "hourly_distribution": {
-        "1": 1
-      },
-      "beijing_hourly_distribution": {
-        "9": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Fix大写字母 \"A\" 的数学书法字体显示错误",
-          "repo": "math-for-ai",
-          "date": "2025-12-03",
-          "time": "2025-12-03T09:15:36+00:00",
-          "beijing_hour": 9,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/math-for-ai/commit/870a734e0c2f85a4de54d41393e3350127f1aba6"
-        }
-      ],
-      "first_commit_date": "2025-12-03T01:15:36+00:00",
-      "last_commit_date": "2025-12-03T01:15:36+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 1.0
-    },
-    "1iyouzhen": {
-      "total_commits": 1,
-      "repos": [
-        "dive-into-bishop-dl"
-      ],
-      "repo_count": 1,
-      "daily_commits": {
-        "2025-12-05": 1
-      },
-      "hourly_distribution": {
-        "9": 1
-      },
-      "beijing_hourly_distribution": {
-        "17": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Update ch8_1.md",
-          "repo": "dive-into-bishop-dl",
-          "date": "2025-12-05",
-          "time": "2025-12-05T17:51:48+00:00",
-          "beijing_hour": 17,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/dive-into-bishop-dl/commit/cf9000d0820e5a5bec6df6ac0ce65b9ac828bb5f"
-        }
-      ],
-      "first_commit_date": "2025-12-05T09:51:48+00:00",
-      "last_commit_date": "2025-12-05T09:51:48+00:00",
       "active_days": 1,
       "avg_commits_per_day": 1.0
     },
@@ -1040,39 +961,6 @@
       "last_commit_date": "2025-12-04T08:26:35+00:00",
       "active_days": 1,
       "avg_commits_per_day": 4.0
-    },
-    "Weihong-Liu": {
-      "total_commits": 1,
-      "repos": [
-        "algo-vis"
-      ],
-      "repo_count": 1,
-      "daily_commits": {
-        "2025-12-03": 1
-      },
-      "hourly_distribution": {
-        "7": 1
-      },
-      "beijing_hourly_distribution": {
-        "15": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "feat: 添加CUDA可视化",
-          "repo": "algo-vis",
-          "date": "2025-12-03",
-          "time": "2025-12-03T15:42:34+00:00",
-          "beijing_hour": 15,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/algo-vis/commit/ea77278105c2c1a646bb7235a04fc8851066354d"
-        }
-      ],
-      "first_commit_date": "2025-12-03T07:42:34+00:00",
-      "last_commit_date": "2025-12-03T07:42:34+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 1.0
     }
   },
   "optimization_stats": {
@@ -1084,7 +972,7 @@
       "user_repos": 565,
       "total": 1473
     },
-    "execution_time": "546.4s",
+    "execution_time": "508.9s",
     "optimization_enabled": true
   }
 }
