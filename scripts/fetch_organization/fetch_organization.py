@@ -86,7 +86,7 @@ def fetch_organization_data(key):
 
     # 2. 获取Datawhale的仓库列表和仓库详情，并进行写入
     repo_detail_res = fetch_organization_repo_detail(
-        CONFIG['DATAWHALE_ORGANIZATION_NAME'], github_token, ['.github'], origin_repo_detail_list)
+        CONFIG['DATAWHALE_ORGANIZATION_NAME'], github_token, ['.github'], origin_repo_detail_list, key)
     ensure_dir_and_write_files([repo_data_list_file_path, repo_data_list_file_path_with_key], json.dumps(
         repo_detail_res["repo_list"], indent=2, ensure_ascii=False))
 
@@ -147,7 +147,7 @@ if __name__ == "__main__":
 
     current_key = f"{year}-{month}"
     key_list = json.loads(read_file(CONFIG['FETCH_TIME_KEY_FILE_NAME']))
-    previous_key = key_list[-1]
+    previous_key = key_list[-3]
     if current_key not in key_list:
         key_list.append(current_key)
         ensure_dir_and_write_file(

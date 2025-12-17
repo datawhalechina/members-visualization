@@ -2,11 +2,30 @@
 
 <script setup>
 import Organization from './.vitepress/theme/organization/Organization.vue'
+
+import { ref, onMounted } from 'vue'
+
+// 使用 ref 响应式变量存储数据
+const startTime = ref('加载中...')
+const endTime = ref('加载中...')
+
+onMounted(async () => {
+  try {
+    const response = await fetch('/members-visualization/data/datawhalechina/fetch_time_key.json')
+    if (response.ok) {
+      const res = await response.json()
+      startTime.value = res[res.length - 4]
+      endTime.value = res[res.length - 1]
+    }
+  } catch (error) {
+    console.error('获取时间数据失败:', error)
+  }
+})
 </script>
 
 ## 同类组织数据概览
 
-以下是GitHub上 Star 数排名前十的知识分享类组织情况：
+以下是 GitHub 上 Star 数排名前十的知识分享类组织在 {{ startTime }} 至 {{ endTime }} 统计周期内的变化情况：
 
 <Organization />
 

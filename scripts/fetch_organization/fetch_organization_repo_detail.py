@@ -113,7 +113,44 @@ def get_github_star_count(organization_name, repo, token='', monthly_stars={}, m
     return output
 
 
-def fetch_organization_repo_detail(organization_name, token, ignore_repo_name_list, origin_repo_detail_list):
+# 填充没有接收到数据的月份，输入一个类似于「2025-1」的日期字符串，如果在「2025-1」之前有没有数据的情况，那么该月的monthly_stars是0，monthly_total_stars是前一个月的monthly_total_stars
+def fill_missing_months(input, key):
+    end_date = datetime.strptime(key, "%Y-%m")
+    star_date_list = list(input['monthly_stars'].keys())
+    if len(star_date_list) == 0:
+        return input
+    start_date_str = star_date_list[0]
+    start_date = datetime.strptime(start_date_str, "%Y-%m")
+    start_year = start_date.year
+    start_month = start_date.month
+    end_year = end_date.year
+    end_month = end_date.month
+    previous_key = f"{start_year}-{start_month}"
+    output = {
+        "repo_name": input["repo_name"],
+        "monthly_stars": {},
+        "monthly_total_stars": {},
+        "star_count": input["star_count"],
+    }
+    for year in range(start_year, end_year + 1):
+        for month in range(1, 13):
+            if year == start_year and month < start_month:
+                continue
+            if year == end_year and month > end_month:
+                break
+            date_str = f"{year}-{month}"
+            if date_str not in input['monthly_stars']:
+                input['monthly_stars'][date_str] = 0
+            if date_str not in input['monthly_total_stars']:
+                input['monthly_total_stars'][date_str] = input['monthly_total_stars'][previous_key]
+            output["monthly_stars"][date_str] = input["monthly_stars"][date_str]
+            output["monthly_total_stars"][date_str] = input["monthly_total_stars"][date_str]
+            previous_key = date_str
+
+    return output
+
+
+def fetch_organization_repo_detail(organization_name, token, ignore_repo_name_list, origin_repo_detail_list, month_key):
     repo_list = get_github_repo_by_organization_name(organization_name, token, ignore_repo_name_list)
     print(f"{organization_name} repo_list:", repo_list)
 
@@ -135,8 +172,10 @@ def fetch_organization_repo_detail(organization_name, token, ignore_repo_name_li
                 break
         output = get_github_star_count(organization_name, repo_name, token,
                                        origin_monthly_stars, origin_monthly_total_stars, origin_star_count)
-        repo_detail_list.append(output)
-        print(f"{organization_name} {repo_name} repo_detail:", output)
+        # 增加填充月份的逻辑
+        filled_output = fill_missing_months(output, month_key)
+        repo_detail_list.append(filled_output)
+        print(f"{organization_name} {repo_name} repo_detail:", filled_output)
 
     # 按star_count降序排序
     repo_detail_list.sort(key=lambda x: x['star_count'], reverse=True)
