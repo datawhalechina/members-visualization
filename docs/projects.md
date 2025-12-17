@@ -15,7 +15,7 @@ onMounted(async () => {
     const response = await fetch('/members-visualization/data/datawhalechina/fetch_time_key.json')
     if (response.ok) {
       const res = await response.json()
-      startTime.value = res[res.length - 2]
+      startTime.value = res[res.length - 4]
       endTime.value = res[res.length - 1]
     }
   } catch (error) {
