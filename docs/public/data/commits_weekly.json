@@ -1,16 +1,342 @@
 {
-  "update_time": "2025-12-18T22:18:55.956755",
+  "update_time": "2025-12-19T22:18:58.731838",
   "days_range": 7,
-  "total_commits": 166,
-  "total_repos": 14,
+  "total_commits": 194,
+  "total_repos": 16,
   "user_commits": {
+    "KMnO4-zx": {
+      "total_commits": 5,
+      "repos": [
+        "self-llm"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-12-19": 4,
+        "2025-12-18": 1
+      },
+      "hourly_distribution": {
+        "16": 2,
+        "14": 2,
+        "2": 1
+      },
+      "beijing_hourly_distribution": {
+        "0": 2,
+        "22": 2,
+        "10": 1
+      },
+      "night_owl_commits": 4,
+      "night_owl_percentage": 80.0,
+      "commit_messages": [
+        {
+          "message": "修复快速开始链接，确保指向正确的通用环境配置部分",
+          "repo": "self-llm",
+          "date": "2025-12-19",
+          "time": "2025-12-20T00:15:10+00:00",
+          "beijing_hour": 0,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/self-llm/commit/b0ffa4a17ccb58953ef2d2969811cbae88766548"
+        },
+        {
+          "message": "docs: 更新 README 结构并新增英文版本",
+          "repo": "self-llm",
+          "date": "2025-12-19",
+          "time": "2025-12-20T00:11:43+00:00",
+          "beijing_hour": 0,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/self-llm/commit/2ffa2ccef2c0928b4edec5ed201f7e1341d8e7aa"
+        },
+        {
+          "message": "更新 README.md 添加 Gemma3 和 Qwen3 的 AMD GPU 相关部署教程及贡献者信息",
+          "repo": "self-llm",
+          "date": "2025-12-19",
+          "time": "2025-12-19T22:49:23+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/self-llm/commit/49628ec55869c690b487c2cf0757aea3eede42a8"
+        },
+        {
+          "message": "Merge pull request #473 from LucaChen/master",
+          "repo": "self-llm",
+          "date": "2025-12-19",
+          "time": "2025-12-19T22:41:46+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/self-llm/commit/67b1ab9911216f6e95ab6fbb05777ee4cb44827d"
+        },
+        {
+          "message": "Merge pull request #472 from leo220yuyaodog/patch-1",
+          "repo": "self-llm",
+          "date": "2025-12-18",
+          "time": "2025-12-18T10:22:57+00:00",
+          "beijing_hour": 10,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/self-llm/commit/e6fcca74d3ef45227ff35916ffebcd18b9cf4cc7"
+        }
+      ],
+      "first_commit_date": "2025-12-18T02:22:57+00:00",
+      "last_commit_date": "2025-12-19T16:15:10+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 2.5
+    },
+    "LucaChen": {
+      "total_commits": 3,
+      "repos": [
+        "self-llm"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-12-18": 1,
+        "2025-12-17": 2
+      },
+      "hourly_distribution": {
+        "2": 1,
+        "9": 1,
+        "7": 1
+      },
+      "beijing_hourly_distribution": {
+        "10": 1,
+        "17": 1,
+        "15": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "Update 7-gemma3-4b-it AMD环境准备.md",
+          "repo": "self-llm",
+          "date": "2025-12-18",
+          "time": "2025-12-18T10:34:29+00:00",
+          "beijing_hour": 10,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/self-llm/commit/f1a4ed2c1df5bb2bff878cd07c459043007c4c71"
+        },
+        {
+          "message": "添加Gemma3AMD教程",
+          "repo": "self-llm",
+          "date": "2025-12-17",
+          "time": "2025-12-17T17:21:28+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/self-llm/commit/63a4a6a65e3f76030f1adf47213d7232fa4a05a1"
+        },
+        {
+          "message": "Qwen3AMD部署教程",
+          "repo": "self-llm",
+          "date": "2025-12-17",
+          "time": "2025-12-17T15:24:49+00:00",
+          "beijing_hour": 15,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/self-llm/commit/ce4e8bd8e05f5c15e208029a224c79f45aa0d69f"
+        }
+      ],
+      "first_commit_date": "2025-12-17T07:24:49+00:00",
+      "last_commit_date": "2025-12-18T02:34:29+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 1.5
+    },
+    "FutureUnreal": {
+      "total_commits": 30,
+      "repos": [
+        "base-nlp",
+        "all-in-rag"
+      ],
+      "repo_count": 2,
+      "daily_commits": {
+        "2025-12-17": 1,
+        "2025-12-19": 8,
+        "2025-12-16": 1,
+        "2025-12-15": 3,
+        "2025-12-14": 10,
+        "2025-12-13": 7
+      },
+      "hourly_distribution": {
+        "15": 4,
+        "13": 4,
+        "12": 7,
+        "9": 2,
+        "8": 2,
+        "16": 5,
+        "14": 1,
+        "17": 5
+      },
+      "beijing_hourly_distribution": {
+        "23": 4,
+        "21": 4,
+        "20": 7,
+        "17": 2,
+        "16": 2,
+        "0": 5,
+        "22": 1,
+        "1": 5
+      },
+      "night_owl_commits": 15,
+      "night_owl_percentage": 50.0,
+      "commit_messages": [
+        {
+          "message": "update",
+          "repo": "all-in-rag",
+          "date": "2025-12-17",
+          "time": "2025-12-17T23:29:17+00:00",
+          "beijing_hour": 23,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/all-in-rag/commit/50b30de511ca2c96b1bf68e9d7c67c7ebf576c22"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-19",
+          "time": "2025-12-19T21:05:39+00:00",
+          "beijing_hour": 21,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/601e516d850c5adf87a327df78e481999e66e226"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:58:49+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/c679fedd8b0b865da1cd1bdde0ff7d6c05830bff"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:41:26+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/38f1ce8a3f61622b8cf5b00f0535c1a4458406af"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:40:39+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/4524a79dea1407cd64e1d08669a53c6d749c3595"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:39:27+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/4e5e486468464641c8af8eec4373a2168de82f64"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:37:51+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/985853e708cbdeec02e56f36eccc95221115dfdd"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:35:49+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/58b5a01d387f435ea1c2b44582086085914a0108"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:34:44+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/16adfa9fbf3ab71a39eea37798039fc3630899d6"
+        },
+        {
+          "message": "update",
+          "repo": "base-nlp",
+          "date": "2025-12-16",
+          "time": "2025-12-16T17:01:56+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/base-nlp/commit/468a773c956589c04c70641dd88cd50b9f323114"
+        }
+      ],
+      "first_commit_date": "2025-12-13T15:34:07+00:00",
+      "last_commit_date": "2025-12-19T13:05:39+00:00",
+      "active_days": 6,
+      "avg_commits_per_day": 5.0
+    },
+    "andongBlue": {
+      "total_commits": 4,
+      "repos": [
+        "so-large-lm"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-12-18": 4
+      },
+      "hourly_distribution": {
+        "12": 4
+      },
+      "beijing_hourly_distribution": {
+        "20": 4
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "Update README.md",
+          "repo": "so-large-lm",
+          "date": "2025-12-18",
+          "time": "2025-12-18T20:45:18+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/so-large-lm/commit/aec61236446157608dad94af513382114240e1c0"
+        },
+        {
+          "message": "Update README.md",
+          "repo": "so-large-lm",
+          "date": "2025-12-18",
+          "time": "2025-12-18T20:41:58+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/so-large-lm/commit/5453b741da92fdc411cc068038353b6aa7d98102"
+        },
+        {
+          "message": "Add files via upload",
+          "repo": "so-large-lm",
+          "date": "2025-12-18",
+          "time": "2025-12-18T20:40:42+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/so-large-lm/commit/439f1740958bf7720aaa0301825e9d7332f41645"
+        },
+        {
+          "message": "Update README.md",
+          "repo": "so-large-lm",
+          "date": "2025-12-18",
+          "time": "2025-12-18T20:39:11+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/so-large-lm/commit/25c14388a12480a06563b34ebb38aec94444ec45"
+        }
+      ],
+      "first_commit_date": "2025-12-18T12:39:11+00:00",
+      "last_commit_date": "2025-12-18T12:45:18+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 4.0
+    },
     "Eyre921": {
-      "total_commits": 41,
+      "total_commits": 53,
       "repos": [
         "vibe-vibe"
       ],
       "repo_count": 1,
       "daily_commits": {
+        "2025-12-19": 9,
+        "2025-12-18": 3,
         "2025-12-17": 3,
         "2025-12-16": 11,
         "2025-12-15": 21,
@@ -18,6 +344,8 @@
         "2025-12-13": 2
       },
       "hourly_distribution": {
+        "18": 9,
+        "4": 3,
         "15": 13,
         "17": 1,
         "16": 7,
@@ -26,6 +354,8 @@
         "12": 6
       },
       "beijing_hourly_distribution": {
+        "2": 9,
+        "12": 3,
         "23": 13,
         "1": 1,
         "0": 7,
@@ -33,104 +363,104 @@
         "21": 8,
         "20": 6
       },
-      "night_owl_commits": 27,
-      "night_owl_percentage": 65.9,
+      "night_owl_commits": 36,
+      "night_owl_percentage": 67.9,
       "commit_messages": [
         {
-          "message": "docs: 更新文档首页添加课程局限性说明",
+          "message": "update advanced title",
           "repo": "vibe-vibe",
-          "date": "2025-12-17",
-          "time": "2025-12-17T23:22:25+00:00",
-          "beijing_hour": 23,
+          "date": "2025-12-19",
+          "time": "2025-12-20T02:42:19+00:00",
+          "beijing_hour": 2,
           "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/vibe-vibe/commit/d2d5669d7fe45bd39096952a04ed6c5896294ab1"
+          "url": "https://github.com/datawhalechina/vibe-vibe/commit/87f755bba5a1999ef9e21694ba9426d3ace31bc0"
         },
         {
-          "message": "docs: 更新文档首页添加课程局限性说明",
+          "message": "update advanced title",
           "repo": "vibe-vibe",
-          "date": "2025-12-17",
-          "time": "2025-12-17T23:22:01+00:00",
-          "beijing_hour": 23,
+          "date": "2025-12-19",
+          "time": "2025-12-20T02:42:10+00:00",
+          "beijing_hour": 2,
           "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/vibe-vibe/commit/3d7cfd8225fcc19e9faaaeb79848d21097d602ef"
+          "url": "https://github.com/datawhalechina/vibe-vibe/commit/e59f1c7c6b17cecbda248cde7afa3d3cdde8dfbf"
         },
         {
-          "message": "docs: 更新文档首页添加课程局限性说明",
+          "message": "update advanced title",
           "repo": "vibe-vibe",
-          "date": "2025-12-17",
-          "time": "2025-12-17T23:21:39+00:00",
-          "beijing_hour": 23,
+          "date": "2025-12-19",
+          "time": "2025-12-20T02:41:26+00:00",
+          "beijing_hour": 2,
           "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/vibe-vibe/commit/0d3b75118aae1a545d796f574c1ad12e7e04c03d"
+          "url": "https://github.com/datawhalechina/vibe-vibe/commit/5c792cfa9cc377e43ed5ab74e2d21d9157a6582f"
         },
         {
-          "message": "1",
+          "message": "update giscus display",
           "repo": "vibe-vibe",
-          "date": "2025-12-16",
-          "time": "2025-12-17T01:07:31+00:00",
-          "beijing_hour": 1,
+          "date": "2025-12-19",
+          "time": "2025-12-20T02:33:35+00:00",
+          "beijing_hour": 2,
           "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/vibe-vibe/commit/a164a007aeeec63c0f7709be5041653f8e708bd9"
+          "url": "https://github.com/datawhalechina/vibe-vibe/commit/949196cbe752a0b8046455d224c397198043951d"
         },
         {
-          "message": "ci(workflow): 减少PR自动合并的CPU资源并添加合并选项",
+          "message": "update giscus display",
           "repo": "vibe-vibe",
-          "date": "2025-12-16",
-          "time": "2025-12-17T00:50:43+00:00",
-          "beijing_hour": 0,
+          "date": "2025-12-19",
+          "time": "2025-12-20T02:33:27+00:00",
+          "beijing_hour": 2,
           "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/vibe-vibe/commit/8f776f6be0651b1f3222b1dbbccdb266f78a5979"
+          "url": "https://github.com/datawhalechina/vibe-vibe/commit/f0467082111601c4d6009005bf219b8640123ba0"
         },
         {
-          "message": "调整develop分支CI配置中自动合并任务的资源限制及Docker镜像。",
+          "message": "update giscus display",
           "repo": "vibe-vibe",
-          "date": "2025-12-16",
-          "time": "2025-12-17T00:40:01+00:00",
-          "beijing_hour": 0,
+          "date": "2025-12-19",
+          "time": "2025-12-20T02:33:03+00:00",
+          "beijing_hour": 2,
           "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/vibe-vibe/commit/3596b41d51c9db19a543d904bc5050e878776dd5"
+          "url": "https://github.com/datawhalechina/vibe-vibe/commit/9725fd0876599129ae740f800911123da0e7f528"
         },
         {
-          "message": "调整develop分支CI配置中自动合并任务的资源限制及Docker镜像。",
+          "message": "update new advanced",
           "repo": "vibe-vibe",
-          "date": "2025-12-16",
-          "time": "2025-12-17T00:39:36+00:00",
-          "beijing_hour": 0,
+          "date": "2025-12-19",
+          "time": "2025-12-20T02:20:17+00:00",
+          "beijing_hour": 2,
           "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/vibe-vibe/commit/0447e9ee7edd37d4cd624f17d6c1b5d95d795180"
+          "url": "https://github.com/datawhalechina/vibe-vibe/commit/fa6f629758dda3c2621d4b40a3dee176d12448ff"
         },
         {
-          "message": "ci(workflow): 添加PR构建和自动合并工作流",
+          "message": "update new advanced",
           "repo": "vibe-vibe",
-          "date": "2025-12-16",
-          "time": "2025-12-17T00:37:03+00:00",
-          "beijing_hour": 0,
+          "date": "2025-12-19",
+          "time": "2025-12-20T02:20:07+00:00",
+          "beijing_hour": 2,
           "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/vibe-vibe/commit/470c195847d00229c092994157114c2ca272df8e"
+          "url": "https://github.com/datawhalechina/vibe-vibe/commit/118515daab766feb4e6833807b2d5f0ec81a8f07"
         },
         {
-          "message": "ci(workflow): 添加PR构建和自动合并工作流",
+          "message": "update new advanced",
           "repo": "vibe-vibe",
-          "date": "2025-12-16",
-          "time": "2025-12-17T00:33:12+00:00",
-          "beijing_hour": 0,
+          "date": "2025-12-19",
+          "time": "2025-12-20T02:19:24+00:00",
+          "beijing_hour": 2,
           "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/vibe-vibe/commit/7a856a847f113048793c947967ac0ff57e7d69d6"
+          "url": "https://github.com/datawhalechina/vibe-vibe/commit/6d02fbd6465c134e199478b99143b2eb825df9b0"
         },
         {
-          "message": "build: 添加@types/node依赖并优化CI配置",
+          "message": "docs: 下线原进阶版",
           "repo": "vibe-vibe",
-          "date": "2025-12-16",
-          "time": "2025-12-17T00:23:14+00:00",
-          "beijing_hour": 0,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/vibe-vibe/commit/ef62ea17a548434efbad15b4d9a595cd84390796"
+          "date": "2025-12-18",
+          "time": "2025-12-18T12:37:51+00:00",
+          "beijing_hour": 12,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/vibe-vibe/commit/ce7f82dbf7aa68c7603357061ca2ba3970f49326"
         }
       ],
       "first_commit_date": "2025-12-13T13:24:04+00:00",
-      "last_commit_date": "2025-12-17T15:22:25+00:00",
-      "active_days": 5,
-      "avg_commits_per_day": 8.2
+      "last_commit_date": "2025-12-19T18:42:19+00:00",
+      "active_days": 7,
+      "avg_commits_per_day": 7.571428571428571
     },
     "VDlkr4CECQjbI5jYpXYTGD+nfeyre": {
       "total_commits": 1,
@@ -241,7 +571,7 @@
       "avg_commits_per_day": 1.0
     },
     "jjyaoao": {
-      "total_commits": 9,
+      "total_commits": 8,
       "repos": [
         "hello-agents"
       ],
@@ -250,25 +580,24 @@
         "2025-12-17": 2,
         "2025-12-15": 1,
         "2025-12-14": 4,
-        "2025-12-13": 1,
-        "2025-12-12": 1
+        "2025-12-13": 1
       },
       "hourly_distribution": {
-        "7": 2,
+        "7": 1,
         "1": 1,
         "21": 1,
         "8": 4,
         "4": 1
       },
       "beijing_hourly_distribution": {
-        "15": 2,
+        "15": 1,
         "9": 1,
         "5": 1,
         "16": 4,
         "12": 1
       },
       "night_owl_commits": 1,
-      "night_owl_percentage": 11.1,
+      "night_owl_percentage": 12.5,
       "commit_messages": [
         {
           "message": "Merge pull request #219 from thunderbolt-fire/main",
@@ -341,21 +670,12 @@
           "beijing_hour": 12,
           "is_night_owl": false,
           "url": "https://github.com/datawhalechina/hello-agents/commit/d032a248a6752d5820418d547856a9c19e13c631"
-        },
-        {
-          "message": "update 8K star!",
-          "repo": "hello-agents",
-          "date": "2025-12-12",
-          "time": "2025-12-12T15:41:44+00:00",
-          "beijing_hour": 15,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-agents/commit/d25e845908e2dd55e8e1489a18a1a9e22ab8d150"
         }
       ],
-      "first_commit_date": "2025-12-12T07:41:44+00:00",
+      "first_commit_date": "2025-12-13T04:33:11+00:00",
       "last_commit_date": "2025-12-17T07:06:12+00:00",
-      "active_days": 5,
-      "avg_commits_per_day": 1.8
+      "active_days": 4,
+      "avg_commits_per_day": 2.0
     },
     "thunderbolt-fire": {
       "total_commits": 3,
@@ -410,39 +730,6 @@
       "active_days": 1,
       "avg_commits_per_day": 3.0
     },
-    "KMnO4-zx": {
-      "total_commits": 1,
-      "repos": [
-        "self-llm"
-      ],
-      "repo_count": 1,
-      "daily_commits": {
-        "2025-12-18": 1
-      },
-      "hourly_distribution": {
-        "2": 1
-      },
-      "beijing_hourly_distribution": {
-        "10": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Merge pull request #472 from leo220yuyaodog/patch-1",
-          "repo": "self-llm",
-          "date": "2025-12-18",
-          "time": "2025-12-18T10:22:57+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/self-llm/commit/e6fcca74d3ef45227ff35916ffebcd18b9cf4cc7"
-        }
-      ],
-      "first_commit_date": "2025-12-18T02:22:57+00:00",
-      "last_commit_date": "2025-12-18T02:22:57+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 1.0
-    },
     "lta155": {
       "total_commits": 1,
       "repos": [
@@ -476,224 +763,130 @@
       "active_days": 1,
       "avg_commits_per_day": 1.0
     },
-    "FutureUnreal": {
-      "total_commits": 23,
+    "Halukisan": {
+      "total_commits": 2,
       "repos": [
-        "base-nlp",
-        "all-in-rag"
-      ],
-      "repo_count": 2,
-      "daily_commits": {
-        "2025-12-17": 1,
-        "2025-12-16": 1,
-        "2025-12-15": 3,
-        "2025-12-14": 10,
-        "2025-12-13": 7,
-        "2025-12-12": 1
-      },
-      "hourly_distribution": {
-        "15": 5,
-        "9": 2,
-        "8": 2,
-        "16": 5,
-        "14": 1,
-        "13": 3,
-        "17": 5
-      },
-      "beijing_hourly_distribution": {
-        "23": 5,
-        "17": 2,
-        "16": 2,
-        "0": 5,
-        "22": 1,
-        "21": 3,
-        "1": 5
-      },
-      "night_owl_commits": 16,
-      "night_owl_percentage": 69.6,
-      "commit_messages": [
-        {
-          "message": "update",
-          "repo": "all-in-rag",
-          "date": "2025-12-17",
-          "time": "2025-12-17T23:29:17+00:00",
-          "beijing_hour": 23,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/all-in-rag/commit/50b30de511ca2c96b1bf68e9d7c67c7ebf576c22"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-16",
-          "time": "2025-12-16T17:01:56+00:00",
-          "beijing_hour": 17,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/468a773c956589c04c70641dd88cd50b9f323114"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-15",
-          "time": "2025-12-15T17:02:19+00:00",
-          "beijing_hour": 17,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/c09cf244f701e789cb9b59fdb25ecda9ff00cedf"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-15",
-          "time": "2025-12-15T16:59:45+00:00",
-          "beijing_hour": 16,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/e0750ca6e82a7bb34be76e8c86cf0884e23c7e50"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-15",
-          "time": "2025-12-15T16:58:24+00:00",
-          "beijing_hour": 16,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/1342902bf6400de37d125405c5d93631142118da"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-14",
-          "time": "2025-12-15T00:56:11+00:00",
-          "beijing_hour": 0,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/421b1c1b314fc1edb50354841acfbef47e7f600f"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-14",
-          "time": "2025-12-15T00:49:01+00:00",
-          "beijing_hour": 0,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/3556d26172c60bd0fa1098e9b35c1e74d4509e16"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-14",
-          "time": "2025-12-15T00:24:26+00:00",
-          "beijing_hour": 0,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/d4a3cf72d6eb47d321c8da822603302355786187"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-14",
-          "time": "2025-12-15T00:19:31+00:00",
-          "beijing_hour": 0,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/77c3edc6bd960df55d6ec4e44791222ac26e4723"
-        },
-        {
-          "message": "update",
-          "repo": "base-nlp",
-          "date": "2025-12-14",
-          "time": "2025-12-14T23:35:37+00:00",
-          "beijing_hour": 23,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/base-nlp/commit/f71ead057b0daa82ca010e37fbafa73b31de37d4"
-        }
-      ],
-      "first_commit_date": "2025-12-12T15:38:57+00:00",
-      "last_commit_date": "2025-12-17T15:29:17+00:00",
-      "active_days": 6,
-      "avg_commits_per_day": 3.8333333333333335
-    },
-    "andongBlue": {
-      "total_commits": 4,
-      "repos": [
-        "so-large-lm"
+        "easy-vectordb"
       ],
       "repo_count": 1,
       "daily_commits": {
-        "2025-12-18": 4
+        "2025-12-19": 1,
+        "2025-12-18": 1
       },
       "hourly_distribution": {
-        "12": 4
+        "12": 1,
+        "2": 1
       },
       "beijing_hourly_distribution": {
-        "20": 4
+        "20": 1,
+        "10": 1
       },
       "night_owl_commits": 0,
       "night_owl_percentage": 0.0,
       "commit_messages": [
         {
-          "message": "Update README.md",
-          "repo": "so-large-lm",
-          "date": "2025-12-18",
-          "time": "2025-12-18T20:45:18+00:00",
+          "message": "Merge pull request #79 from Halukisan/dev",
+          "repo": "easy-vectordb",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:46:45+00:00",
           "beijing_hour": 20,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/so-large-lm/commit/aec61236446157608dad94af513382114240e1c0"
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/716e79ee9f8430284b6dfa98c779c00e620deb41"
         },
         {
-          "message": "Update README.md",
-          "repo": "so-large-lm",
+          "message": "Merge pull request #78 from Halukisan/dev",
+          "repo": "easy-vectordb",
           "date": "2025-12-18",
-          "time": "2025-12-18T20:41:58+00:00",
-          "beijing_hour": 20,
+          "time": "2025-12-18T10:34:10+00:00",
+          "beijing_hour": 10,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/so-large-lm/commit/5453b741da92fdc411cc068038353b6aa7d98102"
-        },
-        {
-          "message": "Add files via upload",
-          "repo": "so-large-lm",
-          "date": "2025-12-18",
-          "time": "2025-12-18T20:40:42+00:00",
-          "beijing_hour": 20,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/so-large-lm/commit/439f1740958bf7720aaa0301825e9d7332f41645"
-        },
-        {
-          "message": "Update README.md",
-          "repo": "so-large-lm",
-          "date": "2025-12-18",
-          "time": "2025-12-18T20:39:11+00:00",
-          "beijing_hour": 20,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/so-large-lm/commit/25c14388a12480a06563b34ebb38aec94444ec45"
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/a9f0bda8cbf15f4d47e29f3607c93ec88813c323"
         }
       ],
-      "first_commit_date": "2025-12-18T12:39:11+00:00",
-      "last_commit_date": "2025-12-18T12:45:18+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 4.0
+      "first_commit_date": "2025-12-18T02:34:10+00:00",
+      "last_commit_date": "2025-12-19T12:46:45+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 1.0
+    },
+    "liuxiao": {
+      "total_commits": 3,
+      "repos": [
+        "easy-vectordb"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-12-19": 1,
+        "2025-12-18": 2
+      },
+      "hourly_distribution": {
+        "12": 1,
+        "2": 1,
+        "1": 1
+      },
+      "beijing_hourly_distribution": {
+        "20": 1,
+        "10": 1,
+        "9": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "update:BM25的总结部分",
+          "repo": "easy-vectordb",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:46:03+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/8fecdf42a60fcbf606cbd4191e6ccd65aa2d0c09"
+        },
+        {
+          "message": "update:milvus底层：数据处理",
+          "repo": "easy-vectordb",
+          "date": "2025-12-18",
+          "time": "2025-12-18T10:33:29+00:00",
+          "beijing_hour": 10,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/6d42bfcc866423ca59765ddb23272337cbd70161"
+        },
+        {
+          "message": "Merge remote-tracking branch 'upstream/main'",
+          "repo": "easy-vectordb",
+          "date": "2025-12-18",
+          "time": "2025-12-18T09:26:49+00:00",
+          "beijing_hour": 9,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vectordb/commit/447764bd21e2ebc1819d3860d0dc1861e3527620"
+        }
+      ],
+      "first_commit_date": "2025-12-18T01:26:49+00:00",
+      "last_commit_date": "2025-12-19T12:46:03+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 1.5
     },
     "muxiaoxiong": {
-      "total_commits": 7,
+      "total_commits": 6,
       "repos": [
-        "members-visualization",
-        "easy-vectordb"
+        "easy-vectordb",
+        "members-visualization"
       ],
       "repo_count": 2,
       "daily_commits": {
         "2025-12-18": 2,
         "2025-12-15": 2,
         "2025-12-13": 1,
-        "2025-12-12": 1,
         "2025-12-17": 1
       },
       "hourly_distribution": {
         "3": 2,
         "7": 2,
         "0": 1,
-        "9": 1,
         "11": 1
       },
       "beijing_hourly_distribution": {
         "11": 2,
         "15": 2,
         "8": 1,
-        "17": 1,
         "19": 1
       },
       "night_owl_commits": 0,
@@ -745,15 +938,6 @@
           "url": "https://github.com/datawhalechina/easy-vectordb/commit/ee2c479f53e0c46fb3123c0b7cf1e943ed62151e"
         },
         {
-          "message": "Update README.md",
-          "repo": "easy-vectordb",
-          "date": "2025-12-12",
-          "time": "2025-12-12T17:15:32+00:00",
-          "beijing_hour": 17,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vectordb/commit/10b476a72ec1c7f59d4222f2561bd402d6854c5b"
-        },
-        {
           "message": "Merge pull request #18 from shadowings-zy/main",
           "repo": "members-visualization",
           "date": "2025-12-17",
@@ -763,124 +947,115 @@
           "url": "https://github.com/datawhalechina/members-visualization/commit/569cea2e07474e22fa6a69bec75ae571ad439cf3"
         }
       ],
-      "first_commit_date": "2025-12-12T09:15:32+00:00",
+      "first_commit_date": "2025-12-13T00:37:43+00:00",
       "last_commit_date": "2025-12-18T03:22:29+00:00",
-      "active_days": 5,
-      "avg_commits_per_day": 1.4
+      "active_days": 4,
+      "avg_commits_per_day": 1.5
     },
-    "Halukisan": {
-      "total_commits": 1,
+    "Ethan-Chen-plus": {
+      "total_commits": 4,
       "repos": [
-        "easy-vectordb"
+        "ai-hardware-robotics"
       ],
       "repo_count": 1,
       "daily_commits": {
-        "2025-12-18": 1
+        "2025-12-19": 4
       },
       "hourly_distribution": {
-        "2": 1
+        "12": 4
       },
       "beijing_hourly_distribution": {
-        "10": 1
+        "20": 4
       },
       "night_owl_commits": 0,
       "night_owl_percentage": 0.0,
       "commit_messages": [
         {
-          "message": "Merge pull request #78 from Halukisan/dev",
-          "repo": "easy-vectordb",
-          "date": "2025-12-18",
-          "time": "2025-12-18T10:34:10+00:00",
-          "beijing_hour": 10,
+          "message": "1219",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:26:00+00:00",
+          "beijing_hour": 20,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vectordb/commit/a9f0bda8cbf15f4d47e29f3607c93ec88813c323"
-        }
-      ],
-      "first_commit_date": "2025-12-18T02:34:10+00:00",
-      "last_commit_date": "2025-12-18T02:34:10+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 1.0
-    },
-    "liuxiao": {
-      "total_commits": 2,
-      "repos": [
-        "easy-vectordb"
-      ],
-      "repo_count": 1,
-      "daily_commits": {
-        "2025-12-18": 2
-      },
-      "hourly_distribution": {
-        "2": 1,
-        "1": 1
-      },
-      "beijing_hourly_distribution": {
-        "10": 1,
-        "9": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "update:milvus底层：数据处理",
-          "repo": "easy-vectordb",
-          "date": "2025-12-18",
-          "time": "2025-12-18T10:33:29+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vectordb/commit/6d42bfcc866423ca59765ddb23272337cbd70161"
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/6204efc97bfbc4cfd216d9356674b3d6c37a69cd"
         },
         {
-          "message": "Merge remote-tracking branch 'upstream/main'",
-          "repo": "easy-vectordb",
-          "date": "2025-12-18",
-          "time": "2025-12-18T09:26:49+00:00",
-          "beijing_hour": 9,
+          "message": "1219",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:23:24+00:00",
+          "beijing_hour": 20,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vectordb/commit/447764bd21e2ebc1819d3860d0dc1861e3527620"
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/491e2b42c8f5d3b129e0e02997fae47473097586"
+        },
+        {
+          "message": "Merge branch 'main' of https://github.com/datawhalechina/ai-hardware-robotics",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:12:26+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/e89b6f0e743d13c7d44b58ed7376f4f8259520d3"
+        },
+        {
+          "message": "update1219",
+          "repo": "ai-hardware-robotics",
+          "date": "2025-12-19",
+          "time": "2025-12-19T20:06:00+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/ai-hardware-robotics/commit/2d6207560fe848b912b39ed0c46fc356adbc37f4"
         }
       ],
-      "first_commit_date": "2025-12-18T01:26:49+00:00",
-      "last_commit_date": "2025-12-18T02:33:29+00:00",
+      "first_commit_date": "2025-12-19T12:06:00+00:00",
+      "last_commit_date": "2025-12-19T12:26:00+00:00",
       "active_days": 1,
-      "avg_commits_per_day": 2.0
+      "avg_commits_per_day": 4.0
     },
     "1985312383": {
-      "total_commits": 9,
+      "total_commits": 7,
       "repos": [
+        "members-visualization",
         "torch-rechub",
-        "easy-vectordb"
+        "med-imaging-primer"
       ],
-      "repo_count": 2,
+      "repo_count": 3,
       "daily_commits": {
-        "2025-12-12": 6,
+        "2025-12-19": 4,
         "2025-12-16": 3
       },
       "hourly_distribution": {
-        "18": 1,
-        "20": 3,
-        "1": 2,
-        "21": 1,
-        "19": 2
-      },
-      "beijing_hourly_distribution": {
-        "2": 1,
-        "4": 3,
         "9": 2,
-        "5": 1,
+        "20": 1,
+        "1": 2,
         "3": 2
       },
-      "night_owl_commits": 7,
-      "night_owl_percentage": 77.8,
+      "beijing_hourly_distribution": {
+        "17": 2,
+        "4": 1,
+        "9": 2,
+        "11": 2
+      },
+      "night_owl_commits": 1,
+      "night_owl_percentage": 14.3,
       "commit_messages": [
         {
-          "message": "Add and update images, enhance vector DB documentation",
-          "repo": "easy-vectordb",
-          "date": "2025-12-12",
-          "time": "2025-12-13T02:35:44+00:00",
-          "beijing_hour": 2,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/easy-vectordb/commit/0915ea673774e39795223abb14dab3b47e2dca92"
+          "message": "Add banner image to README",
+          "repo": "members-visualization",
+          "date": "2025-12-19",
+          "time": "2025-12-19T17:44:13+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/members-visualization/commit/228b4628552ead7a9f679be06ab6eb534c5c1d4f"
+        },
+        {
+          "message": "Add banner",
+          "repo": "members-visualization",
+          "date": "2025-12-19",
+          "time": "2025-12-19T17:43:09+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/members-visualization/commit/1acc5671dceced96d11e9e677ca05d8aa9bf22e7"
         },
         {
           "message": "Merge pull request #151 from ywuenthought/refactor/vector-indexer",
@@ -910,55 +1085,79 @@
           "url": "https://github.com/datawhalechina/torch-rechub/commit/1fe84b69bce7bcf4296d3b96f59d8dfff93cea5d"
         },
         {
-          "message": "Merge pull request #150 from 1985312383/main",
-          "repo": "torch-rechub",
-          "date": "2025-12-12",
-          "time": "2025-12-13T05:07:23+00:00",
-          "beijing_hour": 5,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/793bf345a0673fbff92d7524d0e53cf2824141b5"
+          "message": "Merge pull request #18 from 1985312383/main",
+          "repo": "med-imaging-primer",
+          "date": "2025-12-19",
+          "time": "2025-12-19T11:27:55+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/med-imaging-primer/commit/4112581e0fb43e3253e486edf62d23a930357def"
         },
         {
-          "message": "Add ONNX quantization utilities and enhance export",
-          "repo": "torch-rechub",
-          "date": "2025-12-12",
-          "time": "2025-12-13T04:58:43+00:00",
-          "beijing_hour": 4,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/01bd90b2e8beb6c64821829485288ae49348e0cc"
-        },
-        {
-          "message": "Update 05_Model_Export_and_Serving.ipynb",
-          "repo": "torch-rechub",
-          "date": "2025-12-12",
-          "time": "2025-12-13T04:52:21+00:00",
-          "beijing_hour": 4,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/3684c373e8445d15eb4bb9d0e037af9d851bbf00"
-        },
-        {
-          "message": "Update 05_Model_Export_and_Serving.ipynb",
-          "repo": "torch-rechub",
-          "date": "2025-12-12",
-          "time": "2025-12-13T03:59:01+00:00",
-          "beijing_hour": 3,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/60a62eef15fb468d98365d6dfab8190bb1cc9176"
-        },
-        {
-          "message": "Add quickstart and model tutorial notebooks",
-          "repo": "torch-rechub",
-          "date": "2025-12-12",
-          "time": "2025-12-13T03:56:07+00:00",
-          "beijing_hour": 3,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/4310becbf6555443c270cd5d477ec8d0df651b48"
+          "message": "Refactor imaging modality docs and update sidebar config",
+          "repo": "med-imaging-primer",
+          "date": "2025-12-19",
+          "time": "2025-12-19T11:20:45+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/med-imaging-primer/commit/0878aeec762edd924056c14b5abf07a0b3e9322a"
         }
       ],
-      "first_commit_date": "2025-12-12T18:35:44+00:00",
-      "last_commit_date": "2025-12-16T20:52:12+00:00",
+      "first_commit_date": "2025-12-16T01:28:15+00:00",
+      "last_commit_date": "2025-12-19T09:44:13+00:00",
       "active_days": 2,
-      "avg_commits_per_day": 4.5
+      "avg_commits_per_day": 3.5
+    },
+    "shadowings-zy": {
+      "total_commits": 3,
+      "repos": [
+        "members-visualization"
+      ],
+      "repo_count": 1,
+      "daily_commits": {
+        "2025-12-17": 3
+      },
+      "hourly_distribution": {
+        "10": 3
+      },
+      "beijing_hourly_distribution": {
+        "18": 3
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "feat: 修复问题",
+          "repo": "members-visualization",
+          "date": "2025-12-17",
+          "time": "2025-12-17T18:59:13+00:00",
+          "beijing_hour": 18,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/members-visualization/commit/c1eb87ad68df29f8f7226a9d5b60acd5eae2e646"
+        },
+        {
+          "message": "feat: 有效时间改为3个月",
+          "repo": "members-visualization",
+          "date": "2025-12-17",
+          "time": "2025-12-17T18:43:20+00:00",
+          "beijing_hour": 18,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/members-visualization/commit/8d9c6c84647345a8d317c8818d3a2a2a43605df5"
+        },
+        {
+          "message": "fix: 更新数据",
+          "repo": "members-visualization",
+          "date": "2025-12-17",
+          "time": "2025-12-17T18:43:10+00:00",
+          "beijing_hour": 18,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/members-visualization/commit/0c64a8cf5ed6a30f0fe04a6526b79792e6b8af2f"
+        }
+      ],
+      "first_commit_date": "2025-12-17T10:43:10+00:00",
+      "last_commit_date": "2025-12-17T10:59:13+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 3.0
     },
     "ywuenthought": {
       "total_commits": 22,
@@ -1091,57 +1290,6 @@
       "last_commit_date": "2025-12-16T17:28:18+00:00",
       "active_days": 3,
       "avg_commits_per_day": 7.333333333333333
-    },
-    "shadowings-zy": {
-      "total_commits": 3,
-      "repos": [
-        "members-visualization"
-      ],
-      "repo_count": 1,
-      "daily_commits": {
-        "2025-12-17": 3
-      },
-      "hourly_distribution": {
-        "10": 3
-      },
-      "beijing_hourly_distribution": {
-        "18": 3
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "feat: 修复问题",
-          "repo": "members-visualization",
-          "date": "2025-12-17",
-          "time": "2025-12-17T18:59:13+00:00",
-          "beijing_hour": 18,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/members-visualization/commit/c1eb87ad68df29f8f7226a9d5b60acd5eae2e646"
-        },
-        {
-          "message": "feat: 有效时间改为3个月",
-          "repo": "members-visualization",
-          "date": "2025-12-17",
-          "time": "2025-12-17T18:43:20+00:00",
-          "beijing_hour": 18,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/members-visualization/commit/8d9c6c84647345a8d317c8818d3a2a2a43605df5"
-        },
-        {
-          "message": "fix: 更新数据",
-          "repo": "members-visualization",
-          "date": "2025-12-17",
-          "time": "2025-12-17T18:43:10+00:00",
-          "beijing_hour": 18,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/members-visualization/commit/0c64a8cf5ed6a30f0fe04a6526b79792e6b8af2f"
-        }
-      ],
-      "first_commit_date": "2025-12-17T10:43:10+00:00",
-      "last_commit_date": "2025-12-17T10:59:13+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 3.0
     },
     "Sm1les": {
       "total_commits": 27,
@@ -1461,7 +1609,7 @@
       "user_repos": 568,
       "total": 1479
     },
-    "execution_time": "504.9s",
+    "execution_time": "477.1s",
     "optimization_enabled": true
   }
 }
