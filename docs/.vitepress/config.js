@@ -62,6 +62,7 @@ module.exports = {
       { text: "🏅 开源荣誉", link: "/rewards" }, // 新增开源荣誉导航项
       { text: "👍🏻 组织项目统计", link: "/projects" },
       { text: "📚 同类组织统计", link: "/organization" },
+      { text: "🔧 GraphQL API", link: "/graphql-api" }, // 新增 GraphQL API 文档
       { text: "⭐ 点 Star", link: "/star" },
       {
         text: "🔗 相关链接",
@@ -89,6 +90,7 @@ module.exports = {
             { text: "🏅 开源荣誉", link: "/rewards" }, // 新增开源荣誉导航项
             { text: "👍🏻 组织项目统计", link: "/projects" },
             { text: "📚 同类组织统计", link: "/organization" },
+            { text: "🔧 GraphQL API", link: "/graphql-api" }, // 新增 GraphQL API 文档
             { text: "⭐ 点 Star", link: "/star" },
           ],
         },
