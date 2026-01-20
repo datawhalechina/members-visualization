@@ -2,7 +2,7 @@
 <div class="reward-card-container">
   <div class="reward-card">
     <img 
-      src="/rewards/2025Q4.jpeg" 
+      src="/rewards/2025Q4.png" 
       alt="2025年Q4季度开源贡献奖励" 
       class="reward-img"
       onerror="this.src='/rewards/default-reward.png'"
