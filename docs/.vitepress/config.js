@@ -1,11 +1,13 @@
-// 根据环境动态设置 base 路径
-const base =
-  process.env.NODE_ENV === "production" ? "/members-visualization/" : "/";
+// 1. 获取环境变量并判断
+// 如果环境变量 EDGEONE 等于 '1'，说明在 EdgeOne 环境，使用根路径 '/'
+// 否则默认是 GitHub Pages 环境，使用仓库子路径
+const isEdgeOne = process.env.EDGEONE === '1'
+const baseConfig = isEdgeOne ? '/' : '/members-visualization/'
 
 module.exports = {
   title: "Datawhale 数据可视化",
   description: "Datawhale 组织数据可视化展示平台",
-  base,
+  base: baseConfig,
 
   // 语言设置
   lang: "zh-CN",
