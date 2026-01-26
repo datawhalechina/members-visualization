@@ -48,8 +48,8 @@ export default defineConfig({
       },
     ],
     ["meta", { property: "og:type", content: "website" }],
-    ["link", { rel: "icon", type: "image/png", href: `${base}logo.png` }],
-    ["link", { rel: "apple-touch-icon", href: `${base}logo.png` }],
+    ["link", { rel: "icon", type: "image/png", href: `${baseConfig}logo.png` }],
+    ["link", { rel: "apple-touch-icon", href: `${baseConfig}logo.png` }],
   ],
 
   themeConfig: {
