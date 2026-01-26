@@ -105,8 +105,8 @@ module.exports = {
 
     // 页脚
     footer: {
-      message: "基于 MIT 协议发布 | 使用 VitePress + ECharts 构建",
-      copyright: "Copyright © 2025 Datawhale 开源社区",
+      message: '<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2026002630号-1</a> | <a href="https://beian.mps.gov.cn/#/query/webSearch?code=11010602202215" rel="noreferrer" target="_blank">京公网安备11010602202215号</a>',
+      copyright: '基于 MIT 协议发布 | 使用 VitePress + ECharts 构建'
     },
 
     // 搜索配置 - 暂时简化
