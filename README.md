@@ -18,6 +18,9 @@ _智能化的开源社区贡献者分析与展示系统_
 
 ### [🚀 在线体验](https://datawhalechina.github.io/members-visualization/) | [📖 使用文档](#-快速开始) | [🤝 参与贡献](#-贡献指南)
 
+Github访问链接：https://datawhalechina.github.io/members-visualization/
+Datawhale专属链接：https://mv.datawhale.cc/
+
 </div>
 
 ---
