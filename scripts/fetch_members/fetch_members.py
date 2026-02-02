@@ -84,7 +84,7 @@ CONFIG = {
         'coveralls',
         'travis-ci',
         'circleci',
-        'claude',
+        'Claude',
 
         # 明确的无效账户
         'noreply',
