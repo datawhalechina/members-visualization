@@ -1,4 +1,4 @@
-# 👍🏻 组织项目统计
+# 👍🏻 项目统计
 
 <script setup>
 import ProjectStar from './.vitepress/theme/projects/ProjectStar.vue'
