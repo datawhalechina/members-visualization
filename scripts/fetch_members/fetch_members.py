@@ -631,25 +631,12 @@ def check_existing_data():
 
 
 def backup_existing_data():
-    """备份现有数据"""
+    """备份现有数据（已禁用，直接覆盖）"""
+    # 不再创建备份文件，直接覆盖以节省空间
     if os.path.exists(CONFIG['OUTPUT_FILE']):
-        # 将Path对象转换为字符串进行操作
-        output_file_str = str(CONFIG['OUTPUT_FILE'])
-        backup_path = output_file_str.replace(
-            '.csv', f'.backup.{int(time.time())}.csv')
-        import shutil
-        shutil.copy2(CONFIG['OUTPUT_FILE'], backup_path)
-        print(f"📋 已备份现有数据: {backup_path}")
-        return backup_path
+        print(f"📋 发现现有数据，将直接覆盖: {CONFIG['OUTPUT_FILE']}")
     if os.path.exists(CONFIG['OUTPUT_JSON_FILE']):
-        # 将Path对象转换为字符串进行操作
-        output_file_str = str(CONFIG['OUTPUT_JSON_FILE'])
-        backup_path = output_file_str.replace(
-            '.json', f'.backup.{int(time.time())}.json')
-        import shutil
-        shutil.copy2(CONFIG['OUTPUT_JSON_FILE'], backup_path)
-        print(f"📋 已备份现有json数据: {backup_path}")
-        return backup_path
+        print(f"📋 发现现有JSON数据，将直接覆盖: {CONFIG['OUTPUT_JSON_FILE']}")
     return None
 
 
