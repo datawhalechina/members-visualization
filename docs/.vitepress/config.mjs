@@ -62,9 +62,9 @@ export default defineConfig({
       { text: "🏠 首页", link: "/" },
       { text: "🏆 贡献者榜单", link: "/rankings" },
       { text: "👥 贡献者列表", link: "/members" },
-      { text: "📈 贡献者数据", link: "/stats" },
-      { text: "🏅 开源荣誉", link: "/rewards" }, // 新增开源荣誉导航项
-      { text: "👍🏻 组织项目统计", link: "/projects" },
+      { text: "📊 组织统计", link: "/stats" },
+      { text: "🏅 开源荣誉", link: "/rewards" },
+      { text: "👍🏻 项目统计", link: "/projects" },
       { text: "📚 同类组织统计", link: "/organization" },
       { text: "⭐ 点 Star", link: "/star" },
       {
@@ -89,9 +89,9 @@ export default defineConfig({
             { text: "🏠 首页", link: "/" },
             { text: "🏆 贡献者榜单", link: "/rankings" },
             { text: "👥 贡献者列表", link: "/members" },
-            { text: "📈 贡献者数据", link: "/stats" },
-            { text: "🏅 开源荣誉", link: "/rewards" }, // 新增开源荣誉导航项
-            { text: "👍🏻 组织项目统计", link: "/projects" },
+            { text: "📊 组织统计", link: "/stats" },
+            { text: "🏅 开源荣誉", link: "/rewards" },
+            { text: "👍🏻 项目统计", link: "/projects" },
             { text: "📚 同类组织统计", link: "/organization" },
             { text: "⭐ 点 Star", link: "/star" },
           ],

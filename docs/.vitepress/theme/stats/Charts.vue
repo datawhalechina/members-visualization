@@ -12,7 +12,6 @@ const pieRef = ref(null)
 const barRef = ref(null)
 const wordCloudRef = ref(null)
 const networkRef = ref(null)
-const trendRef = ref(null)
 const loading = ref(true)
 const error = ref(null)
 const members = ref([])
@@ -22,7 +21,6 @@ let pieChart = null
 let barChart = null
 let wordCloudChart = null
 let networkChart = null
-let trendChart = null
 
 // 暗黑模式检测函数
 const checkDarkMode = () => {
@@ -506,106 +504,6 @@ const createNetworkChartOption = () => {
   }
 }
 
-const createTrendChartOption = () => {
-  // 生成模拟趋势数据
-  const months = ['1月', '2月', '3月', '4月', '5月', '6月']
-  const topDomains = Object.entries(domainCount.value)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5)
-    .map(([domain]) => domain)
-
-  const trendData = topDomains.map(domain => ({
-    name: domain,
-    data: months.map(() => Math.floor(Math.random() * 20) + 5)
-  }))
-
-  return {
-    title: {
-      text: '研究方向趋势分析',
-      subtext: '近6个月成员数量变化（模拟数据）',
-      left: 'center',
-      textStyle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: getThemeColors().textColor
-      },
-      subtextStyle: {
-        fontSize: 14,
-        color: isDark.value ? '#cccccc' : '#666666'
-      }
-    },
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'cross',
-        label: {
-          backgroundColor: '#6a7985'
-        }
-      }
-    },
-    legend: {
-      data: topDomains,
-      top: '10%',
-      type: 'scroll',
-      textStyle: {
-        color: getThemeColors().textColor
-      }
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      top: '20%',
-      containLabel: true
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: months,
-      axisLabel: {
-        color: getThemeColors().textColor
-      },
-      axisLine: {
-        lineStyle: {
-          color: getThemeColors().axisLineColor
-        }
-      }
-    },
-    yAxis: {
-      type: 'value',
-      name: '成员数量',
-      axisLabel: {
-        color: getThemeColors().textColor
-      },
-      axisLine: {
-        lineStyle: {
-          color: getThemeColors().axisLineColor
-        }
-      },
-      splitLine: {
-        lineStyle: {
-          color: getThemeColors().splitLineColor
-        }
-      }
-    },
-    series: trendData.map((item, index) => ({
-      name: item.name,
-      type: 'line',
-      stack: 'Total',
-      smooth: true,
-      lineStyle: {
-        width: 0
-      },
-      showSymbol: true,
-      symbolSize: 6,
-      data: item.data,
-      areaStyle: {
-        opacity: 0.3
-      }
-    }))
-  }
-}
-
 // 刷新所有图表的函数
 const refreshAllCharts = () => {
   try {
@@ -637,13 +535,6 @@ const refreshAllCharts = () => {
       networkChart.dispose()
       networkChart = echarts.init(networkRef.value, getEChartsTheme())
       networkChart.setOption(createNetworkChartOption())
-    }
-
-    // 重新初始化趋势图
-    if (trendChart && trendRef.value) {
-      trendChart.dispose()
-      trendChart = echarts.init(trendRef.value, getEChartsTheme())
-      trendChart.setOption(createTrendChartOption())
     }
 
     console.log('所有图表已刷新以适应主题变化')
@@ -922,31 +813,12 @@ onMounted(async () => {
       }
     }
 
-    // ---------------- 趋势分析图 ----------------
-    if (!trendRef.value) {
-      console.warn('趋势图容器未找到，跳过趋势图初始化')
-    } else {
-      try {
-        trendChart = echarts.init(trendRef.value, getEChartsTheme())
-
-        if (!trendChart) {
-          console.error('趋势图初始化失败')
-          return
-        }
-
-        trendChart.setOption(createTrendChartOption())
-      } catch (error) {
-        console.error('趋势图初始化出错:', error)
-      }
-    }
-
     // 响应式处理
     window.handleResize = () => {
       pieChart?.resize()
       barChart?.resize()
       wordCloudChart?.resize()
       networkChart?.resize()
-      trendChart?.resize()
     }
     window.addEventListener('resize', window.handleResize)
 
@@ -963,7 +835,6 @@ onUnmounted(() => {
   barChart?.dispose()
   wordCloudChart?.dispose()
   networkChart?.dispose()
-  trendChart?.dispose()
 
   // 移除事件监听器
   window.removeEventListener('resize', window.handleResize)
@@ -1025,12 +896,6 @@ onUnmounted(() => {
       <div class="chart-container">
         <div ref="networkRef" class="chart-large" data-chart-type="network"></div>
       </div>
-
-      <!-- 趋势分析图 -->
-      <div class="chart-container">
-        <div ref="trendRef" class="chart"></div>
-      </div>
-
 
     </div>
   </div>
