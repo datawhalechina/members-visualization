@@ -43,14 +43,14 @@ _智能化的开源社区贡献者分析与展示系统_
 <tr>
 <td width="50%">
 
-### 📊 智能数据可视化
+### 📊 OSS Insight 集成
 
-- 🥧 **增强饼图** - 研究方向分布，支持交互钻取
-- 📊 **动态柱状图** - 成员统计排序，渐变色彩设计
-- ☁️ **智能词云** - 热门方向展示，字体大小反映热度
-- 🕸️ **关系网络图** - 成员-方向关联，力导向布局
-- 📈 **趋势分析图** - 发展轨迹可视化，堆叠面积图
-- 🏆 **活跃度排行** - Commit 贡献统计，卷王榜单
+- ⭐ **Stars 统计** - 组织 Stars 增长趋势和热门仓库排行
+- 👥 **参与者分析** - 活跃/新增参与者趋势和排名
+- 🤝 **参与度分析** - 最活跃贡献者和代码提交时间分布
+- 📈 **生产力分析** - PR、Code Review、Issues 统计
+- 🔄 **时间范围切换** - 支持 7天/28天/90天/12个月数据视图
+- 🎨 **主题自适应** - 自动适配明亮/暗黑模式
 
 </td>
 <td width="50%">
@@ -125,28 +125,42 @@ _智能化的开源社区贡献者分析与展示系统_
 │   └── deploy.yml                 # 自动构建部署
 ├── 📄 docs/                       # VitePress 文档站点
 │   ├── .vitepress/                # VitePress 配置
-│   │   ├── config.js              # 站点配置
+│   │   ├── config.mjs             # 站点配置
 │   │   └── theme/                 # 自定义主题
 │   │       ├── members/           # 成员可视化组件目录
 │   │       ├── organization/      # 组织可视化组件目录
 │   │       ├── projects/          # 项目可视化组件目录
 │   │       ├── rankings/          # 排名可视化组件目录
-│   │       ├── stats/             # 贡献者数据组件目录
+│   │       ├── stats/             # 组织统计组件目录
 │   ├── public/                    # 静态资源
 │   │   ├── data/                  # 数据文件
-│   │   │   ├── members.csv        # 贡献者基础数据（已废弃）
-│   │   │   ├── members.json        # 贡献者基础数据
-│   │   │   ├── datawhale_member.csv # 正式成员采集数据（已废弃）
-│   │   │   ├── datawhale_member.json # 正式成员采集数据
+│   │   │   ├── members.json       # 贡献者基础数据
 │   │   │   └── commits_weekly.json # 提交活跃度数据
 │   │   └── avatars/               # 成员头像缓存
 │   ├── index.md                   # 首页
-│   └── members.md                 # 成员可视化页面
+│   ├── members.md                 # 成员列表页面
+│   ├── rankings.md                # 贡献者榜单页面
+│   ├── stats.md                   # 组织统计页面
+│   ├── organization.md            # 同类组织统计页面
+│   └── projects.md                # 项目统计页面
 ├── 🐍 scripts/                    # Python 数据处理脚本
+│   └── fetch_members/             # 成员数据获取脚本
 ├── 📋 package.json                # Node.js 项目配置
 ├── 🔧 .env.example               # 环境变量模板
 └── 📖 README.md                  # 项目文档
 ```
+
+## 📊 页面导航
+
+| 页面 | 路径 | 说明 |
+|------|------|------|
+| 🏠 首页 | `/` | 项目介绍和功能展示 |
+| 👥 贡献者列表 | `/members` | 成员信息卡片展示，支持搜索筛选 |
+| 🏆 贡献者榜单 | `/rankings` | Commit 活跃度排行和卷王榜单 |
+| 📊 组织统计 | `/stats` | OSS Insight 集成统计面板 |
+| 👍🏻 项目统计 | `/projects` | 组织项目 Stars 统计 |
+| 📚 同类组织 | `/organization` | 同类组织对比统计 |
+| ⭐ 点 Star | `/star` | 项目推荐页面 |
 
 ## 📊 数据模型
 
@@ -159,7 +173,7 @@ _智能化的开源社区贡献者分析与展示系统_
     "name": "Logan Zou",
     "github": "https://github.com/logan-zou",
     "domain": "深度学习;LLM",
-    "repositories": "llm-cookbook;self-llm;llm-universe;happy-llm;thorough-pytorch",
+    "repositories": "llm-cookbook;self-llm;llm-universe",
     "public_repos": 18,
     "total_stars": 571,
     "followers": 246,
@@ -284,11 +298,10 @@ npm run docs:dev
 
 ```bash
 # 完整数据收集（推荐）
-python scripts/fetch-members.py
+python scripts/fetch_members/fetch_members.py
 
 # 快速测试模式（处理较少数据，适合开发调试）
-python scripts/fetch-members.py --test
-
+python scripts/fetch_members/fetch_members.py --test
 ```
 
 **数据收集说明：**
@@ -337,7 +350,7 @@ npm run docs:dev
 <summary><b>🎨 界面定制</b></summary>
 
 ```javascript
-// .vitepress/config.js - 站点配置
+// .vitepress/config.mjs - 站点配置
 export default {
   title: "你的组织名称 成员可视化",
   description: "自定义描述信息",
@@ -356,7 +369,7 @@ export default {
 <summary><b>📊 图表样式</b></summary>
 
 ```vue
-<!-- .vitepress/theme/Charts.vue - 图表组件 -->
+<!-- .vitepress/theme/stats/Charts.vue - 图表组件 -->
 <script setup>
 // 自定义图表配置
 const chartOptions = {
@@ -384,42 +397,14 @@ MAX_CONTRIBUTORS_PER_REPO=100         # 每个仓库最大贡献者数
 
 ## 🎯 核心功能详解
 
-### 📊 多维度数据可视化
+### 📊 OSS Insight 统计面板
 
-<table>
-<tr>
-<td width="50%">
+集成 [OSS Insight](https://ossinsight.io/) 专业分析平台，提供以下统计维度：
 
-**🥧 研究方向分布图**
-
-- 环形饼图设计，直观展示各领域占比
-- 支持悬停交互，显示详细统计信息
-- 平滑动画效果，提升用户体验
-
-**📊 成员统计柱状图**
-
-- 渐变色彩设计，美观且易读
-- 按数量排序，突出热门研究方向
-- 支持点击钻取，查看详细成员列表
-
-</td>
-<td width="50%">
-
-**☁️ 热门方向词云**
-
-- 字体大小反映研究方向热度
-- 动态布局算法，避免文字重叠
-- 支持点击筛选，快速定位相关成员
-
-**🕸️ 成员关系网络图**
-
-- 力导向布局，展示复杂关联关系
-- 节点大小反映成员活跃度
-- 交互式拖拽，自由探索数据关系
-
-</td>
-</tr>
-</table>
+- **⭐ 受欢迎程度** - Stars 增长趋势、热门仓库排行
+- **👥 参与者分析** - 活跃/新增参与者趋势和排名
+- **🤝 参与度分析** - 最活跃贡献者、代码提交时间分布
+- **📈 生产力分析** - PR、Code Review、Issues 统计
 
 ### 🏆 GitHub 活跃度分析
 
