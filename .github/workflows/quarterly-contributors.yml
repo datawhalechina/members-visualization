@@ -80,6 +80,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git add docs/public/data/datawhalechina/quarterly_contributors_*.json
           git commit -m "📊 Update quarterly contributors data - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          git pull --rebase origin main
           git push
 
       - name: Create summary
