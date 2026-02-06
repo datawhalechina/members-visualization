@@ -51,14 +51,15 @@ jobs:
       - name: Run quarterly contributors script
         run: |
           if [ "${{ inputs.mode }}" == "custom" ]; then
-            python scripts/quarterly_contributors.py ${{ inputs.year }} ${{ inputs.quarter }}
+            python -u scripts/quarterly_contributors/quarterly_contributors.py ${{ inputs.year }} ${{ inputs.quarter }}
           elif [ "${{ inputs.mode }}" == "current" ]; then
-            python scripts/quarterly_contributors.py --current
+            python -u scripts/quarterly_contributors/quarterly_contributors.py --current
           else
-            python scripts/quarterly_contributors.py --last
+            python -u scripts/quarterly_contributors/quarterly_contributors.py --last
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONUNBUFFERED: "1"
 
       - name: Check for data changes
         id: check-changes
@@ -78,7 +79,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add docs/public/data/datawhalechina/quarterly_contributors_*.json
-          git add cache/
           git commit -m "📊 Update quarterly contributors data - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           git push
 

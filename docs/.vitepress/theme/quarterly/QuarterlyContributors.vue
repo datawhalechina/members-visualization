@@ -134,6 +134,43 @@ const formatDate = (dateString) => {
   return new Date(dateString).toLocaleString('zh-CN')
 }
 
+// 检查指定季度是否有数据
+const checkQuarterHasData = async (year, quarter) => {
+  try {
+    const basePath = import.meta.env.BASE_URL || '/'
+    const filename = `quarterly_contributors_${year}_Q${quarter}.json`
+    const jsonPath = `${basePath}data/datawhalechina/${filename}`.replace(/\/+/g, '/')
+
+    const response = await fetch(jsonPath, { method: 'HEAD' })
+    if (!response.ok) return false
+
+    const contentType = response.headers.get('content-type')
+    return contentType && contentType.includes('application/json')
+  } catch {
+    return false
+  }
+}
+
+// 查找最新的有数据的季度
+const findLatestQuarterWithData = async () => {
+  const currentYear = new Date().getFullYear()
+  const currentQuarter = Math.floor((new Date().getMonth() + 3) / 3)
+
+  // 从当前季度开始往前查找
+  for (let year = currentYear; year >= 2024; year--) {
+    const startQuarter = (year === currentYear) ? currentQuarter : 4
+    for (let quarter = startQuarter; quarter >= 1; quarter--) {
+      const hasData = await checkQuarterHasData(year, quarter)
+      if (hasData) {
+        return { year, quarter }
+      }
+    }
+  }
+
+  // 没找到任何数据，返回当前季度
+  return { year: currentYear, quarter: currentQuarter }
+}
+
 // 加载数据
 const loadData = async () => {
   try {
@@ -176,8 +213,13 @@ const loadData = async () => {
 }
 
 // 生命周期
-onMounted(() => {
-  loadData()
+onMounted(async () => {
+  // 先查找最新的有数据的季度
+  const latest = await findLatestQuarterWithData()
+  selectedYear.value = latest.year
+  selectedQuarter.value = latest.quarter
+  // 然后加载数据
+  await loadData()
 })
 </script>
 
