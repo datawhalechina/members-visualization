@@ -18,6 +18,7 @@ import os
 import json
 import time
 import sys
+import re
 import shutil
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -59,6 +60,49 @@ def get_headers():
     if CONFIG['GITHUB_TOKEN']:
         headers['Authorization'] = f"Bearer {CONFIG['GITHUB_TOKEN']}"
     return headers
+
+
+def extract_username_from_email(email):
+    """
+    尝试从邮箱中提取GitHub用户名
+    支持的格式：
+    - 12345678+username@users.noreply.github.com
+    - username@users.noreply.github.com
+    """
+    if not email:
+        return None
+
+    # GitHub noreply 邮箱格式
+    noreply_pattern = r'^(?:\d+\+)?([^@]+)@users\.noreply\.github\.com$'
+    match = re.match(noreply_pattern, email, re.IGNORECASE)
+    if match:
+        return match.group(1)
+
+    return None
+
+
+def search_user_by_email(email):
+    """
+    通过邮箱搜索GitHub用户
+    注意：这会消耗额外的API调用
+    """
+    if not email or '@' not in email:
+        return None
+
+    # 跳过明显无效的邮箱
+    if 'noreply' in email.lower() or 'localhost' in email.lower():
+        return None
+
+    url = f"{CONFIG['API_BASE']}/search/users?q={email}+in:email"
+    try:
+        data = fetch_api(url)
+        if data and data.get('total_count', 0) == 1:
+            # 只有精确匹配一个用户时才返回
+            return data['items'][0]['login']
+    except Exception:
+        pass
+
+    return None
 
 
 def check_rate_limit():
@@ -285,6 +329,7 @@ def get_commit_details(org_name, repo_name, sha, cache_manager):
         details = {
             'sha': sha[:8],
             'author': data['commit']['author']['name'],
+            'author_email': data['commit']['author'].get('email', ''),
             'author_login': data['author']['login'] if data.get('author') else None,
             'date': data['commit']['author']['date'],
             'message': data['commit']['message'].split('\n')[0][:100],
@@ -366,11 +411,32 @@ def process_repository(org_name, repo_name, since, until, cache_manager, stats):
         if is_valid_commit(details):
             valid_count += 1
 
-            # 获取作者信息
+            # 获取作者信息 - 多种方式尝试解析GitHub用户名
             author_login = details.get('author_login')
+            is_verified = True  # 标记是否为已验证的GitHub用户
+
             if not author_login:
-                # 如果没有GitHub用户名，使用commit作者名
+                # 方式1: 尝试从邮箱中提取用户名（GitHub noreply格式）
+                author_email = details.get('author_email', '')
+                author_login = extract_username_from_email(author_email)
+
+                if author_login:
+                    print(f"    📧 从邮箱解析用户名: {author_login}")
+
+            if not author_login:
+                # 方式2: 尝试通过邮箱搜索GitHub用户（消耗额外API）
+                author_email = details.get('author_email', '')
+                if author_email and '@' in author_email:
+                    author_login = search_user_by_email(author_email)
+                    if author_login:
+                        print(f"    🔍 通过邮箱搜索到用户: {author_login}")
+
+            if not author_login:
+                # 方式3: 无法解析GitHub用户名，使用commit作者名
+                # 标记为未验证，前端不显示链接
                 author_login = details.get('author', 'Unknown')
+                is_verified = False
+                print(f"    ⚠️  未能解析GitHub用户名，使用作者名: {author_login}")
 
             # 检查是否为机器人账户（使用共享的过滤规则）
             if is_bot_account(author_login):
@@ -381,11 +447,15 @@ def process_repository(org_name, repo_name, since, until, cache_manager, stats):
             if author_login not in stats:
                 stats[author_login] = {
                     'username': author_login,
+                    'verified': is_verified,
                     'valid_commits': 0,
                     'total_commits': 0,
                     'repos': set(),
                     'commits_detail': []
                 }
+            # 如果之前是未验证的，现在有验证的commit，更新为已验证
+            elif is_verified and not stats[author_login].get('verified'):
+                stats[author_login]['verified'] = True
 
             stats[author_login]['valid_commits'] += 1
             stats[author_login]['total_commits'] += 1
@@ -427,6 +497,7 @@ def classify_contributors(stats):
 
         contributor = {
             'username': username,
+            'verified': data.get('verified', True),
             'valid_commits': valid_commits,
             'total_commits': data['total_commits'],
             'repos_count': len(data['repos']),
