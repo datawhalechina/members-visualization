@@ -1,6 +1,22 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
+// 接收 props
+const props = defineProps({
+  group: {
+    type: String,
+    default: null  // null 表示显示所有分组
+  },
+  showPeriodSelector: {
+    type: Boolean,
+    default: true
+  },
+  selectorOnly: {
+    type: Boolean,
+    default: false  // true 时只显示时间选择器，不显示卡片
+  }
+})
+
 // 日期范围选项
 const periodOptions = [
   { label: '7天', value: 'past_7_days' },
@@ -169,6 +185,14 @@ const cardGroups = computed(() => [
   }
 ])
 
+// 根据 group prop 过滤分组
+const filteredGroups = computed(() => {
+  if (!props.group) {
+    return cardGroups.value
+  }
+  return cardGroups.value.filter(g => g.id === props.group)
+})
+
 // 生成卡片链接
 const getCardUrl = (card) => {
   const baseUrl = `https://next.ossinsight.io/widgets/official/${card.type}`
@@ -197,7 +221,7 @@ const getCardImageUrl = (card) => {
 <template>
   <div class="org-stats-cards">
     <!-- 日期范围选择器 -->
-    <div class="period-selector">
+    <div class="period-selector" v-if="showPeriodSelector">
       <span class="selector-label">📅 时间范围：</span>
       <div class="period-buttons">
         <button
@@ -210,22 +234,24 @@ const getCardImageUrl = (card) => {
           {{ option.label }}
         </button>
       </div>
+      <span class="selector-hint" v-if="selectorOnly">💡 点击卡片查看详细数据 | 所有卡片时间范围同步</span>
     </div>
 
     <!-- 分组卡片 -->
-    <div class="card-groups">
+    <div class="card-groups" v-if="!selectorOnly">
       <div
-        v-for="group in cardGroups"
-        :key="group.id"
+        v-for="grp in filteredGroups"
+        :key="grp.id"
         class="card-group"
+        :class="{ 'no-header': props.group }"
       >
-        <div class="group-header">
-          <h3 class="group-title">{{ group.title }}</h3>
-          <p class="group-description">{{ group.description }}</p>
+        <div class="group-header" v-if="!props.group">
+          <h3 class="group-title">{{ grp.title }}</h3>
+          <p class="group-description">{{ grp.description }}</p>
         </div>
         <div class="cards-grid">
           <div
-            v-for="card in group.cards"
+            v-for="card in grp.cards"
             :key="card.id"
             class="card-wrapper"
             :class="`size-${card.imageSize}`"
@@ -247,12 +273,6 @@ const getCardImageUrl = (card) => {
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- 提示信息 -->
-    <div class="card-hint">
-      <span class="hint-icon">💡</span>
-      <span class="hint-text">点击卡片查看详细数据 | 所有卡片时间范围同步</span>
     </div>
   </div>
 </template>
@@ -285,6 +305,12 @@ const getCardImageUrl = (card) => {
   font-weight: 500;
   color: var(--vp-c-text-1);
   white-space: nowrap;
+}
+
+.selector-hint {
+  font-size: 12px;
+  color: var(--vp-c-text-2);
+  margin-left: auto;
 }
 
 .period-buttons {
@@ -329,6 +355,12 @@ const getCardImageUrl = (card) => {
   padding: 24px;
   background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-divider);
+}
+
+.card-group.no-header {
+  padding: 16px;
+  background: transparent;
+  border: none;
 }
 
 .group-header {
@@ -395,29 +427,6 @@ const getCardImageUrl = (card) => {
   width: 100%;
   height: auto;
   transition: opacity 0.3s ease;
-}
-
-/* 提示信息 */
-.card-hint {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 32px;
-  padding: 12px;
-  font-size: 13px;
-  color: var(--vp-c-text-2);
-  background: var(--vp-c-bg-soft);
-  border-radius: 8px;
-  border: 1px dashed var(--vp-c-divider);
-}
-
-.hint-icon {
-  font-size: 14px;
-}
-
-.hint-text {
-  opacity: 0.8;
 }
 
 /* 响应式设计 - 平板 */

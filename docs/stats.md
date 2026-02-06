@@ -4,11 +4,33 @@
 import OrgStatsCards from './.vitepress/theme/stats/OrgStatsCards.vue'
 </script>
 
-## 📈 OSS Insight 统计面板
+以下数据来自 [OSS Insight](https://next.ossinsight.io/analyze/datawhalechina)，展示 Datawhale 组织的各项统计指标。
 
-以下数据来自 [OSS Insight](https://next.ossinsight.io/analyze/datawhalechina)，展示 Datawhale 组织的各项统计指标：
+<OrgStatsCards :selector-only="true" />
 
-<OrgStatsCards />
+## ⭐ 受欢迎程度
+
+通过 Stars 了解社区关注度和潜在合作机会
+
+<OrgStatsCards :show-period-selector="false" group="popularity" />
+
+## 👥 参与者分析
+
+分析参与者活跃度、参与深度和地理分布
+
+<OrgStatsCards :show-period-selector="false" group="participants" />
+
+## 🤝 参与度分析
+
+了解最活跃的贡献者和代码提交时间分布
+
+<OrgStatsCards :show-period-selector="false" group="engagement" />
+
+## 📈 生产力分析
+
+分析 PR、Code Review、Issue 处理效率
+
+<OrgStatsCards :show-period-selector="false" group="productivity" />
 
 ---
 
