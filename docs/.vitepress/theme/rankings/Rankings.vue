@@ -483,7 +483,7 @@ onMounted(() => {
 
 .leaderboards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: 1fr;
   gap: 30px;
   margin-bottom: 40px;
 }
