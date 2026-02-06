@@ -61,6 +61,7 @@ export default defineConfig({
     nav: [
       { text: "🏠 首页", link: "/" },
       { text: "🏆 贡献者榜单", link: "/rankings" },
+      { text: "🎖️ 季度贡献者", link: "/quarterly" },
       { text: "👥 贡献者列表", link: "/members" },
       { text: "📊 组织统计", link: "/stats" },
       { text: "🏅 开源荣誉", link: "/rewards" },
@@ -88,6 +89,7 @@ export default defineConfig({
           items: [
             { text: "🏠 首页", link: "/" },
             { text: "🏆 贡献者榜单", link: "/rankings" },
+            { text: "🎖️ 季度贡献者", link: "/quarterly" },
             { text: "👥 贡献者列表", link: "/members" },
             { text: "📊 组织统计", link: "/stats" },
             { text: "🏅 开源荣誉", link: "/rewards" },
