@@ -34,8 +34,8 @@ CONFIG = {
     'GITHUB_TOKEN': os.getenv('GITHUB_TOKEN') or os.getenv('GITHUB_KEY'),
     'ORG_NAME': 'datawhalechina',
     'API_BASE': 'https://api.github.com',
-    # 缓存目录 (相对于 scripts/quarterly_contributors/)
-    'CACHE_DIR': Path(__file__).parent.parent.parent / 'cache' / 'quarterly_stats',
+    # 缓存目录
+    'CACHE_DIR': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'data' / 'cache',
     # 输出目录
     'OUTPUT_DIR': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'data' / 'datawhalechina',
     # 有效commit的阈值（单文件新增行数）
@@ -46,7 +46,7 @@ CONFIG = {
     # API调用控制
     'MAX_RETRIES': 3,
     'RETRY_DELAY': 2,
-    'REQUEST_DELAY': 0.1,  # 请求间隔（秒）
+    'REQUEST_DELAY': 0.02,  # 请求间隔（秒）
 }
 
 
@@ -402,6 +402,10 @@ def process_repository(org_name, repo_name, since, until, cache_manager, stats):
         # 从列表API中提取author login（列表API有时能关联到用户，详情API却不行）
         list_author_login = commit.get('author', {}).get('login') if commit.get('author') else None
 
+        # 提前过滤机器人账户（避免不必要的详情API调用）
+        if list_author_login and is_bot_account(list_author_login):
+            continue
+
         # 获取commit详情
         details = get_commit_details(org_name, repo_name, sha, cache_manager)
         if not details:
@@ -587,18 +591,6 @@ def print_summary(classified):
     print("\n" + "="*60)
 
 
-def cleanup_cache():
-    """清理整个缓存目录"""
-    cache_root = Path(__file__).parent.parent.parent / 'cache'
-    try:
-        if cache_root.exists():
-            shutil.rmtree(cache_root)
-            print(f"🗑️  缓存目录已清理: {cache_root}")
-            return True
-    except Exception as e:
-        print(f"⚠️  清理缓存失败: {e}")
-    return False
-
 
 def main(year, quarter):
     """
@@ -685,10 +677,6 @@ def main(year, quarter):
     print(f"📊 处理仓库: {len(repos)} 个")
     print(f"📊 总commit数: {total_commits}")
     print(f"📊 总贡献者: {len(stats)} 人")
-
-    # 清理缓存目录
-    print("\n🧹 清理缓存...")
-    cleanup_cache()
 
     print("\n✅ 统计完成！")
     return output_file
