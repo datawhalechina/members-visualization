@@ -399,6 +399,8 @@ def process_repository(org_name, repo_name, since, until, cache_manager, stats):
 
     for i, commit in enumerate(commits):
         sha = commit['sha']
+        # 从列表API中提取author login（列表API有时能关联到用户，详情API却不行）
+        list_author_login = commit.get('author', {}).get('login') if commit.get('author') else None
 
         # 获取commit详情
         details = get_commit_details(org_name, repo_name, sha, cache_manager)
@@ -413,27 +415,29 @@ def process_repository(org_name, repo_name, since, until, cache_manager, stats):
 
             # 获取作者信息 - 多种方式尝试解析GitHub用户名
             author_login = details.get('author_login')
-            is_verified = True  # 标记是否为已验证的GitHub用户
+            is_verified = True
 
+            # 方式1: 使用列表API中的author login
+            if not author_login and list_author_login:
+                author_login = list_author_login
+
+            # 方式2: 从邮箱中提取用户名（GitHub noreply格式）
             if not author_login:
-                # 方式1: 尝试从邮箱中提取用户名（GitHub noreply格式）
                 author_email = details.get('author_email', '')
                 author_login = extract_username_from_email(author_email)
-
                 if author_login:
                     print(f"    📧 从邮箱解析用户名: {author_login}")
 
+            # 方式3: 通过邮箱搜索GitHub用户（消耗额外API）
             if not author_login:
-                # 方式2: 尝试通过邮箱搜索GitHub用户（消耗额外API）
                 author_email = details.get('author_email', '')
                 if author_email and '@' in author_email:
                     author_login = search_user_by_email(author_email)
                     if author_login:
                         print(f"    🔍 通过邮箱搜索到用户: {author_login}")
 
+            # 方式4: 无法解析，使用commit作者名，标记为未验证
             if not author_login:
-                # 方式3: 无法解析GitHub用户名，使用commit作者名
-                # 标记为未验证，前端不显示链接
                 author_login = details.get('author', 'Unknown')
                 is_verified = False
                 print(f"    ⚠️  未能解析GitHub用户名，使用作者名: {author_login}")
