@@ -13,6 +13,15 @@
           第{{ q }}季度
         </option>
       </select>
+      <button
+        class="copy-btn"
+        :class="{ disabled: !hasContributors, copied: copySuccess }"
+        :disabled="!hasContributors"
+        :title="hasContributors ? '复制优秀&卓越贡献者名单' : '暂无数据'"
+        @click="copyContributorList"
+      >
+        {{ copySuccess ? '✅ 已复制' : '📋 复制名单' }}
+      </button>
     </div>
 
     <!-- 加载状态 -->
@@ -118,6 +127,7 @@ const error = ref(null)
 const data = ref(null)
 const selectedYear = ref(new Date().getFullYear())
 const selectedQuarter = ref(Math.floor((new Date().getMonth() + 3) / 3))
+const copySuccess = ref(false)
 
 // 可用年份（从2024年到当前年份）
 const availableYears = computed(() => {
@@ -128,6 +138,46 @@ const availableYears = computed(() => {
   }
   return years.reverse()
 })
+
+// 是否有优秀或卓越贡献者数据
+const hasContributors = computed(() => {
+  if (!data.value) return false
+  const c = data.value.contributors
+  return (c.outstanding && c.outstanding.length > 0) || (c.excellent && c.excellent.length > 0)
+})
+
+// 一键复制贡献者名单
+const copyContributorList = async () => {
+  if (!hasContributors.value) return
+
+  const outstanding = data.value.contributors.outstanding || []
+  const excellent = data.value.contributors.excellent || []
+
+  let text = `${selectedYear.value}Q${selectedQuarter.value}总贡献者有${data.value.meta.total_contributors}人，卓越贡献者${outstanding.length}人，优秀贡献者${excellent.length}人，优秀&卓越开源贡献者名单如下：`
+
+  if (outstanding.length > 0) {
+    text += `\n【卓越贡献者】：${outstanding.map(c => c.username).join('、')}`
+  }
+  if (excellent.length > 0) {
+    text += `\n【优秀贡献者】：${excellent.map(c => c.username).join('、')}`
+  }
+
+  try {
+    await navigator.clipboard.writeText(text)
+    copySuccess.value = true
+    setTimeout(() => { copySuccess.value = false }, 2000)
+  } catch {
+    // fallback
+    const textarea = document.createElement('textarea')
+    textarea.value = text
+    document.body.appendChild(textarea)
+    textarea.select()
+    document.execCommand('copy')
+    document.body.removeChild(textarea)
+    copySuccess.value = true
+    setTimeout(() => { copySuccess.value = false }, 2000)
+  }
+}
 
 // 格式化日期
 const formatDate = (dateString) => {
@@ -314,6 +364,36 @@ onMounted(async () => {
   color: var(--vp-c-text-1);
   font-size: 14px;
   cursor: pointer;
+}
+
+.copy-btn {
+  margin-left: auto;
+  padding: 8px 16px;
+  border: 1px solid var(--vp-c-brand-1);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-brand-1);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.copy-btn:hover:not(.disabled) {
+  background: var(--vp-c-brand-1);
+  color: white;
+}
+
+.copy-btn.disabled {
+  border-color: var(--vp-c-divider);
+  color: var(--vp-c-text-3);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.copy-btn.copied {
+  border-color: var(--vp-c-green-1);
+  color: var(--vp-c-green-1);
 }
 
 .stats-overview {
