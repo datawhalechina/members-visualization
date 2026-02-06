@@ -14,7 +14,7 @@ hero:
       link: /members
     - theme: alt
       text: 🏆 贡献者榜单
-      link: /contributors
+      link: /rankings
     - theme: alt
       text: 📊 组织统计
       link: /stats
