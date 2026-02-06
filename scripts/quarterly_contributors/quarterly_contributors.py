@@ -11,26 +11,32 @@
 2. 增量更新 - 只处理新的commit
 3. 进度显示 - 实时显示处理进度
 4. JSON输出 - 生成前端可用的数据格式
+5. 机器人过滤 - 使用共享的过滤规则
 """
 
 import os
 import json
 import time
 import sys
+import shutil
 from datetime import datetime, timedelta
 from pathlib import Path
 from collections import defaultdict
 import requests
+
+# 添加父目录到路径，以便导入共享模块
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from bot_filter import is_bot_account
 
 # 配置
 CONFIG = {
     'GITHUB_TOKEN': os.getenv('GITHUB_TOKEN') or os.getenv('GITHUB_KEY'),
     'ORG_NAME': 'datawhalechina',
     'API_BASE': 'https://api.github.com',
-    # 缓存目录
-    'CACHE_DIR': Path(__file__).parent.parent / 'cache' / 'quarterly_stats',
+    # 缓存目录 (相对于 scripts/quarterly_contributors/)
+    'CACHE_DIR': Path(__file__).parent.parent.parent / 'cache' / 'quarterly_stats',
     # 输出目录
-    'OUTPUT_DIR': Path(__file__).parent.parent / 'docs' / 'public' / 'data' / 'datawhalechina',
+    'OUTPUT_DIR': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'data' / 'datawhalechina',
     # 有效commit的阈值（单文件新增行数）
     'VALID_COMMIT_THRESHOLD': 10,
     # 贡献者等级阈值
@@ -196,6 +202,15 @@ class CacheManager:
         """返回缓存大小"""
         return len(self.cache)
 
+    def clear(self):
+        """清理缓存目录"""
+        try:
+            if self.cache_dir.exists():
+                shutil.rmtree(self.cache_dir)
+                print(f"🗑️  缓存目录已清理: {self.cache_dir}")
+        except Exception as e:
+            print(f"⚠️  清理缓存失败: {e}")
+
 
 def get_org_repos(org_name):
     """获取组织的所有公开仓库"""
@@ -357,6 +372,11 @@ def process_repository(org_name, repo_name, since, until, cache_manager, stats):
                 # 如果没有GitHub用户名，使用commit作者名
                 author_login = details.get('author', 'Unknown')
 
+            # 检查是否为机器人账户（使用共享的过滤规则）
+            if is_bot_account(author_login):
+                print(f"    🤖 跳过机器人账户: {author_login}")
+                continue
+
             # 记录到统计数据
             if author_login not in stats:
                 stats[author_login] = {
@@ -492,6 +512,19 @@ def print_summary(classified):
     print("\n" + "="*60)
 
 
+def cleanup_cache():
+    """清理整个缓存目录"""
+    cache_root = Path(__file__).parent.parent.parent / 'cache'
+    try:
+        if cache_root.exists():
+            shutil.rmtree(cache_root)
+            print(f"🗑️  缓存目录已清理: {cache_root}")
+            return True
+    except Exception as e:
+        print(f"⚠️  清理缓存失败: {e}")
+    return False
+
+
 def main(year, quarter):
     """
     主函数：统计指定季度的贡献者
@@ -577,6 +610,10 @@ def main(year, quarter):
     print(f"📊 处理仓库: {len(repos)} 个")
     print(f"📊 总commit数: {total_commits}")
     print(f"📊 总贡献者: {len(stats)} 人")
+
+    # 清理缓存目录
+    print("\n🧹 清理缓存...")
+    cleanup_cache()
 
     print("\n✅ 统计完成！")
     return output_file

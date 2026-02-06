@@ -2,9 +2,16 @@
   <div class="contributor-card" :class="`level-${level}`">
     <div class="card-body">
       <div class="contributor-info">
-        <a :href="`https://github.com/${contributor.username}`" target="_blank" class="username">
-          @{{ contributor.username }}
-        </a>
+        <div class="user-header">
+          <img
+            :src="`https://github.com/${contributor.username}.png?size=48`"
+            :alt="contributor.username"
+            class="avatar"
+          />
+          <a :href="`https://github.com/${contributor.username}`" target="_blank" class="username">
+            @{{ contributor.username }}
+          </a>
+        </div>
         <div class="stats-row">
           <div class="stat-item">
             <span class="stat-icon">✅</span>
@@ -124,16 +131,31 @@ const formatDate = (dateString) => {
   margin-bottom: 16px;
 }
 
-.username {
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--vp-c-brand-1);
-  text-decoration: none;
-  display: block;
+.user-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 12px;
 }
 
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--vp-c-divider);
+}
+
+.username {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
 .username:hover {
+  color: var(--vp-c-brand-1);
   text-decoration: underline;
 }
 
