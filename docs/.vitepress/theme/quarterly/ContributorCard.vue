@@ -3,14 +3,30 @@
     <div class="card-body">
       <div class="contributor-info">
         <div class="user-header">
+          <!-- 已验证用户显示GitHub头像 -->
           <img
+            v-if="contributor.verified !== false"
             :src="`https://github.com/${contributor.username}.png?size=48`"
             :alt="contributor.username"
             class="avatar"
           />
-          <a :href="`https://github.com/${contributor.username}`" target="_blank" class="username">
+          <!-- 未验证用户显示首字母头像 -->
+          <div v-else class="avatar avatar-placeholder">
+            {{ getInitial(contributor.username) }}
+          </div>
+          <!-- 已验证用户显示链接 -->
+          <a
+            v-if="contributor.verified !== false"
+            :href="`https://github.com/${contributor.username}`"
+            target="_blank"
+            class="username"
+          >
             @{{ contributor.username }}
           </a>
+          <!-- 未验证用户显示普通文本 -->
+          <span v-else class="username unverified">
+            {{ contributor.username }}
+          </span>
         </div>
         <div class="stats-row">
           <div class="stat-item">
@@ -79,13 +95,25 @@ const formatDate = (dateString) => {
   const date = new Date(dateString)
   return date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' })
 }
+
+// 获取用户名首字母（用于未验证用户的头像）
+const getInitial = (username) => {
+  if (!username) return '?'
+  // 如果是中文，取第一个字
+  const firstChar = username.charAt(0)
+  // 检查是否为中文字符
+  if (/[\u4e00-\u9fa5]/.test(firstChar)) {
+    return firstChar
+  }
+  return firstChar.toUpperCase()
+}
 </script>
 
 <style scoped>
 .contributor-card {
   background: var(--vp-c-bg-soft);
   border-radius: 12px;
-  padding: 20px;
+  padding: 12px 16px;
   transition: transform 0.3s, box-shadow 0.3s;
   border: 2px solid transparent;
 }
@@ -128,26 +156,26 @@ const formatDate = (dateString) => {
 }
 
 .contributor-info {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .user-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 
 .avatar {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--vp-c-divider);
 }
 
 .username {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   color: var(--vp-c-text-1);
   text-decoration: none;
@@ -157,6 +185,26 @@ const formatDate = (dateString) => {
 .username:hover {
   color: var(--vp-c-brand-1);
   text-decoration: underline;
+}
+
+/* 未验证用户样式 */
+.avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.username.unverified {
+  cursor: default;
+}
+
+.username.unverified:hover {
+  color: var(--vp-c-text-1);
+  text-decoration: none;
 }
 
 .stats-row {
@@ -175,7 +223,7 @@ const formatDate = (dateString) => {
 }
 
 .stat-value {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   color: var(--vp-c-text-1);
 }
@@ -186,7 +234,7 @@ const formatDate = (dateString) => {
 }
 
 .repos-list {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .repos-title,
