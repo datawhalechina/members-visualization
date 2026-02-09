@@ -16,6 +16,7 @@ permissions:
 
 jobs:
   update-data-and-deploy:
+    if: github.repository == 'datawhalechina/members-visualization'
     runs-on: ubuntu-latest
     
     steps:
