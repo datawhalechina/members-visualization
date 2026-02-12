@@ -17,6 +17,10 @@ except ImportError:
     requests = None
 from pathlib import Path
 
+# 添加父目录到路径，以便导入共享模块
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from bot_filter import is_bot_account
+
 # 加载环境变量
 try:
     from dotenv import load_dotenv
@@ -45,56 +49,6 @@ CONFIG = {
     'MAX_USER_REPOS': 100,  # 获取用户仓库的最大数量
     'COMMIT_DAYS_RANGE': 7,  # 获取最近N天的commit数据
     'MAX_COMMITS_PER_REPO': 200,  # 每个仓库最大commit数
-    # 添加机器人账户过滤规则
-    # 严格的机器人账户列表 - 只包含确认的官方机器人
-    'BOT_USERNAMES': {
-        # GitHub 官方机器人
-        'actions-user',
-        'github-actions',
-        'github-actions[bot]',
-        'web-flow',
-        'github-merge-queue[bot]',
-
-        # Dependabot 系列
-        'dependabot',
-        'dependabot[bot]',
-        'dependabot-preview[bot]',
-
-        # 常见的第三方官方机器人（带[bot]后缀的）
-        'renovate[bot]',
-        'greenkeeper[bot]',
-        'codecov[bot]',
-        'whitesource-bolt-for-github[bot]',
-        'allcontributors[bot]',
-        'imgbot[bot]',
-        'stale[bot]',
-        'pre-commit-ci[bot]',
-        'mergify[bot]',
-        'sonarcloud[bot]',
-        'deepsource-autofix[bot]',
-        'gitpod-io[bot]',
-        'restyled-io[bot]',
-
-        # 确认的第三方机器人（无[bot]后缀但确认是机器人）
-        'snyk-bot',
-        'semantic-release-bot',
-        'pyup-bot',
-        'pyup.io-bot',
-        'houndci-bot',
-        'coveralls',
-        'travis-ci',
-        'circleci',
-
-        # 明确的无效账户
-        'noreply',
-        'no-reply',
-        'invalid-email-address'
-    },
-    # 严格的机器人模式 - 只匹配明确的机器人格式
-    'BOT_PATTERNS': [
-        r'.*\[bot\]$',      # 以[bot]结尾的用户名（GitHub官方机器人格式）
-        r'^\d+\+.*@users\.noreply\.github\.com$',  # GitHub noreply邮箱格式的用户名
-    ],
     'DEFAULT_DOMAINS': {
         'machine-learning': '机器学习',
         'deep-learning': '深度学习',
@@ -630,25 +584,12 @@ def check_existing_data():
 
 
 def backup_existing_data():
-    """备份现有数据"""
+    """备份现有数据（已禁用，直接覆盖）"""
+    # 不再创建备份文件，直接覆盖以节省空间
     if os.path.exists(CONFIG['OUTPUT_FILE']):
-        # 将Path对象转换为字符串进行操作
-        output_file_str = str(CONFIG['OUTPUT_FILE'])
-        backup_path = output_file_str.replace(
-            '.csv', f'.backup.{int(time.time())}.csv')
-        import shutil
-        shutil.copy2(CONFIG['OUTPUT_FILE'], backup_path)
-        print(f"📋 已备份现有数据: {backup_path}")
-        return backup_path
+        print(f"📋 发现现有数据，将直接覆盖: {CONFIG['OUTPUT_FILE']}")
     if os.path.exists(CONFIG['OUTPUT_JSON_FILE']):
-        # 将Path对象转换为字符串进行操作
-        output_file_str = str(CONFIG['OUTPUT_JSON_FILE'])
-        backup_path = output_file_str.replace(
-            '.json', f'.backup.{int(time.time())}.json')
-        import shutil
-        shutil.copy2(CONFIG['OUTPUT_JSON_FILE'], backup_path)
-        print(f"📋 已备份现有json数据: {backup_path}")
-        return backup_path
+        print(f"📋 发现现有JSON数据，将直接覆盖: {CONFIG['OUTPUT_JSON_FILE']}")
     return None
 
 
@@ -1337,44 +1278,6 @@ def save_commits_data(commits_data):
     except Exception as e:
         print(f"❌ 保存commit数据失败: {e}")
         return False
-
-
-def is_bot_account(username, user_details=None):
-    """
-    严格判断是否为机器人账户
-    原则：宁可漏过少数机器人，也不要误判任何真实用户
-    """
-    import re
-
-    # 1. 精确匹配已知的机器人用户名（不区分大小写）
-    if username.lower() in CONFIG['BOT_USERNAMES']:
-        return True
-
-    # 2. 检查用户名是否匹配严格的机器人模式
-    for pattern in CONFIG['BOT_PATTERNS']:
-        if re.match(pattern, username, re.IGNORECASE):
-            return True
-
-    # 3. 如果有用户详情，进行GitHub官方的机器人类型检查
-    if user_details:
-        # GitHub官方的账户类型检查（最可靠的方法）
-        account_type = user_details.get('type', '').lower()
-        if account_type == 'bot':
-            return True
-
-        # 检查公司字段是否为GitHub官方机器人服务
-        company = (user_details.get('company') or '').lower()
-        if company in ['@actions', '@github', '@dependabot', '@renovatebot']:
-            return True
-
-    # 4. 其他情况一律认为是真实用户
-    # 移除了以下可能误判的规则：
-    # - 纯数字用户名检查（可能是真实用户的ID）
-    # - 用户简介关键词检查（可能误判研究AI/机器人的真实用户）
-    # - 关注者/关注数检查（新用户也可能为零）
-    # - 用户名字段关键词检查（可能误判真实姓名）
-
-    return False
 
 
 def test():

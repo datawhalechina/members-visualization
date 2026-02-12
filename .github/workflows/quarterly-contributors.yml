@@ -1,0 +1,103 @@
+name: Quarterly Contributors Update
+
+on:
+  # 允许手动触发，可选择统计哪个季度
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: '统计模式'
+        required: true
+        default: 'last'
+        type: choice
+        options:
+          - last      # 上季度
+          - current   # 当前季度
+          - custom    # 自定义
+      year:
+        description: '年份 (仅 custom 模式)'
+        required: false
+        type: string
+      quarter:
+        description: '季度 1-4 (仅 custom 模式)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  actions: write
+
+jobs:
+  update-quarterly-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run quarterly contributors script
+        run: |
+          if [ "${{ inputs.mode }}" == "custom" ]; then
+            python -u scripts/quarterly_contributors/quarterly_contributors.py ${{ inputs.year }} ${{ inputs.quarter }}
+          elif [ "${{ inputs.mode }}" == "current" ]; then
+            python -u scripts/quarterly_contributors/quarterly_contributors.py --current
+          else
+            python -u scripts/quarterly_contributors/quarterly_contributors.py --last
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONUNBUFFERED: "1"
+
+      - name: Check for data changes
+        id: check-changes
+        run: |
+          git add docs/public/data/datawhalechina/quarterly_contributors_*.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+            echo "changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Data has changed"
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit updated data
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/public/data/datawhalechina/quarterly_contributors_*.json
+          git commit -m "📊 Update quarterly contributors data - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          git pull --rebase origin main
+          git push
+
+      - name: Trigger deploy workflow
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          gh workflow run deploy.yml --ref main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create summary
+        run: |
+          echo "## 📊 Quarterly Contributors Update" >> $GITHUB_STEP_SUMMARY
+          echo "- **Date**: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "- **Mode**: ${{ inputs.mode }}" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.check-changes.outputs.changes }}" == "true" ]; then
+            echo "- **Status**: ✅ Data updated" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- **Status**: ℹ️ No changes" >> $GITHUB_STEP_SUMMARY
+          fi
