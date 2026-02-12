@@ -25,10 +25,10 @@ export default async function handler(req, res) {
       <html>
       <head>
         <title>Members Visualization GraphQL API</title>
-        <link href="https://unpkg.com/graphiql/graphiql.min.css" rel="stylesheet" />
-        <script crossorigin src="https://unpkg.com/react/umd/react.production.min.js"></script>
-        <script crossorigin src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
-        <script crossorigin src="https://unpkg.com/graphiql/graphiql.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/graphiql@3.0.6/graphiql.min.css" rel="stylesheet" />
+        <script crossorigin src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+        <script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+        <script crossorigin src="https://cdn.jsdelivr.net/npm/graphiql@3.0.6/graphiql.min.js"></script>
       </head>
       <body style="margin: 0;">
         <div id="graphiql" style="height: 100vh;"></div>

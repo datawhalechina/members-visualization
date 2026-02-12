@@ -1,0 +1,11 @@
+{
+  "framework": "vitepress",
+  "buildCommand": "npm run docs:build",
+  "outputDirectory": "docs/.vitepress/dist",
+  "cleanUrls": true,
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 10
+    }
+  }
+}
