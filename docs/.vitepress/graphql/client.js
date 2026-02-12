@@ -1,38 +1,59 @@
 /**
  * GraphQL 客户端
- * 使用 GraphQL.js 提供标准的查询接口
+ * 使用 fetch 调用后端 API /api/graphql
  */
 
-import { graphql } from 'graphql'
-import { schema } from './schema.js'
-import { dataSource } from './dataSource.js'
+// 移除本地 graphql 依赖
+// import { graphql } from 'graphql'
+// import { schema } from './schema.js'
+// import { dataSource } from './dataSource.js'
+
+const API_ENDPOINT = '/api/graphql'
 
 /**
  * GraphQL 客户端类
  */
 class GraphQLClient {
   constructor() {
-    this.schema = schema
+    // 允许自定义 endpoint，默认为 /api/graphql
+    this.endpoint = API_ENDPOINT
   }
 
   /**
    * 执行 GraphQL 查询
    * @param {string} source - GraphQL 查询字符串
    * @param {object} variableValues - 查询变量
-   * @param {object} contextValue - 上下文值
+   * @param {object} contextValue - 上下文值 (不再使用)
    * @returns {Promise<object>} 查询结果
    */
   async query(source, variableValues = {}, contextValue = {}) {
     try {
-      const result = await graphql({
-        schema: this.schema,
-        source,
-        variableValues,
-        contextValue
+      // 检查是否在浏览器环境
+      if (typeof fetch === 'undefined') {
+        console.warn('fetch is not defined. You might be running in a build environment without access to the live API.')
+        return { data: {} }
+      }
+
+      const response = await fetch(this.endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query: source,
+          variables: variableValues
+        })
       })
+
+      if (!response.ok) {
+        throw new Error(`Example API Error: ${response.status} ${response.statusText}`)
+      }
       
+      const result = await response.json()
       return result
     } catch (error) {
+      console.error('GraphQL Query Error:', error)
       return {
         errors: [{
           message: error.message,
@@ -339,14 +360,16 @@ class GraphQLClient {
    * 预加载所有数据
    */
   async preload() {
-    await dataSource.preloadAll()
+    // 换成 API 模式后，无需预加载
+    return true
   }
 
   /**
    * 清除缓存
    */
   clearCache() {
-    dataSource.clearCache()
+    // 换成 API 模式后，无需清除本地缓存
+    return true
   }
 }
 

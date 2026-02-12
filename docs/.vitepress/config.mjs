@@ -73,11 +73,12 @@ export default defineConfig({
       { text: "🏅 开源荣誉", link: "/rewards" },
       { text: "👍🏻 项目统计", link: "/projects" },
       { text: "📚 同类组织统计", link: "/organization" },
-      { text: "🔧 GraphQL API", link: "/graphql-api" }, // 新增 GraphQL API 文档
+      // { text: "🔧 GraphQL API", link: "/api/docs" }, // 隐藏 API 文档入口，降低对普通用户影响
       { text: "⭐ 点 Star", link: "/star" },
       {
         text: "🔗 相关链接",
         items: [
+          { text: "🔧 API 文档", link: "/api/docs" }, // 移动到下拉菜单
           { text: "Datawhale 官网", link: "https://www.datawhale.cn/" },
           { text: "GitHub 组织", link: "https://github.com/datawhalechina" },
           {
@@ -102,7 +103,7 @@ export default defineConfig({
             { text: "🏅 开源荣誉", link: "/rewards" },
             { text: "👍🏻 项目统计", link: "/projects" },
             { text: "📚 同类组织统计", link: "/organization" },
-            { text: "🔧 GraphQL API", link: "/graphql-api" }, // 新增 GraphQL API 文档
+            // { text: "🔧 GraphQL API", link: "/api/docs" }, 
             { text: "⭐ 点 Star", link: "/star" },
           ],
         },

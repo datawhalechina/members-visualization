@@ -3,9 +3,9 @@
  * 导出所有公共接口
  */
 
-export { schema, typeDefs } from './schema.js'
-export { resolvers } from './resolvers.js'
-export { dataSource } from './dataSource.js'
+// export { schema, typeDefs } from './schema.js'
+// export { resolvers } from './resolvers.js'
+// export { dataSource } from './dataSource.js'
 export {
   graphqlClient,
   query,
