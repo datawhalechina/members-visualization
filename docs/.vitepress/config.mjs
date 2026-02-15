@@ -1,10 +1,16 @@
 import { defineConfig } from 'vitepress'
 
 // 1. 获取环境变量并判断
-// 如果环境变量 EDGEONE 等于 '1'，说明在 EdgeOne 环境，使用根路径 '/'
+// 如果环境变量 EDGEONE 或 VERCEL 等于 '1'，说明在 EdgeOne 或 Vercel 环境，使用根路径 '/'
 // 否则默认是 GitHub Pages 环境，使用仓库子路径
 const isEdgeOne = process.env.EDGEONE === '1'
-const baseConfig = isEdgeOne ? '/' : '/members-visualization/'
+const isVercel = process.env.VERCEL === '1'
+// 添加日志以便在构建日志中查看
+console.log(`[Config] Environment check: EDGEONE=${process.env.EDGEONE}, VERCEL=${process.env.VERCEL}`);
+console.log(`[Config] Detected environment: EdgeOne=${isEdgeOne}, Vercel=${isVercel}`);
+
+const baseConfig = (isEdgeOne || isVercel) ? '/' : '/members-visualization/'
+console.log(`[Config] Using base path: ${baseConfig}`);
 
 export default defineConfig({
   title: "Datawhale 数据可视化",
@@ -67,10 +73,12 @@ export default defineConfig({
       { text: "🏅 开源荣誉", link: "/rewards" },
       { text: "👍🏻 项目统计", link: "/projects" },
       { text: "📚 同类组织统计", link: "/organization" },
+      // { text: "🔧 GraphQL API", link: "/api/docs" }, // 隐藏 API 文档入口，降低对普通用户影响
       { text: "⭐ 点 Star", link: "/star" },
       {
         text: "🔗 相关链接",
         items: [
+          { text: "🔧 API 文档", link: "/api/docs" }, // 移动到下拉菜单
           { text: "Datawhale 官网", link: "https://www.datawhale.cn/" },
           { text: "GitHub 组织", link: "https://github.com/datawhalechina" },
           {
@@ -95,6 +103,7 @@ export default defineConfig({
             { text: "🏅 开源荣誉", link: "/rewards" },
             { text: "👍🏻 项目统计", link: "/projects" },
             { text: "📚 同类组织统计", link: "/organization" },
+            // { text: "🔧 GraphQL API", link: "/api/docs" }, 
             { text: "⭐ 点 Star", link: "/star" },
           ],
         },
