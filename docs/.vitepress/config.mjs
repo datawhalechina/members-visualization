@@ -60,13 +60,31 @@ export default defineConfig({
     // 导航栏
     nav: [
       { text: "🏠 首页", link: "/" },
-      { text: "🏆 贡献者榜单", link: "/rankings" },
-      { text: "🎖️ 季度贡献者", link: "/quarterly" },
-      { text: "👥 贡献者列表", link: "/members" },
-      { text: "📊 组织统计", link: "/stats" },
-      { text: "🏅 开源荣誉", link: "/rewards" },
-      { text: "👍🏻 项目统计", link: "/projects" },
-      { text: "📚 同类组织统计", link: "/organization" },
+      {
+        text: "👥 贡献者",
+        items: [
+          { text: "🏆 贡献者榜单", link: "/rankings" },
+          { text: "🎖️ 季度贡献者", link: "/quarterly" },
+          { text: "👥 贡献者列表", link: "/members" },
+          { text: "🏅 开源荣誉", link: "/rewards" },
+        ],
+      },
+      {
+        text: "📊 数据统计",
+        items: [
+          { text: "📊 OSS Insight 统计", link: "/stats" },
+          { text: "👍🏻 项目统计", link: "/projects" },
+          { text: "📚 成员与协作分析", link: "/organization" },
+        ],
+      },
+      {
+        text: "🎮 社区功能",
+        items: [
+          { text: "🏅 成就徽章", link: "/badges" },
+          { text: "🗺️ 新人引导", link: "/guide" },
+          { text: "📋 开源年报", link: "/report" },
+        ],
+      },
       { text: "⭐ 点 Star", link: "/star" },
       {
         text: "🔗 相关链接",
@@ -85,16 +103,34 @@ export default defineConfig({
     sidebar: {
       "/": [
         {
-          text: "📋 导航菜单",
+          text: "👥 贡献者",
           items: [
             { text: "🏠 首页", link: "/" },
             { text: "🏆 贡献者榜单", link: "/rankings" },
             { text: "🎖️ 季度贡献者", link: "/quarterly" },
             { text: "👥 贡献者列表", link: "/members" },
-            { text: "📊 组织统计", link: "/stats" },
             { text: "🏅 开源荣誉", link: "/rewards" },
+          ],
+        },
+        {
+          text: "📊 数据统计",
+          items: [
+            { text: "📊 OSS Insight 统计", link: "/stats" },
             { text: "👍🏻 项目统计", link: "/projects" },
-            { text: "📚 同类组织统计", link: "/organization" },
+            { text: "📚 成员与协作分析", link: "/organization" },
+          ],
+        },
+        {
+          text: "🎮 社区功能",
+          items: [
+            { text: "🏅 成就徽章", link: "/badges" },
+            { text: "🗺️ 新人引导", link: "/guide" },
+            { text: "📋 开源年报", link: "/report" },
+          ],
+        },
+        {
+          text: "🔗 其他",
+          items: [
             { text: "⭐ 点 Star", link: "/star" },
           ],
         },
