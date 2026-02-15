@@ -1,9 +1,10 @@
-# 📚 同类组织统计
+# 📚 组织统计
 
 <script setup>
 import Organization from './.vitepress/theme/organization/Organization.vue'
 import Charts from './.vitepress/theme/stats/Charts.vue'
 import DataExport from './.vitepress/theme/stats/DataExport.vue'
+import CollaborationNetwork from './.vitepress/theme/collaboration/CollaborationNetwork.vue'
 import { ref, onMounted } from 'vue'
 
 // 使用 ref 响应式变量存储数据
@@ -66,6 +67,12 @@ _数据最后更新时间：{{ new Date().getFullYear() }} 年 {{ new Date().get
 - 节点大小反映重要程度
 - 支持拖拽和缩放操作
 - 鼠标悬停可查看详细信息
+
+## 🤝 仓库协作网络
+
+通过共同参与的仓库，展示成员之间的协作关系。两位成员参与了同一个仓库，即视为存在协作关系。
+
+<CollaborationNetwork />
 
 ## 📈 数据导出
 

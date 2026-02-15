@@ -401,29 +401,6 @@ const createNetworkChartOption = () => {
   })
 
   return {
-    title: {
-      text: '成员与研究方向关系网络',
-      subtext: '节点大小反映连接数量，支持拖拽和缩放',
-      left: 'center',
-      top: '2%',
-      textStyle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: getThemeColors().textColor
-      },
-      subtextStyle: {
-        fontSize: 12,
-        color: isDark.value ? '#cccccc' : '#666666'
-      }
-    },
-    // 添加全局网格配置，类似柱状图
-    grid: {
-      left: '15%',
-      right: '15%',
-      top: '25%',
-      bottom: '20%',
-      containLabel: true
-    },
     tooltip: {
       trigger: 'item',
       formatter: function (params) {
@@ -442,7 +419,7 @@ const createNetworkChartOption = () => {
     legend: {
       data: ['成员', '研究方向'],
       right: '3%',
-      top: '12%',
+      top: '2%',
       orient: 'vertical',
       itemGap: 15,
       textStyle: {
@@ -465,21 +442,20 @@ const createNetworkChartOption = () => {
       roam: true, // 保留缩放功能
       focusNodeAdjacency: true,
       draggable: true, // 保留拖拽功能
-      // 移除series级别的边界设置，使用全局grid配置
+      scaleLimit: { min: 0.5, max: 3 },
+      center: ['50%', '50%'],
       force: {
-        repulsion: 400,
-        gravity: 0.2,
+        repulsion: 250,
+        gravity: 0.6,
         edgeLength: [20, 80],
         layoutAnimation: true,
         friction: 0.8,
-        // 添加边界约束
         initLayout: 'circular'
       },
-      // 确保节点在指定区域内
-      left: 100,
-      right: 100,
-      top: 150,
-      bottom: 120,
+      left: 80,
+      right: 120,
+      top: 40,
+      bottom: 40,
       label: {
         show: true,
         position: 'right',
@@ -894,6 +870,10 @@ onUnmounted(() => {
 
       <!-- 关系网络图 -->
       <div class="chart-container">
+        <div class="chart-title">
+          <h3>成员与研究方向关系网络</h3>
+          <p>节点大小反映连接数量，支持拖拽和缩放</p>
+        </div>
         <div ref="networkRef" class="chart-large" data-chart-type="network"></div>
       </div>
 
@@ -954,7 +934,7 @@ onUnmounted(() => {
   background: var(--vp-c-bg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-  overflow: visible;
+  overflow: hidden;
   position: relative;
   min-height: 600px;
 }
@@ -1001,52 +981,23 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-/* 网络图专用样式 */
-.chart[data-chart-type="network"] {
-  height: 750px;
-  min-height: 700px;
-  max-height: 750px;
-  overflow: hidden !important;
-  position: relative;
-  margin-bottom: 30px;
-  padding: 80px 60px;
-  box-sizing: border-box;
-  /* 强制边界约束 */
-  clip-path: inset(0);
-  /* 添加视觉边界提示 */
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
+/* 图表标题（HTML 方式，避免与 ECharts 画布重叠） */
+.chart-title {
+  text-align: center;
+  margin-bottom: 16px;
 }
 
-/* 网络图内部容器约束 */
-.chart[data-chart-type="network"]>div {
-  width: 100% !important;
-  height: 100% !important;
-  max-width: 100% !important;
-  max-height: 100% !important;
-  overflow: hidden !important;
-  position: relative;
-  /* 强制裁剪超出边界的内容 */
-  clip-path: inset(0);
+.chart-title h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 4px 0;
+  color: var(--vp-c-text-1);
 }
 
-/* 网络图内部所有SVG和Canvas元素的约束 */
-.chart[data-chart-type="network"] svg,
-.chart[data-chart-type="network"] canvas {
-  width: 100% !important;
-  height: 100% !important;
-  max-width: 100% !important;
-  max-height: 100% !important;
-  overflow: hidden !important;
-  clip-path: inset(0);
-  object-fit: contain;
-}
-
-/* 强制约束所有网络图内的元素 */
-.chart[data-chart-type="network"] * {
-  max-width: 100% !important;
-  max-height: 100% !important;
-  overflow: hidden !important;
+.chart-title p {
+  font-size: 12px;
+  margin: 0;
+  color: var(--vp-c-text-2);
 }
 
 /* 词云图专用样式 */

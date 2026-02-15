@@ -66,7 +66,7 @@ export default defineConfig({
       { text: "📊 组织统计", link: "/stats" },
       { text: "🏅 开源荣誉", link: "/rewards" },
       { text: "👍🏻 项目统计", link: "/projects" },
-      { text: "📚 同类组织统计", link: "/organization" },
+      { text: "📚 组织统计", link: "/organization" },
       { text: "⭐ 点 Star", link: "/star" },
       {
         text: "🔗 相关链接",
@@ -94,7 +94,7 @@ export default defineConfig({
             { text: "📊 组织统计", link: "/stats" },
             { text: "🏅 开源荣誉", link: "/rewards" },
             { text: "👍🏻 项目统计", link: "/projects" },
-            { text: "📚 同类组织统计", link: "/organization" },
+            { text: "📚 组织统计", link: "/organization" },
             { text: "⭐ 点 Star", link: "/star" },
           ],
         },
