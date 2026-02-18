@@ -13,8 +13,6 @@ const searchSubmitted = ref(false)
 const selectedMember = ref(null)
 const cardRef = ref(null)
 const copyStatus = ref('')
-const embedCode = ref('')
-const showEmbed = ref(false)
 
 function mergeCommitsData(membersArr, commits) {
   if (!commits?.user_commits) return membersArr
@@ -124,23 +122,6 @@ async function copyAsPng() {
   }
 }
 
-// 生成嵌入代码
-function generateEmbedCode() {
-  if (!selectedMember.value) return
-  const base = window.location.origin + (import.meta.env.BASE_URL || '/')
-  const url = `${base}report.html?user=${encodeURIComponent(selectedMember.value.id)}`.replace(/\/+/g, '/')
-  const code = `<iframe src="${url}" width="720" height="900" frameborder="0" style="border:none;border-radius:12px;max-width:100%;"></iframe>`
-  showEmbed.value = !showEmbed.value
-  if (showEmbed.value) embedCode.value = code
-}
-
-function copyEmbedCode() {
-  navigator.clipboard.writeText(embedCode.value).then(() => {
-    copyStatus.value = '代码已复制'
-    setTimeout(() => { copyStatus.value = '' }, 2000)
-  })
-}
-
 onMounted(async () => {
   try {
     const [membersData, commits] = await Promise.all([loadMembers(), loadCommitsWeekly()])
@@ -170,7 +151,6 @@ onMounted(async () => {
             @keydown="handleKeydown"
           />
           <button class="search-btn" @click="findMember">生成年报</button>
-          <button class="search-btn secondary" :disabled="!report" @click="generateEmbedCode" title="生成可嵌入的 iframe 代码">&lt;/&gt; 网页代码</button>
           <button class="search-btn secondary" :disabled="!report || copyStatus === '生成中...'" @click="copyAsPng" title="复制为高清 PNG 图片">{{ copyStatus || '📷 复制图片' }}</button>
         </div>
         <p class="search-hint">输入你的 GitHub 用户名，查看你在 Datawhale 社区的开源年报</p>
@@ -185,13 +165,6 @@ onMounted(async () => {
 
       <!-- 报告卡片 -->
       <div v-if="report" class="report-wrapper">
-        <div v-if="showEmbed" class="embed-panel">
-          <div class="embed-header">
-            <span>嵌入代码</span>
-            <button class="embed-copy-btn" @click="copyEmbedCode">复制</button>
-          </div>
-          <code class="embed-code">{{ embedCode }}</code>
-        </div>
         <div ref="cardRef" class="report-card">
           <div class="report-inner">
             <!-- 头部 -->
@@ -324,27 +297,6 @@ onMounted(async () => {
 
 /* 报告卡片 */
 .report-wrapper { display: flex; flex-direction: column; align-items: center; }
-
-/* 嵌入代码面板 */
-.embed-panel {
-  width: 100%; max-width: 680px; margin-bottom: 16px;
-  background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border);
-  border-radius: 10px; overflow: hidden;
-}
-.embed-header {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 8px 14px; border-bottom: 1px solid var(--vp-c-border);
-  font-size: 13px; color: var(--vp-c-text-2);
-}
-.embed-copy-btn {
-  padding: 4px 12px; background: var(--vp-c-brand-1); color: #fff;
-  border: none; border-radius: 6px; font-size: 12px; cursor: pointer;
-}
-.embed-copy-btn:hover { opacity: 0.9; }
-.embed-code {
-  display: block; padding: 12px 14px; font-size: 12px; line-height: 1.5;
-  color: var(--vp-c-text-1); word-break: break-all; white-space: pre-wrap;
-}
 
 .report-card {
   max-width: 680px; width: 100%;
