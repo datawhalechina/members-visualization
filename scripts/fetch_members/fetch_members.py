@@ -613,14 +613,20 @@ def infer_domains_from_repos(repo_names, user_bio='', user_repos=None):
     return list(domains)
 
 
-def compute_primary_domain(repo_names, domains):
-    """根据仓库名在各领域的分布，返回仓库数最多的领域"""
+def compute_primary_domain(repo_names, domains, repo_commits=None):
+    """根据各领域的commit次数，返回commit最多的领域；无commit数据时按仓库数回退"""
     repo_domain_map = CONFIG.get('REPO_DOMAIN_MAP', {})
     counts = {}
-    for repo in repo_names:
-        d = repo_domain_map.get(repo)
-        if d:
-            counts[d] = counts.get(d, 0) + 1
+    if repo_commits:
+        for repo, cnt in repo_commits.items():
+            d = repo_domain_map.get(repo)
+            if d:
+                counts[d] = counts.get(d, 0) + cnt
+    else:
+        for repo in repo_names:
+            d = repo_domain_map.get(repo)
+            if d:
+                counts[d] = counts.get(d, 0) + 1
     if counts:
         return max(counts, key=counts.get)
     return domains[0] if domains else '数据科学'
@@ -773,6 +779,11 @@ def main():
                 print("💥 没有现有数据可用，构建失败")
                 sys.exit(1)
 
+        # 预先聚合commit数据，用于计算primary_domain
+        user_commits_agg = {}
+        if all_commits:
+            user_commits_agg = aggregate_commits_by_user(all_commits)
+
         # 处理成员数据
         print(f"\n👥 开始处理 {len(contributors_data)} 个成员的详细信息...")
         processed_members = []
@@ -817,7 +828,8 @@ def main():
                     contrib_info['repos'], user_bio, user_repos)
                 print(f"  ✓ 推断研究方向: {', '.join(domains)}")
 
-                primary_domain = compute_primary_domain(contrib_info['repos'], domains)
+                repo_commits = user_commits_agg.get(username, {}).get('repo_commits', None)
+                primary_domain = compute_primary_domain(contrib_info['repos'], domains, repo_commits)
 
                 processed_members.append({
                     'id': username,
@@ -858,14 +870,13 @@ def main():
             # 处理并保存commit数据
             if all_commits:
                 print(f"\n📊 处理 {len(all_commits)} 个commit数据...")
-                user_commits = aggregate_commits_by_user(all_commits)
 
                 commits_data = {
                     'update_time': datetime.now().isoformat(),
                     'days_range': CONFIG['COMMIT_DAYS_RANGE'],
                     'total_commits': len(all_commits),
                     'total_repos': len(set(commit['repo'] for commit in all_commits)),
-                    'user_commits': user_commits,
+                    'user_commits': user_commits_agg,
                     'optimization_stats': {
                         'api_calls': api_stats,
                         'execution_time': f"{time.time() - overall_start_time:.1f}s",
@@ -1323,6 +1334,7 @@ def aggregate_commits_by_user(all_commits):
     user_stats = defaultdict(lambda: {
         'total_commits': 0,
         'repos': set(),
+        'repo_commits': defaultdict(int),
         'daily_commits': defaultdict(int),
         'hourly_distribution': defaultdict(int),
         'beijing_hourly_distribution': defaultdict(int),
@@ -1352,6 +1364,7 @@ def aggregate_commits_by_user(all_commits):
         # 更新统计
         stats['total_commits'] += 1
         stats['repos'].add(commit['repo'])
+        stats['repo_commits'][commit['repo']] += 1
         stats['daily_commits'][commit['date_str']] += 1
         stats['hourly_distribution'][commit['hour']] += 1
         stats['beijing_hourly_distribution'][commit['beijing_hour']] += 1
@@ -1386,6 +1399,7 @@ def aggregate_commits_by_user(all_commits):
             result[username] = {
                 'total_commits': stats['total_commits'],
                 'repos': list(stats['repos']),
+                'repo_commits': dict(stats['repo_commits']),
                 'repo_count': len(stats['repos']),
                 'daily_commits': dict(stats['daily_commits']),
                 'hourly_distribution': dict(stats['hourly_distribution']),
