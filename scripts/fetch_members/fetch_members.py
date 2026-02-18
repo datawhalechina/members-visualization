@@ -613,6 +613,19 @@ def infer_domains_from_repos(repo_names, user_bio='', user_repos=None):
     return list(domains)
 
 
+def compute_primary_domain(repo_names, domains):
+    """根据仓库名在各领域的分布，返回仓库数最多的领域"""
+    repo_domain_map = CONFIG.get('REPO_DOMAIN_MAP', {})
+    counts = {}
+    for repo in repo_names:
+        d = repo_domain_map.get(repo)
+        if d:
+            counts[d] = counts.get(d, 0) + 1
+    if counts:
+        return max(counts, key=counts.get)
+    return domains[0] if domains else '数据科学'
+
+
 def clean_csv_field(text):
     """清理CSV字段中的换行符和其他问题字符"""
     if not text:
@@ -641,7 +654,7 @@ def save_to_csv(members, output_file):
 
         # 写入表头（包含所有字段，包括组织贡献数据）
         writer.writerow([
-            'id', 'name', 'github', 'domain', 'repositories',
+            'id', 'name', 'github', 'domain', 'primary_domain', 'repositories',
             'public_repos', 'total_stars', 'followers', 'following',
             'org_repos_count', 'org_total_stars', 'org_total_forks',
             'org_total_contributions', 'org_avg_stars_per_repo',
@@ -655,6 +668,7 @@ def save_to_csv(members, output_file):
                 clean_csv_field(member['name']),
                 clean_csv_field(member['github']),
                 ';'.join(member['domains']),
+                clean_csv_field(member.get('primary_domain', '')),
                 ';'.join(member.get('repositories', [])),
                 member.get('public_repos', 0),
                 member.get('total_stars', 0),
@@ -684,6 +698,7 @@ def save_to_json(members, output_file):
                 'name': clean_csv_field(member['name']),
                 'github': clean_csv_field(member['github']),
                 'domain': ';'.join(member['domains']),
+                'primary_domain': member.get('primary_domain', ''),
                 'repositories': ';'.join(member.get('repositories', [])),
                 # 个人数据
                 'public_repos': member.get('public_repos', 0),
@@ -802,11 +817,14 @@ def main():
                     contrib_info['repos'], user_bio, user_repos)
                 print(f"  ✓ 推断研究方向: {', '.join(domains)}")
 
+                primary_domain = compute_primary_domain(contrib_info['repos'], domains)
+
                 processed_members.append({
                     'id': username,
                     'name': user_details.get('name') if user_details else username,
                     'github': contrib_info['user_info']['html_url'],
                     'domains': domains,
+                    'primary_domain': primary_domain,
                     'repositories': contrib_info['repos'],  # 参与的组织仓库列表
                     # 个人数据（保留用于参考）
                     'public_repos': user_stats['public_repos'],  # 个人公开仓库数
