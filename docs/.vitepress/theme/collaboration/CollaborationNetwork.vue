@@ -74,7 +74,7 @@ const graphData = computed(() => {
   const nodes = filtered.map(m => {
     const displayName = (m.name && m.name.trim() && m.name !== 'null' && m.name !== 'None') ? m.name : m.id
     const repoCount = m.repositories.length
-    const primaryDomain = (Array.isArray(m.domain) && m.domain.length > 0) ? m.domain[0] : '其他'
+    const primaryDomain = m.primary_domain || ((Array.isArray(m.domain) && m.domain.length > 0) ? m.domain[0] : '其他')
     const degree = degreeMap[m.id] || 0
     return {
       id: m.id,
