@@ -49,23 +49,146 @@ CONFIG = {
     'MAX_USER_REPOS': 100,  # 获取用户仓库的最大数量
     'COMMIT_DAYS_RANGE': 7,  # 获取最近N天的commit数据
     'MAX_COMMITS_PER_REPO': 200,  # 每个仓库最大commit数
+    # topic/关键词 → 领域映射（用于 bio、topics、仓库名匹配）
     'DEFAULT_DOMAINS': {
         'machine-learning': '机器学习',
         'deep-learning': '深度学习',
-        'nlp': 'NLP',
-        'cv': 'CV',
+        'natural-language-processing': 'NLP',
+        'computer-vision': '计算机视觉',
         'data-mining': '数据挖掘',
         'recommendation-system': '推荐系统',
         'reinforcement-learning': '强化学习',
-        'computer-vision': 'CV',
-        'natural-language-processing': 'NLP',
         'artificial-intelligence': '人工智能',
         'llm': 'LLM',
         'data-science': '数据科学',
         'frontend': '前端开发',
         'backend': '后端开发',
         'fullstack': '全栈开发',
-        'bigdata': '大数据'
+        'bigdata': '大数据',
+        'embodied-ai': '具身智能',
+        'robotics': '具身智能',
+        'medical-imaging': '医学影像',
+        'agent': 'AI Agent',
+        'multi-agent': 'AI Agent',
+        'multimodal': '多模态',
+        'rag': 'RAG',
+        'data-analysis': '数据分析',
+        'graph-neural-network': '图神经网络',
+    },
+    # 仓库名 → 领域 直接映射（优先级最高，解决歧义）
+    'REPO_DOMAIN_MAP': {
+        # 面试求职（不是 CV）
+        'daily-interview': '面试求职',
+        'get-job': '面试求职',
+        'huawei-od-python': '面试求职',
+        # 具身智能 / 机器人
+        'easy-robot': '具身智能',
+        'easy-ros2arm': '具身智能',
+        'every-embodied': '具身智能',
+        'ai-hardware-robotics': '具身智能',
+        'white-cloud-robotics': '具身智能',
+        # 医学影像
+        'med-imaging-primer': '医学影像',
+        # AI Agent
+        'agent-tutorial': 'AI Agent',
+        'agentic-ai': 'AI Agent',
+        'hello-agents': 'AI Agent',
+        'wow-agent': 'AI Agent',
+        'handy-multi-agent': 'AI Agent',
+        'hugging-multi-agent': 'AI Agent',
+        'easy-langent': 'AI Agent',
+        # AI 工具教程
+        'handy-ollama': 'AI工具',
+        'handy-n8n': 'AI工具',
+        'self-dify': 'AI工具',
+        'coze-ai-assistant': 'AI工具',
+        'self-llm': 'AI工具',
+        'unlock-hf': 'AI工具',
+        'unlock-deepseek': 'AI工具',
+        'smart-prompt': 'AI工具',
+        'easy-vibe': 'AI工具',
+        'vibe-vibe': 'AI工具',
+        # 框架教程
+        'thorough-pytorch': '框架教程',
+        'openmmlab-tutorial': '框架教程',
+        'd2l-ai-solutions-manual': '框架教程',
+        'fantastic-matplotlib': '框架教程',
+        'joyful-pandas': '框架教程',
+        'powerful-numpy': '框架教程',
+        'wow-plotly': '框架教程',
+        # RAG
+        'all-in-rag': 'RAG',
+        'wow-rag': 'RAG',
+        'easy-vectordb': 'RAG',
+        'easy-vecdb': 'RAG',
+        # LLM
+        'llm-cookbook': 'LLM',
+        'llm-universe': 'LLM',
+        'llm-deploy': 'LLM',
+        'llm-research': 'LLM',
+        'llmbook': 'LLM',
+        'llms-from-scratch-cn': 'LLM',
+        'so-large-lm': 'LLM',
+        'happy-llm': 'LLM',
+        'base-llm': 'LLM',
+        'hugging-llm': 'LLM',
+        'hands-on-llm': 'LLM',
+        'hands-on-llama': 'LLM',
+        'code-your-own-llm': 'LLM',
+        'tiny-universe': 'LLM',
+        'post-training-of-llms': 'LLM',
+        'leegenai-tutorial': 'LLM',
+        # 多模态
+        'hugging-audio': '多模态',
+        'sora-tutorial': '多模态',
+        'hugging-vis': '多模态',
+        'vced': '多模态',
+        # 计算机视觉（真正的 CV 项目）
+        'dive-into-cv-pytorch': '计算机视觉',
+        'deep-learning-for-computer-vision': '计算机视觉',
+        'magic-cv': '计算机视觉',
+        'team-learning-cv': '计算机视觉',
+        'yolo-master': '计算机视觉',
+        'easy-dip': '计算机视觉',
+        # NLP
+        'easy-nlp': 'NLP',
+        'base-nlp': 'NLP',
+        'hands-dirty-nlp': 'NLP',
+        'learn-nlp-with-transformers': 'NLP',
+        'team-learning-nlp': 'NLP',
+        'hand-bert': 'NLP',
+        'fun-transformer': 'NLP',
+        # 强化学习
+        'easy-rl': '强化学习',
+        'joyrl': '强化学习',
+        'joyrl-book': '强化学习',
+        'hugging-rl': '强化学习',
+        'key-book': '强化学习',
+        'fun-marl': '强化学习',
+        'team-learning-rl': '强化学习',
+        # 推荐系统
+        'fun-rec': '推荐系统',
+        'torch-rechub': '推荐系统',
+        'fun-ir': '推荐系统',
+        # 数据竞赛
+        'competition-baseline': '数据竞赛',
+        'coggle': '数据竞赛',
+        # 数据分析
+        'hands-on-data-analysis': '数据分析',
+        'team-learning-data-mining': '数据分析',
+        # 编程基础
+        'learn-python-the-smart-way': '编程基础',
+        'learn-python-the-smart-way-v2': '编程基础',
+        'leetcode-notes': '编程基础',
+        'team-learning-program': '编程基础',
+        'team-learning-sql': '编程基础',
+        'wonderful-sql': '编程基础',
+        'cstart': '编程基础',
+        'go-talent': '编程基础',
+        # 全栈开发
+        'wow-fullstack': '全栈开发',
+        'whale-web': '前端开发',
+        'sweettalk-django': '后端开发',
     }
 }
 
@@ -421,16 +544,22 @@ def calculate_org_contribution_stats(username, contrib_info, org_repos_cache):
 
 
 def infer_domains_from_repos(repo_names, user_bio='', user_repos=None):
-    """根据仓库 topics、名称和用户简介推断研究方向"""
+    """根据仓库名称直接映射、topics、用户简介推断研究方向"""
     domains = set()
 
-    # 从用户简介中提取关键词
+    # 1. 优先：仓库名直接映射（最准确）
+    repo_domain_map = CONFIG.get('REPO_DOMAIN_MAP', {})
+    for repo_name in repo_names:
+        if repo_name in repo_domain_map:
+            domains.add(repo_domain_map[repo_name])
+
+    # 2. 从用户简介中提取关键词
     text = (user_bio or '').lower()
     for key, value in CONFIG['DEFAULT_DOMAINS'].items():
         if key in text or value.lower() in text:
             domains.add(value)
 
-    # 收集所有仓库的 topics
+    # 3. 收集所有仓库的 topics
     all_topics = []
     if user_repos:
         for repo in user_repos:
@@ -439,45 +568,43 @@ def infer_domains_from_repos(repo_names, user_bio='', user_repos=None):
                 if topics:
                     all_topics.extend(topics)
 
-    # 从仓库 topics 中提取关键词（优先使用 topics）
+    # 从 topics 中匹配
     topics_text = ' '.join(all_topics).lower()
     for key, value in CONFIG['DEFAULT_DOMAINS'].items():
-        if key in topics_text or value.lower() in topics_text:
+        if key in topics_text:
             domains.add(value)
 
-    # 如果 topics 中没有找到足够信息，再从仓库名称中提取关键词作为补充
-    repo_text = ' '.join(repo_names).lower()
+    # 4. 从仓库名称中匹配（补充，排除已直接映射的）
+    unmapped_repos = [r for r in repo_names if r not in repo_domain_map]
+    repo_text = ' '.join(unmapped_repos).lower()
     for key, value in CONFIG['DEFAULT_DOMAINS'].items():
-        if key in repo_text or value.lower() in repo_text:
+        if key in repo_text:
             domains.add(value)
 
-    # 根据 topics 和仓库名称的常见模式推断（优先使用 topics）
+    # 5. 关键词模式推断（topics 优先，仓库名补充）
     search_text = topics_text if topics_text.strip() else repo_text
 
-    if any(keyword in search_text for keyword in ['ml', 'machine-learning', 'sklearn']):
-        domains.add('机器学习')
-    if any(keyword in search_text for keyword in ['dl', 'deep-learning', 'pytorch', 'tensorflow']):
-        domains.add('深度学习')
-    if any(keyword in search_text for keyword in ['nlp', 'natural-language', 'bert', 'transformer']):
-        domains.add('NLP')
-    if any(keyword in search_text for keyword in ['recommendation', 'recommendation-system', 'ctr-prediction', 'recommender-system']):
-        domains.add('推荐系统')
-    if any(keyword in search_text for keyword in ['cv', 'computer-vision', 'opencv', 'image', 'yolo']):
-        domains.add('CV')
-    if any(keyword in search_text for keyword in ['web', 'frontend', 'react', 'vue', 'javascript']):
-        domains.add('前端开发')
-    if any(keyword in search_text for keyword in ['gpt', 'llm', 'chatbot', 'llama']):
-        domains.add('LLM')
-    if any(keyword in search_text for keyword in ['rag', 'retrieval-augmented-generation', 'retrieval-augmented']):
-        domains.add('RAG')
-    if any(keyword in search_text for keyword in ['database', 'sql', 'nosql', 'mongodb', 'mysql']):
-        domains.add('数据库开发')
-    if any(keyword in search_text for keyword in ['reinforcement-learning', 'rl', 'reinforcement']):
-        domains.add('强化学习')
-    if any(keyword in search_text for keyword in ['hive', 'spark', 'hadoop']):
-        domains.add('大数据')
-    if any(keyword in search_text for keyword in ['competition']):
-        domains.add('数据竞赛')
+    keyword_rules = [
+        (['machine-learning', 'sklearn'], '机器学习'),
+        (['deep-learning', 'pytorch', 'tensorflow'], '深度学习'),
+        (['nlp', 'natural-language', 'bert', 'transformer'], 'NLP'),
+        (['recommendation', 'recommender-system', 'ctr-prediction'], '推荐系统'),
+        (['computer-vision', 'opencv', 'yolo', 'image-classification'], '计算机视觉'),
+        (['web', 'frontend', 'react', 'vue', 'javascript'], '前端开发'),
+        (['gpt', 'llm', 'chatbot', 'llama', 'large-language-model'], 'LLM'),
+        (['rag', 'retrieval-augmented'], 'RAG'),
+        (['agent', 'multi-agent', 'agentic'], 'AI Agent'),
+        (['embodied', 'robotics', 'robot', 'ros2'], '具身智能'),
+        (['medical-imaging', 'medical-image'], '医学影像'),
+        (['multimodal', 'audio', 'speech', 'text-to-image'], '多模态'),
+        (['reinforcement-learning', 'reinforcement'], '强化学习'),
+        (['hive', 'spark', 'hadoop'], '大数据'),
+        (['competition', 'kaggle'], '数据竞赛'),
+        (['database', 'sql', 'nosql', 'mongodb', 'mysql'], '数据库'),
+    ]
+    for keywords, domain in keyword_rules:
+        if any(kw in search_text for kw in keywords):
+            domains.add(domain)
 
     # 如果没有找到任何领域，设置默认值
     if not domains:
