@@ -1,0 +1,3365 @@
+{
+  "meta": {
+    "year": 2026,
+    "quarter": 1,
+    "generated_at": "2026-02-27T02:44:49.785543",
+    "total_contributors": 82,
+    "outstanding_count": 4,
+    "excellent_count": 14,
+    "active_count": 64,
+    "thresholds": {
+      "outstanding": 50,
+      "excellent": 10,
+      "valid_commit_threshold": 10
+    }
+  },
+  "contributors": {
+    "outstanding": [
+      {
+        "username": "lailoo",
+        "verified": true,
+        "valid_commits": 285,
+        "total_commits": 285,
+        "repos_count": 2,
+        "repos": [
+          "vibe-blog",
+          "vibe-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-blog",
+            "sha": "e54c2640",
+            "message": "fix: Gemini <think> 标签兼容 + enhance_topic 超时修复 + 配图异步传递 + SSE 断连",
+            "date": "2026-02-26T16:53:24Z",
+            "files_count": 10,
+            "total_additions": 129
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "754d7ebd",
+            "message": "fix: Generate 页工具栏下移避免遮挡 + GitHub 图标与首页统一",
+            "date": "2026-02-26T15:07:52Z",
+            "files_count": 59,
+            "total_additions": 75
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "71ae9c09",
+            "message": "feat: 接入 Gemini 3.1 Pro（通过 grsai OpenAI 兼容代理）+ 清理未替换图片占位符",
+            "date": "2026-02-26T15:02:31Z",
+            "files_count": 4,
+            "total_additions": 31
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "4096971e",
+            "message": "fix: LLM 调用期间每 5 秒发心跳 + SSE 心跳间隔从 30s 降到 10s",
+            "date": "2026-02-26T14:53:00Z",
+            "files_count": 2,
+            "total_additions": 19
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "5ca2c2e7",
+            "message": "fix: Dockerfile.frontend 改回单阶段 + dist 纳入仓库，服务器直接部署",
+            "date": "2026-02-26T14:39:41Z",
+            "files_count": 133,
+            "total_additions": 3157
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "ae0179cd",
+            "message": "fix: Dockerfile.frontend 改为多阶段构建，远程部署不再依赖本地 dist",
+            "date": "2026-02-25T19:14:15Z",
+            "files_count": 2,
+            "total_additions": 14
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "2e55d641",
+            "message": "fix: 并行写作流式预览重复 + 搜索路由误判 + provider 自动推断",
+            "date": "2026-02-25T19:06:57Z",
+            "files_count": 8,
+            "total_additions": 126
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "e58849a8",
+            "message": "Merge remote-tracking branch 'origin/main'",
+            "date": "2026-02-25T17:46:26Z",
+            "files_count": 55,
+            "total_additions": 5975
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "80435d3e",
+            "message": "Merge branch 'opti/perf-v2-pain-points' — 博客生成性能优化 v2-v4",
+            "date": "2026-02-22T18:53:52Z",
+            "files_count": 30,
+            "total_additions": 1741
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "7422e7fc",
+            "message": "feat: LLM 调用完整日志 (v2 方案 10)",
+            "date": "2026-02-22T18:53:12Z",
+            "files_count": 3,
+            "total_additions": 119
+          }
+        ]
+      },
+      {
+        "username": "sanbuphy",
+        "verified": true,
+        "valid_commits": 181,
+        "total_commits": 181,
+        "repos_count": 1,
+        "repos": [
+          "easy-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vibe",
+            "sha": "90bff531",
+            "message": "fix: optimize AppendixFlowMap component",
+            "date": "2026-02-26T19:39:39Z",
+            "files_count": 1,
+            "total_additions": 149
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "24462634",
+            "message": "feat(docs): 解除 archived-components 注释并创建 scheduled-tasks 组件",
+            "date": "2026-02-26T15:57:18Z",
+            "files_count": 13,
+            "total_additions": 979
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "1cffd7d9",
+            "message": "feat: add i18n support for ChapterIntroduction component",
+            "date": "2026-02-26T04:59:01Z",
+            "files_count": 4,
+            "total_additions": 54
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "a981df76",
+            "message": "feat: complete English translation of AI IDE introduction including Appendix 2",
+            "date": "2026-02-26T04:17:40Z",
+            "files_count": 23,
+            "total_additions": 3710
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "41e9dc36",
+            "message": "docs: update appendix links to use full website URLs",
+            "date": "2026-02-26T01:47:11Z",
+            "files_count": 1,
+            "total_additions": 53
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "544780f6",
+            "message": "feat(i18n): add AI history components internationalization support",
+            "date": "2026-02-26T01:33:06Z",
+            "files_count": 17,
+            "total_additions": 1451
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "43e5063d",
+            "message": "feat(i18n): translate B-end and C-end scenario appendices to English",
+            "date": "2026-02-25T22:05:43Z",
+            "files_count": 3,
+            "total_additions": 1208
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "a7ea5d2a",
+            "message": "feat(i18n): complete English translation for stage-0 and stage-1 core content",
+            "date": "2026-02-25T21:34:19Z",
+            "files_count": 9,
+            "total_additions": 2083
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "85044211",
+            "message": "fix: replace all /en-us/ paths with /en/ for locale consistency",
+            "date": "2026-02-25T20:42:28Z",
+            "files_count": 3,
+            "total_additions": 35
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "da6bf073",
+            "message": "feat: add comprehensive backend topics and fix build issues",
+            "date": "2026-02-25T20:35:28Z",
+            "files_count": 84,
+            "total_additions": 12893
+          }
+        ]
+      },
+      {
+        "username": "FutureUnreal",
+        "verified": true,
+        "valid_commits": 100,
+        "total_commits": 100,
+        "repos_count": 3,
+        "repos": [
+          "all-in-rag",
+          "base-llm",
+          "whale-whisper"
+        ],
+        "recent_commits": [
+          {
+            "repo": "base-llm",
+            "sha": "23421eff",
+            "message": "update",
+            "date": "2026-02-24T21:36:37Z",
+            "files_count": 1,
+            "total_additions": 10
+          },
+          {
+            "repo": "base-llm",
+            "sha": "bd15a787",
+            "message": "update",
+            "date": "2026-02-24T21:09:12Z",
+            "files_count": 1,
+            "total_additions": 13
+          },
+          {
+            "repo": "base-llm",
+            "sha": "f4bd9af1",
+            "message": "update",
+            "date": "2026-02-24T20:55:04Z",
+            "files_count": 12,
+            "total_additions": 198
+          },
+          {
+            "repo": "base-llm",
+            "sha": "1b19bdf6",
+            "message": "update",
+            "date": "2026-02-24T15:59:40Z",
+            "files_count": 3,
+            "total_additions": 28
+          },
+          {
+            "repo": "base-llm",
+            "sha": "9fd45388",
+            "message": "update",
+            "date": "2026-02-22T18:55:09Z",
+            "files_count": 2,
+            "total_additions": 29
+          },
+          {
+            "repo": "base-llm",
+            "sha": "f4e51f87",
+            "message": "update",
+            "date": "2026-02-22T16:07:20Z",
+            "files_count": 1,
+            "total_additions": 65
+          },
+          {
+            "repo": "base-llm",
+            "sha": "22233e69",
+            "message": "update",
+            "date": "2026-02-22T13:57:03Z",
+            "files_count": 1,
+            "total_additions": 14
+          },
+          {
+            "repo": "base-llm",
+            "sha": "c3c38361",
+            "message": "update",
+            "date": "2026-02-21T15:20:30Z",
+            "files_count": 1,
+            "total_additions": 16
+          },
+          {
+            "repo": "base-llm",
+            "sha": "b5e37d47",
+            "message": "update",
+            "date": "2026-02-17T19:03:32Z",
+            "files_count": 2,
+            "total_additions": 64
+          },
+          {
+            "repo": "base-llm",
+            "sha": "0250c2df",
+            "message": "新年快乐🎉",
+            "date": "2026-02-16T18:01:08Z",
+            "files_count": 5,
+            "total_additions": 50
+          }
+        ]
+      },
+      {
+        "username": "1985312383",
+        "verified": true,
+        "valid_commits": 84,
+        "total_commits": 84,
+        "repos_count": 5,
+        "repos": [
+          "easy-langent",
+          "easy-vecdb",
+          "med-imaging-primer",
+          "members-visualization",
+          "torch-rechub"
+        ],
+        "recent_commits": [
+          {
+            "repo": "torch-rechub",
+            "sha": "a711af1e",
+            "message": "Merge pull request #183 from 1985312383/main",
+            "date": "2026-02-27T01:51:16Z",
+            "files_count": 27,
+            "total_additions": 514
+          },
+          {
+            "repo": "torch-rechub",
+            "sha": "2576e6d0",
+            "message": "Open math settings",
+            "date": "2026-02-27T01:49:46Z",
+            "files_count": 3,
+            "total_additions": 467
+          },
+          {
+            "repo": "torch-rechub",
+            "sha": "2ec75a73",
+            "message": "Docs: add blog nav, fix examples, remove cached docs",
+            "date": "2026-02-26T10:24:06Z",
+            "files_count": 25,
+            "total_additions": 47
+          },
+          {
+            "repo": "torch-rechub",
+            "sha": "4795cf53",
+            "message": "Merge pull request #179 from Luxorion-12/main",
+            "date": "2026-02-25T12:54:37Z",
+            "files_count": 1,
+            "total_additions": 747
+          },
+          {
+            "repo": "torch-rechub",
+            "sha": "fb40af04",
+            "message": "Merge pull request #176 from 1985312383/main",
+            "date": "2026-02-19T18:08:23Z",
+            "files_count": 3,
+            "total_additions": 22
+          },
+          {
+            "repo": "torch-rechub",
+            "sha": "33bb03f6",
+            "message": "Support padding_idx in embedding initializers",
+            "date": "2026-02-19T17:40:02Z",
+            "files_count": 3,
+            "total_additions": 22
+          },
+          {
+            "repo": "members-visualization",
+            "sha": "6c99d655",
+            "message": "Merge pull request #33 from 1985312383/main",
+            "date": "2026-02-18T19:44:50Z",
+            "files_count": 1,
+            "total_additions": 23
+          },
+          {
+            "repo": "members-visualization",
+            "sha": "36ca4f2c",
+            "message": "Update fetch_members.py",
+            "date": "2026-02-18T19:44:24Z",
+            "files_count": 1,
+            "total_additions": 23
+          },
+          {
+            "repo": "members-visualization",
+            "sha": "b1925298",
+            "message": "Merge pull request #32 from 1985312383/main",
+            "date": "2026-02-18T19:18:09Z",
+            "files_count": 5,
+            "total_additions": 216
+          },
+          {
+            "repo": "members-visualization",
+            "sha": "10646511",
+            "message": "Add primary_domain for members and UI",
+            "date": "2026-02-18T19:09:39Z",
+            "files_count": 2,
+            "total_additions": 20
+          }
+        ]
+      }
+    ],
+    "excellent": [
+      {
+        "username": "Eyre921",
+        "verified": true,
+        "valid_commits": 47,
+        "total_commits": 47,
+        "repos_count": 1,
+        "repos": [
+          "vibe-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-vibe",
+            "sha": "bfd26d11",
+            "message": "feat(seo): 全面实施 SEO/GEO 优化和自动化元数据系统",
+            "date": "2026-02-03T05:51:34Z",
+            "files_count": 11,
+            "total_additions": 1585
+          },
+          {
+            "repo": "vibe-vibe",
+            "sha": "14132fe7",
+            "message": "feat(seo): 全面实施 SEO/GEO 优化和自动化元数据系统",
+            "date": "2026-02-03T05:51:25Z",
+            "files_count": 11,
+            "total_additions": 1585
+          },
+          {
+            "repo": "vibe-vibe",
+            "sha": "b6e1e813",
+            "message": "  feat(seo): 全面实施 SEO/GEO 优化和自动化元数据系统",
+            "date": "2026-02-03T05:50:41Z",
+            "files_count": 8,
+            "total_additions": 934
+          },
+          {
+            "repo": "vibe-vibe",
+            "sha": "a436316c",
+            "message": "refactor(config): 模块化重构配置文件，提升可维护性",
+            "date": "2026-02-02T10:30:32Z",
+            "files_count": 4,
+            "total_additions": 479
+          },
+          {
+            "repo": "vibe-vibe",
+            "sha": "1bf1f1c0",
+            "message": "feat(seo): 增强SEO和社交分享优化，扩大内容传播力",
+            "date": "2026-02-02T08:40:00Z",
+            "files_count": 1,
+            "total_additions": 187
+          },
+          {
+            "repo": "vibe-vibe",
+            "sha": "ea24e69b",
+            "message": "docs: 添加多个章节文档模板并更新快速开始标题",
+            "date": "2026-02-02T08:34:23Z",
+            "files_count": 300,
+            "total_additions": 33
+          },
+          {
+            "repo": "vibe-vibe",
+            "sha": "405d220a",
+            "message": "docs: 添加多个章节文档模板并更新快速开始标题",
+            "date": "2026-02-02T08:34:16Z",
+            "files_count": 300,
+            "total_additions": 33
+          },
+          {
+            "repo": "vibe-vibe",
+            "sha": "6c3fd552",
+            "message": "refactor(config): 优化配置符合 VitePress 最佳实践",
+            "date": "2026-02-02T08:29:48Z",
+            "files_count": 1,
+            "total_additions": 32
+          },
+          {
+            "repo": "vibe-vibe",
+            "sha": "6fcaf9fa",
+            "message": "docs: 统一文档标题格式并添加章节编号",
+            "date": "2026-02-01T16:50:28Z",
+            "files_count": 34,
+            "total_additions": 103
+          },
+          {
+            "repo": "vibe-vibe",
+            "sha": "b507adec",
+            "message": "docs: 统一文档标题格式并添加章节编号",
+            "date": "2026-02-01T16:50:20Z",
+            "files_count": 34,
+            "total_additions": 103
+          }
+        ]
+      },
+      {
+        "username": "muxiaoxiong",
+        "verified": true,
+        "valid_commits": 33,
+        "total_commits": 33,
+        "repos_count": 3,
+        "repos": [
+          "easy-langent",
+          "easy-vecdb",
+          "members-visualization"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-langent",
+            "sha": "44180e6d",
+            "message": "更新一部分内容",
+            "date": "2026-02-14T01:15:03Z",
+            "files_count": 8,
+            "total_additions": 1361
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "431cf72c",
+            "message": "内容迭代",
+            "date": "2026-02-11T02:48:03Z",
+            "files_count": 11,
+            "total_additions": 338
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "fd9d2a06",
+            "message": "增加第9章的内容",
+            "date": "2026-02-05T09:13:11Z",
+            "files_count": 4,
+            "total_additions": 40
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "dbf0736c",
+            "message": "fix some bug",
+            "date": "2026-02-05T02:32:48Z",
+            "files_count": 7,
+            "total_additions": 208
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "bc0e5c8c",
+            "message": "Merge branch 'main' of https://github.com/datawhalechina/easy-langent",
+            "date": "2026-02-05T02:25:59Z",
+            "files_count": 25,
+            "total_additions": 1412
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "10bab919",
+            "message": "fix",
+            "date": "2026-02-05T02:25:55Z",
+            "files_count": 3,
+            "total_additions": 1196
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "7b9261f0",
+            "message": "Merge pull request #1 from 1985312383/main",
+            "date": "2026-02-05T02:25:01Z",
+            "files_count": 25,
+            "total_additions": 1412
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "1a869bad",
+            "message": "修复第1章 第2章部分描述错误",
+            "date": "2026-02-05T02:18:48Z",
+            "files_count": 7,
+            "total_additions": 1301
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "7187251b",
+            "message": "更新第8章",
+            "date": "2026-02-04T08:28:21Z",
+            "files_count": 5,
+            "total_additions": 1226
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "997daec3",
+            "message": "第7章结束存档",
+            "date": "2026-02-03T03:31:56Z",
+            "files_count": 5,
+            "total_additions": 1568
+          }
+        ]
+      },
+      {
+        "username": "jjyaoao",
+        "verified": true,
+        "valid_commits": 26,
+        "total_commits": 26,
+        "repos_count": 2,
+        "repos": [
+          "handy-multi-agent",
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "19a7a22f",
+            "message": "Merge pull request #357 from YYHDBL/add-extra-chapter",
+            "date": "2026-02-26T04:53:52Z",
+            "files_count": 11,
+            "total_additions": 1349
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "0d7c1baf",
+            "message": "Merge pull request #341 from ditingdapeng/feat/extra08-skill-writing",
+            "date": "2026-02-24T08:53:21Z",
+            "files_count": 10,
+            "total_additions": 753
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "dccb5de6",
+            "message": "Merge pull request #317 from pamdla/feature/MindEchoAgent",
+            "date": "2026-02-07T07:42:02Z",
+            "files_count": 14,
+            "total_additions": 712
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "bca16755",
+            "message": "Merge branch 'main' of https://github.com/datawhalechina/hello-agents",
+            "date": "2026-02-02T08:37:17Z",
+            "files_count": 18,
+            "total_additions": 3085
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "d0a8d3c5",
+            "message": "fix Display problem in chapter7 and add 7.4.5 in English version",
+            "date": "2026-02-02T08:36:49Z",
+            "files_count": 2,
+            "total_additions": 73
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "906ab556",
+            "message": "Merge pull request #318 from lgs-only/feature/novel-enerator",
+            "date": "2026-02-02T08:14:51Z",
+            "files_count": 14,
+            "total_additions": 2047
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "4c537551",
+            "message": "Merge pull request #315 from kkkano/main",
+            "date": "2026-02-02T08:06:06Z",
+            "files_count": 4,
+            "total_additions": 1038
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "97f98573",
+            "message": "add environment setting in extra07",
+            "date": "2026-01-30T02:07:24Z",
+            "files_count": 17,
+            "total_additions": 372
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "16d10878",
+            "message": "fix problem in chapter1 code",
+            "date": "2026-01-23T06:30:20Z",
+            "files_count": 4,
+            "total_additions": 144
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "f1ed65ac",
+            "message": "chore:add 00-CoCreateProject in readme",
+            "date": "2026-01-23T00:35:26Z",
+            "files_count": 22,
+            "total_additions": 3636
+          }
+        ]
+      },
+      {
+        "username": "Fyuan0206",
+        "verified": true,
+        "valid_commits": 21,
+        "total_commits": 21,
+        "repos_count": 3,
+        "repos": [
+          "agent-skills-with-anthropic",
+          "easy-vecdb",
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "b530a793",
+            "message": "Merge pull request #9 from MongxinChan/main",
+            "date": "2026-02-13T03:11:22Z",
+            "files_count": 11,
+            "total_additions": 31
+          },
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "1a33876e",
+            "message": "提交部分内容bug修改",
+            "date": "2026-02-07T02:56:30Z",
+            "files_count": 10,
+            "total_additions": 41
+          },
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "8c14eade",
+            "message": "add：10、Conclusion",
+            "date": "2026-02-06T12:31:43Z",
+            "files_count": 2,
+            "total_additions": 51
+          },
+          {
+            "repo": "self-llm",
+            "sha": "04475ed5",
+            "message": "修改Step-3.5-Flash-SGLang部分内容",
+            "date": "2026-02-06T04:44:03Z",
+            "files_count": 1,
+            "total_additions": 121
+          },
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "292ed2c3",
+            "message": "Merge pull request #8 from CacinieP/main",
+            "date": "2026-02-06T03:57:46Z",
+            "files_count": 13,
+            "total_additions": 124
+          },
+          {
+            "repo": "self-llm",
+            "sha": "a090aa21",
+            "message": "add Step-3.5-Flash-SGLang",
+            "date": "2026-02-06T03:05:58Z",
+            "files_count": 3,
+            "total_additions": 430
+          },
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "b334126c",
+            "message": "Merge pull request #7 from Zhiyuan-Academy/main",
+            "date": "2026-02-06T02:13:59Z",
+            "files_count": 4,
+            "total_additions": 318
+          },
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "8137f159",
+            "message": "Merge pull request #6 from Zhiyuan-Academy/main",
+            "date": "2026-02-05T09:49:40Z",
+            "files_count": 6,
+            "total_additions": 142
+          },
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "38a4f707",
+            "message": "6、Creating Custom Skills提交",
+            "date": "2026-02-05T09:19:12Z",
+            "files_count": 19,
+            "total_additions": 254
+          },
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "89b68f12",
+            "message": "Merge branch 'main' of https://github.com/Fyuan0206/agent-skills-with-anthropic",
+            "date": "2026-02-05T05:30:03Z",
+            "files_count": 16,
+            "total_additions": 435
+          }
+        ]
+      },
+      {
+        "username": "Ethan-Chen-plus",
+        "verified": true,
+        "valid_commits": 19,
+        "total_commits": 19,
+        "repos_count": 1,
+        "repos": [
+          "every-embodied"
+        ],
+        "recent_commits": [
+          {
+            "repo": "every-embodied",
+            "sha": "6561ebfb",
+            "message": "add mujoco ACT and 更新春晚机器人",
+            "date": "2026-02-25T15:29:22Z",
+            "files_count": 171,
+            "total_additions": 1100406
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "6408982a",
+            "message": "新增春晚武术机器人复刻教程",
+            "date": "2026-02-24T10:47:12Z",
+            "files_count": 2,
+            "total_additions": 49
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "3e1a3815",
+            "message": "新增春晚武术机器人复刻教程",
+            "date": "2026-02-24T10:43:57Z",
+            "files_count": 63,
+            "total_additions": 10107
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "237a5d52",
+            "message": "Update 01春晚舞蹈机器人复刻.md",
+            "date": "2026-02-23T08:09:23Z",
+            "files_count": 1,
+            "total_additions": 19
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "f86a592f",
+            "message": "Update 01春晚舞蹈机器人复刻.md",
+            "date": "2026-02-23T07:51:30Z",
+            "files_count": 1,
+            "total_additions": 10
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "e25e1838",
+            "message": "新增 ETPNav(IEEE TPAMI 2024)复现教程指导",
+            "date": "2026-02-22T14:58:31Z",
+            "files_count": 4,
+            "total_additions": 16
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "ceb7d393",
+            "message": "Merge pull request #21 from GodoneZ/Embodied-AI_zty",
+            "date": "2026-02-22T14:45:23Z",
+            "files_count": 1,
+            "total_additions": 278
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "868ce229",
+            "message": "新增春晚武术机器人复刻教程",
+            "date": "2026-02-22T05:12:56Z",
+            "files_count": 1,
+            "total_additions": 64
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "90c9138d",
+            "message": "新增春晚武术机器人复刻教程",
+            "date": "2026-02-22T04:07:41Z",
+            "files_count": 6,
+            "total_additions": 315
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "ddb1aae8",
+            "message": "新版更新推送",
+            "date": "2026-02-20T04:34:28Z",
+            "files_count": 300,
+            "total_additions": 5493
+          }
+        ]
+      },
+      {
+        "username": "KMnO4-zx",
+        "verified": true,
+        "valid_commits": 18,
+        "total_commits": 18,
+        "repos_count": 3,
+        "repos": [
+          "happy-llm",
+          "hello-rocm",
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "self-llm",
+            "sha": "4bd3c5f7",
+            "message": "更新支持模型列表，添加 Kimi-K2.5 和 Step-3.5-Flash 的详细部署指南及相关贡献者信息",
+            "date": "2026-02-09T13:48:23Z",
+            "files_count": 3,
+            "total_additions": 46
+          },
+          {
+            "repo": "self-llm",
+            "sha": "41429f90",
+            "message": "Merge pull request #488 from isaacahahah/master",
+            "date": "2026-02-08T12:37:36Z",
+            "files_count": 5,
+            "total_additions": 493
+          },
+          {
+            "repo": "self-llm",
+            "sha": "d1788568",
+            "message": "Merge pull request #487 from YangYu-NUAA/master",
+            "date": "2026-02-08T11:57:58Z",
+            "files_count": 2,
+            "total_additions": 1752
+          },
+          {
+            "repo": "self-llm",
+            "sha": "8e3f7cda",
+            "message": "Merge pull request #484 from fanqiNO1/kimi-k2.5-tech-report",
+            "date": "2026-02-07T13:12:55Z",
+            "files_count": 14,
+            "total_additions": 190
+          },
+          {
+            "repo": "self-llm",
+            "sha": "80b6858c",
+            "message": "Merge pull request #481 from ilovexsir/master",
+            "date": "2026-02-07T09:46:01Z",
+            "files_count": 6,
+            "total_additions": 865
+          },
+          {
+            "repo": "self-llm",
+            "sha": "b8dfc88a",
+            "message": "Merge pull request #483 from Fyuan0206/master",
+            "date": "2026-02-06T04:58:15Z",
+            "files_count": 1,
+            "total_additions": 121
+          },
+          {
+            "repo": "self-llm",
+            "sha": "4222ceaa",
+            "message": "Merge pull request #482 from Fyuan0206/master",
+            "date": "2026-02-06T03:50:49Z",
+            "files_count": 3,
+            "total_additions": 430
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "53a95007",
+            "message": "Merge pull request #9 from Weihong-Liu/master",
+            "date": "2026-02-05T11:49:17Z",
+            "files_count": 5,
+            "total_additions": 765
+          },
+          {
+            "repo": "self-llm",
+            "sha": "3720a709",
+            "message": "添加 Kimi-2.5 和 Step-3.5-Flash 模型支持及相关信息",
+            "date": "2026-02-02T11:22:13Z",
+            "files_count": 1,
+            "total_additions": 12
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "7706b6c9",
+            "message": "Refactor code structure for improved readability and maintainability",
+            "date": "2026-01-28T15:08:03Z",
+            "files_count": 5,
+            "total_additions": 20145
+          }
+        ]
+      },
+      {
+        "username": "zhimin-z",
+        "verified": true,
+        "valid_commits": 17,
+        "total_commits": 17,
+        "repos_count": 2,
+        "repos": [
+          "easy-pocket",
+          "key-book"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-pocket",
+            "sha": "2a755e79",
+            "message": "add agent skills",
+            "date": "2026-02-22T22:22:37Z",
+            "files_count": 13,
+            "total_additions": 120
+          },
+          {
+            "repo": "easy-pocket",
+            "sha": "2ffeb59f",
+            "message": "add",
+            "date": "2026-02-22T21:28:04Z",
+            "files_count": 16,
+            "total_additions": 251
+          },
+          {
+            "repo": "easy-pocket",
+            "sha": "9b450f4e",
+            "message": "add",
+            "date": "2026-02-22T20:24:34Z",
+            "files_count": 6,
+            "total_additions": 427
+          },
+          {
+            "repo": "easy-pocket",
+            "sha": "a9e28b4d",
+            "message": "add",
+            "date": "2026-02-22T15:50:24Z",
+            "files_count": 8,
+            "total_additions": 1137
+          },
+          {
+            "repo": "easy-pocket",
+            "sha": "4d2a3ed2",
+            "message": "add",
+            "date": "2026-02-22T04:22:26Z",
+            "files_count": 2,
+            "total_additions": 80
+          },
+          {
+            "repo": "easy-pocket",
+            "sha": "cd2542db",
+            "message": "Update application cases and examples to reflect the addition of a new case and correct tutorial ref",
+            "date": "2026-02-21T17:43:38Z",
+            "files_count": 4,
+            "total_additions": 24
+          },
+          {
+            "repo": "easy-pocket",
+            "sha": "15efa7fa",
+            "message": "add",
+            "date": "2026-02-05T06:17:10Z",
+            "files_count": 1,
+            "total_additions": 20
+          },
+          {
+            "repo": "easy-pocket",
+            "sha": "65389ac3",
+            "message": "Update deploy.yml for VitePress deployment",
+            "date": "2026-02-05T06:03:26Z",
+            "files_count": 1,
+            "total_additions": 22
+          },
+          {
+            "repo": "easy-pocket",
+            "sha": "ab2b0419",
+            "message": "Merge pull request #4 from datawhalechina/copilot/fix-pages-configuration-error",
+            "date": "2026-02-04T21:02:09Z",
+            "files_count": 2,
+            "total_additions": 67
+          },
+          {
+            "repo": "easy-pocket",
+            "sha": "987302c0",
+            "message": "add",
+            "date": "2026-02-03T00:23:00Z",
+            "files_count": 1,
+            "total_additions": 20
+          }
+        ]
+      },
+      {
+        "username": "Halukisan",
+        "verified": true,
+        "valid_commits": 16,
+        "total_commits": 16,
+        "repos_count": 1,
+        "repos": [
+          "easy-vecdb"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vecdb",
+            "sha": "be7bf890",
+            "message": "Merge pull request #120 from Halukisan/dev",
+            "date": "2026-01-27T12:40:01Z",
+            "files_count": 5,
+            "total_additions": 95
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "2e193f29",
+            "message": "Merge pull request #116 from Halukisan/dev",
+            "date": "2026-01-26T09:42:01Z",
+            "files_count": 7,
+            "total_additions": 121
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "73322121",
+            "message": "Merge branch 'main' into dev",
+            "date": "2026-01-26T09:39:18Z",
+            "files_count": 28,
+            "total_additions": 17350
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "ee32b36d",
+            "message": "Merge pull request #115 from AllYoung/main",
+            "date": "2026-01-21T06:12:41Z",
+            "files_count": 1,
+            "total_additions": 12
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "f909788b",
+            "message": "Merge pull request #109 from Halukisan/dev",
+            "date": "2026-01-15T02:10:03Z",
+            "files_count": 4,
+            "total_additions": 1146
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "dbfcb7f1",
+            "message": "Merge pull request #108 from Halukisan/dev",
+            "date": "2026-01-13T07:24:59Z",
+            "files_count": 6,
+            "total_additions": 2689
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "8630cb38",
+            "message": "Merge branch 'main' into dev",
+            "date": "2026-01-13T07:24:45Z",
+            "files_count": 11,
+            "total_additions": 2465
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "8e3eebae",
+            "message": "Merge pull request #102 from Halukisan/dev",
+            "date": "2026-01-07T08:48:54Z",
+            "files_count": 1,
+            "total_additions": 57
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "5a149192",
+            "message": "Merge pull request #101 from Halukisan/dev",
+            "date": "2026-01-07T08:43:29Z",
+            "files_count": 4,
+            "total_additions": 1519
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "5d4390be",
+            "message": "Merge pull request #99 from Halukisan/dev",
+            "date": "2026-01-05T03:51:20Z",
+            "files_count": 4,
+            "total_additions": 41
+          }
+        ]
+      },
+      {
+        "username": "FuTseYi",
+        "verified": true,
+        "valid_commits": 14,
+        "total_commits": 14,
+        "repos_count": 2,
+        "repos": [
+          "easy-vibe",
+          "faster-git"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vibe",
+            "sha": "b0d90ee4",
+            "message": "feat(theme): add reading progress indicator component",
+            "date": "2026-02-06T14:28:37Z",
+            "files_count": 3,
+            "total_additions": 234
+          },
+          {
+            "repo": "faster-git",
+            "sha": "5c207cbc",
+            "message": "docs: translate and update Chapter 10 content to English, enhancing clarity and accessibility",
+            "date": "2026-01-14T05:15:44Z",
+            "files_count": 1,
+            "total_additions": 44
+          },
+          {
+            "repo": "faster-git",
+            "sha": "8b5b687f",
+            "message": "docs: translate and update Chapter 09 content to English, enhancing clarity and accessibility",
+            "date": "2026-01-14T05:15:39Z",
+            "files_count": 1,
+            "total_additions": 74
+          },
+          {
+            "repo": "faster-git",
+            "sha": "5f063e21",
+            "message": "docs: translate and update Chapter 08 content to English, enhancing clarity and accessibility",
+            "date": "2026-01-14T05:15:24Z",
+            "files_count": 1,
+            "total_additions": 138
+          },
+          {
+            "repo": "faster-git",
+            "sha": "57af4d9c",
+            "message": "docs: translate and update Chapter 07 content to English, enhancing clarity and accessibility",
+            "date": "2026-01-14T05:15:14Z",
+            "files_count": 1,
+            "total_additions": 70
+          },
+          {
+            "repo": "faster-git",
+            "sha": "ef910df3",
+            "message": "docs: translate and update Chapter 06 content to English, enhancing clarity and accessibility",
+            "date": "2026-01-14T05:15:07Z",
+            "files_count": 1,
+            "total_additions": 36
+          },
+          {
+            "repo": "faster-git",
+            "sha": "f804fdc5",
+            "message": "docs: translate and update Chapter 05 content to English, enhancing clarity and accessibility",
+            "date": "2026-01-14T05:14:59Z",
+            "files_count": 1,
+            "total_additions": 127
+          },
+          {
+            "repo": "faster-git",
+            "sha": "26536352",
+            "message": "docs: translate and update Chapter 04 content to English, enhancing clarity and accessibility",
+            "date": "2026-01-14T05:14:50Z",
+            "files_count": 1,
+            "total_additions": 123
+          },
+          {
+            "repo": "faster-git",
+            "sha": "6dce2bfb",
+            "message": "docs: translate and update Chapter 03 content to English, enhancing clarity and accessibility",
+            "date": "2026-01-14T05:14:44Z",
+            "files_count": 1,
+            "total_additions": 68
+          },
+          {
+            "repo": "faster-git",
+            "sha": "287a54a5",
+            "message": "docs: translate and update Chapter 02 content to English, enhancing clarity and accessibility",
+            "date": "2026-01-14T05:14:36Z",
+            "files_count": 1,
+            "total_additions": 303
+          }
+        ]
+      },
+      {
+        "username": "Sm1les",
+        "verified": true,
+        "valid_commits": 14,
+        "total_commits": 14,
+        "repos_count": 5,
+        "repos": [
+          ".github",
+          "DOPMC",
+          "easy-vecdb",
+          "pumpkin-book",
+          "repo-template"
+        ],
+        "recent_commits": [
+          {
+            "repo": ".github",
+            "sha": "99e0bb24",
+            "message": "Update README.md",
+            "date": "2026-01-29T13:35:40Z",
+            "files_count": 1,
+            "total_additions": 10
+          },
+          {
+            "repo": "DOPMC",
+            "sha": "0e596980",
+            "message": "Create OPPORTUNITY.md",
+            "date": "2026-01-29T13:24:36Z",
+            "files_count": 1,
+            "total_additions": 11
+          },
+          {
+            "repo": ".github",
+            "sha": "edc81fb2",
+            "message": "Update README.md",
+            "date": "2026-01-26T14:09:58Z",
+            "files_count": 1,
+            "total_additions": 17
+          },
+          {
+            "repo": "pumpkin-book",
+            "sha": "58add398",
+            "message": "从docsify迁移至vitepress",
+            "date": "2026-01-21T12:59:15Z",
+            "files_count": 14,
+            "total_additions": 4122
+          },
+          {
+            "repo": "pumpkin-book",
+            "sha": "7f2396aa",
+            "message": "优化排版",
+            "date": "2026-01-21T09:36:39Z",
+            "files_count": 12,
+            "total_additions": 123
+          },
+          {
+            "repo": "repo-template",
+            "sha": "d58ca3be",
+            "message": "从docsify改为vitepress",
+            "date": "2026-01-21T08:40:30Z",
+            "files_count": 21,
+            "total_additions": 4072
+          },
+          {
+            "repo": "DOPMC",
+            "sha": "2dbe18fb",
+            "message": "Update github_statistic.py",
+            "date": "2026-01-19T09:10:19Z",
+            "files_count": 1,
+            "total_additions": 30
+          },
+          {
+            "repo": "DOPMC",
+            "sha": "95144d08",
+            "message": "Update ALPHA.md",
+            "date": "2026-01-16T04:01:30Z",
+            "files_count": 1,
+            "total_additions": 22
+          },
+          {
+            "repo": "DOPMC",
+            "sha": "2e5d540e",
+            "message": "Update ALPHA.md",
+            "date": "2026-01-13T08:35:41Z",
+            "files_count": 1,
+            "total_additions": 14
+          },
+          {
+            "repo": "DOPMC",
+            "sha": "961e9405",
+            "message": "Create ALPHA.md",
+            "date": "2026-01-13T03:58:58Z",
+            "files_count": 1,
+            "total_additions": 31
+          }
+        ]
+      },
+      {
+        "username": "LucaChen",
+        "verified": true,
+        "valid_commits": 14,
+        "total_commits": 14,
+        "repos_count": 1,
+        "repos": [
+          "hello-rocm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-rocm",
+            "sha": "56c46f10",
+            "message": "Merge pull request #10 from Weihong-Liu/master",
+            "date": "2026-02-11T06:44:24Z",
+            "files_count": 6,
+            "total_additions": 2368
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "b01ac255",
+            "message": "Update README.md",
+            "date": "2026-02-10T02:49:31Z",
+            "files_count": 1,
+            "total_additions": 22
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "7b54b723",
+            "message": "优化部署教程",
+            "date": "2026-02-10T02:39:05Z",
+            "files_count": 2,
+            "total_additions": 886
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "29e36f6e",
+            "message": "新增部署教程",
+            "date": "2026-02-09T08:16:29Z",
+            "files_count": 24,
+            "total_additions": 1082
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "fba5cbac",
+            "message": "Merge pull request #7 from amdjiahangpan/master",
+            "date": "2026-02-03T14:54:08Z",
+            "files_count": 11,
+            "total_additions": 1171
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "613c6ee3",
+            "message": "Merge branch 'master' into master",
+            "date": "2026-02-03T14:53:41Z",
+            "files_count": 21,
+            "total_additions": 21789
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "e1aa65f0",
+            "message": "Merge pull request #8 from Weihong-Liu/master",
+            "date": "2026-01-31T02:29:58Z",
+            "files_count": 2,
+            "total_additions": 463
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "8e39756c",
+            "message": "Merge pull request #4 from LucaChen/master",
+            "date": "2026-01-27T02:05:58Z",
+            "files_count": 11,
+            "total_additions": 753
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "8d236ec4",
+            "message": "新建文件夹和README.md",
+            "date": "2026-01-26T13:54:52Z",
+            "files_count": 9,
+            "total_additions": 750
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "8f294b0a",
+            "message": "Merge pull request #3 from LucaChen/master",
+            "date": "2026-01-26T13:49:22Z",
+            "files_count": 3,
+            "total_additions": 346
+          }
+        ]
+      },
+      {
+        "username": "晓 刘",
+        "verified": false,
+        "valid_commits": 13,
+        "total_commits": 13,
+        "repos_count": 1,
+        "repos": [
+          "easy-vecdb"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vecdb",
+            "sha": "1f6d5109",
+            "message": "fix some content structure problems",
+            "date": "2026-01-27T12:38:50Z",
+            "files_count": 5,
+            "total_additions": 95
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "51266e08",
+            "message": "struct fix2",
+            "date": "2026-01-26T09:36:39Z",
+            "files_count": 3,
+            "total_additions": 101
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "959f620c",
+            "message": "add:Milvus_reranker",
+            "date": "2026-01-15T02:09:12Z",
+            "files_count": 4,
+            "total_additions": 1146
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "366c13b2",
+            "message": "add:how to cook rag",
+            "date": "2026-01-13T07:23:02Z",
+            "files_count": 6,
+            "total_additions": 2689
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "93b302c6",
+            "message": "update",
+            "date": "2026-01-07T08:48:05Z",
+            "files_count": 1,
+            "total_additions": 57
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "7d1c4c8e",
+            "message": "add project2",
+            "date": "2026-01-07T08:42:44Z",
+            "files_count": 4,
+            "total_additions": 1519
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "61b907fe",
+            "message": "update",
+            "date": "2026-01-05T03:48:37Z",
+            "files_count": 1,
+            "total_additions": 16
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "110837e8",
+            "message": "fix ch5 struct",
+            "date": "2026-01-05T03:03:25Z",
+            "files_count": 3,
+            "total_additions": 24
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "047838b5",
+            "message": "update",
+            "date": "2026-01-04T08:02:09Z",
+            "files_count": 3,
+            "total_additions": 937
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "f1a48433",
+            "message": "update",
+            "date": "2026-01-04T07:41:24Z",
+            "files_count": 7,
+            "total_additions": 1931
+          }
+        ]
+      },
+      {
+        "username": "Relph1119",
+        "verified": true,
+        "valid_commits": 11,
+        "total_commits": 11,
+        "repos_count": 1,
+        "repos": [
+          "statistical-learning-method-solutions-manual"
+        ],
+        "recent_commits": [
+          {
+            "repo": "statistical-learning-method-solutions-manual",
+            "sha": "34588044",
+            "message": ":ok_hand: 校对完成第3篇的notebook",
+            "date": "2026-02-13T15:27:17Z",
+            "files_count": 9,
+            "total_additions": 487
+          },
+          {
+            "repo": "statistical-learning-method-solutions-manual",
+            "sha": "fecd40a5",
+            "message": ":ok_hand: 校对完成第2篇的notebook",
+            "date": "2026-02-13T14:31:08Z",
+            "files_count": 9,
+            "total_additions": 142
+          },
+          {
+            "repo": "statistical-learning-method-solutions-manual",
+            "sha": "da932d9e",
+            "message": ":ok_hand: 校对完成第1篇的notebook",
+            "date": "2026-02-13T14:18:17Z",
+            "files_count": 10,
+            "total_additions": 250
+          },
+          {
+            "repo": "statistical-learning-method-solutions-manual",
+            "sha": "9946ad57",
+            "message": ":bento: 更新第1~3章的代码",
+            "date": "2026-02-11T08:05:32Z",
+            "files_count": 9,
+            "total_additions": 371
+          },
+          {
+            "repo": "statistical-learning-method-solutions-manual",
+            "sha": "866f50e0",
+            "message": ":sparkles: 修改第24~27章的代码",
+            "date": "2026-02-10T08:31:04Z",
+            "files_count": 6,
+            "total_additions": 361
+          },
+          {
+            "repo": "statistical-learning-method-solutions-manual",
+            "sha": "7256df82",
+            "message": ":sparkles: 使用uv替换原有的pip包管理",
+            "date": "2026-02-10T06:11:34Z",
+            "files_count": 2,
+            "total_additions": 2364
+          },
+          {
+            "repo": "statistical-learning-method-solutions-manual",
+            "sha": "efe549a6",
+            "message": "Merge branch 'dev'",
+            "date": "2026-01-30T13:20:21Z",
+            "files_count": 2,
+            "total_additions": 71
+          },
+          {
+            "repo": "statistical-learning-method-solutions-manual",
+            "sha": "71fd5c6b",
+            "message": ":sparkles: 提交issues的格式",
+            "date": "2026-01-30T13:09:14Z",
+            "files_count": 2,
+            "total_additions": 71
+          },
+          {
+            "repo": "statistical-learning-method-solutions-manual",
+            "sha": "35984f59",
+            "message": "Merge pull request #71 from datawhalechina/master",
+            "date": "2026-01-30T12:50:17Z",
+            "files_count": 26,
+            "total_additions": 5074
+          },
+          {
+            "repo": "statistical-learning-method-solutions-manual",
+            "sha": "3477451c",
+            "message": ":sparkles: 使用github在线部署",
+            "date": "2026-01-30T12:45:34Z",
+            "files_count": 1,
+            "total_additions": 66
+          }
+        ]
+      },
+      {
+        "username": "GodoneZ",
+        "verified": true,
+        "valid_commits": 10,
+        "total_commits": 10,
+        "repos_count": 1,
+        "repos": [
+          "every-embodied"
+        ],
+        "recent_commits": [
+          {
+            "repo": "every-embodied",
+            "sha": "80285bb4",
+            "message": "Revise ETPNav replication guide for clarity and detail",
+            "date": "2026-02-22T11:59:10Z",
+            "files_count": 1,
+            "total_additions": 163
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "42dc529b",
+            "message": "Merge branch 'datawhalechina:main' into Embodied-AI_zty",
+            "date": "2026-02-22T08:48:01Z",
+            "files_count": 6,
+            "total_additions": 374
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "092c8bb8",
+            "message": "Add ETPNav reproduction and training guide",
+            "date": "2026-02-20T09:42:25Z",
+            "files_count": 1,
+            "total_additions": 148
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "d2f61421",
+            "message": "Update 连续环境下视觉语言导航（VLN-CE）方法总结.md",
+            "date": "2026-01-11T07:46:08Z",
+            "files_count": 1,
+            "total_additions": 10
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "011fa39b",
+            "message": "Add files via upload",
+            "date": "2026-01-11T07:16:04Z",
+            "files_count": 32,
+            "total_additions": 397
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "6394c9f4",
+            "message": "Update 连续环境下视觉语言导航（VLN-CE）方法总结.md",
+            "date": "2026-01-11T06:54:49Z",
+            "files_count": 1,
+            "total_additions": 22
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "749d56e9",
+            "message": "Add files via upload",
+            "date": "2026-01-11T06:44:19Z",
+            "files_count": 32,
+            "total_additions": 607
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "7524d5b2",
+            "message": "Add files via upload",
+            "date": "2026-01-11T06:29:28Z",
+            "files_count": 1,
+            "total_additions": 607
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "8cd3fe42",
+            "message": "Add files via upload",
+            "date": "2026-01-11T03:33:58Z",
+            "files_count": 1,
+            "total_additions": 607
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "4aff8ff1",
+            "message": "Add files via upload",
+            "date": "2026-01-11T03:28:43Z",
+            "files_count": 1,
+            "total_additions": 607
+          }
+        ]
+      }
+    ],
+    "active": [
+      {
+        "username": "howtio",
+        "verified": true,
+        "valid_commits": 7,
+        "total_commits": 7,
+        "repos_count": 1,
+        "repos": [
+          "whale-bot"
+        ],
+        "recent_commits": [
+          {
+            "repo": "whale-bot",
+            "sha": "3c7c1b5f",
+            "message": "Add files via upload",
+            "date": "2026-01-08T18:18:55Z",
+            "files_count": 4,
+            "total_additions": 308
+          },
+          {
+            "repo": "whale-bot",
+            "sha": "004fb07a",
+            "message": "Add files via upload",
+            "date": "2026-01-08T18:15:57Z",
+            "files_count": 3,
+            "total_additions": 236
+          },
+          {
+            "repo": "whale-bot",
+            "sha": "d3b9c9f7",
+            "message": "Add files via upload",
+            "date": "2026-01-08T18:14:26Z",
+            "files_count": 3,
+            "total_additions": 104
+          },
+          {
+            "repo": "whale-bot",
+            "sha": "460ab900",
+            "message": "Update README.md",
+            "date": "2026-01-08T00:23:43Z",
+            "files_count": 1,
+            "total_additions": 18
+          },
+          {
+            "repo": "whale-bot",
+            "sha": "ff84bea8",
+            "message": "Add files via upload",
+            "date": "2026-01-07T05:34:24Z",
+            "files_count": 12,
+            "total_additions": 90594
+          },
+          {
+            "repo": "whale-bot",
+            "sha": "a0cb04d7",
+            "message": "Revise README with project details and features",
+            "date": "2026-01-07T05:31:27Z",
+            "files_count": 1,
+            "total_additions": 117
+          },
+          {
+            "repo": "whale-bot",
+            "sha": "04e57620",
+            "message": "Initial commit",
+            "date": "2026-01-07T05:17:25Z",
+            "files_count": 2,
+            "total_additions": 23
+          }
+        ]
+      },
+      {
+        "username": "muzilyd",
+        "verified": true,
+        "valid_commits": 5,
+        "total_commits": 5,
+        "repos_count": 1,
+        "repos": [
+          "every-embodied"
+        ],
+        "recent_commits": [
+          {
+            "repo": "every-embodied",
+            "sha": "9715c728",
+            "message": "Add files via upload",
+            "date": "2026-01-11T12:10:12Z",
+            "files_count": 2,
+            "total_additions": 1079
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "952f5117",
+            "message": "Add files via upload",
+            "date": "2026-01-11T12:09:45Z",
+            "files_count": 6,
+            "total_additions": 107
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "5c40fa7c",
+            "message": "Add files via upload",
+            "date": "2026-01-11T12:09:20Z",
+            "files_count": 3,
+            "total_additions": 303
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "f2a55c40",
+            "message": "Add files via upload",
+            "date": "2026-01-05T03:40:55Z",
+            "files_count": 37,
+            "total_additions": 1742
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "f4f94ef1",
+            "message": "Add files via upload",
+            "date": "2026-01-05T03:35:39Z",
+            "files_count": 37,
+            "total_additions": 1742
+          }
+        ]
+      },
+      {
+        "username": "YangYu-NUAA",
+        "verified": true,
+        "valid_commits": 4,
+        "total_commits": 4,
+        "repos_count": 1,
+        "repos": [
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "self-llm",
+            "sha": "6fe3cde8",
+            "message": "New PR about GLM-4.7-Flash-Lora微调，增加swanlab详细说明 (#489)",
+            "date": "2026-02-09T13:15:28Z",
+            "files_count": 2,
+            "total_additions": 334
+          },
+          {
+            "repo": "self-llm",
+            "sha": "53668588",
+            "message": "Add files via upload",
+            "date": "2026-02-08T09:49:59Z",
+            "files_count": 2,
+            "total_additions": 1513
+          },
+          {
+            "repo": "self-llm",
+            "sha": "0ad1f3f6",
+            "message": "Add files via upload",
+            "date": "2026-02-08T09:45:01Z",
+            "files_count": 1,
+            "total_additions": 1512
+          },
+          {
+            "repo": "self-llm",
+            "sha": "80ab65de",
+            "message": "Add files via upload",
+            "date": "2026-02-07T22:27:04Z",
+            "files_count": 1,
+            "total_additions": 243
+          }
+        ]
+      },
+      {
+        "username": "lw-xundong",
+        "verified": true,
+        "valid_commits": 4,
+        "total_commits": 4,
+        "repos_count": 1,
+        "repos": [
+          "torch-rechub"
+        ],
+        "recent_commits": [
+          {
+            "repo": "torch-rechub",
+            "sha": "ebd65f72",
+            "message": "fix: format the code",
+            "date": "2026-02-12T02:07:54Z",
+            "files_count": 3,
+            "total_additions": 78
+          },
+          {
+            "repo": "torch-rechub",
+            "sha": "645f58a2",
+            "message": "Add the example of running TIGER on Amazon Books.",
+            "date": "2026-02-12T02:03:21Z",
+            "files_count": 1,
+            "total_additions": 369
+          },
+          {
+            "repo": "torch-rechub",
+            "sha": "3e26fd59",
+            "message": "Add dataset",
+            "date": "2026-02-12T01:54:27Z",
+            "files_count": 1,
+            "total_additions": 324
+          },
+          {
+            "repo": "torch-rechub",
+            "sha": "a8e1f462",
+            "message": "Add Tiger Model",
+            "date": "2026-01-28T13:37:00Z",
+            "files_count": 2,
+            "total_additions": 162
+          }
+        ]
+      },
+      {
+        "username": "Zhiwen-Liu",
+        "verified": true,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 1,
+        "repos": [
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "self-llm",
+            "sha": "90b6fcd0",
+            "message": "完善README英文文档昇腾部分",
+            "date": "2026-01-03T14:26:09Z",
+            "files_count": 1,
+            "total_additions": 20
+          },
+          {
+            "repo": "self-llm",
+            "sha": "c6a69b4f",
+            "message": "添加昇腾MindIE教程",
+            "date": "2026-01-03T14:13:12Z",
+            "files_count": 9,
+            "total_additions": 150
+          },
+          {
+            "repo": "self-llm",
+            "sha": "109301e6",
+            "message": "add Ascend NPU support",
+            "date": "2026-01-03T12:12:35Z",
+            "files_count": 8,
+            "total_additions": 877
+          }
+        ]
+      },
+      {
+        "username": "gaoliye",
+        "verified": false,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 2,
+        "repos": [
+          "easy-vecdb",
+          "llm-universe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "llm-universe",
+            "sha": "ca9ce3d8",
+            "message": "update new model",
+            "date": "2026-02-23T13:49:57Z",
+            "files_count": 2,
+            "total_additions": 141
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "b5bec693",
+            "message": "update v4",
+            "date": "2026-01-17T08:40:06Z",
+            "files_count": 3,
+            "total_additions": 1648
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "e952960f",
+            "message": "LSH",
+            "date": "2026-01-17T08:07:55Z",
+            "files_count": 4,
+            "total_additions": 17190
+          }
+        ]
+      },
+      {
+        "username": "lora-sys",
+        "verified": true,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 1,
+        "repos": [
+          "vibe-blog"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-blog",
+            "sha": "e7857516",
+            "message": "docs: add .env example configuration to Docker deployment guide",
+            "date": "2026-02-04T14:24:56Z",
+            "files_count": 2,
+            "total_additions": 360
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "91ed5216",
+            "message": "docs: add complete environment variable configuration to README_EN",
+            "date": "2026-02-04T14:16:44Z",
+            "files_count": 1,
+            "total_additions": 52
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "62871525",
+            "message": "docs: add Docker deployment guide to README",
+            "date": "2026-02-04T13:42:46Z",
+            "files_count": 2,
+            "total_additions": 112
+          }
+        ]
+      },
+      {
+        "username": "CacinieP",
+        "verified": true,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 1,
+        "repos": [
+          "agent-skills-with-anthropic"
+        ],
+        "recent_commits": [
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "dc9ff5c5",
+            "message": "规范化第2、3节文件名与标题格式，新增第5节课程内容",
+            "date": "2026-02-06T03:46:51Z",
+            "files_count": 13,
+            "total_additions": 124
+          },
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "3c6cb171",
+            "message": "Update Lesson 2 and 3 content and images",
+            "date": "2026-02-05T04:45:02Z",
+            "files_count": 13,
+            "total_additions": 45
+          },
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "4698a0bd",
+            "message": "Add course lessons: Introduction, Why Use Skills, Agent & Skills, Skills vs Tools",
+            "date": "2026-02-04T16:57:05Z",
+            "files_count": 2,
+            "total_additions": 230
+          }
+        ]
+      },
+      {
+        "username": "zhahaonan",
+        "verified": true,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 1,
+        "repos": [
+          "agent-skills-with-anthropic"
+        ],
+        "recent_commits": [
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "19402782",
+            "message": "Add files via upload",
+            "date": "2026-02-05T03:36:22Z",
+            "files_count": 1,
+            "total_additions": 189
+          },
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "37756510",
+            "message": "Merge branch 'Fyuan0206:main' into main",
+            "date": "2026-02-05T03:06:28Z",
+            "files_count": 4,
+            "total_additions": 240
+          },
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "61d75c8e",
+            "message": "Add files via upload",
+            "date": "2026-02-04T18:14:44Z",
+            "files_count": 1,
+            "total_additions": 86
+          }
+        ]
+      },
+      {
+        "username": "Kailigithub",
+        "verified": false,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 1,
+        "repos": [
+          "wow-fullstack"
+        ],
+        "recent_commits": [
+          {
+            "repo": "wow-fullstack",
+            "sha": "5d0866be",
+            "message": "feat: 添加用户学习统计和分析功能",
+            "date": "2026-01-05T02:53:00Z",
+            "files_count": 15,
+            "total_additions": 1966
+          },
+          {
+            "repo": "wow-fullstack",
+            "sha": "55f5b6a1",
+            "message": "fix: 修复代码编辑器切换章节后代码未更新的问题",
+            "date": "2026-01-04T09:01:24Z",
+            "files_count": 2,
+            "total_additions": 13
+          },
+          {
+            "repo": "wow-fullstack",
+            "sha": "943d24f5",
+            "message": "feat: 添加在线代码执行器功能",
+            "date": "2026-01-04T08:46:00Z",
+            "files_count": 18,
+            "total_additions": 7470
+          }
+        ]
+      },
+      {
+        "username": "tomowang",
+        "verified": true,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 1,
+        "repos": [
+          "faster-git"
+        ],
+        "recent_commits": [
+          {
+            "repo": "faster-git",
+            "sha": "2bd16de8",
+            "message": "Merge pull request #38 from FuTseYi/main",
+            "date": "2026-01-09T01:29:01Z",
+            "files_count": 5,
+            "total_additions": 177
+          },
+          {
+            "repo": "faster-git",
+            "sha": "bd1ea45d",
+            "message": "docs: readme",
+            "date": "2026-01-07T14:02:32Z",
+            "files_count": 1,
+            "total_additions": 112
+          },
+          {
+            "repo": "faster-git",
+            "sha": "ea5b0068",
+            "message": "Merge pull request #36 from FuTseYi/website",
+            "date": "2026-01-07T04:21:27Z",
+            "files_count": 171,
+            "total_additions": 10085
+          }
+        ]
+      },
+      {
+        "username": "unseenme",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "71d56837",
+            "message": "[fixed] case mismatches in repository name in English tutorial",
+            "date": "2026-01-13T22:05:58Z",
+            "files_count": 1,
+            "total_additions": 11
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "83116f4a",
+            "message": "[fixed] case mismatches in the repository name",
+            "date": "2026-01-12T14:38:50Z",
+            "files_count": 1,
+            "total_additions": 10
+          }
+        ]
+      },
+      {
+        "username": "pi-dal",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "all-in-rag"
+        ],
+        "recent_commits": [
+          {
+            "repo": "all-in-rag",
+            "sha": "40fc33a8",
+            "message": "refactor: reorganize PowerRAG SDK demo to Extra-chapter",
+            "date": "2026-01-29T13:26:59Z",
+            "files_count": 13,
+            "total_additions": 405
+          },
+          {
+            "repo": "all-in-rag",
+            "sha": "3617c93c",
+            "message": "feat: add PowerRAG SDK text QA retrieval demo",
+            "date": "2026-01-29T04:48:50Z",
+            "files_count": 8,
+            "total_additions": 466
+          }
+        ]
+      },
+      {
+        "username": "yli000",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "easy-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vibe",
+            "sha": "7e1c32ae",
+            "message": "fix: prevent sidebar collapse from blocking mobile hamburger menu",
+            "date": "2026-02-24T03:50:50Z",
+            "files_count": 2,
+            "total_additions": 25
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "9041a139",
+            "message": "feat: 添加目录栏收起/展开功能",
+            "date": "2026-02-21T17:56:23Z",
+            "files_count": 1,
+            "total_additions": 164
+          }
+        ]
+      },
+      {
+        "username": "luahan77m",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "easy-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vibe",
+            "sha": "0ca5258c",
+            "message": "docs(zh-cn): 更新个人网页与学术博客教程内容",
+            "date": "2026-02-13T18:58:58Z",
+            "files_count": 60,
+            "total_additions": 920
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "440b9d4f",
+            "message": "1",
+            "date": "2026-01-26T17:27:38Z",
+            "files_count": 66,
+            "total_additions": 673
+          }
+        ]
+      },
+      {
+        "username": "liulx25xx",
+        "verified": false,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "easy-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vibe",
+            "sha": "d51242b1",
+            "message": "update ios tutorial content and images",
+            "date": "2026-01-27T08:30:07Z",
+            "files_count": 39,
+            "total_additions": 723
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "432972c4",
+            "message": "feat: submit assignment content",
+            "date": "2026-01-26T17:43:07Z",
+            "files_count": 47,
+            "total_additions": 714
+          }
+        ]
+      },
+      {
+        "username": "guohao",
+        "verified": false,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "vibe-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-vibe",
+            "sha": "4b11d478",
+            "message": "添加优质文章篇 111 篇内容并优化 UI",
+            "date": "2026-01-02T03:41:56Z",
+            "files_count": 124,
+            "total_additions": 4339
+          },
+          {
+            "repo": "vibe-vibe",
+            "sha": "8d6b93da",
+            "message": "添加优质文章篇 111 篇内容并优化 UI",
+            "date": "2026-01-02T03:41:24Z",
+            "files_count": 124,
+            "total_additions": 4339
+          }
+        ]
+      },
+      {
+        "username": "sjjjoaps",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "happy-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "happy-llm",
+            "sha": "dce7904c",
+            "message": "同步更改第五章教学描述情况。优化了数据加载的逻辑",
+            "date": "2026-01-03T02:02:13Z",
+            "files_count": 1,
+            "total_additions": 26
+          },
+          {
+            "repo": "happy-llm",
+            "sha": "94e6e4a5",
+            "message": "优化了大规模数据读取逻辑,解决了一次性加载所有数据导致内存占用过大以及训练过程中内存占用持续上升的问题",
+            "date": "2026-01-02T03:30:42Z",
+            "files_count": 1,
+            "total_additions": 24
+          }
+        ]
+      },
+      {
+        "username": "johnjim0816",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "self-llm",
+            "sha": "99350d3f",
+            "message": "✨ feat: 增加MLX框架简介 (#492)",
+            "date": "2026-02-10T03:34:48Z",
+            "files_count": 9,
+            "total_additions": 220
+          },
+          {
+            "repo": "self-llm",
+            "sha": "b2b31941",
+            "message": "✨ feat: 初始化Apple M 专区",
+            "date": "2026-01-08T02:03:29Z",
+            "files_count": 11,
+            "total_additions": 222
+          }
+        ]
+      },
+      {
+        "username": "isaacahahah",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "self-llm",
+            "sha": "6ba83fb9",
+            "message": "＂feat：新增step-3.5-flash-vllm部署教程＂",
+            "date": "2026-02-08T12:31:46Z",
+            "files_count": 5,
+            "total_additions": 493
+          },
+          {
+            "repo": "self-llm",
+            "sha": "40c1485a",
+            "message": "Merge branch 'datawhalechina:master' into master",
+            "date": "2026-02-08T12:01:55Z",
+            "files_count": 22,
+            "total_additions": 3312
+          }
+        ]
+      },
+      {
+        "username": "lta155",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "llm-universe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "llm-universe",
+            "sha": "e351c431",
+            "message": "Merge pull request #229 from 0-yy-0/gly0223",
+            "date": "2026-02-24T14:33:21Z",
+            "files_count": 2,
+            "total_additions": 144
+          },
+          {
+            "repo": "llm-universe",
+            "sha": "cbbc4906",
+            "message": "Merge pull request #219 from datawhalechina/submit-notebook-only",
+            "date": "2026-01-10T11:52:48Z",
+            "files_count": 1,
+            "total_additions": 1432
+          }
+        ]
+      },
+      {
+        "username": "qinjiayue",
+        "verified": false,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "vibe-blog"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-blog",
+            "sha": "c52f8d7e",
+            "message": "修改扫描聚合prompt",
+            "date": "2026-01-23T07:53:03Z",
+            "files_count": 1,
+            "total_additions": 37
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "2f572d23",
+            "message": "add styles",
+            "date": "2026-01-20T11:21:20Z",
+            "files_count": 11,
+            "total_additions": 229
+          }
+        ]
+      },
+      {
+        "username": "Zhiyuan-Academy",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "agent-skills-with-anthropic"
+        ],
+        "recent_commits": [
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "f24732d6",
+            "message": "Add files via upload",
+            "date": "2026-02-06T01:22:12Z",
+            "files_count": 1,
+            "total_additions": 318
+          },
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "46f55d5a",
+            "message": "Add files via upload",
+            "date": "2026-02-05T09:11:22Z",
+            "files_count": 1,
+            "total_additions": 142
+          }
+        ]
+      },
+      {
+        "username": "Zengyu Gao",
+        "verified": false,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "algo-vis"
+        ],
+        "recent_commits": [
+          {
+            "repo": "algo-vis",
+            "sha": "415c6eb4",
+            "message": "fix:修改报错",
+            "date": "2026-02-26T06:52:53Z",
+            "files_count": 1,
+            "total_additions": 15
+          },
+          {
+            "repo": "algo-vis",
+            "sha": "4096126d",
+            "message": "feat:补充部分题型",
+            "date": "2026-02-25T08:33:39Z",
+            "files_count": 13,
+            "total_additions": 6783
+          }
+        ]
+      },
+      {
+        "username": "林景豪",
+        "verified": false,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "openclaw-tutorial"
+        ],
+        "recent_commits": [
+          {
+            "repo": "openclaw-tutorial",
+            "sha": "fb130a0f",
+            "message": "feat: 添加学习时间线 + 改用飞书",
+            "date": "2026-02-15T08:50:14Z",
+            "files_count": 2,
+            "total_additions": 54
+          },
+          {
+            "repo": "openclaw-tutorial",
+            "sha": "6fcfbdde",
+            "message": "feat: 初始化 OpenClaw 学习教程",
+            "date": "2026-02-15T08:30:20Z",
+            "files_count": 11,
+            "total_additions": 1187
+          }
+        ]
+      },
+      {
+        "username": "hrjtju",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "math-for-ai"
+        ],
+        "recent_commits": [
+          {
+            "repo": "math-for-ai",
+            "sha": "019f00fa",
+            "message": "Merge pull request #18 from fish-404/patch-3",
+            "date": "2026-02-12T06:21:47Z",
+            "files_count": 1,
+            "total_additions": 31
+          },
+          {
+            "repo": "math-for-ai",
+            "sha": "38c573f1",
+            "message": "修正第二章番外篇图片、重绘番外篇 图4",
+            "date": "2026-01-14T15:23:49Z",
+            "files_count": 5,
+            "total_additions": 15
+          }
+        ]
+      },
+      {
+        "username": "Weihong-Liu",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "hello-rocm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-rocm",
+            "sha": "049725ef",
+            "message": "Merge branch 'datawhalechina:master' into master",
+            "date": "2026-02-10T09:52:13Z",
+            "files_count": 24,
+            "total_additions": 1724
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "11fd30fd",
+            "message": "添加算子优化教程",
+            "date": "2026-01-29T07:40:31Z",
+            "files_count": 2,
+            "total_additions": 463
+          }
+        ]
+      },
+      {
+        "username": "puppet",
+        "verified": false,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "hello-rocm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-rocm",
+            "sha": "cdc52692",
+            "message": "第二章教程",
+            "date": "2026-02-10T09:51:37Z",
+            "files_count": 6,
+            "total_additions": 2368
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "9392adbf",
+            "message": "优化infra第一章",
+            "date": "2026-02-05T11:22:30Z",
+            "files_count": 5,
+            "total_additions": 768
+          }
+        ]
+      },
+      {
+        "username": "ZhikangNiu",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "faster-git"
+        ],
+        "recent_commits": [
+          {
+            "repo": "faster-git",
+            "sha": "61d59d2b",
+            "message": "Merge pull request #39 from FuTseYi/main",
+            "date": "2026-01-28T05:20:10Z",
+            "files_count": 12,
+            "total_additions": 1025
+          },
+          {
+            "repo": "faster-git",
+            "sha": "5fac60f3",
+            "message": "Merge pull request #37 from FuTseYi/main",
+            "date": "2026-01-07T08:53:59Z",
+            "files_count": 2,
+            "total_additions": 90
+          }
+        ]
+      },
+      {
+        "username": "YYHDBL",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "4658762d",
+            "message": "补充上传正文文件",
+            "date": "2026-02-26T02:18:51Z",
+            "files_count": 1,
+            "total_additions": 1341
+          }
+        ]
+      },
+      {
+        "username": "ditingdapeng",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "16624081",
+            "message": "docs: add Extra08 - 如何写出好的Skill",
+            "date": "2026-02-15T02:41:00Z",
+            "files_count": 10,
+            "total_additions": 753
+          }
+        ]
+      },
+      {
+        "username": "lgs-only",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "82b34998",
+            "message": "feat: 添加lgs毕业设计项目",
+            "date": "2026-01-27T20:15:54Z",
+            "files_count": 14,
+            "total_additions": 2047
+          }
+        ]
+      },
+      {
+        "username": "ai",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "74125f00",
+            "message": "feat: 添加MindEchoAgent毕业设计项目",
+            "date": "2026-01-27T19:03:11Z",
+            "files_count": 17,
+            "total_additions": 702
+          }
+        ]
+      },
+      {
+        "username": "kkkano",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "16aef956",
+            "message": "feat: 添加 FinReportAgent 金融研报智能体毕业设计项目",
+            "date": "2026-01-25T11:05:55Z",
+            "files_count": 4,
+            "total_additions": 1038
+          }
+        ]
+      },
+      {
+        "username": "EJ.Yang",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "3c676b2f",
+            "message": "fix: correct en version sidebar item path",
+            "date": "2026-01-15T03:20:46Z",
+            "files_count": 1,
+            "total_additions": 19
+          }
+        ]
+      },
+      {
+        "username": "Tangent-90C",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "eb228da6",
+            "message": "docs(guidelines): 更新智能体行动格式规范",
+            "date": "2026-01-14T16:35:44Z",
+            "files_count": 4,
+            "total_additions": 182
+          }
+        ]
+      },
+      {
+        "username": "wuyixiang",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "f42a2706",
+            "message": "feat: add LearningAgent graduation project",
+            "date": "2026-01-13T03:45:13Z",
+            "files_count": 25,
+            "total_additions": 3593
+          }
+        ]
+      },
+      {
+        "username": "Dear47",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "c44a3307",
+            "message": "修改tool方法和参数错误",
+            "date": "2026-01-06T15:19:14Z",
+            "files_count": 11,
+            "total_additions": 662
+          }
+        ]
+      },
+      {
+        "username": "bichchibui5-hub",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "f11b7cb6",
+            "message": "feat: 整合C盘EmailSmartAssistant项目文件",
+            "date": "2026-01-02T11:17:16Z",
+            "files_count": 12,
+            "total_additions": 3600
+          }
+        ]
+      },
+      {
+        "username": "Jiaxi-Huang",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "every-embodied"
+        ],
+        "recent_commits": [
+          {
+            "repo": "every-embodied",
+            "sha": "99278936",
+            "message": "(fix): add util file of external-libraries tornado4.5.3",
+            "date": "2026-02-01T08:52:08Z",
+            "files_count": 9,
+            "total_additions": 6158
+          }
+        ]
+      },
+      {
+        "username": "sunnyspot114514",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "every-embodied"
+        ],
+        "recent_commits": [
+          {
+            "repo": "every-embodied",
+            "sha": "22009c28",
+            "message": "阿里云部署 Isaac Lab + GR00T 完整教程部署教程文档",
+            "date": "2026-01-23T16:21:56Z",
+            "files_count": 1,
+            "total_additions": 1066
+          }
+        ]
+      },
+      {
+        "username": "GeoDaoyu",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "easy-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vibe",
+            "sha": "20586297",
+            "message": "docs: fix error markdown lang",
+            "date": "2026-02-15T01:24:02Z",
+            "files_count": 11,
+            "total_additions": 109
+          }
+        ]
+      },
+      {
+        "username": "cnb.b8MGswofANA",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "vibe-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-vibe",
+            "sha": "5e74941f",
+            "message": "docs: 添加AI绘本Vibecoding案例分享文档及相关图片",
+            "date": "2026-01-05T18:27:12Z",
+            "files_count": 13,
+            "total_additions": 856
+          }
+        ]
+      },
+      {
+        "username": "Barca",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "vibe-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-vibe",
+            "sha": "a38c35cf",
+            "message": "添加优质文章篇 111 篇内容并优化 UI",
+            "date": "2026-01-01T17:04:08Z",
+            "files_count": 124,
+            "total_additions": 4339
+          }
+        ]
+      },
+      {
+        "username": "Founce",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "happy-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "happy-llm",
+            "sha": "5dd78a0f",
+            "message": "fix(chapter5): align labels/attention_mask semantics and add padding-aware batch generation (#170)",
+            "date": "2026-02-26T07:34:10Z",
+            "files_count": 7,
+            "total_additions": 184
+          }
+        ]
+      },
+      {
+        "username": "Infinityay",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "happy-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "happy-llm",
+            "sha": "85d8c83c",
+            "message": "fix: correct LayerNorm class indentation (#144)",
+            "date": "2026-02-25T13:00:57Z",
+            "files_count": 1,
+            "total_additions": 10
+          }
+        ]
+      },
+      {
+        "username": "frtanxidian",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "self-llm",
+            "sha": "8a9d6616",
+            "message": "kimi2.5sglangv2.0 (#490)",
+            "date": "2026-02-09T13:13:56Z",
+            "files_count": 5,
+            "total_additions": 414
+          }
+        ]
+      },
+      {
+        "username": "sssanssss",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "self-llm",
+            "sha": "7912ab93",
+            "message": "Merge pull request #491 from sssanssss/GLM-4.7-Flash",
+            "date": "2026-02-09T13:12:26Z",
+            "files_count": 5,
+            "total_additions": 560
+          }
+        ]
+      },
+      {
+        "username": "fanqiNO1",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "self-llm",
+            "sha": "4b2849df",
+            "message": "kimi-k2.5 01 task",
+            "date": "2026-02-07T12:41:23Z",
+            "files_count": 11,
+            "total_additions": 192
+          }
+        ]
+      },
+      {
+        "username": "ilovescrapy",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "self-llm",
+            "sha": "caca8daa",
+            "message": "add glm-4.7-flash and kimi-2.5 vllm doc",
+            "date": "2026-02-05T01:20:56Z",
+            "files_count": 6,
+            "total_additions": 865
+          }
+        ]
+      },
+      {
+        "username": "Luxorion-12",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "torch-rechub"
+        ],
+        "recent_commits": [
+          {
+            "repo": "torch-rechub",
+            "sha": "25df9533",
+            "message": "multi_task_learning提交",
+            "date": "2026-02-24T10:21:28Z",
+            "files_count": 1,
+            "total_additions": 747
+          }
+        ]
+      },
+      {
+        "username": "AXYZdong",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "handy-ollama"
+        ],
+        "recent_commits": [
+          {
+            "repo": "handy-ollama",
+            "sha": "229e5d6b",
+            "message": "Merge pull request #45 from mofree/HuggingFaceCLI",
+            "date": "2026-01-12T03:44:09Z",
+            "files_count": 3,
+            "total_additions": 31
+          }
+        ]
+      },
+      {
+        "username": "fancyboi999",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "vibe-blog"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-blog",
+            "sha": "1e309203",
+            "message": "feat(logging): add rich global logging manager with task_id context",
+            "date": "2026-01-27T03:27:16Z",
+            "files_count": 4,
+            "total_additions": 182
+          }
+        ]
+      },
+      {
+        "username": "qjymary",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "vibe-blog"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-blog",
+            "sha": "f145cd1c",
+            "message": "Merge branch 'datawhalechina:main' into qinjiayue_0120",
+            "date": "2026-01-23T07:54:39Z",
+            "files_count": 26,
+            "total_additions": 2568
+          }
+        ]
+      },
+      {
+        "username": "MongxinChan",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "agent-skills-with-anthropic"
+        ],
+        "recent_commits": [
+          {
+            "repo": "agent-skills-with-anthropic",
+            "sha": "09cd43f1",
+            "message": "更新 README.md 中的课程规划，添加链接以便于导航",
+            "date": "2026-02-11T08:44:23Z",
+            "files_count": 11,
+            "total_additions": 31
+          }
+        ]
+      },
+      {
+        "username": "liwei",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "wow-fullstack"
+        ],
+        "recent_commits": [
+          {
+            "repo": "wow-fullstack",
+            "sha": "927f73d7",
+            "message": "Merge branch 'main' of https://github.com/datawhalechina/wow-fullstack",
+            "date": "2026-01-17T01:59:08Z",
+            "files_count": 83,
+            "total_additions": 18616
+          }
+        ]
+      },
+      {
+        "username": "fish-404",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "math-for-ai"
+        ],
+        "recent_commits": [
+          {
+            "repo": "math-for-ai",
+            "sha": "01e241ff",
+            "message": "Update exercises for more readable",
+            "date": "2026-02-12T04:31:05Z",
+            "files_count": 1,
+            "total_additions": 31
+          }
+        ]
+      },
+      {
+        "username": "zxdwhda",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "coze-ai-assistant"
+        ],
+        "recent_commits": [
+          {
+            "repo": "coze-ai-assistant",
+            "sha": "c71df906",
+            "message": "更新第 11 章内容",
+            "date": "2026-01-26T06:55:20Z",
+            "files_count": 300,
+            "total_additions": 6317
+          }
+        ]
+      },
+      {
+        "username": "AllYoung",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "easy-vecdb"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vecdb",
+            "sha": "f2fbf4ba",
+            "message": "fix: readme link update",
+            "date": "2026-01-21T03:47:53Z",
+            "files_count": 1,
+            "total_additions": 12
+          }
+        ]
+      },
+      {
+        "username": "Leolee11111",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "easy-vecdb"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vecdb",
+            "sha": "7ede0030",
+            "message": "check 《PyMilvus核心API实战.md》code",
+            "date": "2026-01-02T08:52:23Z",
+            "files_count": 1,
+            "total_additions": 153
+          }
+        ]
+      },
+      {
+        "username": "hu-minghao",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "smoothly-vslam"
+        ],
+        "recent_commits": [
+          {
+            "repo": "smoothly-vslam",
+            "sha": "b267b9fc",
+            "message": "Merge pull request #2 from hu-minghao/main",
+            "date": "2026-02-21T08:38:13Z",
+            "files_count": 1,
+            "total_additions": 154
+          }
+        ]
+      },
+      {
+        "username": "huminghao",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "smoothly-vslam"
+        ],
+        "recent_commits": [
+          {
+            "repo": "smoothly-vslam",
+            "sha": "63397683",
+            "message": "优化第一章结构，增加不同fov相机适合的畸变模型",
+            "date": "2026-02-21T08:31:41Z",
+            "files_count": 1,
+            "total_additions": 154
+          }
+        ]
+      },
+      {
+        "username": "Joe-2002",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "post-training-of-llms"
+        ],
+        "recent_commits": [
+          {
+            "repo": "post-training-of-llms",
+            "sha": "870e069a",
+            "message": "feat: Add bilingual README support",
+            "date": "2026-01-04T21:05:12Z",
+            "files_count": 3,
+            "total_additions": 95
+          }
+        ]
+      },
+      {
+        "username": "amdjiahangpan",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "hello-rocm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-rocm",
+            "sha": "ec37b5dc",
+            "message": "feat: 完成toy-cli wechat-jump huanhuan-chat",
+            "date": "2026-01-27T13:09:03Z",
+            "files_count": 11,
+            "total_additions": 1233
+          }
+        ]
+      }
+    ]
+  }
+}
