@@ -92,8 +92,19 @@ async function main() {
     }
   } finally {
     if (previewServer) {
-      previewServer.kill();
+      try {
+        previewServer.kill('SIGTERM');
+        // 等待一下让进程优雅退出
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        if (!previewServer.killed) {
+          previewServer.kill('SIGKILL');
+        }
+      } catch (e) {
+        console.error('Error killing preview server:', e);
+      }
     }
+    // 强制退出
+    process.exit(0);
   }
 }
 
