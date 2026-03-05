@@ -143,6 +143,7 @@ const renderChart = () => {
         name: 'Monthly Stars',
         type: 'bar',
         barWidth: 12,
+        barGap: '0%',
         data: starBars,
         itemStyle: {
           color: '#2f81f7',

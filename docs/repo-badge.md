@@ -32,8 +32,9 @@ const updateEmbedCode = (repo) => {
   const basePath = import.meta.env.BASE_URL || '/'
   const badgeUrl = new URL(normalizePath(`${basePath}repo-badge`), window.location.origin)
   badgeUrl.searchParams.set('repo', repo)
-  badgeUrl.searchParams.set('embed', '1')
-  embedCode.value = `<iframe src="${badgeUrl.toString()}" width="980" height="360" frameborder="0" scrolling="no"></iframe>`
+
+  // 生成 Markdown 链接（GitHub README 兼容）
+  embedCode.value = `[![${repo} stats](${badgeUrl.toString()}?embed=1)](${badgeUrl.toString()})`
 }
 
 const loadRepoOptions = async () => {

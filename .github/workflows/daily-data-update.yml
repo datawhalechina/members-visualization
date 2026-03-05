@@ -56,6 +56,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Generate repository badges
+        run: python scripts/generate_repo_badges.py
+
       - name: Check for data changes
         id: check-changes
         run: |
