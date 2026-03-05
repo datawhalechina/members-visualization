@@ -45,7 +45,7 @@ BOT_USERNAMES = {
     'travis-ci',
     'circleci',
     'claude',
-    'Copilot',
+    'copilot',
 
     # 明确的无效账户
     'noreply',

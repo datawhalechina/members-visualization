@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import MemberCard from './MemberCard.vue'
 
 const members = ref([])
@@ -7,6 +7,8 @@ const loading = ref(true)
 const error = ref(null)
 const searchQuery = ref('')
 const selectedDomain = ref('')
+const currentPage = ref(1)
+const pageSize = 24
 
 // 获取所有研究方向
 const allDomains = computed(() => {
@@ -17,7 +19,7 @@ const allDomains = computed(() => {
   return Array.from(domains).sort()
 })
 
-// 过滤后的成员列表
+// 过滤并排序后的成员列表
 const filteredMembers = computed(() => {
   let filtered = members.value
 
@@ -25,7 +27,6 @@ const filteredMembers = computed(() => {
   if (searchQuery.value.trim()) {
     const query = searchQuery.value.toLowerCase().trim()
     filtered = filtered.filter(member => {
-      // 获取显示名称（优先使用name，为空时使用id）
       const displayName = (member.name && member.name !== 'null' && member.name !== 'undefined' && member.name !== 'None' && member.name.trim() !== '')
         ? member.name
         : member.id
@@ -42,7 +43,54 @@ const filteredMembers = computed(() => {
     )
   }
 
+  // 默认按负责项目数降序排序
+  filtered = [...filtered].sort((a, b) => {
+    const aCount = Array.isArray(a.repositories) ? a.repositories.length : 0
+    const bCount = Array.isArray(b.repositories) ? b.repositories.length : 0
+    return bCount - aCount
+  })
+
   return filtered
+})
+
+// 总页数
+const totalPages = computed(() => Math.ceil(filteredMembers.value.length / pageSize))
+
+// 当前页的成员
+const pagedMembers = computed(() => {
+  const start = (currentPage.value - 1) * pageSize
+  return filteredMembers.value.slice(start, start + pageSize)
+})
+
+// 分页按钮列表
+const pageNumbers = computed(() => {
+  const total = totalPages.value
+  const current = currentPage.value
+  const pages = []
+  if (total <= 7) {
+    for (let i = 1; i <= total; i++) pages.push(i)
+  } else {
+    pages.push(1)
+    if (current > 3) pages.push('...')
+    for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) {
+      pages.push(i)
+    }
+    if (current < total - 2) pages.push('...')
+    pages.push(total)
+  }
+  return pages
+})
+
+const goToPage = (page) => {
+  if (page >= 1 && page <= totalPages.value) {
+    currentPage.value = page
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
+
+// 筛选条件变化时重置到第一页
+watch([searchQuery, selectedDomain], () => {
+  currentPage.value = 1
 })
 
 // 加载成员数据
@@ -125,6 +173,7 @@ onMounted(() => {
         显示 <strong>{{ filteredMembers.length }}</strong> / {{ members.length }} 个成员
         <span v-if="selectedDomain">（研究方向：{{ selectedDomain }}）</span>
         <span v-if="searchQuery">（搜索：{{ searchQuery }}）</span>
+        <span v-if="totalPages > 1" class="page-info">· 第 {{ currentPage }} / {{ totalPages }} 页</span>
       </p>
     </div>
 
@@ -140,7 +189,17 @@ onMounted(() => {
 
     <!-- 成员列表 -->
     <div v-else-if="filteredMembers.length > 0" class="members-grid">
-      <MemberCard v-for="member in filteredMembers" :key="member.id" :member="member" />
+      <MemberCard v-for="member in pagedMembers" :key="member.id" :member="member" />
+    </div>
+
+    <!-- 分页控件 -->
+    <div v-if="totalPages > 1" class="pagination">
+      <button class="page-btn" :disabled="currentPage === 1" @click="goToPage(currentPage - 1)">上一页</button>
+      <template v-for="page in pageNumbers" :key="page">
+        <span v-if="page === '...'" class="page-ellipsis">...</span>
+        <button v-else class="page-btn" :class="{ active: page === currentPage }" @click="goToPage(page)">{{ page }}</button>
+      </template>
+      <button class="page-btn" :disabled="currentPage === totalPages" @click="goToPage(currentPage + 1)">下一页</button>
     </div>
 
     <!-- 无结果 -->
@@ -278,6 +337,52 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 24px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  padding: 16px 0;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  padding: 8px 14px;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled):not(.active) {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+
+.page-btn.active {
+  background: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+  color: #fff;
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.page-ellipsis {
+  padding: 8px 4px;
+  color: var(--vp-c-text-3);
+}
+
+.page-info {
+  color: var(--vp-c-text-2);
 }
 
 @media (max-width: 768px) {
