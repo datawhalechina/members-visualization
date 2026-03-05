@@ -263,26 +263,33 @@ const buildContributorData = (repoSlug, commitsData, membersData) => {
     .sort((a, b) => b[1] - a[1])
     .map(([username, commitsRecent]) => {
       const member = memberMap.get(username) || memberMap.get(username.toLowerCase())
+      const repoContribs = member?.repo_contributions || {}
+      const repoContribCount = repoContribs[repoSlug] || 0
       return {
         username,
         name: member?.name || username,
         avatar: member?.avatar || '',
         commitsRecent,
-        totalContributions: Number(member?.org_total_contributions) || 0
+        totalContributions: repoContribCount
       }
     })
 
   const seen = new Set(recentRows.map((row) => row.username.toLowerCase()))
   const fallbackRows = repoMembers
     .filter((member) => !seen.has(String(member.id || '').toLowerCase()))
-    .sort((a, b) => (Number(b.org_total_contributions) || 0) - (Number(a.org_total_contributions) || 0))
-    .map((member) => ({
-      username: member.id,
-      name: member.name || member.id,
-      avatar: member.avatar || '',
-      commitsRecent: 0,
-      totalContributions: Number(member.org_total_contributions) || 0
-    }))
+    .map((member) => {
+      const repoContribs = member?.repo_contributions || {}
+      const repoContribCount = repoContribs[repoSlug] || 0
+      return {
+        username: member.id,
+        name: member.name || member.id,
+        avatar: member.avatar || '',
+        commitsRecent: 0,
+        totalContributions: repoContribCount
+      }
+    })
+    .filter((row) => row.totalContributions > 0)
+    .sort((a, b) => b.totalContributions - a.totalContributions)
 
   return [...recentRows, ...fallbackRows].slice(0, 12)
 }
