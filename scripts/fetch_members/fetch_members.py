@@ -377,6 +377,7 @@ def collect_contributors_from_repos(org_name):
                     contributors_data[username] = {
                         'repos': [],
                         'total_contributions': 0,
+                        'repo_contributions': {},
                         'user_info': {
                             'html_url': contributor['html_url'],
                             'avatar_url': contributor['avatar_url']
@@ -385,6 +386,7 @@ def collect_contributors_from_repos(org_name):
 
                 contributors_data[username]['repos'].append(repo_name)
                 contributors_data[username]['total_contributions'] += contributions
+                contributors_data[username]['repo_contributions'][repo_name] = contributions
 
             # API 速率限制控制
             delay = 0.1 if CONFIG['GITHUB_TOKEN'] else 0.5
@@ -717,6 +719,7 @@ def save_to_json(members, output_file):
                 'org_total_forks': member.get('org_total_forks', 0),
                 'org_total_contributions': member.get('org_total_contributions', 0),
                 'org_avg_stars_per_repo': round(member.get('org_avg_stars_per_repo', 0), 2),
+                'repo_contributions': member.get('repo_contributions', {}),
                 # 其他信息
                 'avatar': clean_csv_field(member.get('avatar', '')),
                 'bio': clean_csv_field(member.get('bio', '')),
@@ -849,6 +852,7 @@ def main():
                     'org_total_forks': org_stats['org_total_forks'],  # 参与的组织仓库总 forks
                     'org_total_contributions': org_stats['org_total_contributions'],  # 在组织中的总贡献数
                     'org_avg_stars_per_repo': org_stats['org_avg_stars_per_repo'],  # 平均每个参与仓库的 stars
+                    'repo_contributions': contrib_info.get('repo_contributions', {}),  # 每个仓库的贡献数
                     # 其他信息
                     'avatar': local_avatar,  # 本地头像路径
                     'bio': user_details.get('bio') if user_details else '',
