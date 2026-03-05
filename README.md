@@ -637,7 +637,7 @@ const fetchData = async () => {
 
 <div align="center">
 
-[![Star History Chart](https://api.star-history.com/svg?repos=datawhalechina/members-visualization&type=Date)](https://star-history.com/#datawhalechina/members-visualization&Date)
+![members-visualization stats](https://1985312383.github.io/members-visualization/badges/members-visualization.png)
 
 </div>
 
