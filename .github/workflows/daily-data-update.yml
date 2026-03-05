@@ -64,6 +64,11 @@ jobs:
       - name: Generate repository badge screenshots
         run: node scripts/generate_repo_screenshots.js
 
+      - name: Rebuild to include badges
+        run: npm run docs:build
+        env:
+          NODE_ENV: production
+
       - name: Check for data changes
         id: check-changes
         run: |
