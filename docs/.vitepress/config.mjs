@@ -75,6 +75,7 @@ export default defineConfig({
           { text: "📊 OSS Insight 统计", link: "/stats" },
           { text: "👍🏻 项目统计", link: "/projects" },
           { text: "📚 成员与协作分析", link: "/organization" },
+          { text: "🎯 项目徽章", link: "/repo-badge" },
         ],
       },
       {
@@ -118,6 +119,7 @@ export default defineConfig({
             { text: "📊 OSS Insight 统计", link: "/stats" },
             { text: "👍🏻 项目统计", link: "/projects" },
             { text: "📚 成员与协作分析", link: "/organization" },
+            { text: "🎯 项目徽章", link: "/repo-badge" },
           ],
         },
         {
