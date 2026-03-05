@@ -109,7 +109,7 @@ const renderChart = () => {
       right: 10,
       top: 28,
       bottom: 24,
-      containLabel: false
+      containLabel: true
     },
     tooltip: {
       trigger: 'axis',
@@ -125,17 +125,32 @@ const renderChart = () => {
       axisLabel: {
         color: '#57606a',
         fontSize: 10,
-        interval: (index) => index % 2 !== 0
+        interval: (index) => {
+          const total = monthLabels.length
+          if (total <= 12) return true
+          if (total <= 18) return index % 2 === 0
+          if (total <= 30) return index % 3 === 0
+          if (total <= 48) return index % 6 === 0
+          return index % 12 === 0
+        }
       }
     },
     yAxis: [
       {
         type: 'value',
-        show: false
+        position: 'left',
+        splitLine: { show: false },
+        axisLine: { show: true, lineStyle: { color: '#2f81f7', width: 1 } },
+        axisTick: { show: true, lineStyle: { color: '#2f81f7' } },
+        axisLabel: { color: '#2f81f7', fontSize: 9 }
       },
       {
         type: 'value',
-        show: false
+        position: 'right',
+        splitLine: { show: false },
+        axisLine: { show: true, lineStyle: { color: '#20b486', width: 1 } },
+        axisTick: { show: true, lineStyle: { color: '#20b486' } },
+        axisLabel: { color: '#20b486', fontSize: 9 }
       }
     ],
     series: [
@@ -452,6 +467,9 @@ onBeforeUnmount(() => {
           </div>
         </aside>
       </div>
+      <div class="badge-footer">
+        <span>powered by github.com/datawhalechina/members-visualization</span>
+      </div>
     </article>
   </div>
 </template>
@@ -682,6 +700,15 @@ onBeforeUnmount(() => {
   border-color: #9ecbff;
   color: #0a58ca;
   background: #eff6ff;
+}
+
+.badge-footer {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #d8dee4;
+  text-align: center;
+  font-size: 10px;
+  color: #57606a;
 }
 
 @media (max-width: 980px) {

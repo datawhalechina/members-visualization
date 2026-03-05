@@ -56,8 +56,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate repository badges
-        run: python scripts/generate_repo_badges.py
+      - name: Build with VitePress
+        run: npm run docs:build
+        env:
+          NODE_ENV: production
+
+      - name: Generate repository badge screenshots
+        run: node scripts/generate_repo_screenshots.js
 
       - name: Check for data changes
         id: check-changes
@@ -76,15 +81,9 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add docs/public/data/members.json docs/public/data/commits_weekly.json docs/public/avatars/
+          git add docs/public/data/members.json docs/public/data/commits_weekly.json docs/public/avatars/ docs/public/badges/
           git commit -m "🤖 Auto-update member data and avatars - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           git push
-
-      - name: Build with VitePress
-        if: steps.check-changes.outputs.changes == 'true'
-        run: npm run docs:build
-        env:
-          NODE_ENV: production
 
       - name: Deploy to gh-pages
         if: steps.check-changes.outputs.changes == 'true'

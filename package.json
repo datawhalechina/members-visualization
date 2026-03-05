@@ -6,6 +6,7 @@
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "cross-env NODE_ENV=production vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "docs:serve": "vitepress serve docs",
     "fetch-data": "python scripts/fetch_members/fetch_members.py",
     "fetch-data:test": "python scripts/fetch_members/fetch_members.py --test",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "cross-env": "10.0.0",
-    "dotenv": "17.2.2"
+    "dotenv": "17.2.2",
+    "puppeteer": "^23.0.0"
   }
 }
