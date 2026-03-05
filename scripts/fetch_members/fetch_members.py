@@ -1207,11 +1207,13 @@ def collect_unified_data(org_name, include_commits=False):
                             contributors_data[username] = {
                                 'user_info': contributor,
                                 'repos': [],
-                                'total_contributions': 0
+                                'total_contributions': 0,
+                                'repo_contributions': {}
                             }
 
                         contributors_data[username]['repos'].append(repo_name)
                         contributors_data[username]['total_contributions'] += contributor['contributions']
+                        contributors_data[username]['repo_contributions'][repo_name] = contributor['contributions']
 
             # 2. 获取commit数据（如果需要）
             if include_commits:
