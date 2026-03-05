@@ -61,6 +61,13 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Install Chinese fonts
+        run: |
+          mkdir -p ~/.fonts
+          wget -O lxgw.ttf https://github.com/lxgw/LxgwWenKai/releases/download/v1.330/LXGWWenKai-Regular.ttf
+          mv lxgw.ttf ~/.fonts/
+          fc-cache -fv
+
       - name: Generate repository badge screenshots
         run: node scripts/generate_repo_screenshots.js
 
