@@ -288,10 +288,9 @@ const buildContributorData = (repoSlug, commitsData, membersData) => {
         totalContributions: repoContribCount
       }
     })
-    .filter((row) => row.totalContributions > 0)
     .sort((a, b) => b.totalContributions - a.totalContributions)
 
-  return [...recentRows, ...fallbackRows].slice(0, 12)
+  return [...recentRows, ...fallbackRows]
 }
 
 const updateRepoRank = (repoSlug, repoListData) => {
