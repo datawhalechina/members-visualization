@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   update-data-and-deploy:
-    if: github.repository == 'datawhalechina/members-visualization'
+    if: github.event_name == 'workflow_dispatch' || github.repository == 'datawhalechina/members-visualization'
     runs-on: ubuntu-latest
     
     steps:
