@@ -637,7 +637,7 @@ const fetchData = async () => {
 
 <div align="center">
 
-![members-visualization stats](https://1985312383.github.io/members-visualization/badges/members-visualization.png)
+[![members-visualization stats](https://datawhalechina.github.io/members-visualization/badges/members-visualization.png)](https://datawhalechina.github.io/members-visualization/repo-badge?repo=members-visualization)
 
 </div>
 
