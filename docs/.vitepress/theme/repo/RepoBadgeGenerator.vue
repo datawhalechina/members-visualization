@@ -6,6 +6,7 @@ const repoName = ref('')
 const selectedRepo = ref('')
 const isEmbed = ref(false)
 const embedCode = ref('')
+const iframeCode = ref('')
 const copyStatus = ref('')
 const repoOptions = ref([])
 
@@ -26,11 +27,16 @@ const topRepos = computed(() => repoOptions.value.slice(0, 12))
 const updateEmbedCode = (repo) => {
   if (!repo) {
     embedCode.value = ''
+    iframeCode.value = ''
     return
   }
   const basePath = import.meta.env.BASE_URL || '/'
   const badgeUrl = `${window.location.origin}${basePath}badges/${repo}.png`.replace(/([^:]\/)\/+/g, '$1')
-  embedCode.value = `![${repo} stats](${badgeUrl})`
+  const pageUrl = `${window.location.origin}${basePath}repo-badge?repo=${repo}`.replace(/([^:]\/)\/+/g, '$1')
+  const embedUrl = `${window.location.origin}${basePath}repo-badge?repo=${repo}&embed=1`.replace(/([^:]\/)\/+/g, '$1')
+
+  embedCode.value = `[![${repo} stats](${badgeUrl})](${pageUrl})`
+  iframeCode.value = `<iframe src="${embedUrl}" width="980" height="450" frameborder="0"></iframe>`
 }
 
 const loadRepoOptions = async () => {
@@ -64,10 +70,10 @@ const generateBadge = () => {
   chooseRepo(repoName.value)
 }
 
-const copyCode = async () => {
-  if (!embedCode.value) return
+const copyCode = async (code) => {
+  if (!code) return
   try {
-    await navigator.clipboard.writeText(embedCode.value)
+    await navigator.clipboard.writeText(code)
     copyStatus.value = 'Copied'
     setTimeout(() => {
       copyStatus.value = ''
@@ -93,6 +99,8 @@ onMounted(async () => {
 </script>
 
 <template>
+  <RepoBadge v-if="selectedRepo" :repo-name="selectedRepo" :is-embed="isEmbed" />
+
   <div v-if="!isEmbed" class="repo-generator">
     <div class="repo-generator-header">
       <h2>项目统计徽章</h2>
@@ -124,13 +132,20 @@ onMounted(async () => {
       </button>
     </div>
 
-    <div v-if="embedCode" class="repo-code-block">
-      <pre>{{ embedCode }}</pre>
-      <button class="repo-copy-btn" @click="copyCode">{{ copyStatus || 'Copy' }}</button>
+    <div v-if="embedCode" class="repo-code-section">
+      <div class="repo-code-block">
+        <div class="code-label">Markdown 图片链接（项目 README 请使用此方式嵌入）</div>
+        <pre>{{ embedCode }}</pre>
+        <button class="repo-copy-btn" @click="copyCode(embedCode)">{{ copyStatus || 'Copy' }}</button>
+      </div>
+
+      <div class="repo-code-block">
+        <div class="code-label">iframe 嵌入代码 （其他页面请使用此方式嵌入）</div>
+        <pre>{{ iframeCode }}</pre>
+        <button class="repo-copy-btn" @click="copyCode(iframeCode)">{{ copyStatus || 'Copy' }}</button>
+      </div>
     </div>
   </div>
-
-  <RepoBadge v-if="selectedRepo" :repo-name="selectedRepo" :is-embed="isEmbed" />
 </template>
 
 <style scoped>
@@ -207,13 +222,26 @@ onMounted(async () => {
   border-color: #0a66d1;
 }
 
+.repo-code-section {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .repo-code-block {
   position: relative;
-  margin-top: 14px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 10px;
   background: var(--vp-c-bg);
   padding: 12px;
+}
+
+.code-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  margin-bottom: 8px;
 }
 
 .repo-code-block pre {
@@ -255,5 +283,9 @@ body.embed-mode .VPDoc,
 body.embed-mode .VPDoc .container {
   padding: 0 !important;
   margin: 0 !important;
+}
+
+body.embed-mode h1 {
+  display: none !important;
 }
 </style>
