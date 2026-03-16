@@ -2,11 +2,11 @@
   "meta": {
     "year": 2026,
     "quarter": 1,
-    "generated_at": "2026-03-13T06:44:53.208193",
-    "total_contributors": 112,
+    "generated_at": "2026-03-16T07:06:09.865230",
+    "total_contributors": 119,
     "outstanding_count": 6,
-    "excellent_count": 17,
-    "active_count": 89,
+    "excellent_count": 18,
+    "active_count": 95,
     "thresholds": {
       "outstanding": 50,
       "excellent": 10,
@@ -18,14 +18,38 @@
       {
         "username": "lailoo",
         "verified": true,
-        "valid_commits": 293,
-        "total_commits": 293,
+        "valid_commits": 296,
+        "total_commits": 296,
         "repos_count": 2,
         "repos": [
           "vibe-blog",
           "vibe-vibe"
         ],
         "recent_commits": [
+          {
+            "repo": "vibe-blog",
+            "sha": "b08e2aa1",
+            "message": "Merge pull request #107 from freedomgod/docs-update-readme",
+            "date": "2026-03-15T23:55:55Z",
+            "files_count": 133,
+            "total_additions": 23
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "f8d0680d",
+            "message": "refactor(api): 优化与清理 app factory 模块",
+            "date": "2026-03-15T08:28:59Z",
+            "files_count": 8,
+            "total_additions": 55
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "887e5cbd",
+            "message": "Merge pull request #5 from cuidong233/main",
+            "date": "2026-03-15T08:00:09Z",
+            "files_count": 23,
+            "total_additions": 1500
+          },
           {
             "repo": "vibe-blog",
             "sha": "0c8631d0",
@@ -81,38 +105,14 @@
             "date": "2026-02-27T14:37:37Z",
             "files_count": 1,
             "total_additions": 25
-          },
-          {
-            "repo": "vibe-blog",
-            "sha": "d8b3902f",
-            "message": "Merge PR #100: 修复 Reviewer 假阳性 + 修订超时 + LangGraph 序列化崩溃",
-            "date": "2026-02-27T14:30:49Z",
-            "files_count": 10,
-            "total_additions": 309
-          },
-          {
-            "repo": "vibe-blog",
-            "sha": "e54c2640",
-            "message": "fix: Gemini <think> 标签兼容 + enhance_topic 超时修复 + 配图异步传递 + SSE 断连",
-            "date": "2026-02-26T16:53:24Z",
-            "files_count": 10,
-            "total_additions": 129
-          },
-          {
-            "repo": "vibe-blog",
-            "sha": "754d7ebd",
-            "message": "fix: Generate 页工具栏下移避免遮挡 + GitHub 图标与首页统一",
-            "date": "2026-02-26T15:07:52Z",
-            "files_count": 59,
-            "total_additions": 75
           }
         ]
       },
       {
         "username": "sanbuphy",
         "verified": true,
-        "valid_commits": 261,
-        "total_commits": 261,
+        "valid_commits": 283,
+        "total_commits": 283,
         "repos_count": 2,
         "repos": [
           "easy-vibe",
@@ -120,92 +120,92 @@
         ],
         "recent_commits": [
           {
-            "repo": "hello-claw",
-            "sha": "0b3873a4",
-            "message": "feat(docs): restructure lobster university content and navigation",
-            "date": "2026-03-12T17:32:44Z",
-            "files_count": 8,
-            "total_additions": 1170
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "b28b90b2",
-            "message": "Merge pull request #13 from li-xiu-qi/main",
-            "date": "2026-03-12T13:04:38Z",
-            "files_count": 14,
-            "total_additions": 1030
+            "repo": "easy-vibe",
+            "sha": "595cc265",
+            "message": "fix(docs): reduce welcome screen delay and add localStorage check",
+            "date": "2026-03-16T06:42:42Z",
+            "files_count": 2,
+            "total_additions": 19
           },
           {
             "repo": "easy-vibe",
-            "sha": "ee72fbc7",
-            "message": "Merge pull request #57 from octo-patch/feature/add-minimax-provider",
-            "date": "2026-03-12T10:54:15Z",
-            "files_count": 3,
-            "total_additions": 103
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "4833d7a6",
-            "message": "docs: 更新配置和章节内容，新增龙虾大学",
-            "date": "2026-03-10T13:31:19Z",
+            "sha": "ab3a1117",
+            "message": "feat(docs): add welcome screen with animated logo",
+            "date": "2026-03-16T06:07:54Z",
             "files_count": 7,
-            "total_additions": 391
+            "total_additions": 404
           },
           {
             "repo": "easy-vibe",
-            "sha": "307fcca7",
-            "message": "docs: add Hello Claw (OpenClaw) links to README",
-            "date": "2026-03-10T10:07:00Z",
+            "sha": "67daaffc",
+            "message": "feat(home): align stage cards across locales",
+            "date": "2026-03-16T04:42:29Z",
+            "files_count": 13,
+            "total_additions": 457
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "68048b8e",
+            "message": "Merge pull request #12 from fancyboi999/docs/chapter13-skill-writing",
+            "date": "2026-03-16T01:05:13Z",
+            "files_count": 3,
+            "total_additions": 573
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "c6553802",
+            "message": "Merge branch 'main' into docs/chapter13-skill-writing",
+            "date": "2026-03-16T01:04:59Z",
+            "files_count": 47,
+            "total_additions": 1793
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "ddfe0c84",
+            "message": "style(ui): update homepage styling and improve navigation cards",
+            "date": "2026-03-15T16:53:29Z",
+            "files_count": 4,
+            "total_additions": 90
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "9dab339b",
+            "message": "style(theme): enhance visual design and mobile responsiveness",
+            "date": "2026-03-15T16:26:59Z",
+            "files_count": 7,
+            "total_additions": 190
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "fd96a18b",
+            "message": "feat(theme): update homepage with Apple-style design and add footer",
+            "date": "2026-03-15T05:41:39Z",
+            "files_count": 4,
+            "total_additions": 782
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "5d4ec193",
+            "message": "Merge pull request #51 from GeoDaoyu/feat/edit-this-page",
+            "date": "2026-03-15T03:44:35Z",
             "files_count": 1,
-            "total_additions": 10
+            "total_additions": 93
           },
           {
             "repo": "hello-claw",
-            "sha": "9c0c972c",
-            "message": "Improve docs tips and fix README group anchor",
-            "date": "2026-03-10T08:31:32Z",
-            "files_count": 2,
-            "total_additions": 12
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "38a5176a",
-            "message": "Update homepage quickstart and layout",
-            "date": "2026-03-10T07:02:36Z",
-            "files_count": 2,
-            "total_additions": 108
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "19d061fa",
-            "message": "feat: add tailwindcss integration and improve homepage design",
-            "date": "2026-03-10T04:19:21Z",
-            "files_count": 9,
-            "total_additions": 1189
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "52ef8620",
-            "message": "Merge pull request #6 from zixuangui-rgb/docs/improve-build-chapters",
-            "date": "2026-03-09T16:01:23Z",
-            "files_count": 6,
-            "total_additions": 3554
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "0521d4cb",
-            "message": "docs: 优化 chapter1 文档",
-            "date": "2026-03-09T10:30:16Z",
+            "sha": "0d09a98f",
+            "message": "docs(cn): fix table formatting in security guide",
+            "date": "2026-03-14T15:00:51Z",
             "files_count": 1,
-            "total_additions": 56
+            "total_additions": 16
           }
         ]
       },
       {
         "username": "1985312383",
         "verified": true,
-        "valid_commits": 113,
-        "total_commits": 113,
+        "valid_commits": 114,
+        "total_commits": 114,
         "repos_count": 5,
         "repos": [
           "easy-langent",
@@ -215,6 +215,14 @@
           "torch-rechub"
         ],
         "recent_commits": [
+          {
+            "repo": "torch-rechub",
+            "sha": "511a7f87",
+            "message": "Merge pull request #200 from Luxorion-12/main",
+            "date": "2026-03-15T07:17:01Z",
+            "files_count": 11,
+            "total_additions": 1319
+          },
           {
             "repo": "torch-rechub",
             "sha": "d955c7f1",
@@ -286,14 +294,6 @@
             "date": "2026-03-05T07:28:33Z",
             "files_count": 1,
             "total_additions": 12
-          },
-          {
-            "repo": "members-visualization",
-            "sha": "065ad9c5",
-            "message": "Update RepoBadge.vue",
-            "date": "2026-03-05T06:56:44Z",
-            "files_count": 1,
-            "total_additions": 16
           }
         ]
       },
@@ -392,6 +392,100 @@
         ]
       },
       {
+        "username": "zhimin-z",
+        "verified": true,
+        "valid_commits": 96,
+        "total_commits": 96,
+        "repos_count": 3,
+        "repos": [
+          "easy-pocket",
+          "hello-claw",
+          "key-book"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-claw",
+            "sha": "01236064",
+            "message": "按照3.12的版本更新一下命令行",
+            "date": "2026-03-15T21:14:01Z",
+            "files_count": 4,
+            "total_additions": 138
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "1de1cbd7",
+            "message": "remove outdated toutiao articles",
+            "date": "2026-03-15T20:59:24Z",
+            "files_count": 2,
+            "total_additions": 28
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "1d082e7c",
+            "message": "docs: enhance descriptions for EasyClaw and update skill package details in appendix C",
+            "date": "2026-03-15T05:43:04Z",
+            "files_count": 6,
+            "total_additions": 724
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "ae6fa5f3",
+            "message": "docs: update ClawX references to include OneClaw in appendix C",
+            "date": "2026-03-15T04:09:59Z",
+            "files_count": 1,
+            "total_additions": 43
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "9b4aabb6",
+            "message": "docs: update quick links and enhance appendix B content",
+            "date": "2026-03-15T03:40:28Z",
+            "files_count": 2,
+            "total_additions": 53
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "3ade7f94",
+            "message": "docs: fix links and formatting in appendix C",
+            "date": "2026-03-15T03:03:37Z",
+            "files_count": 1,
+            "total_additions": 13
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "d7f223c0",
+            "message": "docs: update entry for best starter combinations in appendix C",
+            "date": "2026-03-15T03:02:48Z",
+            "files_count": 1,
+            "total_additions": 13
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "d000cbc0",
+            "message": "docs: update chapter titles and structure in documentation; add GitHub token image",
+            "date": "2026-03-15T02:31:32Z",
+            "files_count": 5,
+            "total_additions": 44
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "a83768c8",
+            "message": "Update installation instruction wording for OpenClaw in Layout.vue",
+            "date": "2026-03-15T02:06:05Z",
+            "files_count": 3,
+            "total_additions": 12
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "f4ff729b",
+            "message": "Add reference materials for Claude Code and GitHub configuration",
+            "date": "2026-03-14T21:26:23Z",
+            "files_count": 1,
+            "total_additions": 18
+          }
+        ]
+      },
+      {
         "username": "Eyre921",
         "verified": true,
         "valid_commits": 96,
@@ -482,108 +576,14 @@
             "total_additions": 16
           }
         ]
-      },
-      {
-        "username": "zhimin-z",
-        "verified": true,
-        "valid_commits": 75,
-        "total_commits": 75,
-        "repos_count": 3,
-        "repos": [
-          "easy-pocket",
-          "hello-claw",
-          "key-book"
-        ],
-        "recent_commits": [
-          {
-            "repo": "hello-claw",
-            "sha": "dce5f0d4",
-            "message": "完善类 Claw 方案对比与选型指南",
-            "date": "2026-03-13T06:23:28Z",
-            "files_count": 1,
-            "total_additions": 145
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "3657fa37",
-            "message": "docs: update README and configuration files to reflect new chapter structure and content organizatio",
-            "date": "2026-03-13T02:39:07Z",
-            "files_count": 5,
-            "total_additions": 44
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "bfbc73cf",
-            "message": "把第一部分全部ascii替换为mermaid图",
-            "date": "2026-03-13T02:25:50Z",
-            "files_count": 31,
-            "total_additions": 563
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "8b54f5cb",
-            "message": "第一部分章节重命名",
-            "date": "2026-03-13T00:40:43Z",
-            "files_count": 21,
-            "total_additions": 4844
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "2a545a9d",
-            "message": "docs: update README and university index for clarity and accuracy in chapter structure",
-            "date": "2026-03-13T00:06:22Z",
-            "files_count": 3,
-            "total_additions": 45
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "aed601e1",
-            "message": "重构了整个第一部分，使之更加系统化一些，并提升了阅读体验（由易到难）",
-            "date": "2026-03-12T22:30:45Z",
-            "files_count": 28,
-            "total_additions": 8812
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "0cb9fe9e",
-            "message": "fix(docs): update feature descriptions and tutorial structure for clarity and comprehensiveness",
-            "date": "2026-03-11T12:46:12Z",
-            "files_count": 1,
-            "total_additions": 64
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "0ea7e920",
-            "message": "fix(docs): enhance clarity and structure in project overview and learning paths",
-            "date": "2026-03-11T12:38:06Z",
-            "files_count": 1,
-            "total_additions": 53
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "e16daa0f",
-            "message": "fix(docs): update section titles and structure in chapter 2 and intro",
-            "date": "2026-03-11T11:04:00Z",
-            "files_count": 2,
-            "total_additions": 12
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "24b7e7e6",
-            "message": "fix(docs): add ClawX comparison and installation steps to chapter 1 and update chapter 2 reference",
-            "date": "2026-03-11T03:59:54Z",
-            "files_count": 2,
-            "total_additions": 27
-          }
-        ]
       }
     ],
     "excellent": [
       {
         "username": "muxiaoxiong",
         "verified": true,
-        "valid_commits": 43,
-        "total_commits": 43,
+        "valid_commits": 46,
+        "total_commits": 46,
         "repos_count": 3,
         "repos": [
           "easy-langent",
@@ -591,6 +591,30 @@
           "members-visualization"
         ],
         "recent_commits": [
+          {
+            "repo": "easy-langent",
+            "sha": "1f845f69",
+            "message": "更新第一节部分表述错误",
+            "date": "2026-03-16T03:29:34Z",
+            "files_count": 6,
+            "total_additions": 654
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "1d1477d9",
+            "message": "Merge pull request #10 from ZXJC-niusile/main",
+            "date": "2026-03-16T03:20:26Z",
+            "files_count": 2,
+            "total_additions": 29
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "b45aa83e",
+            "message": "Merge pull request #12 from jspi-fu/Add-a-LangChain-project",
+            "date": "2026-03-16T03:19:05Z",
+            "files_count": 40,
+            "total_additions": 8910
+          },
           {
             "repo": "easy-langent",
             "sha": "3e16ab7a",
@@ -646,30 +670,98 @@
             "date": "2026-03-11T00:43:56Z",
             "files_count": 2,
             "total_additions": 202
-          },
+          }
+        ]
+      },
+      {
+        "username": "zixuangui-rgb",
+        "verified": true,
+        "valid_commits": 33,
+        "total_commits": 33,
+        "repos_count": 1,
+        "repos": [
+          "hello-claw"
+        ],
+        "recent_commits": [
           {
-            "repo": "easy-langent",
-            "sha": "565faf24",
-            "message": "增加实践环境推荐版本、学习周期建议",
-            "date": "2026-03-10T07:39:04Z",
+            "repo": "hello-claw",
+            "sha": "413b0405",
+            "message": "Merge pull request #24 from zixuangui-rgb/main",
+            "date": "2026-03-15T02:56:53Z",
             "files_count": 1,
-            "total_additions": 33
+            "total_additions": 48
           },
           {
-            "repo": "easy-langent",
-            "sha": "85355e82",
-            "message": "增加第9章部分内容",
-            "date": "2026-03-10T07:18:36Z",
-            "files_count": 5,
-            "total_additions": 452
+            "repo": "hello-claw",
+            "sha": "c484f32c",
+            "message": "docs: 更新chapter1内容",
+            "date": "2026-03-15T02:55:29Z",
+            "files_count": 1,
+            "total_additions": 48
           },
           {
-            "repo": "easy-langent",
-            "sha": "73529a12",
-            "message": "增加agent 项目",
-            "date": "2026-03-09T07:17:48Z",
-            "files_count": 33,
-            "total_additions": 3962
+            "repo": "hello-claw",
+            "sha": "5b540379",
+            "message": "Merge pull request #23 from zixuangui-rgb/main",
+            "date": "2026-03-15T01:29:55Z",
+            "files_count": 6,
+            "total_additions": 37
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "7d708f78",
+            "message": "docs: 修复build目录下所有章节跳转链接，直接跳转到index.md",
+            "date": "2026-03-15T01:28:41Z",
+            "files_count": 6,
+            "total_additions": 37
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "573fd7aa",
+            "message": "Merge pull request #22 from zixuangui-rgb/main",
+            "date": "2026-03-15T00:39:16Z",
+            "files_count": 6,
+            "total_additions": 13
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "868f1606",
+            "message": "docs: 整理chapter1文件夹结构，修复文档链接路径",
+            "date": "2026-03-15T00:37:15Z",
+            "files_count": 6,
+            "total_additions": 13
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "91aacf39",
+            "message": "Change greeting from 'Hello' to 'Goodbye'",
+            "date": "2026-03-14T15:38:54Z",
+            "files_count": 1,
+            "total_additions": 100
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "321cef0e",
+            "message": "Update fmt.Println message from 'Hello' to 'Goodbye'",
+            "date": "2026-03-14T15:37:44Z",
+            "files_count": 1,
+            "total_additions": 159
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "2d2888d9",
+            "message": "Update index.md",
+            "date": "2026-03-14T15:36:46Z",
+            "files_count": 1,
+            "total_additions": 145
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "799273dc",
+            "message": "Update print statement from 'Hello' to 'Goodbye'",
+            "date": "2026-03-14T15:35:34Z",
+            "files_count": 1,
+            "total_additions": 156
           }
         ]
       },
@@ -860,14 +952,22 @@
       {
         "username": "Ethan-Chen-plus",
         "verified": true,
-        "valid_commits": 31,
-        "total_commits": 31,
+        "valid_commits": 32,
+        "total_commits": 32,
         "repos_count": 2,
         "repos": [
           "ace-claw",
           "every-embodied"
         ],
         "recent_commits": [
+          {
+            "repo": "every-embodied",
+            "sha": "bb675108",
+            "message": "增加 ROS 教程和机器人发展介绍",
+            "date": "2026-03-13T12:21:56Z",
+            "files_count": 65,
+            "total_additions": 1297
+          },
           {
             "repo": "every-embodied",
             "sha": "afa3cb8a",
@@ -939,28 +1039,45 @@
             "date": "2026-03-02T02:48:19Z",
             "files_count": 2,
             "total_additions": 448
-          },
-          {
-            "repo": "every-embodied",
-            "sha": "6680531c",
-            "message": "更新自定义机械臂",
-            "date": "2026-03-02T02:38:06Z",
-            "files_count": 44,
-            "total_additions": 15370
           }
         ]
       },
       {
         "username": "jjyaoao",
         "verified": true,
-        "valid_commits": 27,
-        "total_commits": 27,
-        "repos_count": 2,
+        "valid_commits": 30,
+        "total_commits": 30,
+        "repos_count": 3,
         "repos": [
           "handy-multi-agent",
-          "hello-agents"
+          "hello-agents",
+          "hello-rocm"
         ],
         "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "c496cdd3",
+            "message": "Merge pull request #368 from tino-chen/feature/tino-chen-HelloClaw",
+            "date": "2026-03-14T08:24:10Z",
+            "files_count": 80,
+            "total_additions": 13811
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "0711e7b3",
+            "message": "Merge pull request #374 from JJasonSun/feature/DeepCastAgent",
+            "date": "2026-03-13T13:22:49Z",
+            "files_count": 46,
+            "total_additions": 10410
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "219f49ea",
+            "message": "update helloagents case",
+            "date": "2026-03-13T11:04:22Z",
+            "files_count": 9,
+            "total_additions": 1491
+          },
           {
             "repo": "hello-agents",
             "sha": "04a95610",
@@ -1016,30 +1133,6 @@
             "date": "2026-02-02T08:14:51Z",
             "files_count": 14,
             "total_additions": 2047
-          },
-          {
-            "repo": "hello-agents",
-            "sha": "4c537551",
-            "message": "Merge pull request #315 from kkkano/main",
-            "date": "2026-02-02T08:06:06Z",
-            "files_count": 4,
-            "total_additions": 1038
-          },
-          {
-            "repo": "hello-agents",
-            "sha": "97f98573",
-            "message": "add environment setting in extra07",
-            "date": "2026-01-30T02:07:24Z",
-            "files_count": 17,
-            "total_additions": 372
-          },
-          {
-            "repo": "hello-agents",
-            "sha": "16d10878",
-            "message": "fix problem in chapter1 code",
-            "date": "2026-01-23T06:30:20Z",
-            "files_count": 4,
-            "total_additions": 144
           }
         ]
       },
@@ -1230,6 +1323,98 @@
         ]
       },
       {
+        "username": "JJasonSun",
+        "verified": true,
+        "valid_commits": 20,
+        "total_commits": 20,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "07ced641",
+            "message": "chore: 统一并扩展项目根目录的.gitignore配置",
+            "date": "2026-03-09T09:02:56Z",
+            "files_count": 2,
+            "total_additions": 84
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "b20f9f73",
+            "message": "Merge branch 'datawhalechina:main' into feature/DeepCastAgent",
+            "date": "2026-03-09T08:37:56Z",
+            "files_count": 23,
+            "total_additions": 1577
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "46dbbff0",
+            "message": "Merge branch 'datawhalechina:main' into main",
+            "date": "2026-03-02T11:33:38Z",
+            "files_count": 101,
+            "total_additions": 6436
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "2814c502",
+            "message": "feat: 更新任务总结系统提示，优化工具调用标记的处理逻辑",
+            "date": "2026-02-28T20:46:16Z",
+            "files_count": 3,
+            "total_additions": 34
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "8e9a1f5c",
+            "message": "feat: 更新 README 和 ProductionView 组件，增强用户界面和交互体验",
+            "date": "2026-02-28T19:57:04Z",
+            "files_count": 2,
+            "total_additions": 98
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "355ec2c0",
+            "message": "feat: enhance SetupView and TerminalLog components with new styles and features",
+            "date": "2026-02-28T19:33:21Z",
+            "files_count": 15,
+            "total_additions": 1295
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "60e91b77",
+            "message": "feat：为播客创作工作流新增播放器视图、制作视图、设置视图和终端日志组件",
+            "date": "2026-02-28T17:16:43Z",
+            "files_count": 10,
+            "total_additions": 623
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "93642177",
+            "message": "feat: 更新配置和代码结构，添加 CORS 支持，优化环境变量和模块导入",
+            "date": "2026-02-28T16:57:43Z",
+            "files_count": 5,
+            "total_additions": 77
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "393b633d",
+            "message": "feat: 优化取消研究任务的功能，优化前端与后端交互",
+            "date": "2026-02-28T16:38:38Z",
+            "files_count": 19,
+            "total_additions": 225
+          },
+          {
+            "repo": "hello-agents",
+            "sha": "9d14286c",
+            "message": "feat: 更新 DeepCastAgent 的文档和前端界面，优化用户体验和交互设计",
+            "date": "2026-01-31T10:06:41Z",
+            "files_count": 3,
+            "total_additions": 265
+          }
+        ]
+      },
+      {
         "username": "KMnO4-zx",
         "verified": true,
         "valid_commits": 18,
@@ -1320,98 +1505,6 @@
             "date": "2026-01-28T15:08:03Z",
             "files_count": 5,
             "total_additions": 20145
-          }
-        ]
-      },
-      {
-        "username": "zixuangui-rgb",
-        "verified": true,
-        "valid_commits": 17,
-        "total_commits": 17,
-        "repos_count": 1,
-        "repos": [
-          "hello-claw"
-        ],
-        "recent_commits": [
-          {
-            "repo": "hello-claw",
-            "sha": "3294dd86",
-            "message": "Merge pull request #15 from zixuangui-rgb/main",
-            "date": "2026-03-12T13:19:48Z",
-            "files_count": 9,
-            "total_additions": 525
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "fea7bffb",
-            "message": "Merge branch 'main' of github.com:zixuangui-rgb/hello-claw",
-            "date": "2026-03-12T13:16:08Z",
-            "files_count": 15,
-            "total_additions": 1048
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "4f484b38",
-            "message": "feat(docs): update build documentation for chapters 1-7 and 11",
-            "date": "2026-03-12T13:15:22Z",
-            "files_count": 9,
-            "total_additions": 525
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "c0cd0984",
-            "message": "Merge pull request #14 from zixuangui-rgb/main",
-            "date": "2026-03-12T11:27:20Z",
-            "files_count": 1,
-            "total_additions": 16
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "aec79514",
-            "message": "docs: update README with completed build chapters content",
-            "date": "2026-03-12T11:25:45Z",
-            "files_count": 1,
-            "total_additions": 16
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "6729ff36",
-            "message": "Merge pull request #11 from zixuangui-rgb/main",
-            "date": "2026-03-10T12:09:45Z",
-            "files_count": 1,
-            "total_additions": 312
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "c203ecaf",
-            "message": "完善第六章：多渠道接入技术细节",
-            "date": "2026-03-10T12:08:40Z",
-            "files_count": 1,
-            "total_additions": 312
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "63426587",
-            "message": "Merge pull request #10 from zixuangui-rgb/main",
-            "date": "2026-03-10T12:05:36Z",
-            "files_count": 1,
-            "total_additions": 255
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "57f9de16",
-            "message": "docs: update build chapter 10 content",
-            "date": "2026-03-10T11:57:47Z",
-            "files_count": 1,
-            "total_additions": 256
-          },
-          {
-            "repo": "hello-claw",
-            "sha": "bf65c778",
-            "message": "Merge pull request #9 from zixuangui-rgb/main",
-            "date": "2026-03-10T10:23:04Z",
-            "files_count": 2,
-            "total_additions": 49
           }
         ]
       },
@@ -2160,6 +2253,82 @@
     ],
     "active": [
       {
+        "username": "cuidong233",
+        "verified": true,
+        "valid_commits": 8,
+        "total_commits": 8,
+        "repos_count": 1,
+        "repos": [
+          "vibe-blog"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-blog",
+            "sha": "db521609",
+            "message": "fix: skip image enhancement on empty prompt setup",
+            "date": "2026-03-15T07:34:26Z",
+            "files_count": 2,
+            "total_additions": 35
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "56d0b5bd",
+            "message": "fix: harden empty anchor id fallback",
+            "date": "2026-03-15T07:33:03Z",
+            "files_count": 2,
+            "total_additions": 26
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "4a68bebe",
+            "message": "fix: normalize duplicate source urls",
+            "date": "2026-03-15T07:32:28Z",
+            "files_count": 2,
+            "total_additions": 34
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "cdc05b81",
+            "message": "fix: restore test isolation and mini preset defaults",
+            "date": "2026-03-15T07:06:10Z",
+            "files_count": 2,
+            "total_additions": 16
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "27040991",
+            "message": "fix: restore stable agent package exports",
+            "date": "2026-03-15T06:56:58Z",
+            "files_count": 1,
+            "total_additions": 21
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "8b367354",
+            "message": "Harden prompt and agent compatibility after refactor",
+            "date": "2026-03-15T06:10:29Z",
+            "files_count": 2,
+            "total_additions": 86
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "77623c77",
+            "message": "Restore backend compatibility shims and executor timeout behavior",
+            "date": "2026-03-15T06:09:19Z",
+            "files_count": 7,
+            "total_additions": 132
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "36520b0f",
+            "message": "Merge origin/main into PR #5 and resolve backend/app.py conflict",
+            "date": "2026-03-15T05:56:48Z",
+            "files_count": 300,
+            "total_additions": 36619
+          }
+        ]
+      },
+      {
         "username": "howtio",
         "verified": true,
         "valid_commits": 7,
@@ -2296,54 +2465,62 @@
         ]
       },
       {
-        "username": "muzilyd",
+        "username": "ruyiluo",
         "verified": true,
-        "valid_commits": 5,
-        "total_commits": 5,
+        "valid_commits": 6,
+        "total_commits": 6,
         "repos_count": 1,
         "repos": [
-          "every-embodied"
+          "fun-rec"
         ],
         "recent_commits": [
           {
-            "repo": "every-embodied",
-            "sha": "9715c728",
-            "message": "Add files via upload",
-            "date": "2026-01-11T12:10:12Z",
-            "files_count": 2,
-            "total_additions": 1079
+            "repo": "fun-rec",
+            "sha": "3829072c",
+            "message": "内容优化",
+            "date": "2026-03-15T23:57:52Z",
+            "files_count": 47,
+            "total_additions": 239
           },
           {
-            "repo": "every-embodied",
-            "sha": "952f5117",
-            "message": "Add files via upload",
-            "date": "2026-01-11T12:09:45Z",
-            "files_count": 6,
-            "total_additions": 107
+            "repo": "fun-rec",
+            "sha": "32e92fb7",
+            "message": "内容优化",
+            "date": "2026-03-14T15:42:51Z",
+            "files_count": 152,
+            "total_additions": 2585
           },
           {
-            "repo": "every-embodied",
-            "sha": "5c40fa7c",
-            "message": "Add files via upload",
-            "date": "2026-01-11T12:09:20Z",
-            "files_count": 3,
-            "total_additions": 303
+            "repo": "fun-rec",
+            "sha": "d6f5c21c",
+            "message": "内容优化",
+            "date": "2026-03-12T04:54:20Z",
+            "files_count": 158,
+            "total_additions": 2874
           },
           {
-            "repo": "every-embodied",
-            "sha": "f2a55c40",
-            "message": "Add files via upload",
-            "date": "2026-01-05T03:40:55Z",
-            "files_count": 37,
-            "total_additions": 1742
+            "repo": "fun-rec",
+            "sha": "c7310221",
+            "message": "内容优化",
+            "date": "2026-03-11T00:57:29Z",
+            "files_count": 31,
+            "total_additions": 835
           },
           {
-            "repo": "every-embodied",
-            "sha": "f4f94ef1",
-            "message": "Add files via upload",
-            "date": "2026-01-05T03:35:39Z",
-            "files_count": 37,
-            "total_additions": 1742
+            "repo": "fun-rec",
+            "sha": "4e8cef29",
+            "message": "目录结构优化",
+            "date": "2026-03-09T14:41:50Z",
+            "files_count": 161,
+            "total_additions": 23323
+          },
+          {
+            "repo": "fun-rec",
+            "sha": "718ffd79",
+            "message": "Deploy: Update docs and funrec code - 2026-03-01 19:27:21",
+            "date": "2026-03-01T11:27:22Z",
+            "files_count": 300,
+            "total_additions": 30693
           }
         ]
       },
@@ -2400,6 +2577,110 @@
         ]
       },
       {
+        "username": "muzilyd",
+        "verified": true,
+        "valid_commits": 5,
+        "total_commits": 5,
+        "repos_count": 1,
+        "repos": [
+          "every-embodied"
+        ],
+        "recent_commits": [
+          {
+            "repo": "every-embodied",
+            "sha": "9715c728",
+            "message": "Add files via upload",
+            "date": "2026-01-11T12:10:12Z",
+            "files_count": 2,
+            "total_additions": 1079
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "952f5117",
+            "message": "Add files via upload",
+            "date": "2026-01-11T12:09:45Z",
+            "files_count": 6,
+            "total_additions": 107
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "5c40fa7c",
+            "message": "Add files via upload",
+            "date": "2026-01-11T12:09:20Z",
+            "files_count": 3,
+            "total_additions": 303
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "f2a55c40",
+            "message": "Add files via upload",
+            "date": "2026-01-05T03:40:55Z",
+            "files_count": 37,
+            "total_additions": 1742
+          },
+          {
+            "repo": "every-embodied",
+            "sha": "f4f94ef1",
+            "message": "Add files via upload",
+            "date": "2026-01-05T03:35:39Z",
+            "files_count": 37,
+            "total_additions": 1742
+          }
+        ]
+      },
+      {
+        "username": "Luxorion-12",
+        "verified": true,
+        "valid_commits": 5,
+        "total_commits": 5,
+        "repos_count": 1,
+        "repos": [
+          "torch-rechub"
+        ],
+        "recent_commits": [
+          {
+            "repo": "torch-rechub",
+            "sha": "e9a098d8",
+            "message": "sh: line 1: wq: command not found",
+            "date": "2026-03-13T16:20:19Z",
+            "files_count": 10,
+            "total_additions": 2389
+          },
+          {
+            "repo": "torch-rechub",
+            "sha": "d3206515",
+            "message": "Merge branch 'datawhalechina:main' into main",
+            "date": "2026-03-13T16:20:00Z",
+            "files_count": 10,
+            "total_additions": 2389
+          },
+          {
+            "repo": "torch-rechub",
+            "sha": "cf9fcf76",
+            "message": "完成对大部分代码的检查，除了tuorial下的05和milvus文件，代码能正常运行",
+            "date": "2026-03-13T16:19:26Z",
+            "files_count": 11,
+            "total_additions": 425
+          },
+          {
+            "repo": "torch-rechub",
+            "sha": "737b1412",
+            "message": "feat: add MMOE/ESMM notebook and training code",
+            "date": "2026-03-09T02:50:58Z",
+            "files_count": 3,
+            "total_additions": 973
+          },
+          {
+            "repo": "torch-rechub",
+            "sha": "25df9533",
+            "message": "multi_task_learning提交",
+            "date": "2026-02-24T10:21:28Z",
+            "files_count": 1,
+            "total_additions": 747
+          }
+        ]
+      },
+      {
         "username": "YangYu-NUAA",
         "verified": true,
         "valid_commits": 4,
@@ -2440,6 +2721,51 @@
             "date": "2026-02-07T22:27:04Z",
             "files_count": 1,
             "total_additions": 243
+          }
+        ]
+      },
+      {
+        "username": "fancyboi999",
+        "verified": true,
+        "valid_commits": 4,
+        "total_commits": 4,
+        "repos_count": 2,
+        "repos": [
+          "hello-claw",
+          "vibe-blog"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-claw",
+            "sha": "b3a7118f",
+            "message": "Merge origin/main into docs/chapter13-skill-writing",
+            "date": "2026-03-14T15:39:42Z",
+            "files_count": 174,
+            "total_additions": 17061
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "a034a580",
+            "message": "docs: add runnable skill example to chapter 13",
+            "date": "2026-03-10T14:54:19Z",
+            "files_count": 1,
+            "total_additions": 154
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "9d3fc7f3",
+            "message": "docs: complete build chapter 13 skill guide",
+            "date": "2026-03-10T14:44:35Z",
+            "files_count": 3,
+            "total_additions": 417
+          },
+          {
+            "repo": "vibe-blog",
+            "sha": "1e309203",
+            "message": "feat(logging): add rich global logging manager with task_id context",
+            "date": "2026-01-27T03:27:16Z",
+            "files_count": 4,
+            "total_additions": 182
           }
         ]
       },
@@ -2532,50 +2858,6 @@
         ]
       },
       {
-        "username": "ruyiluo",
-        "verified": true,
-        "valid_commits": 4,
-        "total_commits": 4,
-        "repos_count": 1,
-        "repos": [
-          "fun-rec"
-        ],
-        "recent_commits": [
-          {
-            "repo": "fun-rec",
-            "sha": "d6f5c21c",
-            "message": "内容优化",
-            "date": "2026-03-12T04:54:20Z",
-            "files_count": 158,
-            "total_additions": 2874
-          },
-          {
-            "repo": "fun-rec",
-            "sha": "c7310221",
-            "message": "内容优化",
-            "date": "2026-03-11T00:57:29Z",
-            "files_count": 31,
-            "total_additions": 835
-          },
-          {
-            "repo": "fun-rec",
-            "sha": "4e8cef29",
-            "message": "目录结构优化",
-            "date": "2026-03-09T14:41:50Z",
-            "files_count": 161,
-            "total_additions": 23323
-          },
-          {
-            "repo": "fun-rec",
-            "sha": "718ffd79",
-            "message": "Deploy: Update docs and funrec code - 2026-03-01 19:27:21",
-            "date": "2026-03-01T11:27:22Z",
-            "files_count": 300,
-            "total_additions": 30693
-          }
-        ]
-      },
-      {
         "username": "Bald0Wang",
         "verified": true,
         "valid_commits": 4,
@@ -2616,43 +2898,6 @@
             "date": "2026-03-01T15:10:32Z",
             "files_count": 12,
             "total_additions": 2703
-          }
-        ]
-      },
-      {
-        "username": "gaoliye",
-        "verified": false,
-        "valid_commits": 3,
-        "total_commits": 3,
-        "repos_count": 2,
-        "repos": [
-          "easy-vecdb",
-          "llm-universe"
-        ],
-        "recent_commits": [
-          {
-            "repo": "llm-universe",
-            "sha": "ca9ce3d8",
-            "message": "update new model",
-            "date": "2026-02-23T13:49:57Z",
-            "files_count": 2,
-            "total_additions": 141
-          },
-          {
-            "repo": "easy-vecdb",
-            "sha": "b5bec693",
-            "message": "update v4",
-            "date": "2026-01-17T08:40:06Z",
-            "files_count": 3,
-            "total_additions": 1648
-          },
-          {
-            "repo": "easy-vecdb",
-            "sha": "e952960f",
-            "message": "LSH",
-            "date": "2026-01-17T08:07:55Z",
-            "files_count": 4,
-            "total_additions": 17190
           }
         ]
       },
@@ -2729,6 +2974,80 @@
         ]
       },
       {
+        "username": "liulx25xx",
+        "verified": false,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 2,
+        "repos": [
+          "easy-vibe",
+          "hello-claw"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-claw",
+            "sha": "e72b87ea",
+            "message": "feat(university): add OpenClaw security guide to lobster university",
+            "date": "2026-03-14T13:03:09Z",
+            "files_count": 11,
+            "total_additions": 946
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "d51242b1",
+            "message": "update ios tutorial content and images",
+            "date": "2026-01-27T08:30:07Z",
+            "files_count": 39,
+            "total_additions": 723
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "432972c4",
+            "message": "feat: submit assignment content",
+            "date": "2026-01-26T17:43:07Z",
+            "files_count": 47,
+            "total_additions": 714
+          }
+        ]
+      },
+      {
+        "username": "gaoliye",
+        "verified": false,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 2,
+        "repos": [
+          "easy-vecdb",
+          "llm-universe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "llm-universe",
+            "sha": "ca9ce3d8",
+            "message": "update new model",
+            "date": "2026-02-23T13:49:57Z",
+            "files_count": 2,
+            "total_additions": 141
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "b5bec693",
+            "message": "update v4",
+            "date": "2026-01-17T08:40:06Z",
+            "files_count": 3,
+            "total_additions": 1648
+          },
+          {
+            "repo": "easy-vecdb",
+            "sha": "e952960f",
+            "message": "LSH",
+            "date": "2026-01-17T08:07:55Z",
+            "files_count": 4,
+            "total_additions": 17190
+          }
+        ]
+      },
+      {
         "username": "CacinieP",
         "verified": true,
         "valid_commits": 3,
@@ -2797,78 +3116,6 @@
             "date": "2026-02-04T18:14:44Z",
             "files_count": 1,
             "total_additions": 86
-          }
-        ]
-      },
-      {
-        "username": "linjh1118",
-        "verified": true,
-        "valid_commits": 3,
-        "total_commits": 3,
-        "repos_count": 1,
-        "repos": [
-          "openclaw-tutorial"
-        ],
-        "recent_commits": [
-          {
-            "repo": "openclaw-tutorial",
-            "sha": "5fe08118",
-            "message": "Merge pull request #4 from Holidayrabbit/docs/day12_WorkflowOptim",
-            "date": "2026-03-12T09:04:28Z",
-            "files_count": 4,
-            "total_additions": 204
-          },
-          {
-            "repo": "openclaw-tutorial",
-            "sha": "f242fc3d",
-            "message": "Merge pull request #2 from Holidayrabbit/docs/day10_webhook",
-            "date": "2026-03-06T05:36:13Z",
-            "files_count": 5,
-            "total_additions": 338
-          },
-          {
-            "repo": "openclaw-tutorial",
-            "sha": "86bd97dc",
-            "message": "Merge pull request #1 from Holidayrabbit/feat/day8_day9",
-            "date": "2026-03-03T08:14:33Z",
-            "files_count": 3,
-            "total_additions": 257
-          }
-        ]
-      },
-      {
-        "username": "Holidayrabbit",
-        "verified": true,
-        "valid_commits": 3,
-        "total_commits": 3,
-        "repos_count": 1,
-        "repos": [
-          "openclaw-tutorial"
-        ],
-        "recent_commits": [
-          {
-            "repo": "openclaw-tutorial",
-            "sha": "a9684d37",
-            "message": "docs: add workflow optimization tutorial, waiting for more cases from Community",
-            "date": "2026-03-12T08:40:31Z",
-            "files_count": 4,
-            "total_additions": 204
-          },
-          {
-            "repo": "openclaw-tutorial",
-            "sha": "b5e2785f",
-            "message": "docs: Add Webhook documentation and sample configuration for GitHub PR triage",
-            "date": "2026-03-06T00:20:42Z",
-            "files_count": 5,
-            "total_additions": 340
-          },
-          {
-            "repo": "openclaw-tutorial",
-            "sha": "2745e915",
-            "message": "feat: Add documentation for advanced skills（day8） and multi-agent(day9), and update README.",
-            "date": "2026-03-03T06:53:14Z",
-            "files_count": 3,
-            "total_additions": 257
           }
         ]
       },
@@ -2981,6 +3228,150 @@
         ]
       },
       {
+        "username": "linjh1118",
+        "verified": true,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 1,
+        "repos": [
+          "openclaw-tutorial"
+        ],
+        "recent_commits": [
+          {
+            "repo": "openclaw-tutorial",
+            "sha": "5fe08118",
+            "message": "Merge pull request #4 from Holidayrabbit/docs/day12_WorkflowOptim",
+            "date": "2026-03-12T09:04:28Z",
+            "files_count": 4,
+            "total_additions": 204
+          },
+          {
+            "repo": "openclaw-tutorial",
+            "sha": "f242fc3d",
+            "message": "Merge pull request #2 from Holidayrabbit/docs/day10_webhook",
+            "date": "2026-03-06T05:36:13Z",
+            "files_count": 5,
+            "total_additions": 338
+          },
+          {
+            "repo": "openclaw-tutorial",
+            "sha": "86bd97dc",
+            "message": "Merge pull request #1 from Holidayrabbit/feat/day8_day9",
+            "date": "2026-03-03T08:14:33Z",
+            "files_count": 3,
+            "total_additions": 257
+          }
+        ]
+      },
+      {
+        "username": "Holidayrabbit",
+        "verified": true,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 1,
+        "repos": [
+          "openclaw-tutorial"
+        ],
+        "recent_commits": [
+          {
+            "repo": "openclaw-tutorial",
+            "sha": "a9684d37",
+            "message": "docs: add workflow optimization tutorial, waiting for more cases from Community",
+            "date": "2026-03-12T08:40:31Z",
+            "files_count": 4,
+            "total_additions": 204
+          },
+          {
+            "repo": "openclaw-tutorial",
+            "sha": "b5e2785f",
+            "message": "docs: Add Webhook documentation and sample configuration for GitHub PR triage",
+            "date": "2026-03-06T00:20:42Z",
+            "files_count": 5,
+            "total_additions": 340
+          },
+          {
+            "repo": "openclaw-tutorial",
+            "sha": "2745e915",
+            "message": "feat: Add documentation for advanced skills（day8） and multi-agent(day9), and update README.",
+            "date": "2026-03-03T06:53:14Z",
+            "files_count": 3,
+            "total_additions": 257
+          }
+        ]
+      },
+      {
+        "username": "Kailigithub",
+        "verified": false,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 1,
+        "repos": [
+          "wow-fullstack"
+        ],
+        "recent_commits": [
+          {
+            "repo": "wow-fullstack",
+            "sha": "5d0866be",
+            "message": "feat: 添加用户学习统计和分析功能",
+            "date": "2026-01-05T02:53:00Z",
+            "files_count": 15,
+            "total_additions": 1966
+          },
+          {
+            "repo": "wow-fullstack",
+            "sha": "55f5b6a1",
+            "message": "fix: 修复代码编辑器切换章节后代码未更新的问题",
+            "date": "2026-01-04T09:01:24Z",
+            "files_count": 2,
+            "total_additions": 13
+          },
+          {
+            "repo": "wow-fullstack",
+            "sha": "943d24f5",
+            "message": "feat: 添加在线代码执行器功能",
+            "date": "2026-01-04T08:46:00Z",
+            "files_count": 18,
+            "total_additions": 7470
+          }
+        ]
+      },
+      {
+        "username": "amdjiahangpan",
+        "verified": true,
+        "valid_commits": 3,
+        "total_commits": 3,
+        "repos_count": 1,
+        "repos": [
+          "hello-rocm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-rocm",
+            "sha": "39b081fd",
+            "message": "Merge pull request #12 from jjyaoao/master",
+            "date": "2026-03-13T12:49:48Z",
+            "files_count": 9,
+            "total_additions": 1491
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "eff7ad0b",
+            "message": "Merge branch 'datawhalechina:master' into master",
+            "date": "2026-03-13T07:02:23Z",
+            "files_count": 35,
+            "total_additions": 4857
+          },
+          {
+            "repo": "hello-rocm",
+            "sha": "ec37b5dc",
+            "message": "feat: 完成toy-cli wechat-jump huanhuan-chat",
+            "date": "2026-01-27T13:09:03Z",
+            "files_count": 11,
+            "total_additions": 1233
+          }
+        ]
+      },
+      {
         "username": "minigenepig",
         "verified": true,
         "valid_commits": 3,
@@ -3053,38 +3444,30 @@
         ]
       },
       {
-        "username": "Kailigithub",
-        "verified": false,
-        "valid_commits": 3,
-        "total_commits": 3,
+        "username": "pi-dal",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
         "repos_count": 1,
         "repos": [
-          "wow-fullstack"
+          "all-in-rag"
         ],
         "recent_commits": [
           {
-            "repo": "wow-fullstack",
-            "sha": "5d0866be",
-            "message": "feat: 添加用户学习统计和分析功能",
-            "date": "2026-01-05T02:53:00Z",
-            "files_count": 15,
-            "total_additions": 1966
+            "repo": "all-in-rag",
+            "sha": "40fc33a8",
+            "message": "refactor: reorganize PowerRAG SDK demo to Extra-chapter",
+            "date": "2026-01-29T13:26:59Z",
+            "files_count": 13,
+            "total_additions": 405
           },
           {
-            "repo": "wow-fullstack",
-            "sha": "55f5b6a1",
-            "message": "fix: 修复代码编辑器切换章节后代码未更新的问题",
-            "date": "2026-01-04T09:01:24Z",
-            "files_count": 2,
-            "total_additions": 13
-          },
-          {
-            "repo": "wow-fullstack",
-            "sha": "943d24f5",
-            "message": "feat: 添加在线代码执行器功能",
-            "date": "2026-01-04T08:46:00Z",
-            "files_count": 18,
-            "total_additions": 7470
+            "repo": "all-in-rag",
+            "sha": "3617c93c",
+            "message": "feat: add PowerRAG SDK text QA retrieval demo",
+            "date": "2026-01-29T04:48:50Z",
+            "files_count": 8,
+            "total_additions": 466
           }
         ]
       },
@@ -3145,62 +3528,6 @@
         ]
       },
       {
-        "username": "pi-dal",
-        "verified": true,
-        "valid_commits": 2,
-        "total_commits": 2,
-        "repos_count": 1,
-        "repos": [
-          "all-in-rag"
-        ],
-        "recent_commits": [
-          {
-            "repo": "all-in-rag",
-            "sha": "40fc33a8",
-            "message": "refactor: reorganize PowerRAG SDK demo to Extra-chapter",
-            "date": "2026-01-29T13:26:59Z",
-            "files_count": 13,
-            "total_additions": 405
-          },
-          {
-            "repo": "all-in-rag",
-            "sha": "3617c93c",
-            "message": "feat: add PowerRAG SDK text QA retrieval demo",
-            "date": "2026-01-29T04:48:50Z",
-            "files_count": 8,
-            "total_additions": 466
-          }
-        ]
-      },
-      {
-        "username": "lta155",
-        "verified": true,
-        "valid_commits": 2,
-        "total_commits": 2,
-        "repos_count": 1,
-        "repos": [
-          "llm-universe"
-        ],
-        "recent_commits": [
-          {
-            "repo": "llm-universe",
-            "sha": "e351c431",
-            "message": "Merge pull request #229 from 0-yy-0/gly0223",
-            "date": "2026-02-24T14:33:21Z",
-            "files_count": 2,
-            "total_additions": 144
-          },
-          {
-            "repo": "llm-universe",
-            "sha": "cbbc4906",
-            "message": "Merge pull request #219 from datawhalechina/submit-notebook-only",
-            "date": "2026-01-10T11:52:48Z",
-            "files_count": 1,
-            "total_additions": 1432
-          }
-        ]
-      },
-      {
         "username": "isaacahahah",
         "verified": true,
         "valid_commits": 2,
@@ -3225,6 +3552,90 @@
             "date": "2026-02-08T12:01:55Z",
             "files_count": 22,
             "total_additions": 3312
+          }
+        ]
+      },
+      {
+        "username": "li-xiu-qi",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "hello-claw"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-claw",
+            "sha": "360b8060",
+            "message": "docs: add email assistant and multi-claw university scenes",
+            "date": "2026-03-14T10:13:40Z",
+            "files_count": 34,
+            "total_additions": 2014
+          },
+          {
+            "repo": "hello-claw",
+            "sha": "e5182b93",
+            "message": "docs: add HiClaw chapters (16-17) for multi OpenClaw collaboration",
+            "date": "2026-03-12T08:10:37Z",
+            "files_count": 14,
+            "total_additions": 1030
+          }
+        ]
+      },
+      {
+        "username": "shigh",
+        "verified": false,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "vibe-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-vibe",
+            "sha": "827b1076",
+            "message": "支持私有化部署",
+            "date": "2026-02-09T05:36:45Z",
+            "files_count": 3,
+            "total_additions": 84
+          },
+          {
+            "repo": "vibe-vibe",
+            "sha": "65362ec5",
+            "message": "支持私有化部署",
+            "date": "2026-02-09T05:36:45Z",
+            "files_count": 3,
+            "total_additions": 84
+          }
+        ]
+      },
+      {
+        "username": "GeoDaoyu",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "easy-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vibe",
+            "sha": "c380e290",
+            "message": "feat: 增加编辑此页",
+            "date": "2026-03-03T10:16:28Z",
+            "files_count": 1,
+            "total_additions": 93
+          },
+          {
+            "repo": "easy-vibe",
+            "sha": "20586297",
+            "message": "docs: fix error markdown lang",
+            "date": "2026-02-15T01:24:02Z",
+            "files_count": 11,
+            "total_additions": 109
           }
         ]
       },
@@ -3285,86 +3696,30 @@
         ]
       },
       {
-        "username": "liulx25xx",
-        "verified": false,
-        "valid_commits": 2,
-        "total_commits": 2,
-        "repos_count": 1,
-        "repos": [
-          "easy-vibe"
-        ],
-        "recent_commits": [
-          {
-            "repo": "easy-vibe",
-            "sha": "d51242b1",
-            "message": "update ios tutorial content and images",
-            "date": "2026-01-27T08:30:07Z",
-            "files_count": 39,
-            "total_additions": 723
-          },
-          {
-            "repo": "easy-vibe",
-            "sha": "432972c4",
-            "message": "feat: submit assignment content",
-            "date": "2026-01-26T17:43:07Z",
-            "files_count": 47,
-            "total_additions": 714
-          }
-        ]
-      },
-      {
-        "username": "shigh",
-        "verified": false,
-        "valid_commits": 2,
-        "total_commits": 2,
-        "repos_count": 1,
-        "repos": [
-          "vibe-vibe"
-        ],
-        "recent_commits": [
-          {
-            "repo": "vibe-vibe",
-            "sha": "827b1076",
-            "message": "支持私有化部署",
-            "date": "2026-02-09T05:36:45Z",
-            "files_count": 3,
-            "total_additions": 84
-          },
-          {
-            "repo": "vibe-vibe",
-            "sha": "65362ec5",
-            "message": "支持私有化部署",
-            "date": "2026-02-09T05:36:45Z",
-            "files_count": 3,
-            "total_additions": 84
-          }
-        ]
-      },
-      {
-        "username": "hrjtju",
+        "username": "lta155",
         "verified": true,
         "valid_commits": 2,
         "total_commits": 2,
         "repos_count": 1,
         "repos": [
-          "math-for-ai"
+          "llm-universe"
         ],
         "recent_commits": [
           {
-            "repo": "math-for-ai",
-            "sha": "019f00fa",
-            "message": "Merge pull request #18 from fish-404/patch-3",
-            "date": "2026-02-12T06:21:47Z",
-            "files_count": 1,
-            "total_additions": 31
+            "repo": "llm-universe",
+            "sha": "e351c431",
+            "message": "Merge pull request #229 from 0-yy-0/gly0223",
+            "date": "2026-02-24T14:33:21Z",
+            "files_count": 2,
+            "total_additions": 144
           },
           {
-            "repo": "math-for-ai",
-            "sha": "38c573f1",
-            "message": "修正第二章番外篇图片、重绘番外篇 图4",
-            "date": "2026-01-14T15:23:49Z",
-            "files_count": 5,
-            "total_additions": 15
+            "repo": "llm-universe",
+            "sha": "cbbc4906",
+            "message": "Merge pull request #219 from datawhalechina/submit-notebook-only",
+            "date": "2026-01-10T11:52:48Z",
+            "files_count": 1,
+            "total_additions": 1432
           }
         ]
       },
@@ -3397,6 +3752,62 @@
         ]
       },
       {
+        "username": "jspi-fu",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "easy-langent"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-langent",
+            "sha": "640ccb38",
+            "message": "feat: 添加MCPChat项目，基于LangChain和MCP协议的智能AI Agent应用",
+            "date": "2026-03-15T04:44:45Z",
+            "files_count": 40,
+            "total_additions": 8910
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "327c9c5a",
+            "message": "feat: 添加基于LangChain的智能知识库问答系统",
+            "date": "2026-03-12T15:29:46Z",
+            "files_count": 38,
+            "total_additions": 5113
+          }
+        ]
+      },
+      {
+        "username": "ZXJC-niusile",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "easy-langent"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-langent",
+            "sha": "d19b1b4a",
+            "message": "resolve syntax error, correct annotations, and fix typos in chapter 1 / 修复第一章代码语法错误、注释逻辑及错别字",
+            "date": "2026-03-12T10:11:02Z",
+            "files_count": 1,
+            "total_additions": 18
+          },
+          {
+            "repo": "easy-langent",
+            "sha": "8ade668f",
+            "message": "standardize terminology and fix links in foreword / 规范术语与链接跳转",
+            "date": "2026-03-12T08:55:32Z",
+            "files_count": 1,
+            "total_additions": 12
+          }
+        ]
+      },
+      {
         "username": "林景豪",
         "verified": false,
         "valid_commits": 2,
@@ -3421,6 +3832,34 @@
             "date": "2026-02-15T08:30:20Z",
             "files_count": 11,
             "total_additions": 1187
+          }
+        ]
+      },
+      {
+        "username": "Zengyu Gao",
+        "verified": false,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "algo-vis"
+        ],
+        "recent_commits": [
+          {
+            "repo": "algo-vis",
+            "sha": "415c6eb4",
+            "message": "fix:修改报错",
+            "date": "2026-02-26T06:52:53Z",
+            "files_count": 1,
+            "total_additions": 15
+          },
+          {
+            "repo": "algo-vis",
+            "sha": "4096126d",
+            "message": "feat:补充部分题型",
+            "date": "2026-02-25T08:33:39Z",
+            "files_count": 13,
+            "total_additions": 6783
           }
         ]
       },
@@ -3481,6 +3920,34 @@
         ]
       },
       {
+        "username": "hrjtju",
+        "verified": true,
+        "valid_commits": 2,
+        "total_commits": 2,
+        "repos_count": 1,
+        "repos": [
+          "math-for-ai"
+        ],
+        "recent_commits": [
+          {
+            "repo": "math-for-ai",
+            "sha": "019f00fa",
+            "message": "Merge pull request #18 from fish-404/patch-3",
+            "date": "2026-02-12T06:21:47Z",
+            "files_count": 1,
+            "total_additions": 31
+          },
+          {
+            "repo": "math-for-ai",
+            "sha": "38c573f1",
+            "message": "修正第二章番外篇图片、重绘番外篇 图4",
+            "date": "2026-01-14T15:23:49Z",
+            "files_count": 5,
+            "total_additions": 15
+          }
+        ]
+      },
+      {
         "username": "ZhikangNiu",
         "verified": true,
         "valid_commits": 2,
@@ -3509,34 +3976,6 @@
         ]
       },
       {
-        "username": "Zengyu Gao",
-        "verified": false,
-        "valid_commits": 2,
-        "total_commits": 2,
-        "repos_count": 1,
-        "repos": [
-          "algo-vis"
-        ],
-        "recent_commits": [
-          {
-            "repo": "algo-vis",
-            "sha": "415c6eb4",
-            "message": "fix:修改报错",
-            "date": "2026-02-26T06:52:53Z",
-            "files_count": 1,
-            "total_additions": 15
-          },
-          {
-            "repo": "algo-vis",
-            "sha": "4096126d",
-            "message": "feat:补充部分题型",
-            "date": "2026-02-25T08:33:39Z",
-            "files_count": 13,
-            "total_additions": 6783
-          }
-        ]
-      },
-      {
         "username": "Shawnxyxy",
         "verified": true,
         "valid_commits": 1,
@@ -3553,6 +3992,26 @@
             "date": "2026-03-05T18:24:26Z",
             "files_count": 23,
             "total_additions": 1577
+          }
+        ]
+      },
+      {
+        "username": "tino-chen",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "hello-agents"
+        ],
+        "recent_commits": [
+          {
+            "repo": "hello-agents",
+            "sha": "6b7d7fd2",
+            "message": "feat: 添加 HelloClaw 毕业设计项目",
+            "date": "2026-03-01T18:47:32Z",
+            "files_count": 80,
+            "total_additions": 13811
           }
         ]
       },
@@ -3797,22 +4256,82 @@
         ]
       },
       {
-        "username": "li-xiu-qi",
+        "username": "frtanxidian",
         "verified": true,
         "valid_commits": 1,
         "total_commits": 1,
         "repos_count": 1,
         "repos": [
-          "hello-claw"
+          "self-llm"
         ],
         "recent_commits": [
           {
-            "repo": "hello-claw",
-            "sha": "e5182b93",
-            "message": "docs: add HiClaw chapters (16-17) for multi OpenClaw collaboration",
-            "date": "2026-03-12T08:10:37Z",
-            "files_count": 14,
-            "total_additions": 1030
+            "repo": "self-llm",
+            "sha": "8a9d6616",
+            "message": "kimi2.5sglangv2.0 (#490)",
+            "date": "2026-02-09T13:13:56Z",
+            "files_count": 5,
+            "total_additions": 414
+          }
+        ]
+      },
+      {
+        "username": "sssanssss",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "self-llm",
+            "sha": "7912ab93",
+            "message": "Merge pull request #491 from sssanssss/GLM-4.7-Flash",
+            "date": "2026-02-09T13:12:26Z",
+            "files_count": 5,
+            "total_additions": 560
+          }
+        ]
+      },
+      {
+        "username": "fanqiNO1",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "self-llm",
+            "sha": "4b2849df",
+            "message": "kimi-k2.5 01 task",
+            "date": "2026-02-07T12:41:23Z",
+            "files_count": 11,
+            "total_additions": 192
+          }
+        ]
+      },
+      {
+        "username": "ilovescrapy",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "self-llm"
+        ],
+        "recent_commits": [
+          {
+            "repo": "self-llm",
+            "sha": "caca8daa",
+            "message": "add glm-4.7-flash and kimi-2.5 vllm doc",
+            "date": "2026-02-05T01:20:56Z",
+            "files_count": 6,
+            "total_additions": 865
           }
         ]
       },
@@ -3833,6 +4352,146 @@
             "date": "2026-03-08T05:36:52Z",
             "files_count": 2,
             "total_additions": 610
+          }
+        ]
+      },
+      {
+        "username": "qianzhu18",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "vibe-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-vibe",
+            "sha": "9fe17867",
+            "message": "fix: 补充 manifest 与 favicon 消除控制台报错",
+            "date": "2026-01-26T10:02:11Z",
+            "files_count": 2,
+            "total_additions": 24
+          }
+        ]
+      },
+      {
+        "username": "cnb.b8MGswofANA",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "vibe-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-vibe",
+            "sha": "8b97f05c",
+            "message": "docs: 添加AI绘本Vibecoding案例分享文档及相关图片",
+            "date": "2026-01-05T18:27:12Z",
+            "files_count": 13,
+            "total_additions": 856
+          }
+        ]
+      },
+      {
+        "username": "PR Bot",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "easy-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vibe",
+            "sha": "a6619068",
+            "message": "docs: add MiniMax as alternative text generation model option",
+            "date": "2026-03-12T05:45:38Z",
+            "files_count": 3,
+            "total_additions": 103
+          }
+        ]
+      },
+      {
+        "username": "Trae Assistant",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "easy-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vibe",
+            "sha": "71ddfa3f",
+            "message": "docs: add lovart assets and localize images",
+            "date": "2026-03-05T09:00:32Z",
+            "files_count": 59,
+            "total_additions": 936
+          }
+        ]
+      },
+      {
+        "username": "SherryTECNU",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "easy-vibe"
+        ],
+        "recent_commits": [
+          {
+            "repo": "easy-vibe",
+            "sha": "81bdc35b",
+            "message": "浏览器插件：1. 完成流程测试；2. 增加操作图片；3. 修改内置AI的flag设置描述；4. 新增Chrome插件在应用商店发布步骤链接",
+            "date": "2026-03-04T16:37:17Z",
+            "files_count": 15,
+            "total_additions": 24
+          }
+        ]
+      },
+      {
+        "username": "Joe-2002",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "post-training-of-llms"
+        ],
+        "recent_commits": [
+          {
+            "repo": "post-training-of-llms",
+            "sha": "870e069a",
+            "message": "feat: Add bilingual README support",
+            "date": "2026-01-04T21:05:12Z",
+            "files_count": 3,
+            "total_additions": 95
+          }
+        ]
+      },
+      {
+        "username": "huohaijie",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "every-embodied"
+        ],
+        "recent_commits": [
+          {
+            "repo": "every-embodied",
+            "sha": "67d514f9",
+            "message": "feat:添加第一章第1,2门介绍课程",
+            "date": "2026-03-13T10:11:41Z",
+            "files_count": 65,
+            "total_additions": 1297
           }
         ]
       },
@@ -3917,326 +4576,6 @@
         ]
       },
       {
-        "username": "Tsumugii24",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "unlock-deepseek"
-        ],
-        "recent_commits": [
-          {
-            "repo": "unlock-deepseek",
-            "sha": "a99cb459",
-            "message": "refactor the entire repo",
-            "date": "2026-03-09T22:53:03Z",
-            "files_count": 62,
-            "total_additions": 582
-          }
-        ]
-      },
-      {
-        "username": "frtanxidian",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "self-llm"
-        ],
-        "recent_commits": [
-          {
-            "repo": "self-llm",
-            "sha": "8a9d6616",
-            "message": "kimi2.5sglangv2.0 (#490)",
-            "date": "2026-02-09T13:13:56Z",
-            "files_count": 5,
-            "total_additions": 414
-          }
-        ]
-      },
-      {
-        "username": "sssanssss",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "self-llm"
-        ],
-        "recent_commits": [
-          {
-            "repo": "self-llm",
-            "sha": "7912ab93",
-            "message": "Merge pull request #491 from sssanssss/GLM-4.7-Flash",
-            "date": "2026-02-09T13:12:26Z",
-            "files_count": 5,
-            "total_additions": 560
-          }
-        ]
-      },
-      {
-        "username": "fanqiNO1",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "self-llm"
-        ],
-        "recent_commits": [
-          {
-            "repo": "self-llm",
-            "sha": "4b2849df",
-            "message": "kimi-k2.5 01 task",
-            "date": "2026-02-07T12:41:23Z",
-            "files_count": 11,
-            "total_additions": 192
-          }
-        ]
-      },
-      {
-        "username": "ilovescrapy",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "self-llm"
-        ],
-        "recent_commits": [
-          {
-            "repo": "self-llm",
-            "sha": "caca8daa",
-            "message": "add glm-4.7-flash and kimi-2.5 vllm doc",
-            "date": "2026-02-05T01:20:56Z",
-            "files_count": 6,
-            "total_additions": 865
-          }
-        ]
-      },
-      {
-        "username": "Joe-2002",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "post-training-of-llms"
-        ],
-        "recent_commits": [
-          {
-            "repo": "post-training-of-llms",
-            "sha": "870e069a",
-            "message": "feat: Add bilingual README support",
-            "date": "2026-01-04T21:05:12Z",
-            "files_count": 3,
-            "total_additions": 95
-          }
-        ]
-      },
-      {
-        "username": "PR Bot",
-        "verified": false,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "easy-vibe"
-        ],
-        "recent_commits": [
-          {
-            "repo": "easy-vibe",
-            "sha": "a6619068",
-            "message": "docs: add MiniMax as alternative text generation model option",
-            "date": "2026-03-12T05:45:38Z",
-            "files_count": 3,
-            "total_additions": 103
-          }
-        ]
-      },
-      {
-        "username": "Trae Assistant",
-        "verified": false,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "easy-vibe"
-        ],
-        "recent_commits": [
-          {
-            "repo": "easy-vibe",
-            "sha": "71ddfa3f",
-            "message": "docs: add lovart assets and localize images",
-            "date": "2026-03-05T09:00:32Z",
-            "files_count": 59,
-            "total_additions": 936
-          }
-        ]
-      },
-      {
-        "username": "SherryTECNU",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "easy-vibe"
-        ],
-        "recent_commits": [
-          {
-            "repo": "easy-vibe",
-            "sha": "81bdc35b",
-            "message": "浏览器插件：1. 完成流程测试；2. 增加操作图片；3. 修改内置AI的flag设置描述；4. 新增Chrome插件在应用商店发布步骤链接",
-            "date": "2026-03-04T16:37:17Z",
-            "files_count": 15,
-            "total_additions": 24
-          }
-        ]
-      },
-      {
-        "username": "GeoDaoyu",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "easy-vibe"
-        ],
-        "recent_commits": [
-          {
-            "repo": "easy-vibe",
-            "sha": "20586297",
-            "message": "docs: fix error markdown lang",
-            "date": "2026-02-15T01:24:02Z",
-            "files_count": 11,
-            "total_additions": 109
-          }
-        ]
-      },
-      {
-        "username": "qianzhu18",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "vibe-vibe"
-        ],
-        "recent_commits": [
-          {
-            "repo": "vibe-vibe",
-            "sha": "9fe17867",
-            "message": "fix: 补充 manifest 与 favicon 消除控制台报错",
-            "date": "2026-01-26T10:02:11Z",
-            "files_count": 2,
-            "total_additions": 24
-          }
-        ]
-      },
-      {
-        "username": "cnb.b8MGswofANA",
-        "verified": false,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "vibe-vibe"
-        ],
-        "recent_commits": [
-          {
-            "repo": "vibe-vibe",
-            "sha": "8b97f05c",
-            "message": "docs: 添加AI绘本Vibecoding案例分享文档及相关图片",
-            "date": "2026-01-05T18:27:12Z",
-            "files_count": 13,
-            "total_additions": 856
-          }
-        ]
-      },
-      {
-        "username": "fish-404",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "math-for-ai"
-        ],
-        "recent_commits": [
-          {
-            "repo": "math-for-ai",
-            "sha": "01e241ff",
-            "message": "Update exercises for more readable",
-            "date": "2026-02-12T04:31:05Z",
-            "files_count": 1,
-            "total_additions": 31
-          }
-        ]
-      },
-      {
-        "username": "MongxinChan",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "agent-skills-with-anthropic"
-        ],
-        "recent_commits": [
-          {
-            "repo": "agent-skills-with-anthropic",
-            "sha": "09cd43f1",
-            "message": "更新 README.md 中的课程规划，添加链接以便于导航",
-            "date": "2026-02-11T08:44:23Z",
-            "files_count": 11,
-            "total_additions": 31
-          }
-        ]
-      },
-      {
-        "username": "sliortega295-ops",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "torch-rechub"
-        ],
-        "recent_commits": [
-          {
-            "repo": "torch-rechub",
-            "sha": "0c2a06ac",
-            "message": "docs: add Batch 2 model usage docs (DIN, DIEN, BST, MIND, PLE)",
-            "date": "2026-02-28T02:14:30Z",
-            "files_count": 8,
-            "total_additions": 1388
-          }
-        ]
-      },
-      {
-        "username": "Luxorion-12",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "torch-rechub"
-        ],
-        "recent_commits": [
-          {
-            "repo": "torch-rechub",
-            "sha": "25df9533",
-            "message": "multi_task_learning提交",
-            "date": "2026-02-24T10:21:28Z",
-            "files_count": 1,
-            "total_additions": 747
-          }
-        ]
-      },
-      {
         "username": "bokang-ugent",
         "verified": true,
         "valid_commits": 1,
@@ -4257,42 +4596,22 @@
         ]
       },
       {
-        "username": "AXYZdong",
+        "username": "MongxinChan",
         "verified": true,
         "valid_commits": 1,
         "total_commits": 1,
         "repos_count": 1,
         "repos": [
-          "handy-ollama"
+          "agent-skills-with-anthropic"
         ],
         "recent_commits": [
           {
-            "repo": "handy-ollama",
-            "sha": "229e5d6b",
-            "message": "Merge pull request #45 from mofree/HuggingFaceCLI",
-            "date": "2026-01-12T03:44:09Z",
-            "files_count": 3,
+            "repo": "agent-skills-with-anthropic",
+            "sha": "09cd43f1",
+            "message": "更新 README.md 中的课程规划，添加链接以便于导航",
+            "date": "2026-02-11T08:44:23Z",
+            "files_count": 11,
             "total_additions": 31
-          }
-        ]
-      },
-      {
-        "username": "jspi-fu",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "easy-langent"
-        ],
-        "recent_commits": [
-          {
-            "repo": "easy-langent",
-            "sha": "327c9c5a",
-            "message": "feat: 添加基于LangChain的智能知识库问答系统",
-            "date": "2026-03-12T15:29:46Z",
-            "files_count": 38,
-            "total_additions": 5113
           }
         ]
       },
@@ -4337,66 +4656,6 @@
         ]
       },
       {
-        "username": "fancyboi999",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "vibe-blog"
-        ],
-        "recent_commits": [
-          {
-            "repo": "vibe-blog",
-            "sha": "1e309203",
-            "message": "feat(logging): add rich global logging manager with task_id context",
-            "date": "2026-01-27T03:27:16Z",
-            "files_count": 4,
-            "total_additions": 182
-          }
-        ]
-      },
-      {
-        "username": "qjymary",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "vibe-blog"
-        ],
-        "recent_commits": [
-          {
-            "repo": "vibe-blog",
-            "sha": "f145cd1c",
-            "message": "Merge branch 'datawhalechina:main' into qinjiayue_0120",
-            "date": "2026-01-23T07:54:39Z",
-            "files_count": 26,
-            "total_additions": 2568
-          }
-        ]
-      },
-      {
-        "username": "zxdwhda",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "coze-ai-assistant"
-        ],
-        "recent_commits": [
-          {
-            "repo": "coze-ai-assistant",
-            "sha": "c71df906",
-            "message": "更新第 11 章内容",
-            "date": "2026-01-26T06:55:20Z",
-            "files_count": 300,
-            "total_additions": 6317
-          }
-        ]
-      },
-      {
         "username": "AllYoung",
         "verified": true,
         "valid_commits": 1,
@@ -4437,22 +4696,202 @@
         ]
       },
       {
-        "username": "amdjiahangpan",
+        "username": "sliortega295-ops",
         "verified": true,
         "valid_commits": 1,
         "total_commits": 1,
         "repos_count": 1,
         "repos": [
-          "hello-rocm"
+          "torch-rechub"
         ],
         "recent_commits": [
           {
-            "repo": "hello-rocm",
-            "sha": "ec37b5dc",
-            "message": "feat: 完成toy-cli wechat-jump huanhuan-chat",
-            "date": "2026-01-27T13:09:03Z",
-            "files_count": 11,
-            "total_additions": 1233
+            "repo": "torch-rechub",
+            "sha": "0c2a06ac",
+            "message": "docs: add Batch 2 model usage docs (DIN, DIEN, BST, MIND, PLE)",
+            "date": "2026-02-28T02:14:30Z",
+            "files_count": 8,
+            "total_additions": 1388
+          }
+        ]
+      },
+      {
+        "username": "freedomgod",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "vibe-blog"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-blog",
+            "sha": "5a71774c",
+            "message": "docs: 补充README中本地开发的前端服务启动",
+            "date": "2026-03-15T04:17:36Z",
+            "files_count": 2,
+            "total_additions": 20
+          }
+        ]
+      },
+      {
+        "username": "qjymary",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "vibe-blog"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-blog",
+            "sha": "f145cd1c",
+            "message": "Merge branch 'datawhalechina:main' into qinjiayue_0120",
+            "date": "2026-01-23T07:54:39Z",
+            "files_count": 26,
+            "total_additions": 2568
+          }
+        ]
+      },
+      {
+        "username": "luochen",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "vibe-blog"
+        ],
+        "recent_commits": [
+          {
+            "repo": "vibe-blog",
+            "sha": "374f3a69",
+            "message": "Refactor: Split app.py into modular Blueprints",
+            "date": "2026-01-21T05:40:22Z",
+            "files_count": 9,
+            "total_additions": 1230
+          }
+        ]
+      },
+      {
+        "username": "AXYZdong",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "handy-ollama"
+        ],
+        "recent_commits": [
+          {
+            "repo": "handy-ollama",
+            "sha": "229e5d6b",
+            "message": "Merge pull request #45 from mofree/HuggingFaceCLI",
+            "date": "2026-01-12T03:44:09Z",
+            "files_count": 3,
+            "total_additions": 31
+          }
+        ]
+      },
+      {
+        "username": "TESTPERSONAL",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "wow-fullstack"
+        ],
+        "recent_commits": [
+          {
+            "repo": "wow-fullstack",
+            "sha": "2ac39ebe",
+            "message": "fix: 添加.env环境配置说明，修复issue #39",
+            "date": "2026-02-28T09:39:04Z",
+            "files_count": 3,
+            "total_additions": 38
+          }
+        ]
+      },
+      {
+        "username": "liwei",
+        "verified": false,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "wow-fullstack"
+        ],
+        "recent_commits": [
+          {
+            "repo": "wow-fullstack",
+            "sha": "927f73d7",
+            "message": "Merge branch 'main' of https://github.com/datawhalechina/wow-fullstack",
+            "date": "2026-01-17T01:59:08Z",
+            "files_count": 83,
+            "total_additions": 18616
+          }
+        ]
+      },
+      {
+        "username": "zxdwhda",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "coze-ai-assistant"
+        ],
+        "recent_commits": [
+          {
+            "repo": "coze-ai-assistant",
+            "sha": "c71df906",
+            "message": "更新第 11 章内容",
+            "date": "2026-01-26T06:55:20Z",
+            "files_count": 300,
+            "total_additions": 6317
+          }
+        ]
+      },
+      {
+        "username": "Tsumugii24",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "unlock-deepseek"
+        ],
+        "recent_commits": [
+          {
+            "repo": "unlock-deepseek",
+            "sha": "a99cb459",
+            "message": "refactor the entire repo",
+            "date": "2026-03-09T22:53:03Z",
+            "files_count": 62,
+            "total_additions": 582
+          }
+        ]
+      },
+      {
+        "username": "fish-404",
+        "verified": true,
+        "valid_commits": 1,
+        "total_commits": 1,
+        "repos_count": 1,
+        "repos": [
+          "math-for-ai"
+        ],
+        "recent_commits": [
+          {
+            "repo": "math-for-ai",
+            "sha": "01e241ff",
+            "message": "Update exercises for more readable",
+            "date": "2026-02-12T04:31:05Z",
+            "files_count": 1,
+            "total_additions": 31
           }
         ]
       },
@@ -4513,46 +4952,6 @@
             "date": "2026-03-04T16:09:32Z",
             "files_count": 14,
             "total_additions": 3044
-          }
-        ]
-      },
-      {
-        "username": "TESTPERSONAL",
-        "verified": true,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "wow-fullstack"
-        ],
-        "recent_commits": [
-          {
-            "repo": "wow-fullstack",
-            "sha": "2ac39ebe",
-            "message": "fix: 添加.env环境配置说明，修复issue #39",
-            "date": "2026-02-28T09:39:04Z",
-            "files_count": 3,
-            "total_additions": 38
-          }
-        ]
-      },
-      {
-        "username": "liwei",
-        "verified": false,
-        "valid_commits": 1,
-        "total_commits": 1,
-        "repos_count": 1,
-        "repos": [
-          "wow-fullstack"
-        ],
-        "recent_commits": [
-          {
-            "repo": "wow-fullstack",
-            "sha": "927f73d7",
-            "message": "Merge branch 'main' of https://github.com/datawhalechina/wow-fullstack",
-            "date": "2026-01-17T01:59:08Z",
-            "files_count": 83,
-            "total_additions": 18616
           }
         ]
       }
