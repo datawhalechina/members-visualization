@@ -1,9 +1,732 @@
 {
-  "update_time": "2026-04-11T22:28:14.270024",
+  "update_time": "2026-04-12T22:31:13.219276",
   "days_range": 7,
-  "total_commits": 166,
-  "total_repos": 14,
+  "total_commits": 189,
+  "total_repos": 15,
   "user_commits": {
+    "jjyaoao": {
+      "total_commits": 1,
+      "repos": [
+        "hello-agents"
+      ],
+      "repo_commits": {
+        "hello-agents": 1
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-04-11": 1
+      },
+      "hourly_distribution": {
+        "3": 1
+      },
+      "beijing_hourly_distribution": {
+        "11": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "Merge pull request #489 from DeepJH/fix/update-readme-url",
+          "repo": "hello-agents",
+          "date": "2026-04-11",
+          "time": "2026-04-11T11:34:06+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/hello-agents/commit/309a047d00785e71b7d2f4c8c10c80c26039312f"
+        }
+      ],
+      "first_commit_date": "2026-04-11T03:34:06+00:00",
+      "last_commit_date": "2026-04-11T03:34:06+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
+    },
+    "DeepJH": {
+      "total_commits": 2,
+      "repos": [
+        "hello-agents"
+      ],
+      "repo_commits": {
+        "hello-agents": 2
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-04-11": 1,
+        "2026-04-10": 1
+      },
+      "hourly_distribution": {
+        "2": 1,
+        "11": 1
+      },
+      "beijing_hourly_distribution": {
+        "10": 1,
+        "19": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "修正docs中两个README中的PDF下载链接，现在它能直接跳转到最新下载页面",
+          "repo": "hello-agents",
+          "date": "2026-04-11",
+          "time": "2026-04-11T10:46:11+00:00",
+          "beijing_hour": 10,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/hello-agents/commit/275dd8299b7fcb163bc25c48a9574427c44ba792"
+        },
+        {
+          "message": "docs: update outdated link in README",
+          "repo": "hello-agents",
+          "date": "2026-04-10",
+          "time": "2026-04-10T19:37:28+00:00",
+          "beijing_hour": 19,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/hello-agents/commit/68915d0641fa5adea3e791d7854d9ce594e3c51d"
+        }
+      ],
+      "first_commit_date": "2026-04-10T11:37:28+00:00",
+      "last_commit_date": "2026-04-11T02:46:11+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 1.0
+    },
+    "sanbuphy": {
+      "total_commits": 5,
+      "repos": [
+        "hello-claw",
+        "easy-vibe"
+      ],
+      "repo_commits": {
+        "easy-vibe": 3,
+        "hello-claw": 2
+      },
+      "repo_count": 2,
+      "daily_commits": {
+        "2026-04-08": 1,
+        "2026-04-06": 4
+      },
+      "hourly_distribution": {
+        "8": 1,
+        "10": 1,
+        "2": 1,
+        "1": 2
+      },
+      "beijing_hourly_distribution": {
+        "16": 1,
+        "18": 1,
+        "10": 1,
+        "9": 2
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "fix(docs): 修复导航栏点击目录导致404的链接配置问题",
+          "repo": "easy-vibe",
+          "date": "2026-04-08",
+          "time": "2026-04-08T16:22:58+00:00",
+          "beijing_hour": 16,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vibe/commit/bfaed56fe6d5cdae29d40a5f1639c90f003fcdd0"
+        },
+        {
+          "message": "docs: sync readme links across locales",
+          "repo": "easy-vibe",
+          "date": "2026-04-06",
+          "time": "2026-04-06T18:30:27+00:00",
+          "beijing_hour": 18,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vibe/commit/0a27fa5900d3a0ae8cc1792c1aed79c47f77d11b"
+        },
+        {
+          "message": "docs: sync readme cleanup across locales",
+          "repo": "easy-vibe",
+          "date": "2026-04-06",
+          "time": "2026-04-06T10:22:21+00:00",
+          "beijing_hour": 10,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vibe/commit/d10e0ea016256a80d3260a85217f8809839ca162"
+        },
+        {
+          "message": "docs: 移除 Beta 版 Warning 提示并删除贡献者名单中的简介列",
+          "repo": "hello-claw",
+          "date": "2026-04-06",
+          "time": "2026-04-06T09:34:00+00:00",
+          "beijing_hour": 9,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/hello-claw/commit/fb774060c5c4c4f48ab9d36eff091426e51c0b80"
+        },
+        {
+          "message": "docs: 移除 README 中的交流群相关内容",
+          "repo": "hello-claw",
+          "date": "2026-04-06",
+          "time": "2026-04-06T09:28:10+00:00",
+          "beijing_hour": 9,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/hello-claw/commit/f8cfd24a05370cbc90c61d94fc648ad11645c5cd"
+        }
+      ],
+      "first_commit_date": "2026-04-06T01:28:10+00:00",
+      "last_commit_date": "2026-04-08T08:22:58+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 2.5
+    },
+    "1985312383": {
+      "total_commits": 11,
+      "repos": [
+        "torch-rechub"
+      ],
+      "repo_commits": {
+        "torch-rechub": 11
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-04-10": 1,
+        "2026-04-09": 1,
+        "2026-04-08": 2,
+        "2026-04-07": 5,
+        "2026-04-06": 2
+      },
+      "hourly_distribution": {
+        "8": 1,
+        "17": 1,
+        "14": 2,
+        "5": 1,
+        "3": 3,
+        "1": 1,
+        "12": 2
+      },
+      "beijing_hourly_distribution": {
+        "16": 1,
+        "1": 1,
+        "22": 2,
+        "13": 1,
+        "11": 3,
+        "9": 1,
+        "20": 2
+      },
+      "night_owl_commits": 3,
+      "night_owl_percentage": 27.3,
+      "commit_messages": [
+        {
+          "message": "Merge pull request #218 from 1985312383/main",
+          "repo": "torch-rechub",
+          "date": "2026-04-10",
+          "time": "2026-04-10T16:16:17+00:00",
+          "beijing_hour": 16,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/ea10e8edd41351ca891700708e8828513a5a7e08"
+        },
+        {
+          "message": "Revise Quick Start and add model tutorials",
+          "repo": "torch-rechub",
+          "date": "2026-04-09",
+          "time": "2026-04-10T01:41:11+00:00",
+          "beijing_hour": 1,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/ca2f2b139432382055f2eafbcadaa2230431a940"
+        },
+        {
+          "message": "Merge pull request #217 from 1985312383/main",
+          "repo": "torch-rechub",
+          "date": "2026-04-08",
+          "time": "2026-04-08T22:56:50+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/903c82e5d1299c051525c51eab0de095dee790f1"
+        },
+        {
+          "message": "Update custom.css",
+          "repo": "torch-rechub",
+          "date": "2026-04-08",
+          "time": "2026-04-08T22:55:11+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/65f786d06af0a2c9f911340987c183669a2d7a1a"
+        },
+        {
+          "message": "Merge pull request #203 from queenyn/add_new",
+          "repo": "torch-rechub",
+          "date": "2026-04-07",
+          "time": "2026-04-07T13:32:59+00:00",
+          "beijing_hour": 13,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/fe68d1fb6c96aa1d727a0e6ff1fb36c676905216"
+        },
+        {
+          "message": "Merge pull request #216 from 1985312383/main",
+          "repo": "torch-rechub",
+          "date": "2026-04-07",
+          "time": "2026-04-07T11:35:41+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/fc3f94f49dde47360d1ee6fbe16f975b292ea00c"
+        },
+        {
+          "message": "Remove funding config and sponsor images",
+          "repo": "torch-rechub",
+          "date": "2026-04-07",
+          "time": "2026-04-07T11:34:37+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/2a1a6cb8694f5efc507e885e3d6add70dddc2c26"
+        },
+        {
+          "message": "Add Lora and WenKai fonts to docs theme",
+          "repo": "torch-rechub",
+          "date": "2026-04-07",
+          "time": "2026-04-07T11:31:19+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/dc4a75fd5193378f0017a697773ec967b4ea0743"
+        },
+        {
+          "message": "Merge pull request #215 from datawhalechina/dependabot/github_actions/dorny/paths-filter-4",
+          "repo": "torch-rechub",
+          "date": "2026-04-07",
+          "time": "2026-04-07T09:30:22+00:00",
+          "beijing_hour": 9,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/eedd6c50186f5f6ae3f6b167aaf173650f2a4fdc"
+        },
+        {
+          "message": "Merge pull request #214 from 1985312383/main",
+          "repo": "torch-rechub",
+          "date": "2026-04-06",
+          "time": "2026-04-06T20:22:44+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/torch-rechub/commit/93f5da3fb4678ffef4a0f7bf5dea847641ad17d8"
+        }
+      ],
+      "first_commit_date": "2026-04-06T12:20:08+00:00",
+      "last_commit_date": "2026-04-10T08:16:17+00:00",
+      "active_days": 5,
+      "avg_commits_per_day": 2.2
+    },
+    "xuhu0115": {
+      "total_commits": 9,
+      "repos": [
+        "diy-llm"
+      ],
+      "repo_commits": {
+        "diy-llm": 9
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-04-12": 4,
+        "2026-04-10": 1,
+        "2026-04-09": 2,
+        "2026-04-08": 2
+      },
+      "hourly_distribution": {
+        "3": 4,
+        "13": 3,
+        "14": 2
+      },
+      "beijing_hourly_distribution": {
+        "11": 4,
+        "21": 3,
+        "22": 2
+      },
+      "night_owl_commits": 2,
+      "night_owl_percentage": 22.2,
+      "commit_messages": [
+        {
+          "message": "Fix directory name in README for cloning repository",
+          "repo": "diy-llm",
+          "date": "2026-04-12",
+          "time": "2026-04-12T11:11:20+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/5c1e5c625d3b00559f219f5fc3d652ce8c791568"
+        },
+        {
+          "message": "Merge pull request #29 from SunXiaoXiang/patch-1",
+          "repo": "diy-llm",
+          "date": "2026-04-12",
+          "time": "2026-04-12T11:10:16+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/35f9a215ac8136154d254a6d56f2a2f85b436416"
+        },
+        {
+          "message": "Merge pull request #28 from 1iyouzhen/main",
+          "repo": "diy-llm",
+          "date": "2026-04-12",
+          "time": "2026-04-12T11:09:41+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/5a7bf82ff729e2b38d74ad1120531b508cbb6eeb"
+        },
+        {
+          "message": "Merge pull request #27 from kangkang-Adam/main",
+          "repo": "diy-llm",
+          "date": "2026-04-12",
+          "time": "2026-04-12T11:09:21+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/6e222ca14a6b409f471c62231d591fc7ae787bea"
+        },
+        {
+          "message": "delete ---",
+          "repo": "diy-llm",
+          "date": "2026-04-10",
+          "time": "2026-04-10T21:50:21+00:00",
+          "beijing_hour": 21,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/dea8e4cd4e389e7304458ea0cc6dc0c356434b5e"
+        },
+        {
+          "message": "Correct author link for 徐虎 in README.md",
+          "repo": "diy-llm",
+          "date": "2026-04-09",
+          "time": "2026-04-09T21:21:46+00:00",
+          "beijing_hour": 21,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/d9331a13f620cc462d0aab53663e3e3472ac01a8"
+        },
+        {
+          "message": "Update README.md",
+          "repo": "diy-llm",
+          "date": "2026-04-09",
+          "time": "2026-04-09T21:20:49+00:00",
+          "beijing_hour": 21,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/e4507fe2d1d157dd790c7ac378363d16f1d17a33"
+        },
+        {
+          "message": "Merge pull request #24 from 1iyouzhen/main",
+          "repo": "diy-llm",
+          "date": "2026-04-08",
+          "time": "2026-04-08T22:57:08+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/016d6eec00bee34ddf2f69a19b972b10cf1be102"
+        },
+        {
+          "message": "Merge pull request #25 from kangkang-Adam/main",
+          "repo": "diy-llm",
+          "date": "2026-04-08",
+          "time": "2026-04-08T22:55:19+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/f45f6c38498ca946c0956afe9584bfbceb169990"
+        }
+      ],
+      "first_commit_date": "2026-04-08T14:55:19+00:00",
+      "last_commit_date": "2026-04-12T03:11:20+00:00",
+      "active_days": 4,
+      "avg_commits_per_day": 2.25
+    },
+    "SunXiaoXiang": {
+      "total_commits": 1,
+      "repos": [
+        "diy-llm"
+      ],
+      "repo_commits": {
+        "diy-llm": 1
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-04-12": 1
+      },
+      "hourly_distribution": {
+        "2": 1
+      },
+      "beijing_hourly_distribution": {
+        "10": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "fix incorrect directory path in README.md ",
+          "repo": "diy-llm",
+          "date": "2026-04-12",
+          "time": "2026-04-12T10:57:27+00:00",
+          "beijing_hour": 10,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/d45bcf3cedd7a4219edae37337537079bfdf55f9"
+        }
+      ],
+      "first_commit_date": "2026-04-12T02:57:27+00:00",
+      "last_commit_date": "2026-04-12T02:57:27+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
+    },
+    "1iyouzhen": {
+      "total_commits": 9,
+      "repos": [
+        "reasoning-kingdom",
+        "diy-llm"
+      ],
+      "repo_commits": {
+        "diy-llm": 6,
+        "reasoning-kingdom": 3
+      },
+      "repo_count": 2,
+      "daily_commits": {
+        "2026-04-11": 1,
+        "2026-04-08": 5,
+        "2026-04-12": 2,
+        "2026-04-06": 1
+      },
+      "hourly_distribution": {
+        "13": 1,
+        "6": 1,
+        "5": 4,
+        "10": 1,
+        "9": 1,
+        "7": 1
+      },
+      "beijing_hourly_distribution": {
+        "21": 1,
+        "14": 1,
+        "13": 4,
+        "18": 1,
+        "17": 1,
+        "15": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "Revise FlashAttention sections and titles",
+          "repo": "diy-llm",
+          "date": "2026-04-11",
+          "time": "2026-04-11T21:16:09+00:00",
+          "beijing_hour": 21,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/bc642918111b0688b073397c282ca808b80e4a97"
+        },
+        {
+          "message": "Update 作业二.ipynb",
+          "repo": "diy-llm",
+          "date": "2026-04-08",
+          "time": "2026-04-08T14:02:57+00:00",
+          "beijing_hour": 14,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/348184c9e7ebb941d3169f7fcbb78c84ac573f40"
+        },
+        {
+          "message": "Update 作业二.ipynb",
+          "repo": "diy-llm",
+          "date": "2026-04-08",
+          "time": "2026-04-08T13:41:05+00:00",
+          "beijing_hour": 13,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/69fd961e40155f156d376e0a5c540758f4e554f9"
+        },
+        {
+          "message": "Update 作业一.ipynb",
+          "repo": "diy-llm",
+          "date": "2026-04-08",
+          "time": "2026-04-08T13:30:55+00:00",
+          "beijing_hour": 13,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/9b592cbd68415cd838a1a078465f06aced343db5"
+        },
+        {
+          "message": "Update CS336_Assignment1_Transformer.ipynb",
+          "repo": "diy-llm",
+          "date": "2026-04-08",
+          "time": "2026-04-08T13:28:17+00:00",
+          "beijing_hour": 13,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/a11cc5f89712bf28b3a5cea6c8e2c37883b8a9b4"
+        },
+        {
+          "message": "修复SwiGLU( )的表示",
+          "repo": "diy-llm",
+          "date": "2026-04-08",
+          "time": "2026-04-08T13:27:16+00:00",
+          "beijing_hour": 13,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/8150ef04b2e66f30a279d321a97bed6b9459300d"
+        },
+        {
+          "message": "Update index.md",
+          "repo": "reasoning-kingdom",
+          "date": "2026-04-12",
+          "time": "2026-04-12T18:01:33+00:00",
+          "beijing_hour": 18,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/b8edf33101216fd3b0a91b2c85bca9824356c480"
+        },
+        {
+          "message": "Fix formatting of symbols in chapter 14 index",
+          "repo": "reasoning-kingdom",
+          "date": "2026-04-12",
+          "time": "2026-04-12T17:58:46+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/bae0532571d8ffa91d2afc5a22dc3e07862d274b"
+        },
+        {
+          "message": "修改一些公式表示以及描述",
+          "repo": "reasoning-kingdom",
+          "date": "2026-04-06",
+          "time": "2026-04-06T15:46:52+00:00",
+          "beijing_hour": 15,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/412f11c8ae046d1442b3eee75d6e88d4c9235bfd"
+        }
+      ],
+      "first_commit_date": "2026-04-06T07:46:52+00:00",
+      "last_commit_date": "2026-04-12T10:01:33+00:00",
+      "active_days": 4,
+      "avg_commits_per_day": 2.25
+    },
+    "kangkang-Adam": {
+      "total_commits": 7,
+      "repos": [
+        "diy-llm"
+      ],
+      "repo_commits": {
+        "diy-llm": 7
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-04-11": 2,
+        "2026-04-09": 3,
+        "2026-04-08": 2
+      },
+      "hourly_distribution": {
+        "9": 5,
+        "8": 2
+      },
+      "beijing_hourly_distribution": {
+        "17": 5,
+        "16": 2
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "修复第六章的低精度提速的表格",
+          "repo": "diy-llm",
+          "date": "2026-04-11",
+          "time": "2026-04-11T17:25:09+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/338dc7feeb1a886cbeaed00d4f4baa7e544ab395"
+        },
+        {
+          "message": "Merge branch 'main' of https://github.com/kangkang-Adam/CS336-Chinese-co-construction",
+          "repo": "diy-llm",
+          "date": "2026-04-11",
+          "time": "2026-04-11T17:19:52+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/edec78caa3ffb2dfcc509d65c776048941616928"
+        },
+        {
+          "message": "Merge branch 'main' of https://github.com/kangkang-Adam/CS336-Chinese-co-construction",
+          "repo": "diy-llm",
+          "date": "2026-04-09",
+          "time": "2026-04-09T17:43:26+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/98b44b60e99d907a3ebf1d53225c42da66ebd93d"
+        },
+        {
+          "message": "Merge branch 'main' of https://github.com/kangkang-Adam/CS336-Chinese-co-construction",
+          "repo": "diy-llm",
+          "date": "2026-04-09",
+          "time": "2026-04-09T17:41:31+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/8694a71e37a91f769948d92fd616695dd53d1a42"
+        },
+        {
+          "message": "修复归一化和残差链接的错误",
+          "repo": "diy-llm",
+          "date": "2026-04-09",
+          "time": "2026-04-09T17:40:15+00:00",
+          "beijing_hour": 17,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/a014b19e2fc4fbbf891682eba1ef1b7c40d45fae"
+        },
+        {
+          "message": "Merge branch 'datawhalechina:main' into main",
+          "repo": "diy-llm",
+          "date": "2026-04-08",
+          "time": "2026-04-08T16:17:33+00:00",
+          "beijing_hour": 16,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/c0ec9a56c94607afe6453b3c87df6fefa58de480"
+        },
+        {
+          "message": "对公式进行改正",
+          "repo": "diy-llm",
+          "date": "2026-04-08",
+          "time": "2026-04-08T16:12:27+00:00",
+          "beijing_hour": 16,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/diy-llm/commit/cf38b1e72dc46f0721797b68e56368ff58a69057"
+        }
+      ],
+      "first_commit_date": "2026-04-08T08:12:27+00:00",
+      "last_commit_date": "2026-04-11T09:25:09+00:00",
+      "active_days": 3,
+      "avg_commits_per_day": 2.3333333333333335
+    },
+    "zhimin-z": {
+      "total_commits": 3,
+      "repos": [
+        "hello-claw"
+      ],
+      "repo_commits": {
+        "hello-claw": 3
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-04-12": 1,
+        "2026-04-07": 2
+      },
+      "hourly_distribution": {
+        "6": 1,
+        "3": 2
+      },
+      "beijing_hourly_distribution": {
+        "14": 1,
+        "11": 2
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "Merge pull request #52 from datawhalechina/copilot/add-pokec-law-to-appendix-c",
+          "repo": "hello-claw",
+          "date": "2026-04-12",
+          "time": "2026-04-12T14:01:17+00:00",
+          "beijing_hour": 14,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/hello-claw/commit/be7b9558a4d436e8e554bef206eb5948e889826b"
+        },
+        {
+          "message": "docs: update group debate architecture to use mermaid diagrams and add sequence diagram images",
+          "repo": "hello-claw",
+          "date": "2026-04-07",
+          "time": "2026-04-07T11:16:09+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/hello-claw/commit/7501f5d92f9e997e2627a319e42476671a4e02a5"
+        },
+        {
+          "message": "Merge pull request #51 from datawhalechina/copilot/add-links-to-claw-documentation",
+          "repo": "hello-claw",
+          "date": "2026-04-07",
+          "time": "2026-04-07T11:04:19+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/hello-claw/commit/cb1e9088c87d763252b93be140157b3ccc7edf3e"
+        }
+      ],
+      "first_commit_date": "2026-04-07T03:04:19+00:00",
+      "last_commit_date": "2026-04-12T06:01:17+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 1.5
+    },
     "Ethan-Chen-plus": {
       "total_commits": 3,
       "repos": [
@@ -195,611 +918,28 @@
       "active_days": 4,
       "avg_commits_per_day": 3.75
     },
-    "sanbuphy": {
-      "total_commits": 5,
-      "repos": [
-        "hello-claw",
-        "easy-vibe"
-      ],
-      "repo_commits": {
-        "easy-vibe": 3,
-        "hello-claw": 2
-      },
-      "repo_count": 2,
-      "daily_commits": {
-        "2026-04-08": 1,
-        "2026-04-06": 4
-      },
-      "hourly_distribution": {
-        "8": 1,
-        "10": 1,
-        "2": 1,
-        "1": 2
-      },
-      "beijing_hourly_distribution": {
-        "16": 1,
-        "18": 1,
-        "10": 1,
-        "9": 2
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "fix(docs): 修复导航栏点击目录导致404的链接配置问题",
-          "repo": "easy-vibe",
-          "date": "2026-04-08",
-          "time": "2026-04-08T16:22:58+00:00",
-          "beijing_hour": 16,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vibe/commit/bfaed56fe6d5cdae29d40a5f1639c90f003fcdd0"
-        },
-        {
-          "message": "docs: sync readme links across locales",
-          "repo": "easy-vibe",
-          "date": "2026-04-06",
-          "time": "2026-04-06T18:30:27+00:00",
-          "beijing_hour": 18,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vibe/commit/0a27fa5900d3a0ae8cc1792c1aed79c47f77d11b"
-        },
-        {
-          "message": "docs: sync readme cleanup across locales",
-          "repo": "easy-vibe",
-          "date": "2026-04-06",
-          "time": "2026-04-06T10:22:21+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vibe/commit/d10e0ea016256a80d3260a85217f8809839ca162"
-        },
-        {
-          "message": "docs: 移除 Beta 版 Warning 提示并删除贡献者名单中的简介列",
-          "repo": "hello-claw",
-          "date": "2026-04-06",
-          "time": "2026-04-06T09:34:00+00:00",
-          "beijing_hour": 9,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-claw/commit/fb774060c5c4c4f48ab9d36eff091426e51c0b80"
-        },
-        {
-          "message": "docs: 移除 README 中的交流群相关内容",
-          "repo": "hello-claw",
-          "date": "2026-04-06",
-          "time": "2026-04-06T09:28:10+00:00",
-          "beijing_hour": 9,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-claw/commit/f8cfd24a05370cbc90c61d94fc648ad11645c5cd"
-        }
-      ],
-      "first_commit_date": "2026-04-06T01:28:10+00:00",
-      "last_commit_date": "2026-04-08T08:22:58+00:00",
-      "active_days": 2,
-      "avg_commits_per_day": 2.5
-    },
-    "zhimin-z": {
-      "total_commits": 4,
-      "repos": [
-        "hello-claw"
-      ],
-      "repo_commits": {
-        "hello-claw": 4
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-04-07": 2,
-        "2026-04-05": 2
-      },
-      "hourly_distribution": {
-        "3": 2,
-        "15": 1,
-        "12": 1
-      },
-      "beijing_hourly_distribution": {
-        "11": 2,
-        "23": 1,
-        "20": 1
-      },
-      "night_owl_commits": 1,
-      "night_owl_percentage": 25.0,
-      "commit_messages": [
-        {
-          "message": "docs: update group debate architecture to use mermaid diagrams and add sequence diagram images",
-          "repo": "hello-claw",
-          "date": "2026-04-07",
-          "time": "2026-04-07T11:16:09+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-claw/commit/7501f5d92f9e997e2627a319e42476671a4e02a5"
-        },
-        {
-          "message": "Merge pull request #51 from datawhalechina/copilot/add-links-to-claw-documentation",
-          "repo": "hello-claw",
-          "date": "2026-04-07",
-          "time": "2026-04-07T11:04:19+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-claw/commit/cb1e9088c87d763252b93be140157b3ccc7edf3e"
-        },
-        {
-          "message": "add reasoning model config",
-          "repo": "hello-claw",
-          "date": "2026-04-05",
-          "time": "2026-04-05T23:04:38+00:00",
-          "beijing_hour": 23,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/hello-claw/commit/375c71b5947cde3c29001fb83220eabc0103c23c"
-        },
-        {
-          "message": "增加飞书的多分身同群讨论",
-          "repo": "hello-claw",
-          "date": "2026-04-05",
-          "time": "2026-04-05T20:03:03+00:00",
-          "beijing_hour": 20,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-claw/commit/58da0a65659ed0c90f05f02ab19d0ce06ae75fb8"
-        }
-      ],
-      "first_commit_date": "2026-04-05T12:03:03+00:00",
-      "last_commit_date": "2026-04-07T03:16:09+00:00",
-      "active_days": 2,
-      "avg_commits_per_day": 2.0
-    },
-    "jjyaoao": {
-      "total_commits": 1,
-      "repos": [
-        "hello-agents"
-      ],
-      "repo_commits": {
-        "hello-agents": 1
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-04-11": 1
-      },
-      "hourly_distribution": {
-        "3": 1
-      },
-      "beijing_hourly_distribution": {
-        "11": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Merge pull request #489 from DeepJH/fix/update-readme-url",
-          "repo": "hello-agents",
-          "date": "2026-04-11",
-          "time": "2026-04-11T11:34:06+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-agents/commit/309a047d00785e71b7d2f4c8c10c80c26039312f"
-        }
-      ],
-      "first_commit_date": "2026-04-11T03:34:06+00:00",
-      "last_commit_date": "2026-04-11T03:34:06+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 1.0
-    },
-    "DeepJH": {
-      "total_commits": 2,
-      "repos": [
-        "hello-agents"
-      ],
-      "repo_commits": {
-        "hello-agents": 2
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-04-11": 1,
-        "2026-04-10": 1
-      },
-      "hourly_distribution": {
-        "2": 1,
-        "11": 1
-      },
-      "beijing_hourly_distribution": {
-        "10": 1,
-        "19": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "修正docs中两个README中的PDF下载链接，现在它能直接跳转到最新下载页面",
-          "repo": "hello-agents",
-          "date": "2026-04-11",
-          "time": "2026-04-11T10:46:11+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-agents/commit/275dd8299b7fcb163bc25c48a9574427c44ba792"
-        },
-        {
-          "message": "docs: update outdated link in README",
-          "repo": "hello-agents",
-          "date": "2026-04-10",
-          "time": "2026-04-10T19:37:28+00:00",
-          "beijing_hour": 19,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-agents/commit/68915d0641fa5adea3e791d7854d9ce594e3c51d"
-        }
-      ],
-      "first_commit_date": "2026-04-10T11:37:28+00:00",
-      "last_commit_date": "2026-04-11T02:46:11+00:00",
-      "active_days": 2,
-      "avg_commits_per_day": 1.0
-    },
-    "1985312383": {
-      "total_commits": 17,
-      "repos": [
-        "torch-rechub"
-      ],
-      "repo_commits": {
-        "torch-rechub": 17
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-04-10": 1,
-        "2026-04-09": 1,
-        "2026-04-08": 2,
-        "2026-04-07": 5,
-        "2026-04-06": 2,
-        "2026-04-05": 6
-      },
-      "hourly_distribution": {
-        "8": 1,
-        "17": 4,
-        "14": 2,
-        "5": 1,
-        "3": 3,
-        "1": 1,
-        "12": 2,
-        "20": 1,
-        "16": 2
-      },
-      "beijing_hourly_distribution": {
-        "16": 1,
-        "1": 4,
-        "22": 2,
-        "13": 1,
-        "11": 3,
-        "9": 1,
-        "20": 2,
-        "4": 1,
-        "0": 2
-      },
-      "night_owl_commits": 9,
-      "night_owl_percentage": 52.9,
-      "commit_messages": [
-        {
-          "message": "Merge pull request #218 from 1985312383/main",
-          "repo": "torch-rechub",
-          "date": "2026-04-10",
-          "time": "2026-04-10T16:16:17+00:00",
-          "beijing_hour": 16,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/ea10e8edd41351ca891700708e8828513a5a7e08"
-        },
-        {
-          "message": "Revise Quick Start and add model tutorials",
-          "repo": "torch-rechub",
-          "date": "2026-04-09",
-          "time": "2026-04-10T01:41:11+00:00",
-          "beijing_hour": 1,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/ca2f2b139432382055f2eafbcadaa2230431a940"
-        },
-        {
-          "message": "Merge pull request #217 from 1985312383/main",
-          "repo": "torch-rechub",
-          "date": "2026-04-08",
-          "time": "2026-04-08T22:56:50+00:00",
-          "beijing_hour": 22,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/903c82e5d1299c051525c51eab0de095dee790f1"
-        },
-        {
-          "message": "Update custom.css",
-          "repo": "torch-rechub",
-          "date": "2026-04-08",
-          "time": "2026-04-08T22:55:11+00:00",
-          "beijing_hour": 22,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/65f786d06af0a2c9f911340987c183669a2d7a1a"
-        },
-        {
-          "message": "Merge pull request #203 from queenyn/add_new",
-          "repo": "torch-rechub",
-          "date": "2026-04-07",
-          "time": "2026-04-07T13:32:59+00:00",
-          "beijing_hour": 13,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/fe68d1fb6c96aa1d727a0e6ff1fb36c676905216"
-        },
-        {
-          "message": "Merge pull request #216 from 1985312383/main",
-          "repo": "torch-rechub",
-          "date": "2026-04-07",
-          "time": "2026-04-07T11:35:41+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/fc3f94f49dde47360d1ee6fbe16f975b292ea00c"
-        },
-        {
-          "message": "Remove funding config and sponsor images",
-          "repo": "torch-rechub",
-          "date": "2026-04-07",
-          "time": "2026-04-07T11:34:37+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/2a1a6cb8694f5efc507e885e3d6add70dddc2c26"
-        },
-        {
-          "message": "Add Lora and WenKai fonts to docs theme",
-          "repo": "torch-rechub",
-          "date": "2026-04-07",
-          "time": "2026-04-07T11:31:19+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/dc4a75fd5193378f0017a697773ec967b4ea0743"
-        },
-        {
-          "message": "Merge pull request #215 from datawhalechina/dependabot/github_actions/dorny/paths-filter-4",
-          "repo": "torch-rechub",
-          "date": "2026-04-07",
-          "time": "2026-04-07T09:30:22+00:00",
-          "beijing_hour": 9,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/eedd6c50186f5f6ae3f6b167aaf173650f2a4fdc"
-        },
-        {
-          "message": "Merge pull request #214 from 1985312383/main",
-          "repo": "torch-rechub",
-          "date": "2026-04-06",
-          "time": "2026-04-06T20:22:44+00:00",
-          "beijing_hour": 20,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/torch-rechub/commit/93f5da3fb4678ffef4a0f7bf5dea847641ad17d8"
-        }
-      ],
-      "first_commit_date": "2026-04-05T16:21:01+00:00",
-      "last_commit_date": "2026-04-10T08:16:17+00:00",
-      "active_days": 6,
-      "avg_commits_per_day": 2.8333333333333335
-    },
-    "xuhu0115": {
-      "total_commits": 5,
-      "repos": [
-        "diy-llm"
-      ],
-      "repo_commits": {
-        "diy-llm": 5
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-04-10": 1,
-        "2026-04-09": 2,
-        "2026-04-08": 2
-      },
-      "hourly_distribution": {
-        "13": 3,
-        "14": 2
-      },
-      "beijing_hourly_distribution": {
-        "21": 3,
-        "22": 2
-      },
-      "night_owl_commits": 2,
-      "night_owl_percentage": 40.0,
-      "commit_messages": [
-        {
-          "message": "delete ---",
-          "repo": "diy-llm",
-          "date": "2026-04-10",
-          "time": "2026-04-10T21:50:21+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/diy-llm/commit/dea8e4cd4e389e7304458ea0cc6dc0c356434b5e"
-        },
-        {
-          "message": "Correct author link for 徐虎 in README.md",
-          "repo": "diy-llm",
-          "date": "2026-04-09",
-          "time": "2026-04-09T21:21:46+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/diy-llm/commit/d9331a13f620cc462d0aab53663e3e3472ac01a8"
-        },
-        {
-          "message": "Update README.md",
-          "repo": "diy-llm",
-          "date": "2026-04-09",
-          "time": "2026-04-09T21:20:49+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/diy-llm/commit/e4507fe2d1d157dd790c7ac378363d16f1d17a33"
-        },
-        {
-          "message": "Merge pull request #24 from 1iyouzhen/main",
-          "repo": "diy-llm",
-          "date": "2026-04-08",
-          "time": "2026-04-08T22:57:08+00:00",
-          "beijing_hour": 22,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/diy-llm/commit/016d6eec00bee34ddf2f69a19b972b10cf1be102"
-        },
-        {
-          "message": "Merge pull request #25 from kangkang-Adam/main",
-          "repo": "diy-llm",
-          "date": "2026-04-08",
-          "time": "2026-04-08T22:55:19+00:00",
-          "beijing_hour": 22,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/diy-llm/commit/f45f6c38498ca946c0956afe9584bfbceb169990"
-        }
-      ],
-      "first_commit_date": "2026-04-08T14:55:19+00:00",
-      "last_commit_date": "2026-04-10T13:50:21+00:00",
-      "active_days": 3,
-      "avg_commits_per_day": 1.6666666666666667
-    },
-    "kangkang-Adam": {
-      "total_commits": 2,
-      "repos": [
-        "diy-llm"
-      ],
-      "repo_commits": {
-        "diy-llm": 2
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-04-08": 2
-      },
-      "hourly_distribution": {
-        "8": 2
-      },
-      "beijing_hourly_distribution": {
-        "16": 2
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Merge branch 'datawhalechina:main' into main",
-          "repo": "diy-llm",
-          "date": "2026-04-08",
-          "time": "2026-04-08T16:17:33+00:00",
-          "beijing_hour": 16,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/diy-llm/commit/c0ec9a56c94607afe6453b3c87df6fefa58de480"
-        },
-        {
-          "message": "对公式进行改正",
-          "repo": "diy-llm",
-          "date": "2026-04-08",
-          "time": "2026-04-08T16:12:27+00:00",
-          "beijing_hour": 16,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/diy-llm/commit/cf38b1e72dc46f0721797b68e56368ff58a69057"
-        }
-      ],
-      "first_commit_date": "2026-04-08T08:12:27+00:00",
-      "last_commit_date": "2026-04-08T08:17:33+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 2.0
-    },
-    "1iyouzhen": {
-      "total_commits": 6,
-      "repos": [
-        "reasoning-kingdom",
-        "diy-llm"
-      ],
-      "repo_commits": {
-        "diy-llm": 5,
-        "reasoning-kingdom": 1
-      },
-      "repo_count": 2,
-      "daily_commits": {
-        "2026-04-08": 5,
-        "2026-04-06": 1
-      },
-      "hourly_distribution": {
-        "6": 1,
-        "5": 4,
-        "7": 1
-      },
-      "beijing_hourly_distribution": {
-        "14": 1,
-        "13": 4,
-        "15": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Update 作业二.ipynb",
-          "repo": "diy-llm",
-          "date": "2026-04-08",
-          "time": "2026-04-08T14:02:57+00:00",
-          "beijing_hour": 14,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/diy-llm/commit/348184c9e7ebb941d3169f7fcbb78c84ac573f40"
-        },
-        {
-          "message": "Update 作业二.ipynb",
-          "repo": "diy-llm",
-          "date": "2026-04-08",
-          "time": "2026-04-08T13:41:05+00:00",
-          "beijing_hour": 13,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/diy-llm/commit/69fd961e40155f156d376e0a5c540758f4e554f9"
-        },
-        {
-          "message": "Update 作业一.ipynb",
-          "repo": "diy-llm",
-          "date": "2026-04-08",
-          "time": "2026-04-08T13:30:55+00:00",
-          "beijing_hour": 13,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/diy-llm/commit/9b592cbd68415cd838a1a078465f06aced343db5"
-        },
-        {
-          "message": "Update CS336_Assignment1_Transformer.ipynb",
-          "repo": "diy-llm",
-          "date": "2026-04-08",
-          "time": "2026-04-08T13:28:17+00:00",
-          "beijing_hour": 13,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/diy-llm/commit/a11cc5f89712bf28b3a5cea6c8e2c37883b8a9b4"
-        },
-        {
-          "message": "修复SwiGLU( )的表示",
-          "repo": "diy-llm",
-          "date": "2026-04-08",
-          "time": "2026-04-08T13:27:16+00:00",
-          "beijing_hour": 13,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/diy-llm/commit/8150ef04b2e66f30a279d321a97bed6b9459300d"
-        },
-        {
-          "message": "修改一些公式表示以及描述",
-          "repo": "reasoning-kingdom",
-          "date": "2026-04-06",
-          "time": "2026-04-06T15:46:52+00:00",
-          "beijing_hour": 15,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/412f11c8ae046d1442b3eee75d6e88d4c9235bfd"
-        }
-      ],
-      "first_commit_date": "2026-04-06T07:46:52+00:00",
-      "last_commit_date": "2026-04-08T06:02:57+00:00",
-      "active_days": 2,
-      "avg_commits_per_day": 3.0
-    },
     "muxiaoxiong": {
-      "total_commits": 6,
+      "total_commits": 3,
       "repos": [
         "easy-langent"
       ],
       "repo_commits": {
-        "easy-langent": 6
+        "easy-langent": 3
       },
       "repo_count": 1,
       "daily_commits": {
         "2026-04-09": 2,
-        "2026-04-06": 1,
-        "2026-04-05": 3
+        "2026-04-06": 1
       },
       "hourly_distribution": {
         "6": 1,
         "1": 1,
-        "13": 1,
-        "9": 3
+        "13": 1
       },
       "beijing_hourly_distribution": {
         "14": 1,
         "9": 1,
-        "21": 1,
-        "17": 3
+        "21": 1
       },
       "night_owl_commits": 0,
       "night_owl_percentage": 0.0,
@@ -830,194 +970,236 @@
           "beijing_hour": 21,
           "is_night_owl": false,
           "url": "https://github.com/datawhalechina/easy-langent/commit/0881490c0deacb41f260b2a314a345b302a2ea2a"
-        },
-        {
-          "message": "优化文件目录",
-          "repo": "easy-langent",
-          "date": "2026-04-05",
-          "time": "2026-04-05T17:38:39+00:00",
-          "beijing_hour": 17,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-langent/commit/67d143fd63926ccb0210d4fbf11358ed5a4f6cb2"
-        },
-        {
-          "message": "优化文件目录",
-          "repo": "easy-langent",
-          "date": "2026-04-05",
-          "time": "2026-04-05T17:33:15+00:00",
-          "beijing_hour": 17,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-langent/commit/762bca8903d53119c09290396a822f1c63cb4679"
-        },
-        {
-          "message": "update",
-          "repo": "easy-langent",
-          "date": "2026-04-05",
-          "time": "2026-04-05T17:21:43+00:00",
-          "beijing_hour": 17,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-langent/commit/0ed0e449afa7b42c62927c4e6a8b1d232bf29a93"
         }
       ],
-      "first_commit_date": "2026-04-05T09:21:43+00:00",
+      "first_commit_date": "2026-04-06T13:47:38+00:00",
       "last_commit_date": "2026-04-09T06:12:58+00:00",
-      "active_days": 3,
-      "avg_commits_per_day": 2.0
+      "active_days": 2,
+      "avg_commits_per_day": 1.5
+    },
+    "BAIKEMARK": {
+      "total_commits": 4,
+      "repos": [
+        "happy-figure"
+      ],
+      "repo_commits": {
+        "happy-figure": 4
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-04-12": 4
+      },
+      "hourly_distribution": {
+        "14": 4
+      },
+      "beijing_hourly_distribution": {
+        "22": 4
+      },
+      "night_owl_commits": 4,
+      "night_owl_percentage": 100.0,
+      "commit_messages": [
+        {
+          "message": "Merge pull request #3 from datawhalechina/dev",
+          "repo": "happy-figure",
+          "date": "2026-04-12",
+          "time": "2026-04-12T22:25:40+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/happy-figure/commit/7fcdba9804329c51f68126f8afab28e72b1a3be5"
+        },
+        {
+          "message": "fix: 修正附录速查手册中图片引用路径扩展名错误",
+          "repo": "happy-figure",
+          "date": "2026-04-12",
+          "time": "2026-04-12T22:24:45+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/happy-figure/commit/c4ea2af0c18c2b87de485568edfebcbcd6a32e6e"
+        },
+        {
+          "message": "Merge pull request #2 from datawhalechina/dev",
+          "repo": "happy-figure",
+          "date": "2026-04-12",
+          "time": "2026-04-12T22:15:24+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/happy-figure/commit/b2cc8213ecf48b06695ff92e1ffa69e73f1f8987"
+        },
+        {
+          "message": "update: 更新附录文档，补充基于illustrator的演示视频",
+          "repo": "happy-figure",
+          "date": "2026-04-12",
+          "time": "2026-04-12T22:14:39+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/happy-figure/commit/675bafe2183cdb52d0a37a51cc078e5ca9789518"
+        }
+      ],
+      "first_commit_date": "2026-04-12T14:14:39+00:00",
+      "last_commit_date": "2026-04-12T14:25:40+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 4.0
     },
     "lizixi-0x2F": {
-      "total_commits": 25,
+      "total_commits": 50,
       "repos": [
         "reasoning-kingdom"
       ],
       "repo_commits": {
-        "reasoning-kingdom": 25
+        "reasoning-kingdom": 50
       },
       "repo_count": 1,
       "daily_commits": {
+        "2026-04-12": 26,
         "2026-04-11": 1,
         "2026-04-10": 7,
         "2026-04-09": 9,
         "2026-04-08": 5,
         "2026-04-07": 1,
-        "2026-04-06": 1,
-        "2026-04-05": 1
+        "2026-04-06": 1
       },
       "hourly_distribution": {
+        "14": 2,
+        "11": 3,
+        "10": 11,
+        "7": 8,
+        "6": 1,
+        "2": 4,
+        "1": 2,
         "9": 3,
-        "4": 6,
+        "4": 5,
         "3": 8,
         "13": 1,
-        "2": 2,
-        "14": 1,
-        "10": 1,
-        "1": 1,
         "5": 1,
         "8": 1
       },
       "beijing_hourly_distribution": {
+        "22": 2,
+        "19": 3,
+        "18": 11,
+        "15": 8,
+        "14": 1,
+        "10": 4,
+        "9": 2,
         "17": 3,
-        "12": 6,
+        "12": 5,
         "11": 8,
         "21": 1,
-        "10": 2,
-        "22": 1,
-        "18": 1,
-        "9": 1,
         "13": 1,
         "16": 1
       },
-      "night_owl_commits": 1,
+      "night_owl_commits": 2,
       "night_owl_percentage": 4.0,
       "commit_messages": [
         {
-          "message": "feat: 在第4章插入兔狲教授对高维正交性与专家系统的评论",
+          "message": "彻底交付，我们来等待读者的反馈。",
           "repo": "reasoning-kingdom",
-          "date": "2026-04-11",
-          "time": "2026-04-11T17:16:00+00:00",
-          "beijing_hour": 17,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/baea0bf71aaa245fed3746908986e4fcd8305a29"
+          "date": "2026-04-12",
+          "time": "2026-04-12T22:12:04+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/4df58a0d4075b233cd05fe0a5f8eda5935d4206d"
         },
         {
-          "message": "当Yonglin遇上李亚普诺夫？我们如何阐释推理系统的收敛行为以及它的稳定性呢？",
+          "message": "安排章节顺序。完整版交付。",
           "repo": "reasoning-kingdom",
-          "date": "2026-04-10",
-          "time": "2026-04-10T17:09:04+00:00",
-          "beijing_hour": 17,
+          "date": "2026-04-12",
+          "time": "2026-04-12T19:27:23+00:00",
+          "beijing_hour": 19,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/8a1a624b6c60bc9c770588e5feffd59dc2982a1f"
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/728b4e075f04827a23858b5c18f3c65f58ba460b"
         },
         {
-          "message": "feat: 添加下卷思考题参考提示附录",
+          "message": "跳转逻辑修复。",
           "repo": "reasoning-kingdom",
-          "date": "2026-04-10",
-          "time": "2026-04-10T12:14:30+00:00",
-          "beijing_hour": 12,
+          "date": "2026-04-12",
+          "time": "2026-04-12T19:11:53+00:00",
+          "beijing_hour": 19,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/6994fc00a16f227de207c3eae305917999327647"
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/a18c897cb9e52639ede5516a1a2f7206c1293260"
         },
         {
-          "message": "Fix duplicate section in README",
+          "message": "导读换位置。",
           "repo": "reasoning-kingdom",
-          "date": "2026-04-10",
-          "time": "2026-04-10T12:09:22+00:00",
-          "beijing_hour": 12,
+          "date": "2026-04-12",
+          "time": "2026-04-12T19:07:27+00:00",
+          "beijing_hour": 19,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/0eda9d087b6b1eb7881ea6610670494c4a172fa3"
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/a3a3a4f3cc05d47ace5e23d2f2c4a0665dd7ff75"
         },
         {
-          "message": "神经 do 算子运行克隆指南",
+          "message": "feat: 添加兔狲学院导航链接和文档搜索快捷键配置",
           "repo": "reasoning-kingdom",
-          "date": "2026-04-10",
-          "time": "2026-04-10T11:37:36+00:00",
-          "beijing_hour": 11,
+          "date": "2026-04-12",
+          "time": "2026-04-12T18:58:02+00:00",
+          "beijing_hour": 18,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/822dfcf00f2ad485771ecb3c8a29f11fcdee620f"
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/5883a71613cc27b6d0a111c682b625903da068c9"
         },
         {
-          "message": "更新自述文件",
+          "message": "删除测试文件",
           "repo": "reasoning-kingdom",
-          "date": "2026-04-10",
-          "time": "2026-04-10T11:33:18+00:00",
-          "beijing_hour": 11,
+          "date": "2026-04-12",
+          "time": "2026-04-12T18:52:39+00:00",
+          "beijing_hour": 18,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/022feb00d425e7ca10122bbfdfa3284f9d38c424"
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/a7efc6e580ba61a5e92a3ac655ccf4c647962720"
         },
         {
-          "message": "更新bonous章节：加入CocDo与Monoid/Group代数结构的对比",
+          "message": "复制前传的容器配置，修复:::detail和:::info渲染问题",
           "repo": "reasoning-kingdom",
-          "date": "2026-04-10",
-          "time": "2026-04-10T11:20:57+00:00",
-          "beijing_hour": 11,
+          "date": "2026-04-12",
+          "time": "2026-04-12T18:52:12+00:00",
+          "beijing_hour": 18,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/b18ef8e9fc871f4a8732ac95731118e671b353bc"
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/41f851c42be29c626f13d3810820669681a2d2af"
         },
         {
-          "message": "重构第10章：加入CocDo因果世界模型与梯度规划思想实验",
+          "message": "更新容器的渲染样式。",
           "repo": "reasoning-kingdom",
-          "date": "2026-04-10",
-          "time": "2026-04-10T11:20:05+00:00",
-          "beijing_hour": 11,
+          "date": "2026-04-12",
+          "time": "2026-04-12T18:51:09+00:00",
+          "beijing_hour": 18,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/64a908c828f136e8c4354e75783c7e1ac78bb4c0"
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/c1778319e2d2b2dabbb0b6041a3f60817f17b138"
         },
         {
-          "message": "兔狲钓鱼",
+          "message": "修复detail容器配置，支持无标题的:::detail语法",
           "repo": "reasoning-kingdom",
-          "date": "2026-04-09",
-          "time": "2026-04-09T21:27:41+00:00",
-          "beijing_hour": 21,
+          "date": "2026-04-12",
+          "time": "2026-04-12T18:43:41+00:00",
+          "beijing_hour": 18,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/afa8981f59e684c47ce3328489ea300267b96643"
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/94629563fccb6d3af46ab9394a6f58a1e4c495ba"
         },
         {
-          "message": "Revise Star History section with responsive chart",
+          "message": "修复推理地图以及前传推推理逻辑，跳转逻辑",
           "repo": "reasoning-kingdom",
-          "date": "2026-04-09",
-          "time": "2026-04-09T17:33:35+00:00",
-          "beijing_hour": 17,
+          "date": "2026-04-12",
+          "time": "2026-04-12T18:39:48+00:00",
+          "beijing_hour": 18,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/e41a473d5317cec4fe8c5ac4eefa8261a825e9d6"
+          "url": "https://github.com/datawhalechina/reasoning-kingdom/commit/f22f6b579d0b3d4d1fb6c3bee75dac7bb90e05a5"
         }
       ],
-      "first_commit_date": "2026-04-05T04:27:05+00:00",
-      "last_commit_date": "2026-04-11T09:16:00+00:00",
+      "first_commit_date": "2026-04-06T08:08:11+00:00",
+      "last_commit_date": "2026-04-12T14:12:04+00:00",
       "active_days": 7,
-      "avg_commits_per_day": 3.5714285714285716
+      "avg_commits_per_day": 7.142857142857143
     },
     "lynnyulinlin-debug": {
-      "total_commits": 35,
+      "total_commits": 31,
       "repos": [
         "llm-algo-leetcode"
       ],
       "repo_commits": {
-        "llm-algo-leetcode": 35
+        "llm-algo-leetcode": 31
       },
       "repo_count": 1,
       "daily_commits": {
         "2026-04-09": 3,
         "2026-04-06": 22,
-        "2026-04-05": 10
+        "2026-04-05": 6
       },
       "hourly_distribution": {
         "7": 3,
@@ -1025,7 +1207,7 @@
         "12": 4,
         "11": 2,
         "10": 7,
-        "9": 10,
+        "9": 6,
         "8": 7,
         "14": 1
       },
@@ -1035,12 +1217,12 @@
         "20": 4,
         "19": 2,
         "18": 7,
-        "17": 10,
+        "17": 6,
         "16": 7,
         "22": 1
       },
       "night_owl_commits": 2,
-      "night_owl_percentage": 5.7,
+      "night_owl_percentage": 6.5,
       "commit_messages": [
         {
           "message": "Merge pull request #3 from lynnyulinlin-debug/main",
@@ -1133,10 +1315,10 @@
           "url": "https://github.com/datawhalechina/llm-algo-leetcode/commit/065ccca1bb84c3743c4b6cac5265fae8aa19617c"
         }
       ],
-      "first_commit_date": "2026-04-05T09:34:01+00:00",
+      "first_commit_date": "2026-04-05T09:41:54+00:00",
       "last_commit_date": "2026-04-09T07:33:07+00:00",
       "active_days": 3,
-      "avg_commits_per_day": 11.666666666666666
+      "avg_commits_per_day": 10.333333333333334
     },
     "funnamer": {
       "total_commits": 11,
@@ -1328,20 +1510,19 @@
       "avg_commits_per_day": 4.0
     },
     "minigenepig": {
-      "total_commits": 21,
+      "total_commits": 16,
       "repos": [
         "musiclm-universe"
       ],
       "repo_commits": {
-        "musiclm-universe": 21
+        "musiclm-universe": 16
       },
       "repo_count": 1,
       "daily_commits": {
         "2026-04-10": 3,
         "2026-04-09": 1,
         "2026-04-08": 9,
-        "2026-04-07": 3,
-        "2026-04-05": 5
+        "2026-04-07": 3
       },
       "hourly_distribution": {
         "13": 1,
@@ -1351,8 +1532,7 @@
         "3": 2,
         "1": 6,
         "16": 1,
-        "15": 2,
-        "2": 5
+        "15": 2
       },
       "beijing_hourly_distribution": {
         "21": 1,
@@ -1362,11 +1542,10 @@
         "11": 2,
         "9": 6,
         "0": 1,
-        "23": 2,
-        "10": 5
+        "23": 2
       },
       "night_owl_commits": 3,
-      "night_owl_percentage": 14.3,
+      "night_owl_percentage": 18.8,
       "commit_messages": [
         {
           "message": "Add files via upload",
@@ -1459,10 +1638,10 @@
           "url": "https://github.com/datawhalechina/musiclm-universe/commit/794e46e546d1c4dc0f6ddfdda6418d7d91f70794"
         }
       ],
-      "first_commit_date": "2026-04-05T02:18:31+00:00",
+      "first_commit_date": "2026-04-07T15:58:45+00:00",
       "last_commit_date": "2026-04-10T13:12:04+00:00",
-      "active_days": 5,
-      "avg_commits_per_day": 4.2
+      "active_days": 4,
+      "avg_commits_per_day": 4.0
     },
     "lemon-little": {
       "total_commits": 4,
@@ -1540,11 +1719,11 @@
       "repos_list": 1,
       "contributors": 193,
       "commits": 193,
-      "users": 675,
-      "user_repos": 675,
-      "total": 1737
+      "users": 676,
+      "user_repos": 676,
+      "total": 1739
     },
-    "execution_time": "500.3s",
+    "execution_time": "573.0s",
     "optimization_enabled": true
   }
 }
