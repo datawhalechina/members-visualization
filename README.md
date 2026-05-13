@@ -145,7 +145,7 @@ _智能化的开源社区贡献者分析与展示系统_
 📦 members-visualization/
 ├── 🤖 .github/workflows/           # GitHub Actions 工作流
 │   ├── daily-data-update.yml      # 每日数据自动更新
-│   ├── quarterly-contributors.yml # 季度贡献者统计工作流
+│   ├── quarterly-contributors.yml # 月份范围贡献者统计工作流
 │   └── deploy.yml                 # 自动构建部署
 ├── 📄 docs/                       # VitePress 文档站点
 │   ├── .vitepress/                # VitePress 配置
@@ -154,7 +154,7 @@ _智能化的开源社区贡献者分析与展示系统_
 │   │       ├── members/           # 成员可视化组件目录
 │   │       ├── organization/      # 组织可视化组件目录
 │   │       ├── projects/          # 项目可视化组件目录
-│   │       ├── quarterly/         # 季度贡献者组件目录
+│   │       ├── quarterly/         # 月度贡献者组件目录
 │   │       ├── rankings/          # 排名可视化组件目录
 │   │       ├── stats/             # 组织统计组件目录
 │   │       ├── badges/            # 成就徽章组件目录
@@ -166,12 +166,12 @@ _智能化的开源社区贡献者分析与展示系统_
 │   │   │   ├── members.json       # 贡献者基础数据
 │   │   │   ├── commits_weekly.json # 提交活跃度数据
 │   │   │   └── datawhalechina/    # 组织专属数据
-│   │   │       └── quarterly_contributors_*.json # 季度贡献者数据
+│   │   │       └── monthly_contributors_*.json # 月份范围贡献者数据
 │   │   └── avatars/               # 成员头像缓存
 │   ├── index.md                   # 首页
 │   ├── members.md                 # 成员列表页面
 │   ├── rankings.md                # 贡献者榜单页面
-│   ├── quarterly.md               # 季度贡献者页面
+│   ├── quarterly.md               # 月度贡献者页面
 │   ├── rewards.md                 # 开源荣誉页面
 │   ├── stats.md                   # 组织统计页面
 │   ├── organization.md            # 成员与协作分析页面
@@ -183,7 +183,7 @@ _智能化的开源社区贡献者分析与展示系统_
 │   ├── bot_filter.py              # 机器人账户过滤模块（共享）
 │   ├── fetch_members/             # 成员数据获取脚本
 │   ├── fetch_organization/        # 组织数据获取脚本
-│   └── quarterly_contributors/    # 季度贡献者统计脚本
+│   └── quarterly_contributors/    # 月份范围贡献者统计脚本
 │       └── quarterly_contributors.py
 ├── 📋 package.json                # Node.js 项目配置
 ├── 🔧 .env.example               # 环境变量模板
@@ -197,7 +197,7 @@ _智能化的开源社区贡献者分析与展示系统_
 | 🏠 首页 | `/` | 项目介绍和功能展示 |
 | 👥 贡献者列表 | `/members` | 成员信息卡片展示，支持搜索筛选 |
 | 🏆 贡献者榜单 | `/rankings` | Commit 活跃度排行和卷王榜单 |
-| 📅 季度贡献者 | `/quarterly` | 按季度统计的贡献者分级展示 |
+| 📅 月度贡献者 | `/quarterly` | 按月份范围统计的贡献者分级展示 |
 | 🎖️ 开源荣誉 | `/rewards` | 开源贡献荣誉展示 |
 | 📊 组织统计 | `/stats` | OSS Insight 集成统计面板 |
 | 👍🏻 项目统计 | `/projects` | 组织项目 Stars 统计 |
@@ -269,13 +269,16 @@ _智能化的开源社区贡献者分析与展示系统_
 }
 ```
 
-### 📅 季度贡献者数据结构 (`quarterly_contributors_YYYY_QN.json`)
+### 📅 月度贡献者数据结构 (`monthly_contributors_YYYY_MM_MM.json`)
 
 ```json
 {
   "meta": {
     "year": 2025,
-    "quarter": 4,
+    "start_month": 10,
+    "end_month": 12,
+    "period_label": "2025年10-12月",
+    "period_type": "monthly_range",
     "generated_at": "2026-02-06T07:30:00",
     "total_contributors": 105,
     "outstanding_count": 6,
@@ -298,7 +301,9 @@ _智能化的开源社区贡献者分析与展示系统_
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
 | `meta.year` | Number | 统计年份 |
-| `meta.quarter` | Number | 统计季度 (1-4) |
+| `meta.start_month` | Number | 统计开始月份 (1-12) |
+| `meta.end_month` | Number | 统计结束月份 (1-12) |
+| `meta.period_label` | String | 统计周期展示文案 |
 | `meta.thresholds` | Object | 分级阈值配置 |
 | `contributors.outstanding` | Array | 卓越贡献者 (有效commit >= 50) |
 | `contributors.excellent` | Array | 优秀贡献者 (有效commit >= 10) |
@@ -404,17 +409,20 @@ python scripts/fetch_members/fetch_members.py --test
 </details>
 
 <details>
-<summary><b>📅 季度贡献者统计</b></summary>
+<summary><b>📅 月度贡献者统计</b></summary>
 
 ```bash
-# 统计上季度贡献者
+# 统计上个月贡献者
 python scripts/quarterly_contributors/quarterly_contributors.py --last
 
-# 统计当前季度贡献者
+# 统计当前月贡献者
 python scripts/quarterly_contributors/quarterly_contributors.py --current
 
-# 统计指定季度（如 2025年 Q4）
-python scripts/quarterly_contributors/quarterly_contributors.py 2025 4
+# 统计指定月份范围（如 2025年10-12月）
+python scripts/quarterly_contributors/quarterly_contributors.py 2025 10 12
+
+# 统计非标准周期（如 2026年1-4月）
+python scripts/quarterly_contributors/quarterly_contributors.py 2026 1 4
 ```
 
 **统计说明：**
@@ -423,7 +431,7 @@ python scripts/quarterly_contributors/quarterly_contributors.py 2025 4
 - 🤖 **机器人过滤**：使用 `bot_filter.py` 共享模块自动过滤机器人账户
 - 💾 **本地缓存**：commit 详情缓存在 `docs/public/data/cache/` 目录，避免重复 API 调用
 - 📧 **用户名解析**：多级回退策略（GitHub API -> noreply 邮箱解析 -> 邮箱搜索 -> 作者名）
-- 📁 **输出文件**：`docs/public/data/datawhalechina/quarterly_contributors_YYYY_QN.json`
+- 📁 **输出文件**：`docs/public/data/datawhalechina/monthly_contributors_YYYY_MM_MM.json`
 
 </details>
 
@@ -455,7 +463,7 @@ npm run docs:dev
 | 更新方式             | 触发时机                 | 说明                              |
 | -------------------- | ------------------------ | --------------------------------- |
 | **每日数据更新**     | 每日凌晨 6:00 (北京时间) | 自动拉取成员数据并重新部署        |
-| **季度贡献者统计**   | 手动触发 (workflow_dispatch) | 支持上季度/当前季度/自定义季度模式 |
+| **月度贡献者统计**   | 手动触发 (workflow_dispatch) | 支持上个月/当前月/自定义月份范围模式 |
 | **代码推送部署**     | Push 到 main 分支        | 代码变更时自动构建部署            |
 | **手动触发部署**     | 随时                     | Actions 页面手动触发部署          |
 
@@ -528,9 +536,9 @@ MAX_CONTRIBUTORS_PER_REPO=100         # 每个仓库最大贡献者数
 - **🔥 卷王指数计算** - 基于多维度指标的综合活跃度评分
 - **📊 仓库贡献统计** - 展示成员在不同项目中的参与度
 
-### 📅 季度贡献者统计
+### 📅 月度贡献者统计
 
-按季度统计组织内所有成员的有效贡献，并按等级分类展示：
+按月份范围统计组织内所有成员的有效贡献，并按等级分类展示：
 
 - **🏅 卓越贡献者** - 有效 commit >= 50 次
 - **⭐ 优秀贡献者** - 有效 commit >= 10 次

@@ -1,7 +1,7 @@
-name: Quarterly Contributors Update
+name: Monthly Contributors Update
 
 on:
-  # 允许手动触发，可选择统计哪个季度
+  # 允许手动触发，可选择统计哪个月份范围
   workflow_dispatch:
     inputs:
       mode:
@@ -10,15 +10,19 @@ on:
         default: 'last'
         type: choice
         options:
-          - last      # 上季度
-          - current   # 当前季度
-          - custom    # 自定义
+          - last      # 上个月
+          - current   # 当前月
+          - custom    # 自定义月份范围
       year:
         description: '年份 (仅 custom 模式)'
         required: false
         type: string
-      quarter:
-        description: '季度 1-4 (仅 custom 模式)'
+      start_month:
+        description: '开始月份 1-12 (仅 custom 模式)'
+        required: false
+        type: string
+      end_month:
+        description: '结束月份 1-12 (仅 custom 模式)'
         required: false
         type: string
 
@@ -29,7 +33,7 @@ permissions:
   actions: write
 
 jobs:
-  update-quarterly-data:
+  update-monthly-data:
     runs-on: ubuntu-latest
 
     steps:
@@ -49,10 +53,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Run quarterly contributors script
+      - name: Run monthly contributors script
         run: |
           if [ "${{ inputs.mode }}" == "custom" ]; then
-            python -u scripts/quarterly_contributors/quarterly_contributors.py ${{ inputs.year }} ${{ inputs.quarter }}
+            python -u scripts/quarterly_contributors/quarterly_contributors.py ${{ inputs.year }} ${{ inputs.start_month }} ${{ inputs.end_month }}
           elif [ "${{ inputs.mode }}" == "current" ]; then
             python -u scripts/quarterly_contributors/quarterly_contributors.py --current
           else
@@ -65,7 +69,7 @@ jobs:
       - name: Check for data changes
         id: check-changes
         run: |
-          git add docs/public/data/datawhalechina/quarterly_contributors_*.json
+          git add docs/public/data/datawhalechina/monthly_contributors_*.json
           if git diff --cached --quiet; then
             echo "No changes"
             echo "changes=false" >> $GITHUB_OUTPUT
@@ -79,8 +83,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add docs/public/data/datawhalechina/quarterly_contributors_*.json
-          git commit -m "📊 Update quarterly contributors data - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          git add docs/public/data/datawhalechina/monthly_contributors_*.json
+          git commit -m "📊 Update monthly contributors data - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           git pull --rebase origin main
           git push
 
@@ -93,7 +97,7 @@ jobs:
 
       - name: Create summary
         run: |
-          echo "## 📊 Quarterly Contributors Update" >> $GITHUB_STEP_SUMMARY
+          echo "## 📊 Monthly Contributors Update" >> $GITHUB_STEP_SUMMARY
           echo "- **Date**: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
           echo "- **Mode**: ${{ inputs.mode }}" >> $GITHUB_STEP_SUMMARY
           if [ "${{ steps.check-changes.outputs.changes }}" == "true" ]; then

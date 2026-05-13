@@ -1,16 +1,11 @@
 <template>
   <div class="quarterly-contributors-container">
-    <!-- 季度选择器 - 始终显示 -->
+    <!-- 月份范围选择器 - 始终显示 -->
     <div class="quarter-selector">
-      <label>选择季度：</label>
-      <select v-model="selectedYear" @change="loadData">
-        <option v-for="year in availableYears" :key="year" :value="year">
-          {{ year }}年
-        </option>
-      </select>
-      <select v-model="selectedQuarter" @change="loadData">
-        <option v-for="q in [1, 2, 3, 4]" :key="q" :value="q">
-          第{{ q }}季度
+      <label>选择月份范围：</label>
+      <select v-model="selectedPeriodKey" @change="loadData">
+        <option v-for="period in availablePeriods" :key="period.key" :value="period.key">
+          {{ period.period_label }}
         </option>
       </select>
       <button
@@ -27,21 +22,21 @@
     <!-- 加载状态 -->
     <div v-if="loading" class="loading-state">
       <div class="loading-spinner"></div>
-      <p>正在加载季度贡献者数据...</p>
+      <p>正在加载贡献者数据...</p>
     </div>
 
     <!-- 错误状态 -->
     <div v-else-if="error" class="error-state">
       <p>❌ 加载失败: {{ error }}</p>
-      <button @click="loadData" class="retry-btn">重试</button>
+      <button @click="initialize" class="retry-btn">重试</button>
     </div>
 
     <!-- 暂无数据状态 -->
     <div v-else-if="!data" class="empty-state">
       <div class="empty-icon">📭</div>
       <p class="empty-title">暂无数据</p>
-      <p class="empty-desc">{{ selectedYear }}年第{{ selectedQuarter }}季度的数据尚未生成</p>
-      <p class="empty-hint">请选择其他季度查看</p>
+      <p class="empty-desc">{{ selectedPeriodLabel }}的数据尚未生成</p>
+      <p class="empty-hint">请选择其他月份范围查看</p>
     </div>
 
     <!-- 内容区域 -->
@@ -53,7 +48,7 @@
           <div class="stat-content">
             <div class="stat-value">{{ data.meta.total_contributors }}</div>
             <div class="stat-label">总贡献者</div>
-            <div class="stat-desc">{{ selectedYear }}年Q{{ selectedQuarter }}</div>
+            <div class="stat-desc">{{ selectedPeriodLabel }}</div>
           </div>
         </div>
         <div class="stat-card">
@@ -125,18 +120,16 @@ import ContributorCard from './ContributorCard.vue'
 const loading = ref(true)
 const error = ref(null)
 const data = ref(null)
-const selectedYear = ref(new Date().getFullYear())
-const selectedQuarter = ref(Math.floor((new Date().getMonth() + 3) / 3))
+const availablePeriods = ref([])
+const selectedPeriodKey = ref('')
 const copySuccess = ref(false)
 
-// 可用年份（从2024年到当前年份）
-const availableYears = computed(() => {
-  const currentYear = new Date().getFullYear()
-  const years = []
-  for (let year = 2024; year <= currentYear; year++) {
-    years.push(year)
-  }
-  return years.reverse()
+const selectedPeriod = computed(() => {
+  return availablePeriods.value.find(period => period.key === selectedPeriodKey.value) || null
+})
+
+const selectedPeriodLabel = computed(() => {
+  return selectedPeriod.value?.period_label || '当前周期'
 })
 
 // 是否有优秀或卓越贡献者数据
@@ -153,7 +146,7 @@ const copyContributorList = async () => {
   const outstanding = data.value.contributors.outstanding || []
   const excellent = data.value.contributors.excellent || []
 
-  let text = `${selectedYear.value}Q${selectedQuarter.value}总贡献者有${data.value.meta.total_contributors}人，卓越贡献者${outstanding.length}人，优秀贡献者${excellent.length}人，优秀&卓越开源贡献者名单如下：`
+  let text = `${selectedPeriodLabel.value}总贡献者有${data.value.meta.total_contributors}人，卓越贡献者${outstanding.length}人，优秀贡献者${excellent.length}人，优秀&卓越开源贡献者名单如下：`
 
   if (outstanding.length > 0) {
     text += `\n【卓越贡献者】：${outstanding.map(c => c.username).join('、')}`
@@ -184,41 +177,50 @@ const formatDate = (dateString) => {
   return new Date(dateString).toLocaleString('zh-CN')
 }
 
-// 检查指定季度是否有数据
-const checkQuarterHasData = async (year, quarter) => {
-  try {
-    const basePath = import.meta.env.BASE_URL || '/'
-    const filename = `quarterly_contributors_${year}_Q${quarter}.json`
-    const jsonPath = `${basePath}data/datawhalechina/${filename}`.replace(/\/+/g, '/')
+const padMonth = (month) => String(month).padStart(2, '0')
 
-    const response = await fetch(jsonPath, { method: 'HEAD' })
-    if (!response.ok) return false
+const getDataFilename = (year, startMonth, endMonth) => {
+  return `monthly_contributors_${year}_${padMonth(startMonth)}_${padMonth(endMonth)}.json`
+}
 
-    const contentType = response.headers.get('content-type')
-    return contentType && contentType.includes('application/json')
-  } catch {
-    return false
+const getPeriodKey = (period) => {
+  return `${period.year}-${padMonth(period.start_month)}-${padMonth(period.end_month)}`
+}
+
+const normalizePeriod = (period) => {
+  const startMonth = Number(period.start_month)
+  const endMonth = Number(period.end_month)
+  return {
+    ...period,
+    year: Number(period.year),
+    start_month: startMonth,
+    end_month: endMonth,
+    filename: period.filename || getDataFilename(period.year, startMonth, endMonth),
+    period_label: period.period_label || (startMonth === endMonth
+      ? `${period.year}年${startMonth}月`
+      : `${period.year}年${startMonth}-${endMonth}月`)
   }
 }
 
-// 查找最新的有数据的季度
-const findLatestQuarterWithData = async () => {
-  const currentYear = new Date().getFullYear()
-  const currentQuarter = Math.floor((new Date().getMonth() + 3) / 3)
-
-  // 从当前季度开始往前查找
-  for (let year = currentYear; year >= 2024; year--) {
-    const startQuarter = (year === currentYear) ? currentQuarter : 4
-    for (let quarter = startQuarter; quarter >= 1; quarter--) {
-      const hasData = await checkQuarterHasData(year, quarter)
-      if (hasData) {
-        return { year, quarter }
-      }
-    }
+const loadPeriodIndex = async () => {
+  const basePath = import.meta.env.BASE_URL || '/'
+  const indexPath = `${basePath}data/datawhalechina/monthly_contributors_index.json`.replace(/\/+/g, '/')
+  const response = await fetch(indexPath)
+  if (!response.ok) {
+    throw new Error(`数据索引加载失败: HTTP ${response.status}`)
   }
 
-  // 没找到任何数据，返回当前季度
-  return { year: currentYear, quarter: currentQuarter }
+  const periods = await response.json()
+  availablePeriods.value = periods
+    .map(normalizePeriod)
+    .map(period => ({ ...period, key: getPeriodKey(period) }))
+    .sort((a, b) => {
+      if (b.year !== a.year) return b.year - a.year
+      if (b.end_month !== a.end_month) return b.end_month - a.end_month
+      return b.start_month - a.start_month
+    })
+
+  selectedPeriodKey.value = availablePeriods.value[0]?.key || ''
 }
 
 // 加载数据
@@ -228,8 +230,12 @@ const loadData = async () => {
     error.value = null
     data.value = null
 
+    if (!selectedPeriod.value) {
+      return
+    }
+
     const basePath = import.meta.env.BASE_URL || '/'
-    const filename = `quarterly_contributors_${selectedYear.value}_Q${selectedQuarter.value}.json`
+    const filename = selectedPeriod.value.filename
     const jsonPath = `${basePath}data/datawhalechina/${filename}`.replace(/\/+/g, '/')
 
     const response = await fetch(jsonPath)
@@ -255,22 +261,29 @@ const loadData = async () => {
       data.value = null
     } else {
       error.value = err.message
-      console.error('加载季度贡献者数据失败:', err)
+      console.error('加载贡献者数据失败:', err)
     }
   } finally {
     loading.value = false
   }
 }
 
+const initialize = async () => {
+  try {
+    loading.value = true
+    error.value = null
+    await loadPeriodIndex()
+    await loadData()
+  } catch (err) {
+    error.value = err.message
+    console.error('加载贡献者数据索引失败:', err)
+  } finally {
+    loading.value = false
+  }
+}
+
 // 生命周期
-onMounted(async () => {
-  // 先查找最新的有数据的季度
-  const latest = await findLatestQuarterWithData()
-  selectedYear.value = latest.year
-  selectedQuarter.value = latest.quarter
-  // 然后加载数据
-  await loadData()
-})
+onMounted(initialize)
 </script>
 
 <style scoped>
