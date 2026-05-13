@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-季度贡献者统计脚本
-功能：统计指定季度内所有成员的有效贡献，并按等级分类
+月份范围贡献者统计脚本
+功能：统计指定月份范围内所有成员的有效贡献，并按等级分类
 - 优秀贡献者：有效commit >= 10次
 - 卓越贡献者：有效commit >= 50次
 - 有效commit定义：至少包含一个文件新增行数 >= 10行
@@ -170,29 +170,27 @@ def fetch_api(url, retries=None):
     return None
 
 
-def get_quarter_date_range(year, quarter):
+def get_month_date_range(year, start_month, end_month):
     """
-    获取指定季度的日期范围
+    获取指定月份范围的日期范围
 
     Args:
         year: 年份
-        quarter: 季度 (1-4)
+        start_month: 开始月份 (1-12)
+        end_month: 结束月份 (1-12)
 
     Returns:
         (start_date, end_date) ISO格式字符串
     """
-    quarter_months = {
-        1: (1, 3),
-        2: (4, 6),
-        3: (7, 9),
-        4: (10, 12)
-    }
+    if start_month < 1 or start_month > 12 or end_month < 1 or end_month > 12:
+        raise ValueError("月份必须是 1-12 之间的数字")
+    if start_month > end_month:
+        raise ValueError("开始月份不能大于结束月份")
 
-    start_month, end_month = quarter_months[quarter]
     start_date = datetime(year, start_month, 1)
 
-    # 计算季度结束日期（下个季度第一天）
-    if quarter == 4:
+    # 结束时间使用结束月份的下个月第一天，便于 GitHub API 的 until 参数覆盖整月
+    if end_month == 12:
         end_date = datetime(year + 1, 1, 1)
     else:
         end_date = datetime(year, end_month + 1, 1)
@@ -201,6 +199,13 @@ def get_quarter_date_range(year, quarter):
         start_date.strftime('%Y-%m-%dT%H:%M:%SZ'),
         end_date.strftime('%Y-%m-%dT%H:%M:%SZ')
     )
+
+
+def format_period_label(year, start_month, end_month):
+    """格式化月份范围标签"""
+    if start_month == end_month:
+        return f"{year}年{start_month}月"
+    return f"{year}年{start_month}-{end_month}月"
 
 
 class CacheManager:
@@ -536,20 +541,73 @@ def classify_contributors(stats):
     }
 
 
-def save_results(year, quarter, classified, stats, output_dir):
+def update_monthly_index(output_dir):
+    """重建前端可用的月份范围索引"""
+    output_dir = Path(output_dir)
+    index_items = []
+
+    for file_path in output_dir.glob('monthly_contributors_*.json'):
+        if file_path.name == 'monthly_contributors_index.json':
+            continue
+
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+        except Exception as e:
+            print(f"⚠️  跳过无法读取的数据文件 {file_path.name}: {e}")
+            continue
+
+        meta = data.get('meta', {})
+        year = meta.get('year')
+        start_month = meta.get('start_month')
+        end_month = meta.get('end_month')
+        if not year or not start_month or not end_month:
+            print(f"⚠️  跳过缺少月份范围元数据的文件: {file_path.name}")
+            continue
+
+        index_items.append({
+            'year': year,
+            'start_month': start_month,
+            'end_month': end_month,
+            'period_label': meta.get('period_label') or format_period_label(year, start_month, end_month),
+            'filename': file_path.name,
+            'generated_at': meta.get('generated_at'),
+            'total_contributors': meta.get('total_contributors', 0),
+            'outstanding_count': meta.get('outstanding_count', 0),
+            'excellent_count': meta.get('excellent_count', 0),
+            'active_count': meta.get('active_count', 0),
+        })
+
+    index_items.sort(
+        key=lambda item: (item['year'], item['end_month'], item['start_month']),
+        reverse=True
+    )
+
+    index_file = output_dir / 'monthly_contributors_index.json'
+    with open(index_file, 'w', encoding='utf-8') as f:
+        json.dump(index_items, f, ensure_ascii=False, indent=2)
+
+    print(f"🧭 月份范围索引已更新: {index_file}")
+    return index_file
+
+
+def save_results(year, start_month, end_month, classified, stats, output_dir):
     """保存统计结果到JSON文件"""
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # 生成文件名
-    filename = f"quarterly_contributors_{year}_Q{quarter}.json"
+    filename = f"monthly_contributors_{year}_{start_month:02d}_{end_month:02d}.json"
     output_file = output_dir / filename
 
     # 准备输出数据
     result = {
         'meta': {
             'year': year,
-            'quarter': quarter,
+            'start_month': start_month,
+            'end_month': end_month,
+            'period_label': format_period_label(year, start_month, end_month),
+            'period_type': 'monthly_range',
             'generated_at': datetime.now().isoformat(),
             'total_contributors': len(stats),
             'outstanding_count': len(classified['outstanding']),
@@ -567,6 +625,8 @@ def save_results(year, quarter, classified, stats, output_dir):
     # 保存到文件
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
+
+    update_monthly_index(output_dir)
 
     print(f"\n💾 结果已保存到: {output_file}")
     return output_file
@@ -592,16 +652,17 @@ def print_summary(classified):
 
 
 
-def main(year, quarter):
+def main(year, start_month, end_month):
     """
-    主函数：统计指定季度的贡献者
+    主函数：统计指定月份范围的贡献者
 
     Args:
         year: 年份
-        quarter: 季度 (1-4)
+        start_month: 开始月份 (1-12)
+        end_month: 结束月份 (1-12)
     """
     print("="*60)
-    print(f"🚀 开始统计 {year}年 Q{quarter} 季度贡献者")
+    print(f"🚀 开始统计 {format_period_label(year, start_month, end_month)} 贡献者")
     print("="*60)
 
     # 检查API速率限制
@@ -613,8 +674,8 @@ def main(year, quarter):
     cache_manager = CacheManager(CONFIG['CACHE_DIR'])
     print(f"📦 缓存已加载: {cache_manager.size()} 条记录")
 
-    # 获取季度日期范围
-    since, until = get_quarter_date_range(year, quarter)
+    # 获取月份范围
+    since, until = get_month_date_range(year, start_month, end_month)
     print(f"📅 统计时间范围: {since} 至 {until}")
 
     # 获取组织仓库
@@ -665,7 +726,8 @@ def main(year, quarter):
     # 保存结果
     output_file = save_results(
         year,
-        quarter,
+        start_month,
+        end_month,
         classified,
         stats,
         CONFIG['OUTPUT_DIR']
@@ -682,27 +744,21 @@ def main(year, quarter):
     return output_file
 
 
-def get_previous_quarter():
+def get_previous_month():
     """
-    获取上一个季度的年份和季度
-    例如：当前是2026年2月(Q1)，返回 (2025, 4)
+    获取上一个月份的年份和月份
+    例如：当前是2026年1月，返回 (2025, 12)
     """
     now = datetime.now()
-    current_quarter = (now.month - 1) // 3 + 1
-
-    if current_quarter == 1:
-        # 当前是Q1，上季度是去年Q4
-        return now.year - 1, 4
-    else:
-        # 其他情况，上季度是今年的前一个季度
-        return now.year, current_quarter - 1
+    if now.month == 1:
+        return now.year - 1, 12
+    return now.year, now.month - 1
 
 
-def get_current_quarter():
-    """获取当前季度的年份和季度"""
+def get_current_month():
+    """获取当前月份的年份和月份"""
     now = datetime.now()
-    current_quarter = (now.month - 1) // 3 + 1
-    return now.year, current_quarter
+    return now.year, now.month
 
 
 if __name__ == '__main__':
@@ -710,42 +766,47 @@ if __name__ == '__main__':
     if len(sys.argv) == 1:
         # 无参数时显示帮助
         print("用法:")
-        print("  python quarterly_contributors.py --last      # 统计上季度")
-        print("  python quarterly_contributors.py --current   # 统计当前季度")
-        print("  python quarterly_contributors.py <年份> <季度>  # 统计指定季度")
+        print("  python quarterly_contributors.py --last      # 统计上个月")
+        print("  python quarterly_contributors.py --current   # 统计当前月")
+        print("  python quarterly_contributors.py <年份> <开始月份> <结束月份>  # 统计指定月份范围")
         print("")
         print("示例:")
         print("  python quarterly_contributors.py --last")
-        print("  python quarterly_contributors.py 2025 4")
+        print("  python quarterly_contributors.py 2025 10 12")
+        print("  python quarterly_contributors.py 2026 1 4")
         sys.exit(0)
 
     try:
         if sys.argv[1] == '--last':
-            # 统计上季度
-            year, quarter = get_previous_quarter()
-            print(f"📅 自动选择上季度: {year}年 Q{quarter}")
-            main(year, quarter)
+            # 统计上个月
+            year, month = get_previous_month()
+            print(f"📅 自动选择上个月: {year}年{month}月")
+            main(year, month, month)
         elif sys.argv[1] == '--current':
-            # 统计当前季度
-            year, quarter = get_current_quarter()
-            print(f"📅 自动选择当前季度: {year}年 Q{quarter}")
-            main(year, quarter)
-        elif len(sys.argv) >= 3:
-            # 指定年份和季度
+            # 统计当前月
+            year, month = get_current_month()
+            print(f"📅 自动选择当前月: {year}年{month}月")
+            main(year, month, month)
+        elif len(sys.argv) >= 4:
+            # 指定年份和月份范围
             year = int(sys.argv[1])
-            quarter = int(sys.argv[2])
+            start_month = int(sys.argv[2])
+            end_month = int(sys.argv[3])
 
-            if quarter not in [1, 2, 3, 4]:
-                print("❌ 季度必须是 1-4 之间的数字")
+            if start_month < 1 or start_month > 12 or end_month < 1 or end_month > 12:
+                print("❌ 月份必须是 1-12 之间的数字")
+                sys.exit(1)
+            if start_month > end_month:
+                print("❌ 开始月份不能大于结束月份")
                 sys.exit(1)
 
-            main(year, quarter)
+            main(year, start_month, end_month)
         else:
-            print("❌ 参数不足，请使用 --last 或指定年份和季度")
+            print("❌ 参数不足，请使用 --last 或指定年份和月份范围")
             sys.exit(1)
 
     except ValueError:
-        print("❌ 参数格式错误，年份和季度必须是数字")
+        print("❌ 参数格式错误，年份和月份必须是数字")
         sys.exit(1)
     except KeyboardInterrupt:
         print("\n\n⚠️  用户中断执行")
