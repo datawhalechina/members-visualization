@@ -1,50 +1,90 @@
 {
-  "update_time": "2026-06-01T23:35:27.304972",
+  "update_time": "2026-06-02T23:37:15.364417",
   "days_range": 7,
-  "total_commits": 97,
-  "total_repos": 17,
+  "total_commits": 102,
+  "total_repos": 15,
   "user_commits": {
     "sanbuphy": {
-      "total_commits": 13,
+      "total_commits": 14,
       "repos": [
         "easy-vibe"
       ],
       "repo_commits": {
-        "easy-vibe": 13
+        "easy-vibe": 14
       },
       "repo_count": 1,
       "daily_commits": {
+        "2026-06-02": 4,
         "2026-06-01": 2,
         "2026-05-31": 2,
         "2026-05-28": 1,
-        "2026-05-27": 5,
-        "2026-05-26": 3
+        "2026-05-27": 5
       },
       "hourly_distribution": {
+        "8": 2,
+        "7": 1,
+        "1": 1,
+        "5": 1,
         "16": 1,
         "11": 1,
         "10": 1,
-        "8": 1,
         "20": 1,
         "4": 2,
         "3": 2,
-        "0": 3,
-        "14": 1
+        "0": 1
       },
       "beijing_hourly_distribution": {
+        "16": 2,
+        "15": 1,
+        "9": 1,
+        "13": 1,
         "0": 1,
         "19": 1,
         "18": 1,
-        "16": 1,
         "4": 1,
         "12": 2,
         "11": 2,
-        "8": 3,
-        "22": 1
+        "8": 1
       },
-      "night_owl_commits": 3,
-      "night_owl_percentage": 23.1,
+      "night_owl_commits": 2,
+      "night_owl_percentage": 14.3,
       "commit_messages": [
+        {
+          "message": "Merge pull request #109 from lzz-zzuli/patch-1",
+          "repo": "easy-vibe",
+          "date": "2026-06-02",
+          "time": "2026-06-02T16:15:51+00:00",
+          "beijing_hour": 16,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vibe/commit/b265fd91996731c8705f798b2adac9c71f642244"
+        },
+        {
+          "message": "fix: increase vitepress build memory",
+          "repo": "easy-vibe",
+          "date": "2026-06-02",
+          "time": "2026-06-02T15:13:39+00:00",
+          "beijing_hour": 15,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vibe/commit/880170e3f22cc287cc7493d67dbdb712cf8a3eb7"
+        },
+        {
+          "message": "docs: add multilingual data visualization appendix",
+          "repo": "easy-vibe",
+          "date": "2026-06-02",
+          "time": "2026-06-02T09:00:52+00:00",
+          "beijing_hour": 9,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vibe/commit/1be0bc9413b2c39ad621fae726952089f3c2859f"
+        },
+        {
+          "message": "Merge pull request #108 from octo-patch/feature/upgrade-minimax-m3",
+          "repo": "easy-vibe",
+          "date": "2026-06-02",
+          "time": "2026-06-02T13:59:25+00:00",
+          "beijing_hour": 13,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vibe/commit/3c90807cea2e278d7ef9629b3bca1a1a8dd48b16"
+        },
         {
           "message": "Merge pull request #107 from Arvuno/fix-readme-typo",
           "repo": "easy-vibe",
@@ -98,48 +138,84 @@
           "beijing_hour": 12,
           "is_night_owl": false,
           "url": "https://github.com/datawhalechina/easy-vibe/commit/10da69d7ba0d87c77eccb2ae063390f1fab2cfb9"
-        },
-        {
-          "message": "fix: use absolute image paths in non-en stage-2 translations",
-          "repo": "easy-vibe",
-          "date": "2026-05-27",
-          "time": "2026-05-27T12:32:47+00:00",
-          "beijing_hour": 12,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vibe/commit/38412b1355e130038d59205ea0ea49199cd7b302"
-        },
-        {
-          "message": "fix: use absolute image paths in de-de dify-knowledge-base translation",
-          "repo": "easy-vibe",
-          "date": "2026-05-27",
-          "time": "2026-05-27T11:45:40+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vibe/commit/7f761c8aee26c160e9057157f3ca3e3227e427a7"
-        },
-        {
-          "message": "fix: re-translate stage-2 files with high Chinese content ratio",
-          "repo": "easy-vibe",
-          "date": "2026-05-27",
-          "time": "2026-05-27T11:01:09+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vibe/commit/5e92fd1daf33162bdac3c33f3f2919385ac2f31f"
-        },
-        {
-          "message": "docs: improve stage-2 translation quality for ar-sa, es-es, ja-jp, ko-kr",
-          "repo": "easy-vibe",
-          "date": "2026-05-27",
-          "time": "2026-05-27T08:29:42+00:00",
-          "beijing_hour": 8,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vibe/commit/784a7172010158684410103d8f333d4bf6df2021"
         }
       ],
-      "first_commit_date": "2026-05-26T00:35:31+00:00",
-      "last_commit_date": "2026-06-01T16:07:39+00:00",
+      "first_commit_date": "2026-05-27T00:29:42+00:00",
+      "last_commit_date": "2026-06-02T08:15:51+00:00",
       "active_days": 5,
-      "avg_commits_per_day": 2.6
+      "avg_commits_per_day": 2.8
+    },
+    "lzz-zzuli": {
+      "total_commits": 1,
+      "repos": [
+        "easy-vibe"
+      ],
+      "repo_commits": {
+        "easy-vibe": 1
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-06-02": 1
+      },
+      "hourly_distribution": {
+        "6": 1
+      },
+      "beijing_hourly_distribution": {
+        "14": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "Update context window definition in RAG introduction",
+          "repo": "easy-vibe",
+          "date": "2026-06-02",
+          "time": "2026-06-02T14:19:41+00:00",
+          "beijing_hour": 14,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vibe/commit/7fc329551f4df0d61852c80cb1527815e474f426"
+        }
+      ],
+      "first_commit_date": "2026-06-02T06:19:41+00:00",
+      "last_commit_date": "2026-06-02T06:19:41+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
+    },
+    "octo-patch": {
+      "total_commits": 1,
+      "repos": [
+        "easy-vibe"
+      ],
+      "repo_commits": {
+        "easy-vibe": 1
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-06-01": 1
+      },
+      "hourly_distribution": {
+        "18": 1
+      },
+      "beijing_hourly_distribution": {
+        "2": 1
+      },
+      "night_owl_commits": 1,
+      "night_owl_percentage": 100.0,
+      "commit_messages": [
+        {
+          "message": "docs: mention MiniMax-M3 alongside M2.7 in integration guide",
+          "repo": "easy-vibe",
+          "date": "2026-06-01",
+          "time": "2026-06-02T02:58:28+00:00",
+          "beijing_hour": 2,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/easy-vibe/commit/5c868fc686e5e8f6df16487430cfc0af8c1d77ca"
+        }
+      ],
+      "first_commit_date": "2026-06-01T18:58:28+00:00",
+      "last_commit_date": "2026-06-01T18:58:28+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
     },
     "fix": {
       "total_commits": 1,
@@ -177,124 +253,795 @@
       "active_days": 1,
       "avg_commits_per_day": 1.0
     },
-    "Electricitysheep": {
-      "total_commits": 1,
+    "zhimin-z": {
+      "total_commits": 21,
       "repos": [
-        "easy-vibe"
+        "learn-world-model"
       ],
       "repo_commits": {
-        "easy-vibe": 1
+        "learn-world-model": 21
       },
       "repo_count": 1,
       "daily_commits": {
-        "2026-05-26": 1
+        "2026-06-02": 1,
+        "2026-06-01": 5,
+        "2026-05-31": 13,
+        "2026-05-30": 2
       },
       "hourly_distribution": {
-        "9": 1
+        "21": 1,
+        "7": 1,
+        "4": 2,
+        "1": 4,
+        "0": 1,
+        "22": 1,
+        "19": 2,
+        "18": 3,
+        "10": 2,
+        "9": 1,
+        "5": 1,
+        "20": 2
       },
       "beijing_hourly_distribution": {
-        "17": 1
+        "5": 1,
+        "15": 1,
+        "12": 2,
+        "9": 4,
+        "8": 1,
+        "6": 1,
+        "3": 2,
+        "2": 3,
+        "18": 2,
+        "17": 1,
+        "13": 1,
+        "4": 2
+      },
+      "night_owl_commits": 8,
+      "night_owl_percentage": 38.1,
+      "commit_messages": [
+        {
+          "message": "Refactor project descriptions and structure in markdown files; update project titles and description",
+          "repo": "learn-world-model",
+          "date": "2026-06-02",
+          "time": "2026-06-03T05:49:08+00:00",
+          "beijing_hour": 5,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/f5d63aaa36892ee84422f77a835c31765b56f6b1"
+        },
+        {
+          "message": "refine text",
+          "repo": "learn-world-model",
+          "date": "2026-06-01",
+          "time": "2026-06-01T15:51:49+00:00",
+          "beijing_hour": 15,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/1ff2dc51696e4f55176eb0c646e55e312f27b2e6"
+        },
+        {
+          "message": "Refactor badge styles in README files for consistency and improved clarity",
+          "repo": "learn-world-model",
+          "date": "2026-06-01",
+          "time": "2026-06-01T12:46:32+00:00",
+          "beijing_hour": 12,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/fd27b27662120ecdc1a2c75effcde49b0e16c54c"
+        },
+        {
+          "message": "Enhance documentation by refining mermaid diagram usage guidelines, improving prose clarity, and ens",
+          "repo": "learn-world-model",
+          "date": "2026-06-01",
+          "time": "2026-06-01T12:42:18+00:00",
+          "beijing_hour": 12,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/f77efd93ce926bd4b5e94eaffb960c4684eacde1"
+        },
+        {
+          "message": "Refactor mermaid diagrams for clarity and consistency across encoding and dynamics lectures",
+          "repo": "learn-world-model",
+          "date": "2026-06-01",
+          "time": "2026-06-01T09:46:42+00:00",
+          "beijing_hour": 9,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/5c2d8e8cb768527b4b22001d8959902ff9f7dfb1"
+        },
+        {
+          "message": "Add initial project pages and a custom 404 Not Found component",
+          "repo": "learn-world-model",
+          "date": "2026-06-01",
+          "time": "2026-06-01T08:37:15+00:00",
+          "beijing_hour": 8,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/2ec2f14d18726cd129e0f2d844b8de6240587956"
+        },
+        {
+          "message": "Enhance figure captions and styling in documentation for clarity and consistency",
+          "repo": "learn-world-model",
+          "date": "2026-05-31",
+          "time": "2026-06-01T06:56:13+00:00",
+          "beijing_hour": 6,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/30fa36c5b29289e7dd02a7fdc6a64cb973ad7676"
+        },
+        {
+          "message": "Update WeChat group QR code size and add new content files",
+          "repo": "learn-world-model",
+          "date": "2026-05-31",
+          "time": "2026-06-01T03:09:39+00:00",
+          "beijing_hour": 3,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/1589a5cb876011cd564961a5ec24a0578e17342f"
+        },
+        {
+          "message": "Fix formatting of titles and descriptions in roadmap and index files",
+          "repo": "learn-world-model",
+          "date": "2026-05-31",
+          "time": "2026-06-01T03:06:30+00:00",
+          "beijing_hour": 3,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/aed66ab04aa7fa4dc516e069c965db913ad7141e"
+        },
+        {
+          "message": "Add section on engineering prophecy for world models and predictive foresight",
+          "repo": "learn-world-model",
+          "date": "2026-05-31",
+          "time": "2026-06-01T02:54:52+00:00",
+          "beijing_hour": 2,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/44b7f5af94e37b998603c1ab00835c4824cf5710"
+        }
+      ],
+      "first_commit_date": "2026-05-30T20:22:40+00:00",
+      "last_commit_date": "2026-06-02T21:49:08+00:00",
+      "active_days": 4,
+      "avg_commits_per_day": 5.25
+    },
+    "14494483+qiwang067": {
+      "total_commits": 2,
+      "repos": [
+        "learn-world-model"
+      ],
+      "repo_commits": {
+        "learn-world-model": 2
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-06-01": 2
+      },
+      "hourly_distribution": {
+        "8": 2
+      },
+      "beijing_hourly_distribution": {
+        "16": 2
       },
       "night_owl_commits": 0,
       "night_owl_percentage": 0.0,
       "commit_messages": [
         {
-          "message": "fix(docs): correct broken links in appendix and sidebar config",
-          "repo": "easy-vibe",
-          "date": "2026-05-26",
-          "time": "2026-05-26T17:56:43+00:00",
-          "beijing_hour": 17,
+          "message": "Improve formatting in LS-Imagine case study",
+          "repo": "learn-world-model",
+          "date": "2026-06-01",
+          "time": "2026-06-01T16:16:28+00:00",
+          "beijing_hour": 16,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vibe/commit/0325d506615f097938664d7ef18e950e6531c6fc"
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/9120df6d6a28dda94b57243a0d8a1969bff8227a"
+        },
+        {
+          "message": "Add LS-Imagine case study to Lecture 3 architecture patterns",
+          "repo": "learn-world-model",
+          "date": "2026-06-01",
+          "time": "2026-06-01T16:10:55+00:00",
+          "beijing_hour": 16,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/09818c80c46de75e478cb9fad8fc9b3b17c6125b"
         }
       ],
-      "first_commit_date": "2026-05-26T09:56:43+00:00",
-      "last_commit_date": "2026-05-26T09:56:43+00:00",
+      "first_commit_date": "2026-06-01T08:10:55+00:00",
+      "last_commit_date": "2026-06-01T08:16:28+00:00",
       "active_days": 1,
-      "avg_commits_per_day": 1.0
+      "avg_commits_per_day": 2.0
     },
     "jjyaoao": {
       "total_commits": 1,
       "repos": [
-        "hello-agents"
+        "Agent-Learning-Hub"
       ],
       "repo_commits": {
-        "hello-agents": 1
+        "Agent-Learning-Hub": 1
       },
       "repo_count": 1,
       "daily_commits": {
-        "2026-05-26": 1
+        "2026-06-02": 1
       },
       "hourly_distribution": {
-        "9": 1
+        "13": 1
       },
       "beijing_hourly_distribution": {
-        "17": 1
+        "21": 1
       },
       "night_owl_commits": 0,
       "night_owl_percentage": 0.0,
       "commit_messages": [
         {
-          "message": "Merge pull request #630 from nameless0120/extra12-trip-planner-post-training",
-          "repo": "hello-agents",
-          "date": "2026-05-26",
-          "time": "2026-05-26T17:35:14+00:00",
-          "beijing_hour": 17,
+          "message": "Merge pull request #9 from zeroslope/fix-a2a-protocol-link",
+          "repo": "Agent-Learning-Hub",
+          "date": "2026-06-02",
+          "time": "2026-06-02T21:46:00+00:00",
+          "beijing_hour": 21,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-agents/commit/1a3b2877d5a926f24aaaea0e279b1565b5d28017"
+          "url": "https://github.com/datawhalechina/Agent-Learning-Hub/commit/760313ff996170cbbc8765e6a235b5e017fd4a71"
         }
       ],
-      "first_commit_date": "2026-05-26T09:35:14+00:00",
-      "last_commit_date": "2026-05-26T09:35:14+00:00",
+      "first_commit_date": "2026-06-02T13:46:00+00:00",
+      "last_commit_date": "2026-06-02T13:46:00+00:00",
       "active_days": 1,
       "avg_commits_per_day": 1.0
     },
-    "nameless0120": {
-      "total_commits": 2,
+    "zeroslope": {
+      "total_commits": 1,
       "repos": [
-        "hello-agents",
-        "ai-skills-for-everyone"
+        "Agent-Learning-Hub"
       ],
       "repo_commits": {
-        "hello-agents": 1,
-        "ai-skills-for-everyone": 1
+        "Agent-Learning-Hub": 1
       },
-      "repo_count": 2,
+      "repo_count": 1,
       "daily_commits": {
-        "2026-05-26": 2
+        "2026-06-01": 1
       },
       "hourly_distribution": {
-        "8": 1,
+        "7": 1
+      },
+      "beijing_hourly_distribution": {
+        "15": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "Fix Agent2Agent Protocol links",
+          "repo": "Agent-Learning-Hub",
+          "date": "2026-06-01",
+          "time": "2026-06-01T15:12:17+00:00",
+          "beijing_hour": 15,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/Agent-Learning-Hub/commit/7e65524ee34fcfeb351425971c573e88291db86f"
+        }
+      ],
+      "first_commit_date": "2026-06-01T07:12:17+00:00",
+      "last_commit_date": "2026-06-01T07:12:17+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
+    },
+    "bokang-ugent": {
+      "total_commits": 1,
+      "repos": [
+        "dive-into-embodied-ai"
+      ],
+      "repo_commits": {
+        "dive-into-embodied-ai": 1
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-05-28": 1
+      },
+      "hourly_distribution": {
         "4": 1
       },
       "beijing_hourly_distribution": {
-        "16": 1,
         "12": 1
       },
       "night_owl_commits": 0,
       "night_owl_percentage": 0.0,
       "commit_messages": [
         {
-          "message": "docs: 更新旅行助手后训练实战章节",
-          "repo": "hello-agents",
-          "date": "2026-05-26",
-          "time": "2026-05-26T16:43:48+00:00",
-          "beijing_hour": 16,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-agents/commit/028b2cc59ff0c6320071ffe11872efe6e652b92e"
-        },
-        {
-          "message": "feat: 完善 Weekly Status 周报样板",
-          "repo": "ai-skills-for-everyone",
-          "date": "2026-05-26",
-          "time": "2026-05-26T12:19:54+00:00",
+          "message": "📝 docs: 固化 lab 6 MJX/brax 依赖并补可选进阶装法",
+          "repo": "dive-into-embodied-ai",
+          "date": "2026-05-28",
+          "time": "2026-05-28T12:44:19+00:00",
           "beijing_hour": 12,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/ai-skills-for-everyone/commit/56f019c3e3a717446b985dd976100845d796be91"
+          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/737ec5a6f2b715f3f42e5e8cd8492e8f11a74cd1"
         }
       ],
-      "first_commit_date": "2026-05-26T04:19:54+00:00",
-      "last_commit_date": "2026-05-26T08:43:48+00:00",
+      "first_commit_date": "2026-05-28T04:44:19+00:00",
+      "last_commit_date": "2026-05-28T04:44:19+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
+    },
+    "Suibian-YY-pro": {
+      "total_commits": 13,
+      "repos": [
+        "every-embodied"
+      ],
+      "repo_commits": {
+        "every-embodied": 13
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-06-02": 5,
+        "2026-06-01": 6,
+        "2026-05-31": 1,
+        "2026-05-28": 1
+      },
+      "hourly_distribution": {
+        "13": 2,
+        "12": 3,
+        "11": 1,
+        "7": 4,
+        "4": 1,
+        "3": 1,
+        "2": 1
+      },
+      "beijing_hourly_distribution": {
+        "21": 2,
+        "20": 3,
+        "19": 1,
+        "15": 4,
+        "12": 1,
+        "11": 1,
+        "10": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "新增 RISE 世界模型复现教程",
+          "repo": "every-embodied",
+          "date": "2026-06-02",
+          "time": "2026-06-02T21:52:45+00:00",
+          "beijing_hour": 21,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/every-embodied/commit/19bcf6e2d245ca3384c1a0fc5d104a06b3370d42"
+        },
+        {
+          "message": "新增 AGILE 人形机器人复现教程",
+          "repo": "every-embodied",
+          "date": "2026-06-02",
+          "time": "2026-06-02T20:55:45+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/every-embodied/commit/12f4b6b0dad856858a14f77441b25020b4583e36"
+        },
+        {
+          "message": "更新README新增教程新闻",
+          "repo": "every-embodied",
+          "date": "2026-06-02",
+          "time": "2026-06-02T20:05:07+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/every-embodied/commit/0b4026f31e97a916e43a79ee5ff29e7c08fb8115"
+        },
+        {
+          "message": "新增HIMLoco Isaac Lab复现教程",
+          "repo": "every-embodied",
+          "date": "2026-06-02",
+          "time": "2026-06-02T20:00:49+00:00",
+          "beijing_hour": 20,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/every-embodied/commit/e08190ce1d9c296ac2372ad25f061ef9114daf2a"
+        },
+        {
+          "message": "新增 Genesis World 1.0 仿真教程",
+          "repo": "every-embodied",
+          "date": "2026-06-02",
+          "time": "2026-06-02T19:35:07+00:00",
+          "beijing_hour": 19,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/every-embodied/commit/f4a9e081f1df4e921fd171b59c1776b1eba4aa2e"
+        },
+        {
+          "message": "修复Task02表格加粗渲染",
+          "repo": "every-embodied",
+          "date": "2026-06-01",
+          "time": "2026-06-01T15:48:52+00:00",
+          "beijing_hour": 15,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/every-embodied/commit/656774c8be8a6a04e6abbbefc98f05ba2a1aaf3b"
+        },
+        {
+          "message": "本地化达摩院技术透视图片",
+          "repo": "every-embodied",
+          "date": "2026-06-01",
+          "time": "2026-06-01T15:47:00+00:00",
+          "beijing_hour": 15,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/every-embodied/commit/412fc020316f3240e7ce87baca523e8d96d944c1"
+        },
+        {
+          "message": "修正达摩院Task03链接",
+          "repo": "every-embodied",
+          "date": "2026-06-01",
+          "time": "2026-06-01T15:30:51+00:00",
+          "beijing_hour": 15,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/every-embodied/commit/806fe3d5af0e62e1cc4ccfb3e6de237422908d9d"
+        },
+        {
+          "message": "本地化达摩院实操图片",
+          "repo": "every-embodied",
+          "date": "2026-06-01",
+          "time": "2026-06-01T15:29:05+00:00",
+          "beijing_hour": 15,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/every-embodied/commit/30edf23b4505633dd2a8ab6b99164c927c4ad672"
+        },
+        {
+          "message": "优化ForgeCAD教程表述",
+          "repo": "every-embodied",
+          "date": "2026-06-01",
+          "time": "2026-06-01T12:01:32+00:00",
+          "beijing_hour": 12,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/every-embodied/commit/52dffbfd8d11fe83ed1ef959caf737d6cdec9867"
+        }
+      ],
+      "first_commit_date": "2026-05-28T02:43:21+00:00",
+      "last_commit_date": "2026-06-02T13:52:45+00:00",
+      "active_days": 4,
+      "avg_commits_per_day": 3.25
+    },
+    "Ethan-Chen-plus": {
+      "total_commits": 1,
+      "repos": [
+        "every-embodied"
+      ],
+      "repo_commits": {
+        "every-embodied": 1
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-06-02": 1
+      },
+      "hourly_distribution": {
+        "13": 1
+      },
+      "beijing_hourly_distribution": {
+        "21": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "具身世界模型1、扩散数理基础及问题解析入门",
+          "repo": "every-embodied",
+          "date": "2026-06-02",
+          "time": "2026-06-02T21:31:54+00:00",
+          "beijing_hour": 21,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/every-embodied/commit/1009148a83e2b55693398627e50ca6ab80310e0f"
+        }
+      ],
+      "first_commit_date": "2026-06-02T13:31:54+00:00",
+      "last_commit_date": "2026-06-02T13:31:54+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
+    },
+    "muzilyd": {
+      "total_commits": 1,
+      "repos": [
+        "every-embodied"
+      ],
+      "repo_commits": {
+        "every-embodied": 1
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-06-02": 1
+      },
+      "hourly_distribution": {
+        "13": 1
+      },
+      "beijing_hourly_distribution": {
+        "21": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "Add files via upload",
+          "repo": "every-embodied",
+          "date": "2026-06-02",
+          "time": "2026-06-02T21:19:21+00:00",
+          "beijing_hour": 21,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/every-embodied/commit/8a8445ece8be8c948e5889ec355e5409f0a9de4c"
+        }
+      ],
+      "first_commit_date": "2026-06-02T13:19:21+00:00",
+      "last_commit_date": "2026-06-02T13:19:21+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
+    },
+    "Halukisan": {
+      "total_commits": 7,
+      "repos": [
+        "easy-vecdb"
+      ],
+      "repo_commits": {
+        "easy-vecdb": 7
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-06-01": 4,
+        "2026-05-31": 3
+      },
+      "hourly_distribution": {
+        "10": 2,
+        "2": 2,
+        "4": 1,
+        "3": 2
+      },
+      "beijing_hourly_distribution": {
+        "18": 2,
+        "10": 2,
+        "12": 1,
+        "11": 2
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "Merge pull request #131 from Halukisan/dev",
+          "repo": "easy-vecdb",
+          "date": "2026-06-01",
+          "time": "2026-06-01T18:53:01+00:00",
+          "beijing_hour": 18,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vecdb/commit/804227d00575e36445313f2752fb5fca0a4cf028"
+        },
+        {
+          "message": "fix issue #130",
+          "repo": "easy-vecdb",
+          "date": "2026-06-01",
+          "time": "2026-06-01T18:52:34+00:00",
+          "beijing_hour": 18,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vecdb/commit/5038fc5f58c99e43894efcc673350d259ca76927"
+        },
+        {
+          "message": "Merge pull request #129 from Halukisan/dev",
+          "repo": "easy-vecdb",
+          "date": "2026-06-01",
+          "time": "2026-06-01T10:42:40+00:00",
+          "beijing_hour": 10,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vecdb/commit/830bb2f4ed5082f575970e523abf685538976fc9"
+        },
+        {
+          "message": "更新milvus底层架构说明",
+          "repo": "easy-vecdb",
+          "date": "2026-06-01",
+          "time": "2026-06-01T10:41:12+00:00",
+          "beijing_hour": 10,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vecdb/commit/a4c81a314e838d2fd21d4d5d7ef91abc5f2381bd"
+        },
+        {
+          "message": "Merge pull request #126 from zaizaizhao/patch-1",
+          "repo": "easy-vecdb",
+          "date": "2026-05-31",
+          "time": "2026-05-31T12:02:18+00:00",
+          "beijing_hour": 12,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vecdb/commit/c432d31de4c3df70abdc11251c6b5cd0e82660be"
+        },
+        {
+          "message": "Merge pull request #128 from Halukisan/dev",
+          "repo": "easy-vecdb",
+          "date": "2026-05-31",
+          "time": "2026-05-31T11:59:06+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vecdb/commit/17f36bfd70d5d0c37053f1de2e4673151600e11a"
+        },
+        {
+          "message": "fix:mmp to mmap",
+          "repo": "easy-vecdb",
+          "date": "2026-05-31",
+          "time": "2026-05-31T11:56:40+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vecdb/commit/b83d61cadc17649e91a4c62a7e9ae0d8a09dc46b"
+        }
+      ],
+      "first_commit_date": "2026-05-31T03:56:40+00:00",
+      "last_commit_date": "2026-06-01T10:53:01+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 3.5
+    },
+    "zaizaizhao": {
+      "total_commits": 1,
+      "repos": [
+        "easy-vecdb"
+      ],
+      "repo_commits": {
+        "easy-vecdb": 1
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-05-30": 1
+      },
+      "hourly_distribution": {
+        "2": 1
+      },
+      "beijing_hourly_distribution": {
+        "10": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "docs:代码和注释不匹配",
+          "repo": "easy-vecdb",
+          "date": "2026-05-30",
+          "time": "2026-05-30T10:29:24+00:00",
+          "beijing_hour": 10,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-vecdb/commit/ac8bb9505711f62d20bb431b4c0af8f8d0192f07"
+        }
+      ],
+      "first_commit_date": "2026-05-30T02:29:24+00:00",
+      "last_commit_date": "2026-05-30T02:29:24+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 1.0
+    },
+    "nameless0120": {
+      "total_commits": 3,
+      "repos": [
+        "ai-skills-for-everyone"
+      ],
+      "repo_commits": {
+        "ai-skills-for-everyone": 3
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-06-02": 3
+      },
+      "hourly_distribution": {
+        "14": 3
+      },
+      "beijing_hourly_distribution": {
+        "22": 3
+      },
+      "night_owl_commits": 3,
+      "night_owl_percentage": 100.0,
+      "commit_messages": [
+        {
+          "message": "Clean generated and local ignore rules",
+          "repo": "ai-skills-for-everyone",
+          "date": "2026-06-02",
+          "time": "2026-06-02T22:02:58+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/ai-skills-for-everyone/commit/247ffdf08114c73c44c89aa56cc1eb0f65bc2271"
+        },
+        {
+          "message": "Add backend API brief starter",
+          "repo": "ai-skills-for-everyone",
+          "date": "2026-06-02",
+          "time": "2026-06-02T22:02:45+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/ai-skills-for-everyone/commit/33b5daac9b7bb37fe0559382aee39522afaa5990"
+        },
+        {
+          "message": "Add backend API brief skill evaluation",
+          "repo": "ai-skills-for-everyone",
+          "date": "2026-06-02",
+          "time": "2026-06-02T22:02:28+00:00",
+          "beijing_hour": 22,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/ai-skills-for-everyone/commit/2e7666a7c99a18865a728ae4c5c84cccdc596fb7"
+        }
+      ],
+      "first_commit_date": "2026-06-02T14:02:28+00:00",
+      "last_commit_date": "2026-06-02T14:02:58+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 3.0
+    },
+    "Fyuan0206": {
+      "total_commits": 3,
+      "repos": [
+        "agent-skills-with-anthropic",
+        "agentic-ai",
+        "ai-prompting-for-everyone"
+      ],
+      "repo_commits": {
+        "agentic-ai": 1,
+        "agent-skills-with-anthropic": 1,
+        "ai-prompting-for-everyone": 1
+      },
+      "repo_count": 3,
+      "daily_commits": {
+        "2026-06-01": 2,
+        "2026-05-28": 1
+      },
+      "hourly_distribution": {
+        "10": 2,
+        "1": 1
+      },
+      "beijing_hourly_distribution": {
+        "18": 2,
+        "9": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "Update README.md",
+          "repo": "agentic-ai",
+          "date": "2026-06-01",
+          "time": "2026-06-01T18:21:28+00:00",
+          "beijing_hour": 18,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/agentic-ai/commit/fb6c7b7e37cd424cd86052c2f69373bbdfc6cbee"
+        },
+        {
+          "message": "Update README.md",
+          "repo": "agent-skills-with-anthropic",
+          "date": "2026-06-01",
+          "time": "2026-06-01T18:20:57+00:00",
+          "beijing_hour": 18,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/agent-skills-with-anthropic/commit/602b1843066d689c9cebf3b7144cc0339a5051e9"
+        },
+        {
+          "message": "Update README.md",
+          "repo": "ai-prompting-for-everyone",
+          "date": "2026-05-28",
+          "time": "2026-05-28T09:40:47+00:00",
+          "beijing_hour": 9,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/ai-prompting-for-everyone/commit/5075ccd4aada275bba0de232529a6e9bb9e855a3"
+        }
+      ],
+      "first_commit_date": "2026-05-28T01:40:47+00:00",
+      "last_commit_date": "2026-06-01T10:21:28+00:00",
+      "active_days": 2,
+      "avg_commits_per_day": 1.5
+    },
+    "amdjiahangpan": {
+      "total_commits": 2,
+      "repos": [
+        "hello-rocm"
+      ],
+      "repo_commits": {
+        "hello-rocm": 2
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-05-27": 2
+      },
+      "hourly_distribution": {
+        "3": 2
+      },
+      "beijing_hourly_distribution": {
+        "11": 2
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "Merge pull request #42 from amdjiahangpan/master",
+          "repo": "hello-rocm",
+          "date": "2026-05-27",
+          "time": "2026-05-27T11:06:15+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/hello-rocm/commit/9facf77076d26ed147245e2af9485dc7b1b6cb94"
+        },
+        {
+          "message": "update: rocm 7.12.0->7.13.0",
+          "repo": "hello-rocm",
+          "date": "2026-05-27",
+          "time": "2026-05-27T11:01:17+00:00",
+          "beijing_hour": 11,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/hello-rocm/commit/057727698f3faa35ca8b33fdc95479bdc24135bc"
+        }
+      ],
+      "first_commit_date": "2026-05-27T03:01:17+00:00",
+      "last_commit_date": "2026-05-27T03:06:15+00:00",
       "active_days": 1,
       "avg_commits_per_day": 2.0
     },
@@ -439,657 +1186,76 @@
       "active_days": 7,
       "avg_commits_per_day": 3.142857142857143
     },
-    "14494483+qiwang067": {
-      "total_commits": 2,
+    "liboyang0730": {
+      "total_commits": 4,
       "repos": [
-        "learn-world-model"
+        "easy-data-x-ai"
       ],
       "repo_commits": {
-        "learn-world-model": 2
+        "easy-data-x-ai": 4
       },
       "repo_count": 1,
       "daily_commits": {
-        "2026-06-01": 2
+        "2026-06-02": 2,
+        "2026-06-01": 1,
+        "2026-05-29": 1
       },
       "hourly_distribution": {
-        "8": 2
-      },
-      "beijing_hourly_distribution": {
-        "16": 2
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Improve formatting in LS-Imagine case study",
-          "repo": "learn-world-model",
-          "date": "2026-06-01",
-          "time": "2026-06-01T16:16:28+00:00",
-          "beijing_hour": 16,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/9120df6d6a28dda94b57243a0d8a1969bff8227a"
-        },
-        {
-          "message": "Add LS-Imagine case study to Lecture 3 architecture patterns",
-          "repo": "learn-world-model",
-          "date": "2026-06-01",
-          "time": "2026-06-01T16:10:55+00:00",
-          "beijing_hour": 16,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/09818c80c46de75e478cb9fad8fc9b3b17c6125b"
-        }
-      ],
-      "first_commit_date": "2026-06-01T08:10:55+00:00",
-      "last_commit_date": "2026-06-01T08:16:28+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 2.0
-    },
-    "zhimin-z": {
-      "total_commits": 20,
-      "repos": [
-        "learn-world-model"
-      ],
-      "repo_commits": {
-        "learn-world-model": 20
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-06-01": 5,
-        "2026-05-31": 13,
-        "2026-05-30": 2
-      },
-      "hourly_distribution": {
-        "7": 1,
-        "4": 2,
-        "1": 4,
-        "0": 1,
-        "22": 1,
-        "19": 2,
-        "18": 3,
-        "10": 2,
-        "9": 1,
-        "5": 1,
-        "20": 2
-      },
-      "beijing_hourly_distribution": {
-        "15": 1,
-        "12": 2,
-        "9": 4,
+        "10": 1,
         "8": 1,
-        "6": 1,
-        "3": 2,
-        "2": 3,
-        "18": 2,
-        "17": 1,
-        "13": 1,
-        "4": 2
+        "2": 1,
+        "11": 1
       },
-      "night_owl_commits": 7,
-      "night_owl_percentage": 35.0,
+      "beijing_hourly_distribution": {
+        "18": 1,
+        "16": 1,
+        "10": 1,
+        "19": 1
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
       "commit_messages": [
         {
-          "message": "refine text",
-          "repo": "learn-world-model",
+          "message": "docs(D1): 修正 Python 版本要求为 3.11.x (#3)",
+          "repo": "easy-data-x-ai",
+          "date": "2026-06-02",
+          "time": "2026-06-02T18:08:53+00:00",
+          "beijing_hour": 18,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-data-x-ai/commit/89bd7345c701b6fea3c45b83587d4fd678c10bef"
+        },
+        {
+          "message": "docs: 将 \"Easy Data X AI\" 统一改为 \"Easy Data x AI\"",
+          "repo": "easy-data-x-ai",
+          "date": "2026-06-02",
+          "time": "2026-06-02T16:35:52+00:00",
+          "beijing_hour": 16,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/easy-data-x-ai/commit/cbecacacbc552b7e8f961311a54ecd477ac3dcb6"
+        },
+        {
+          "message": "chore: 更新仓库地址，从 ob-labs 迁移到 datawhalechina",
+          "repo": "easy-data-x-ai",
           "date": "2026-06-01",
-          "time": "2026-06-01T15:51:49+00:00",
-          "beijing_hour": 15,
+          "time": "2026-06-01T10:44:35+00:00",
+          "beijing_hour": 10,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/1ff2dc51696e4f55176eb0c646e55e312f27b2e6"
+          "url": "https://github.com/datawhalechina/easy-data-x-ai/commit/f613399e4cdd99cc06686734235b798cacd81932"
         },
         {
-          "message": "Refactor badge styles in README files for consistency and improved clarity",
-          "repo": "learn-world-model",
-          "date": "2026-06-01",
-          "time": "2026-06-01T12:46:32+00:00",
-          "beijing_hour": 12,
+          "message": "docs: 将 README 课程目录中所有 🚧 标记更新为 ✅",
+          "repo": "easy-data-x-ai",
+          "date": "2026-05-29",
+          "time": "2026-05-29T19:36:27+00:00",
+          "beijing_hour": 19,
           "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/fd27b27662120ecdc1a2c75effcde49b0e16c54c"
-        },
-        {
-          "message": "Enhance documentation by refining mermaid diagram usage guidelines, improving prose clarity, and ens",
-          "repo": "learn-world-model",
-          "date": "2026-06-01",
-          "time": "2026-06-01T12:42:18+00:00",
-          "beijing_hour": 12,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/f77efd93ce926bd4b5e94eaffb960c4684eacde1"
-        },
-        {
-          "message": "Refactor mermaid diagrams for clarity and consistency across encoding and dynamics lectures",
-          "repo": "learn-world-model",
-          "date": "2026-06-01",
-          "time": "2026-06-01T09:46:42+00:00",
-          "beijing_hour": 9,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/5c2d8e8cb768527b4b22001d8959902ff9f7dfb1"
-        },
-        {
-          "message": "Add initial project pages and a custom 404 Not Found component",
-          "repo": "learn-world-model",
-          "date": "2026-06-01",
-          "time": "2026-06-01T08:37:15+00:00",
-          "beijing_hour": 8,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/2ec2f14d18726cd129e0f2d844b8de6240587956"
-        },
-        {
-          "message": "Enhance figure captions and styling in documentation for clarity and consistency",
-          "repo": "learn-world-model",
-          "date": "2026-05-31",
-          "time": "2026-06-01T06:56:13+00:00",
-          "beijing_hour": 6,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/30fa36c5b29289e7dd02a7fdc6a64cb973ad7676"
-        },
-        {
-          "message": "Update WeChat group QR code size and add new content files",
-          "repo": "learn-world-model",
-          "date": "2026-05-31",
-          "time": "2026-06-01T03:09:39+00:00",
-          "beijing_hour": 3,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/1589a5cb876011cd564961a5ec24a0578e17342f"
-        },
-        {
-          "message": "Fix formatting of titles and descriptions in roadmap and index files",
-          "repo": "learn-world-model",
-          "date": "2026-05-31",
-          "time": "2026-06-01T03:06:30+00:00",
-          "beijing_hour": 3,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/aed66ab04aa7fa4dc516e069c965db913ad7141e"
-        },
-        {
-          "message": "Add section on engineering prophecy for world models and predictive foresight",
-          "repo": "learn-world-model",
-          "date": "2026-05-31",
-          "time": "2026-06-01T02:54:52+00:00",
-          "beijing_hour": 2,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/44b7f5af94e37b998603c1ab00835c4824cf5710"
-        },
-        {
-          "message": "Update English navigation links and enhance lecture item structure in documentation",
-          "repo": "learn-world-model",
-          "date": "2026-05-31",
-          "time": "2026-06-01T02:35:45+00:00",
-          "beijing_hour": 2,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/8d3b3ee4b09b2c26b46e035f560863423d68b976"
+          "url": "https://github.com/datawhalechina/easy-data-x-ai/commit/0514edf40b0253f59fddcd59ae77397a752f523d"
         }
       ],
-      "first_commit_date": "2026-05-30T20:22:40+00:00",
-      "last_commit_date": "2026-06-01T07:51:49+00:00",
+      "first_commit_date": "2026-05-29T11:36:27+00:00",
+      "last_commit_date": "2026-06-02T10:08:53+00:00",
       "active_days": 3,
-      "avg_commits_per_day": 6.666666666666667
-    },
-    "Suibian-YY-pro": {
-      "total_commits": 8,
-      "repos": [
-        "every-embodied"
-      ],
-      "repo_commits": {
-        "every-embodied": 8
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-06-01": 6,
-        "2026-05-31": 1,
-        "2026-05-28": 1
-      },
-      "hourly_distribution": {
-        "7": 4,
-        "4": 1,
-        "3": 1,
-        "13": 1,
-        "2": 1
-      },
-      "beijing_hourly_distribution": {
-        "15": 4,
-        "12": 1,
-        "11": 1,
-        "21": 1,
-        "10": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "修复Task02表格加粗渲染",
-          "repo": "every-embodied",
-          "date": "2026-06-01",
-          "time": "2026-06-01T15:48:52+00:00",
-          "beijing_hour": 15,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/every-embodied/commit/656774c8be8a6a04e6abbbefc98f05ba2a1aaf3b"
-        },
-        {
-          "message": "本地化达摩院技术透视图片",
-          "repo": "every-embodied",
-          "date": "2026-06-01",
-          "time": "2026-06-01T15:47:00+00:00",
-          "beijing_hour": 15,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/every-embodied/commit/412fc020316f3240e7ce87baca523e8d96d944c1"
-        },
-        {
-          "message": "修正达摩院Task03链接",
-          "repo": "every-embodied",
-          "date": "2026-06-01",
-          "time": "2026-06-01T15:30:51+00:00",
-          "beijing_hour": 15,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/every-embodied/commit/806fe3d5af0e62e1cc4ccfb3e6de237422908d9d"
-        },
-        {
-          "message": "本地化达摩院实操图片",
-          "repo": "every-embodied",
-          "date": "2026-06-01",
-          "time": "2026-06-01T15:29:05+00:00",
-          "beijing_hour": 15,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/every-embodied/commit/30edf23b4505633dd2a8ab6b99164c927c4ad672"
-        },
-        {
-          "message": "优化ForgeCAD教程表述",
-          "repo": "every-embodied",
-          "date": "2026-06-01",
-          "time": "2026-06-01T12:01:32+00:00",
-          "beijing_hour": 12,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/every-embodied/commit/52dffbfd8d11fe83ed1ef959caf737d6cdec9867"
-        },
-        {
-          "message": "新增ForgeCAD官方案例教程",
-          "repo": "every-embodied",
-          "date": "2026-06-01",
-          "time": "2026-06-01T11:39:15+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/every-embodied/commit/3080cfb0090eec3ae5ae32597959e46d28a9b3fc"
-        },
-        {
-          "message": "新增 UniLab MotrixSim 异构 RL 教程",
-          "repo": "every-embodied",
-          "date": "2026-05-31",
-          "time": "2026-05-31T21:44:00+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/every-embodied/commit/8c3130f0b25c12c2e913520a9d7e69123729d101"
-        },
-        {
-          "message": "docs(locomotion): 补充春晚机器人排障说明",
-          "repo": "every-embodied",
-          "date": "2026-05-28",
-          "time": "2026-05-28T10:43:21+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/every-embodied/commit/3f2ac207a27754d126e4ee1917d75501149e2b53"
-        }
-      ],
-      "first_commit_date": "2026-05-28T02:43:21+00:00",
-      "last_commit_date": "2026-06-01T07:48:52+00:00",
-      "active_days": 3,
-      "avg_commits_per_day": 2.6666666666666665
-    },
-    "Fyuan0206": {
-      "total_commits": 3,
-      "repos": [
-        "agentic-ai",
-        "ai-prompting-for-everyone",
-        "agent-skills-with-anthropic"
-      ],
-      "repo_commits": {
-        "agent-skills-with-anthropic": 1,
-        "agentic-ai": 1,
-        "ai-prompting-for-everyone": 1
-      },
-      "repo_count": 3,
-      "daily_commits": {
-        "2026-06-01": 2,
-        "2026-05-28": 1
-      },
-      "hourly_distribution": {
-        "10": 2,
-        "1": 1
-      },
-      "beijing_hourly_distribution": {
-        "18": 2,
-        "9": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Update README.md",
-          "repo": "agent-skills-with-anthropic",
-          "date": "2026-06-01",
-          "time": "2026-06-01T18:20:57+00:00",
-          "beijing_hour": 18,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/agent-skills-with-anthropic/commit/602b1843066d689c9cebf3b7144cc0339a5051e9"
-        },
-        {
-          "message": "Update README.md",
-          "repo": "agentic-ai",
-          "date": "2026-06-01",
-          "time": "2026-06-01T18:21:28+00:00",
-          "beijing_hour": 18,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/agentic-ai/commit/fb6c7b7e37cd424cd86052c2f69373bbdfc6cbee"
-        },
-        {
-          "message": "Update README.md",
-          "repo": "ai-prompting-for-everyone",
-          "date": "2026-05-28",
-          "time": "2026-05-28T09:40:47+00:00",
-          "beijing_hour": 9,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/ai-prompting-for-everyone/commit/5075ccd4aada275bba0de232529a6e9bb9e855a3"
-        }
-      ],
-      "first_commit_date": "2026-05-28T01:40:47+00:00",
-      "last_commit_date": "2026-06-01T10:21:28+00:00",
-      "active_days": 2,
-      "avg_commits_per_day": 1.5
-    },
-    "Halukisan": {
-      "total_commits": 7,
-      "repos": [
-        "easy-vecdb"
-      ],
-      "repo_commits": {
-        "easy-vecdb": 7
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-06-01": 4,
-        "2026-05-31": 3
-      },
-      "hourly_distribution": {
-        "10": 2,
-        "2": 2,
-        "4": 1,
-        "3": 2
-      },
-      "beijing_hourly_distribution": {
-        "18": 2,
-        "10": 2,
-        "12": 1,
-        "11": 2
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Merge pull request #131 from Halukisan/dev",
-          "repo": "easy-vecdb",
-          "date": "2026-06-01",
-          "time": "2026-06-01T18:53:01+00:00",
-          "beijing_hour": 18,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vecdb/commit/804227d00575e36445313f2752fb5fca0a4cf028"
-        },
-        {
-          "message": "fix issue #130",
-          "repo": "easy-vecdb",
-          "date": "2026-06-01",
-          "time": "2026-06-01T18:52:34+00:00",
-          "beijing_hour": 18,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vecdb/commit/5038fc5f58c99e43894efcc673350d259ca76927"
-        },
-        {
-          "message": "Merge pull request #129 from Halukisan/dev",
-          "repo": "easy-vecdb",
-          "date": "2026-06-01",
-          "time": "2026-06-01T10:42:40+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vecdb/commit/830bb2f4ed5082f575970e523abf685538976fc9"
-        },
-        {
-          "message": "更新milvus底层架构说明",
-          "repo": "easy-vecdb",
-          "date": "2026-06-01",
-          "time": "2026-06-01T10:41:12+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vecdb/commit/a4c81a314e838d2fd21d4d5d7ef91abc5f2381bd"
-        },
-        {
-          "message": "Merge pull request #126 from zaizaizhao/patch-1",
-          "repo": "easy-vecdb",
-          "date": "2026-05-31",
-          "time": "2026-05-31T12:02:18+00:00",
-          "beijing_hour": 12,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vecdb/commit/c432d31de4c3df70abdc11251c6b5cd0e82660be"
-        },
-        {
-          "message": "Merge pull request #128 from Halukisan/dev",
-          "repo": "easy-vecdb",
-          "date": "2026-05-31",
-          "time": "2026-05-31T11:59:06+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vecdb/commit/17f36bfd70d5d0c37053f1de2e4673151600e11a"
-        },
-        {
-          "message": "fix:mmp to mmap",
-          "repo": "easy-vecdb",
-          "date": "2026-05-31",
-          "time": "2026-05-31T11:56:40+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vecdb/commit/b83d61cadc17649e91a4c62a7e9ae0d8a09dc46b"
-        }
-      ],
-      "first_commit_date": "2026-05-31T03:56:40+00:00",
-      "last_commit_date": "2026-06-01T10:53:01+00:00",
-      "active_days": 2,
-      "avg_commits_per_day": 3.5
-    },
-    "zaizaizhao": {
-      "total_commits": 1,
-      "repos": [
-        "easy-vecdb"
-      ],
-      "repo_commits": {
-        "easy-vecdb": 1
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-05-30": 1
-      },
-      "hourly_distribution": {
-        "2": 1
-      },
-      "beijing_hourly_distribution": {
-        "10": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "docs:代码和注释不匹配",
-          "repo": "easy-vecdb",
-          "date": "2026-05-30",
-          "time": "2026-05-30T10:29:24+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-vecdb/commit/ac8bb9505711f62d20bb431b4c0af8f8d0192f07"
-        }
-      ],
-      "first_commit_date": "2026-05-30T02:29:24+00:00",
-      "last_commit_date": "2026-05-30T02:29:24+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 1.0
-    },
-    "2951121599": {
-      "total_commits": 6,
-      "repos": [
-        "ai-wiki"
-      ],
-      "repo_commits": {
-        "ai-wiki": 6
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-05-26": 6
-      },
-      "hourly_distribution": {
-        "13": 6
-      },
-      "beijing_hourly_distribution": {
-        "21": 6
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Create link-check.yml",
-          "repo": "ai-wiki",
-          "date": "2026-05-26",
-          "time": "2026-05-26T21:39:44+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/ai-wiki/commit/e7d63a763109f5405fb307a48d5deb2165cc872d"
-        },
-        {
-          "message": "chore: 移除总览页更新时间标注",
-          "repo": "ai-wiki",
-          "date": "2026-05-26",
-          "time": "2026-05-26T21:34:16+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/ai-wiki/commit/c4744a49d27e986507afa55dedf9af73e4bfe85b"
-        },
-        {
-          "message": "fix: 添加 VitePress base path 配置修复 GitHub Pages 样式缺失",
-          "repo": "ai-wiki",
-          "date": "2026-05-26",
-          "time": "2026-05-26T21:31:18+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/ai-wiki/commit/972a5125e430d7af0387c78d2280796ea2f86971"
-        },
-        {
-          "message": "feat: 扩充四个薄章节内容，增强选型指导和实操案例",
-          "repo": "ai-wiki",
-          "date": "2026-05-26",
-          "time": "2026-05-26T21:28:08+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/ai-wiki/commit/349491bc334d0359be83913c5d1408d7bc2307a2"
-        },
-        {
-          "message": "Create deploy.yml",
-          "repo": "ai-wiki",
-          "date": "2026-05-26",
-          "time": "2026-05-26T21:16:56+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/ai-wiki/commit/15303254042622bd471b8fdfa0250b4234031c3d"
-        },
-        {
-          "message": "fix: 恢复 VitePress 构建配置，修复 .gitignore 和 README",
-          "repo": "ai-wiki",
-          "date": "2026-05-26",
-          "time": "2026-05-26T21:10:00+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/ai-wiki/commit/1e2105f28c107b2eaa099826075205d118eeab37"
-        }
-      ],
-      "first_commit_date": "2026-05-26T13:10:00+00:00",
-      "last_commit_date": "2026-05-26T13:39:44+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 6.0
-    },
-    "bokang-ugent": {
-      "total_commits": 2,
-      "repos": [
-        "dive-into-embodied-ai"
-      ],
-      "repo_commits": {
-        "dive-into-embodied-ai": 2
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-05-28": 1,
-        "2026-05-26": 1
-      },
-      "hourly_distribution": {
-        "4": 1,
-        "6": 1
-      },
-      "beijing_hourly_distribution": {
-        "12": 1,
-        "14": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "📝 docs: 固化 lab 6 MJX/brax 依赖并补可选进阶装法",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-05-28",
-          "time": "2026-05-28T12:44:19+00:00",
-          "beijing_hour": 12,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/737ec5a6f2b715f3f42e5e8cd8492e8f11a74cd1"
-        },
-        {
-          "message": "♻️ refactor: lab 6 pupper RL 配方升级到 540 维 obs / 18 项奖励",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-05-26",
-          "time": "2026-05-26T14:33:50+00:00",
-          "beijing_hour": 14,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/8ed23d6157142eef6b363b6ca51953129d46e268"
-        }
-      ],
-      "first_commit_date": "2026-05-26T06:33:50+00:00",
-      "last_commit_date": "2026-05-28T04:44:19+00:00",
-      "active_days": 2,
-      "avg_commits_per_day": 1.0
-    },
-    "ruyiluo": {
-      "total_commits": 1,
-      "repos": [
-        "dive-into-embodied-ai"
-      ],
-      "repo_commits": {
-        "dive-into-embodied-ai": 1
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-05-26": 1
-      },
-      "hourly_distribution": {
-        "0": 1
-      },
-      "beijing_hourly_distribution": {
-        "8": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "📝 docs: 优化 Lab 5 步态教程",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-05-26",
-          "time": "2026-05-26T08:02:31+00:00",
-          "beijing_hour": 8,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/b30a6d58baab0135a9d4249131cb6bd18224dd04"
-        }
-      ],
-      "first_commit_date": "2026-05-26T00:02:31+00:00",
-      "last_commit_date": "2026-05-26T00:02:31+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 1.0
+      "avg_commits_per_day": 1.3333333333333333
     },
     "lizixi-0x2F": {
       "total_commits": 1,
@@ -1127,90 +1293,6 @@
       "active_days": 1,
       "avg_commits_per_day": 1.0
     },
-    "muzilyd": {
-      "total_commits": 1,
-      "repos": [
-        "hello-robotics"
-      ],
-      "repo_commits": {
-        "hello-robotics": 1
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-05-26": 1
-      },
-      "hourly_distribution": {
-        "3": 1
-      },
-      "beijing_hourly_distribution": {
-        "11": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Merge pull request #2 from Ethan-Chen-plus/chapter5-g2-ik-pd",
-          "repo": "hello-robotics",
-          "date": "2026-05-26",
-          "time": "2026-05-26T11:29:32+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-robotics/commit/6c880ffbde98bb9e52bd362b8d9c602c615707b7"
-        }
-      ],
-      "first_commit_date": "2026-05-26T03:29:32+00:00",
-      "last_commit_date": "2026-05-26T03:29:32+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 1.0
-    },
-    "liboyang0730": {
-      "total_commits": 2,
-      "repos": [
-        "easy-data-x-ai"
-      ],
-      "repo_commits": {
-        "easy-data-x-ai": 2
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-06-01": 1,
-        "2026-05-29": 1
-      },
-      "hourly_distribution": {
-        "2": 1,
-        "11": 1
-      },
-      "beijing_hourly_distribution": {
-        "10": 1,
-        "19": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "chore: 更新仓库地址，从 ob-labs 迁移到 datawhalechina",
-          "repo": "easy-data-x-ai",
-          "date": "2026-06-01",
-          "time": "2026-06-01T10:44:35+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-data-x-ai/commit/f613399e4cdd99cc06686734235b798cacd81932"
-        },
-        {
-          "message": "docs: 将 README 课程目录中所有 🚧 标记更新为 ✅",
-          "repo": "easy-data-x-ai",
-          "date": "2026-05-29",
-          "time": "2026-05-29T19:36:27+00:00",
-          "beijing_hour": 19,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/easy-data-x-ai/commit/0514edf40b0253f59fddcd59ae77397a752f523d"
-        }
-      ],
-      "first_commit_date": "2026-05-29T11:36:27+00:00",
-      "last_commit_date": "2026-06-01T02:44:35+00:00",
-      "active_days": 2,
-      "avg_commits_per_day": 1.0
-    },
     "liuyuqi1030": {
       "total_commits": 1,
       "repos": [
@@ -1246,51 +1328,6 @@
       "last_commit_date": "2026-05-31T19:05:04+00:00",
       "active_days": 1,
       "avg_commits_per_day": 1.0
-    },
-    "amdjiahangpan": {
-      "total_commits": 2,
-      "repos": [
-        "hello-rocm"
-      ],
-      "repo_commits": {
-        "hello-rocm": 2
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-05-27": 2
-      },
-      "hourly_distribution": {
-        "3": 2
-      },
-      "beijing_hourly_distribution": {
-        "11": 2
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Merge pull request #42 from amdjiahangpan/master",
-          "repo": "hello-rocm",
-          "date": "2026-05-27",
-          "time": "2026-05-27T11:06:15+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-rocm/commit/9facf77076d26ed147245e2af9485dc7b1b6cb94"
-        },
-        {
-          "message": "update: rocm 7.12.0->7.13.0",
-          "repo": "hello-rocm",
-          "date": "2026-05-27",
-          "time": "2026-05-27T11:01:17+00:00",
-          "beijing_hour": 11,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-rocm/commit/057727698f3faa35ca8b33fdc95479bdc24135bc"
-        }
-      ],
-      "first_commit_date": "2026-05-27T03:01:17+00:00",
-      "last_commit_date": "2026-05-27T03:06:15+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 2.0
     }
   },
   "optimization_stats": {
@@ -1298,11 +1335,11 @@
       "repos_list": 1,
       "contributors": 205,
       "commits": 205,
-      "users": 731,
-      "user_repos": 731,
-      "total": 1873
+      "users": 733,
+      "user_repos": 733,
+      "total": 1877
     },
-    "execution_time": "880.5s",
+    "execution_time": "705.8s",
     "optimization_enabled": true
   }
 }
