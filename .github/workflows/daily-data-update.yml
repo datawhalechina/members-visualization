@@ -71,6 +71,27 @@ jobs:
       - name: Generate repository badge screenshots
         run: node scripts/generate_repo_screenshots.js
 
+      - name: Check for case-colliding paths
+        run: |
+          python - <<'PY'
+          from collections import defaultdict
+          import subprocess
+
+          groups = defaultdict(list)
+          paths = subprocess.check_output(
+              ["git", "ls-files", "--cached", "--others", "--exclude-standard"],
+              text=True,
+          ).splitlines()
+          for path in paths:
+              groups[path.casefold()].append(path)
+
+          collisions = [group for group in groups.values() if len(group) > 1]
+          if collisions:
+              for group in collisions:
+                  print(f"Case-colliding paths: {' | '.join(group)}")
+              raise SystemExit(1)
+          PY
+
       - name: Rebuild to include badges
         run: npm run docs:build
         env:
