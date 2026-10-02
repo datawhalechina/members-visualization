@@ -1,8 +1,8 @@
 {
-  "update_time": "2026-10-01T01:10:31.881649",
+  "update_time": "2026-10-02T01:27:59.739454",
   "days_range": 7,
-  "total_commits": 171,
-  "total_repos": 13,
+  "total_commits": 149,
+  "total_repos": 12,
   "user_commits": {
     "jjyaoao": {
       "total_commits": 4,
@@ -190,29 +190,41 @@
       "avg_commits_per_day": 12.0
     },
     "webup": {
-      "total_commits": 22,
+      "total_commits": 23,
       "repos": [
         "deepagents-in-action"
       ],
       "repo_commits": {
-        "deepagents-in-action": 22
+        "deepagents-in-action": 23
       },
       "repo_count": 1,
       "daily_commits": {
+        "2026-10-01": 1,
         "2026-09-27": 1,
         "2026-09-26": 21
       },
       "hourly_distribution": {
+        "4": 1,
         "12": 1,
         "8": 21
       },
       "beijing_hourly_distribution": {
+        "12": 1,
         "20": 1,
         "16": 21
       },
       "night_owl_commits": 0,
       "night_owl_percentage": 0.0,
       "commit_messages": [
+        {
+          "message": "docs: 补充 Deep Agents 整体架构与执行循环 (#141)",
+          "repo": "deepagents-in-action",
+          "date": "2026-10-01",
+          "time": "2026-10-01T12:41:13+00:00",
+          "beijing_hour": 12,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/deepagents-in-action/commit/856530c813745e72b536ae4b662e6398d77229f1"
+        },
         {
           "message": "feat: 完善入门 Notebook 教学与三格式交付 (#131)",
           "repo": "deepagents-in-action",
@@ -293,56 +305,42 @@
           "beijing_hour": 16,
           "is_night_owl": false,
           "url": "https://github.com/datawhalechina/deepagents-in-action/commit/528e8e1de38eeb0929bcf6ae743bb49bea11f188"
-        },
-        {
-          "message": "chore: sync merged chapter 1 baseline",
-          "repo": "deepagents-in-action",
-          "date": "2026-09-26",
-          "time": "2026-09-26T16:23:32+00:00",
-          "beijing_hour": 16,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/deepagents-in-action/commit/4f7a9b303d1af294d22dfb087c7070d5821c0e2a"
         }
       ],
       "first_commit_date": "2026-09-26T08:04:49+00:00",
-      "last_commit_date": "2026-09-27T12:15:58+00:00",
-      "active_days": 2,
-      "avg_commits_per_day": 11.0
+      "last_commit_date": "2026-10-01T04:41:13+00:00",
+      "active_days": 3,
+      "avg_commits_per_day": 7.666666666666667
     },
     "wutongyuonce": {
-      "total_commits": 18,
+      "total_commits": 16,
       "repos": [
         "deepagents-in-action"
       ],
       "repo_commits": {
-        "deepagents-in-action": 18
+        "deepagents-in-action": 16
       },
       "repo_count": 1,
       "daily_commits": {
         "2026-09-27": 1,
-        "2026-09-25": 15,
-        "2026-09-24": 2
+        "2026-09-25": 15
       },
       "hourly_distribution": {
         "11": 1,
         "14": 4,
         "13": 5,
         "12": 5,
-        "7": 1,
-        "16": 1,
-        "15": 1
+        "7": 1
       },
       "beijing_hourly_distribution": {
         "19": 1,
         "22": 4,
         "21": 5,
         "20": 5,
-        "15": 1,
-        "0": 1,
-        "23": 1
+        "15": 1
       },
-      "night_owl_commits": 6,
-      "night_owl_percentage": 33.3,
+      "night_owl_commits": 4,
+      "night_owl_percentage": 25.0,
       "commit_messages": [
         {
           "message": "docs: 澄清第 6 章 Agent Server、ASGI 传输与服务启动流程 (#132)",
@@ -435,55 +433,10 @@
           "url": "https://github.com/datawhalechina/deepagents-in-action/commit/83f97fbc51752656f0a3666d0732c17a3594d23e"
         }
       ],
-      "first_commit_date": "2026-09-24T15:12:45+00:00",
+      "first_commit_date": "2026-09-25T07:31:32+00:00",
       "last_commit_date": "2026-09-27T11:51:40+00:00",
-      "active_days": 3,
-      "avg_commits_per_day": 6.0
-    },
-    "zhimin-z": {
-      "total_commits": 2,
-      "repos": [
-        "learn-world-model"
-      ],
-      "repo_commits": {
-        "learn-world-model": 2
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-09-27": 2
-      },
-      "hourly_distribution": {
-        "2": 2
-      },
-      "beijing_hourly_distribution": {
-        "10": 2
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Add files via upload",
-          "repo": "learn-world-model",
-          "date": "2026-09-27",
-          "time": "2026-09-27T10:20:34+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/6d791e82ea591bf69664561c9b05f4fa556a77e5"
-        },
-        {
-          "message": "Delete docs/public/wechat.jpg",
-          "repo": "learn-world-model",
-          "date": "2026-09-27",
-          "time": "2026-09-27T10:06:56+00:00",
-          "beijing_hour": 10,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/learn-world-model/commit/687d015fbc86746a1358ba789b7cea901ffb9c2b"
-        }
-      ],
-      "first_commit_date": "2026-09-27T02:06:56+00:00",
-      "last_commit_date": "2026-09-27T02:20:34+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 2.0
+      "active_days": 2,
+      "avg_commits_per_day": 8.0
     },
     "xuhu0115": {
       "total_commits": 1,
@@ -557,26 +510,114 @@
       "active_days": 1,
       "avg_commits_per_day": 1.0
     },
-    "Ethan-Chen-plus": {
-      "total_commits": 2,
+    "johnjim0816": {
+      "total_commits": 6,
       "repos": [
-        "every-embodied"
+        "dive-into-embodied-ai"
       ],
       "repo_commits": {
-        "every-embodied": 2
+        "dive-into-embodied-ai": 6
       },
       "repo_count": 1,
       "daily_commits": {
         "2026-09-29": 1,
-        "2026-09-24": 1
+        "2026-09-27": 1,
+        "2026-09-25": 4
       },
       "hourly_distribution": {
-        "8": 1,
-        "9": 1
+        "7": 1,
+        "4": 1,
+        "17": 2,
+        "15": 1,
+        "1": 1
       },
       "beijing_hourly_distribution": {
-        "16": 1,
-        "17": 1
+        "15": 1,
+        "12": 1,
+        "1": 2,
+        "23": 1,
+        "9": 1
+      },
+      "night_owl_commits": 3,
+      "night_owl_percentage": 50.0,
+      "commit_messages": [
+        {
+          "message": "feat: add Spanish and Italian language support",
+          "repo": "dive-into-embodied-ai",
+          "date": "2026-09-29",
+          "time": "2026-09-29T15:01:20+00:00",
+          "beijing_hour": 15,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/06c798d163a50d9273233b54973b5c69bc056d73"
+        },
+        {
+          "message": "fix: render tutorial images in GitHub previews",
+          "repo": "dive-into-embodied-ai",
+          "date": "2026-09-27",
+          "time": "2026-09-27T12:16:26+00:00",
+          "beijing_hour": 12,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/1a4f0951682c3fe6629cde2b151912677252524a"
+        },
+        {
+          "message": "fix: preserve locale homepage routes in local previews",
+          "repo": "dive-into-embodied-ai",
+          "date": "2026-09-25",
+          "time": "2026-09-26T01:21:08+00:00",
+          "beijing_hour": 1,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/14adffc58c4cc8c00a32d5a5586917652310fa78"
+        },
+        {
+          "message": "fix: remove Markdown copy controls from homepages",
+          "repo": "dive-into-embodied-ai",
+          "date": "2026-09-25",
+          "time": "2026-09-26T01:14:54+00:00",
+          "beijing_hour": 1,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/9c987735fcc9b3bfdc363cff749bc164611a9156"
+        },
+        {
+          "message": "docs: align README banner with learning focus",
+          "repo": "dive-into-embodied-ai",
+          "date": "2026-09-25",
+          "time": "2026-09-25T23:33:13+00:00",
+          "beijing_hour": 23,
+          "is_night_owl": true,
+          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/745126d1c9ec8d368b573e69dc1f79b9f6f15eef"
+        },
+        {
+          "message": "feat: add bilingual Markdown copy actions to site pages",
+          "repo": "dive-into-embodied-ai",
+          "date": "2026-09-25",
+          "time": "2026-09-25T09:48:32+00:00",
+          "beijing_hour": 9,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/3feb89597743bf4ab9b9628da66c95014d704f51"
+        }
+      ],
+      "first_commit_date": "2026-09-25T01:48:32+00:00",
+      "last_commit_date": "2026-09-29T07:01:20+00:00",
+      "active_days": 3,
+      "avg_commits_per_day": 2.0
+    },
+    "Ethan-Chen-plus": {
+      "total_commits": 1,
+      "repos": [
+        "every-embodied"
+      ],
+      "repo_commits": {
+        "every-embodied": 1
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-09-29": 1
+      },
+      "hourly_distribution": {
+        "8": 1
+      },
+      "beijing_hourly_distribution": {
+        "16": 1
       },
       "night_owl_commits": 0,
       "night_owl_percentage": 0.0,
@@ -589,20 +630,11 @@
           "beijing_hour": 16,
           "is_night_owl": false,
           "url": "https://github.com/datawhalechina/every-embodied/commit/8889957f2d1860e7409e34446cdcc66451e8b6ee"
-        },
-        {
-          "message": "fix: 稳定快速开始方块抓取与放置 (#107)",
-          "repo": "every-embodied",
-          "date": "2026-09-24",
-          "time": "2026-09-24T17:22:01+00:00",
-          "beijing_hour": 17,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/every-embodied/commit/1cb6ec9d4a89cc1049818442d9b34b4007647328"
         }
       ],
-      "first_commit_date": "2026-09-24T09:22:01+00:00",
+      "first_commit_date": "2026-09-29T08:36:59+00:00",
       "last_commit_date": "2026-09-29T08:36:59+00:00",
-      "active_days": 2,
+      "active_days": 1,
       "avg_commits_per_day": 1.0
     },
     "Suibian-YY-pro": {
@@ -663,6 +695,51 @@
       "last_commit_date": "2026-09-29T04:41:13+00:00",
       "active_days": 2,
       "avg_commits_per_day": 1.5
+    },
+    "zhimin-z": {
+      "total_commits": 2,
+      "repos": [
+        "learn-world-model"
+      ],
+      "repo_commits": {
+        "learn-world-model": 2
+      },
+      "repo_count": 1,
+      "daily_commits": {
+        "2026-09-27": 2
+      },
+      "hourly_distribution": {
+        "2": 2
+      },
+      "beijing_hourly_distribution": {
+        "10": 2
+      },
+      "night_owl_commits": 0,
+      "night_owl_percentage": 0.0,
+      "commit_messages": [
+        {
+          "message": "Add files via upload",
+          "repo": "learn-world-model",
+          "date": "2026-09-27",
+          "time": "2026-09-27T10:20:34+00:00",
+          "beijing_hour": 10,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/6d791e82ea591bf69664561c9b05f4fa556a77e5"
+        },
+        {
+          "message": "Delete docs/public/wechat.jpg",
+          "repo": "learn-world-model",
+          "date": "2026-09-27",
+          "time": "2026-09-27T10:06:56+00:00",
+          "beijing_hour": 10,
+          "is_night_owl": false,
+          "url": "https://github.com/datawhalechina/learn-world-model/commit/687d015fbc86746a1358ba789b7cea901ffb9c2b"
+        }
+      ],
+      "first_commit_date": "2026-09-27T02:06:56+00:00",
+      "last_commit_date": "2026-09-27T02:20:34+00:00",
+      "active_days": 1,
+      "avg_commits_per_day": 2.0
     },
     "Bald0Wang": {
       "total_commits": 62,
@@ -848,100 +925,6 @@
       "active_days": 1,
       "avg_commits_per_day": 1.0
     },
-    "yeyeyeyeeeee": {
-      "total_commits": 3,
-      "repos": [
-        "jev-cookbook"
-      ],
-      "repo_commits": {
-        "jev-cookbook": 3
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-09-24": 3
-      },
-      "hourly_distribution": {
-        "12": 1,
-        "10": 1,
-        "7": 1
-      },
-      "beijing_hourly_distribution": {
-        "20": 1,
-        "18": 1,
-        "15": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "新增 DSH × Jev 决策协作学习案例与真实实验 Notebook",
-          "repo": "jev-cookbook",
-          "date": "2026-09-24",
-          "time": "2026-09-24T20:07:07+00:00",
-          "beijing_hour": 20,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/jev-cookbook/commit/69bd334ef9a0257f4fdac057160bc43f504fcbfb"
-        },
-        {
-          "message": "Merge branch 'Bald0Wang:main' into main",
-          "repo": "jev-cookbook",
-          "date": "2026-09-24",
-          "time": "2026-09-24T18:02:18+00:00",
-          "beijing_hour": 18,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/jev-cookbook/commit/89d2f44ba2a594f21456ec33fafa573eeeb14f53"
-        },
-        {
-          "message": "新增七章中文实验 Notebook 并统一目录风格",
-          "repo": "jev-cookbook",
-          "date": "2026-09-24",
-          "time": "2026-09-24T15:33:16+00:00",
-          "beijing_hour": 15,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/jev-cookbook/commit/96ee52cac6fca4a32881b3fa02d147674a95fc1a"
-        }
-      ],
-      "first_commit_date": "2026-09-24T07:33:16+00:00",
-      "last_commit_date": "2026-09-24T12:07:07+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 3.0
-    },
-    "Fyuan0206": {
-      "total_commits": 1,
-      "repos": [
-        "jev-cookbook"
-      ],
-      "repo_commits": {
-        "jev-cookbook": 1
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-09-24": 1
-      },
-      "hourly_distribution": {
-        "5": 1
-      },
-      "beijing_hourly_distribution": {
-        "13": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "新增 JevHarness 项目分析与评估文档，详细介绍了其架构、核心思想",
-          "repo": "jev-cookbook",
-          "date": "2026-09-24",
-          "time": "2026-09-24T13:49:57+00:00",
-          "beijing_hour": 13,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/jev-cookbook/commit/2b5260ad7efdee7ef377623e0e3356bdb0dbaedb"
-        }
-      ],
-      "first_commit_date": "2026-09-24T05:49:57+00:00",
-      "last_commit_date": "2026-09-24T05:49:57+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 1.0
-    },
     "lynnyulinlin-debug": {
       "total_commits": 2,
       "repos": [
@@ -986,144 +969,6 @@
       "last_commit_date": "2026-09-27T03:07:23+00:00",
       "active_days": 1,
       "avg_commits_per_day": 2.0
-    },
-    "johnjim0816": {
-      "total_commits": 21,
-      "repos": [
-        "dive-into-embodied-ai"
-      ],
-      "repo_commits": {
-        "dive-into-embodied-ai": 21
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-09-29": 1,
-        "2026-09-27": 1,
-        "2026-09-25": 4,
-        "2026-09-24": 15
-      },
-      "hourly_distribution": {
-        "7": 1,
-        "4": 1,
-        "17": 4,
-        "15": 2,
-        "1": 2,
-        "13": 1,
-        "12": 3,
-        "11": 5,
-        "6": 1,
-        "2": 1
-      },
-      "beijing_hourly_distribution": {
-        "15": 1,
-        "12": 1,
-        "1": 4,
-        "23": 2,
-        "9": 2,
-        "21": 1,
-        "20": 3,
-        "19": 5,
-        "14": 1,
-        "10": 1
-      },
-      "night_owl_commits": 6,
-      "night_owl_percentage": 28.6,
-      "commit_messages": [
-        {
-          "message": "feat: add Spanish and Italian language support",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-09-29",
-          "time": "2026-09-29T15:01:20+00:00",
-          "beijing_hour": 15,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/06c798d163a50d9273233b54973b5c69bc056d73"
-        },
-        {
-          "message": "fix: render tutorial images in GitHub previews",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-09-27",
-          "time": "2026-09-27T12:16:26+00:00",
-          "beijing_hour": 12,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/1a4f0951682c3fe6629cde2b151912677252524a"
-        },
-        {
-          "message": "fix: preserve locale homepage routes in local previews",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-09-25",
-          "time": "2026-09-26T01:21:08+00:00",
-          "beijing_hour": 1,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/14adffc58c4cc8c00a32d5a5586917652310fa78"
-        },
-        {
-          "message": "fix: remove Markdown copy controls from homepages",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-09-25",
-          "time": "2026-09-26T01:14:54+00:00",
-          "beijing_hour": 1,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/9c987735fcc9b3bfdc363cff749bc164611a9156"
-        },
-        {
-          "message": "docs: align README banner with learning focus",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-09-25",
-          "time": "2026-09-25T23:33:13+00:00",
-          "beijing_hour": 23,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/745126d1c9ec8d368b573e69dc1f79b9f6f15eef"
-        },
-        {
-          "message": "feat: add bilingual Markdown copy actions to site pages",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-09-25",
-          "time": "2026-09-25T09:48:32+00:00",
-          "beijing_hour": 9,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/3feb89597743bf4ab9b9628da66c95014d704f51"
-        },
-        {
-          "message": "Refine documentation navigation and responsive reading layout",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-09-24",
-          "time": "2026-09-25T01:41:25+00:00",
-          "beijing_hour": 1,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/0acb92d7822538ecda16928b85444449149d8d4c"
-        },
-        {
-          "message": "docs: simplify README content availability listings",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-09-24",
-          "time": "2026-09-25T01:28:44+00:00",
-          "beijing_hour": 1,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/5dca97864c03eaf276acce3c9efa522ce040dcf1"
-        },
-        {
-          "message": "docs: merge tutorial courses into projects",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-09-24",
-          "time": "2026-09-24T23:18:38+00:00",
-          "beijing_hour": 23,
-          "is_night_owl": true,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/52ca3450256803c0d90f71364f5f244b9f9d687c"
-        },
-        {
-          "message": "docs: separate learning modules from career guidance",
-          "repo": "dive-into-embodied-ai",
-          "date": "2026-09-24",
-          "time": "2026-09-24T21:16:21+00:00",
-          "beijing_hour": 21,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/dive-into-embodied-ai/commit/646efeaf158531b97ba1f0f161cf0f10dd54d15f"
-        }
-      ],
-      "first_commit_date": "2026-09-24T01:51:41+00:00",
-      "last_commit_date": "2026-09-29T07:01:20+00:00",
-      "active_days": 4,
-      "avg_commits_per_day": 5.25
     },
     "ZXJC-niusile": {
       "total_commits": 1,
@@ -1369,42 +1214,6 @@
       "last_commit_date": "2026-09-27T17:43:23+00:00",
       "active_days": 2,
       "avg_commits_per_day": 1.0
-    },
-    "Sm1les": {
-      "total_commits": 1,
-      "repos": [
-        "hello-ai"
-      ],
-      "repo_commits": {
-        "hello-ai": 1
-      },
-      "repo_count": 1,
-      "daily_commits": {
-        "2026-09-24": 1
-      },
-      "hourly_distribution": {
-        "7": 1
-      },
-      "beijing_hourly_distribution": {
-        "15": 1
-      },
-      "night_owl_commits": 0,
-      "night_owl_percentage": 0.0,
-      "commit_messages": [
-        {
-          "message": "Initial commit",
-          "repo": "hello-ai",
-          "date": "2026-09-24",
-          "time": "2026-09-24T15:32:19+00:00",
-          "beijing_hour": 15,
-          "is_night_owl": false,
-          "url": "https://github.com/datawhalechina/hello-ai/commit/577ce530d7691d2aa230b88dd05bcb20bc7cbb73"
-        }
-      ],
-      "first_commit_date": "2026-09-24T07:32:19+00:00",
-      "last_commit_date": "2026-09-24T07:32:19+00:00",
-      "active_days": 1,
-      "avg_commits_per_day": 1.0
     }
   },
   "optimization_stats": {
@@ -1416,7 +1225,7 @@
       "user_repos": 837,
       "total": 2113
     },
-    "execution_time": "984.7s",
+    "execution_time": "1034.7s",
     "optimization_enabled": true
   }
 }
