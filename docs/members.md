@@ -4,6 +4,6 @@
 import MembersList from './.vitepress/theme/members/MembersList.vue'
 </script>
 
-所有贡献者的详细信息，支持按研究方向筛选和搜索。
+认识共同建设 Datawhale 的伙伴。按姓名、研究方向筛选，选择合适的排序方式，或打开个人报告了解他们的开源足迹。
 
 <MembersList />

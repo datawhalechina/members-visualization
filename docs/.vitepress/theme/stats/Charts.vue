@@ -21,6 +21,16 @@ let pieChart = null
 let barChart = null
 let wordCloudChart = null
 let networkChart = null
+let themeObserver = null
+let themeRefreshTimer = null
+
+const handleResize = () => {
+  pieChart?.setOption(createPieChartOption())
+  pieChart?.resize()
+  barChart?.resize()
+  wordCloudChart?.resize()
+  networkChart?.resize()
+}
 
 // 暗黑模式检测函数
 const checkDarkMode = () => {
@@ -55,18 +65,20 @@ const getThemeColors = () => {
 
 // 重新创建图表配置的函数
 const createPieChartOption = () => {
+  const compact = (pieRef.value?.clientWidth || 600) < 480
   const pieData = Object.entries(domainCount.value)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 10)
     .map(([k, v]) => ({ name: k, value: v }))
 
   return {
+    backgroundColor: 'transparent',
     title: {
       text: '研究方向分布',
       subtext: '成员研究方向统计',
       left: 'center',
       textStyle: {
-        fontSize: 20,
+        fontSize: compact ? 17 : 20,
         fontWeight: 'bold',
         color: getThemeColors().textColor
       },
@@ -84,9 +96,11 @@ const createPieChartOption = () => {
       }
     },
     legend: {
-      orient: 'vertical',
-      left: 'left',
-      top: 'middle',
+      type: 'scroll',
+      orient: compact ? 'horizontal' : 'vertical',
+      left: compact ? 'center' : 'left',
+      top: compact ? 70 : 'middle',
+      width: compact ? '90%' : 'auto',
       itemGap: 12,
       textStyle: {
         fontSize: 12,
@@ -96,12 +110,12 @@ const createPieChartOption = () => {
     series: [{
       name: '研究方向',
       type: 'pie',
-      radius: ['40%', '70%'],
-      center: ['60%', '50%'],
+      radius: compact ? ['30%', '55%'] : ['40%', '70%'],
+      center: compact ? ['50%', '62%'] : ['60%', '50%'],
       avoidLabelOverlap: false,
       itemStyle: {
         borderRadius: 10,
-        borderColor: '#fff',
+        borderColor: isDark.value ? '#1b1b1f' : '#fff',
         borderWidth: 2
       },
       label: {
@@ -132,6 +146,7 @@ const createBarChartOption = () => {
   const domainEntries = Object.entries(domainCount.value).sort((a, b) => b[1] - a[1]).slice(0, 15)
 
   return {
+    backgroundColor: 'transparent',
     title: {
       text: '研究方向统计',
       subtext: `平均每人涉及 ${stats.value.avgDomainsPerMember} 个方向`,
@@ -162,61 +177,47 @@ const createBarChartOption = () => {
       }
     },
     grid: {
-      left: '5%',
-      right: '5%',
-      bottom: '15%',
-      top: '20%',
+      left: 12,
+      right: 32,
+      bottom: 12,
+      top: 88,
       containLabel: true
     },
     xAxis: {
-      type: 'category',
-      data: domainEntries.map(([k, v]) => k),
-      axisLabel: {
-        rotate: 45,
-        interval: 0,
-        fontSize: 12,
-        color: getThemeColors().textColor
-      },
-      axisLine: {
+      type: 'value',
+      minInterval: 1,
+      splitNumber: 4,
+      axisLabel: { color: getThemeColors().textColor, fontSize: 11 },
+      axisLine: { show: false },
+      axisTick: { show: false },
+      splitLine: {
         lineStyle: {
-          color: getThemeColors().axisLineColor
+          color: getThemeColors().splitLineColor,
+          type: 'dashed'
         }
       }
     },
     yAxis: {
-      type: 'value',
-      name: '成员数量',
-      nameTextStyle: {
-        color: getThemeColors().textColor,
-        fontSize: 12
-      },
+      type: 'category',
+      inverse: true,
+      data: domainEntries.map(([name]) => name),
       axisLabel: {
+        interval: 0,
+        fontSize: 12,
+        width: 88,
+        overflow: 'truncate',
         color: getThemeColors().textColor
       },
-      axisLine: {
-        lineStyle: {
-          color: getThemeColors().axisLineColor
-        }
-      },
-      splitLine: {
-        lineStyle: {
-          color: getThemeColors().splitLineColor
-        }
-      }
+      axisLine: { show: false },
+      axisTick: { show: false }
     },
     series: [{
       name: '成员数量',
       type: 'bar',
-      barWidth: '60%',
-      data: domainEntries.map(([k, v], index) => ({
-        value: v,
-        itemStyle: {
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: `hsl(${(index * 30) % 360}, 70%, 60%)` },
-            { offset: 1, color: `hsl(${(index * 30) % 360}, 70%, 40%)` }
-          ])
-        }
-      })),
+      barMaxWidth: 16,
+      itemStyle: { color: isDark.value ? '#8b9bff' : '#667eea', borderRadius: [0, 4, 4, 0] },
+      label: { show: true, position: 'right', color: getThemeColors().textColor, fontSize: 11 },
+      data: domainEntries.map(([, count]) => count),
       animationDelay: function (idx) {
         return idx * 50
       }
@@ -401,6 +402,7 @@ const createNetworkChartOption = () => {
   })
 
   return {
+    backgroundColor: 'transparent',
     tooltip: {
       trigger: 'item',
       formatter: function (params) {
@@ -541,17 +543,18 @@ onMounted(async () => {
 
     // 监听主题变化
     if (typeof window !== 'undefined') {
-      const observer = new MutationObserver(() => {
+      themeObserver = new MutationObserver(() => {
         const newIsDark = document.documentElement.classList.contains('dark')
         if (newIsDark !== isDark.value) {
           isDark.value = newIsDark
           // 重新初始化所有图表以应用新主题
-          setTimeout(() => {
+          clearTimeout(themeRefreshTimer)
+          themeRefreshTimer = setTimeout(() => {
             refreshAllCharts()
           }, 100)
         }
       })
-      observer.observe(document.documentElement, {
+      themeObserver.observe(document.documentElement, {
         attributes: true,
         attributeFilter: ['class']
       })
@@ -574,7 +577,7 @@ onMounted(async () => {
     const responseJSON = await res.json()
     const parsedMembers = responseJSON.map(item => {
       Object.keys(item).forEach((key) => {
-        let value = item[key] || '';
+        let value = item[key] ?? '';
         if (typeof value === 'string') {
           value = value.trim().replace(/^"|"$/g, '')
         }
@@ -790,13 +793,7 @@ onMounted(async () => {
     }
 
     // 响应式处理
-    window.handleResize = () => {
-      pieChart?.resize()
-      barChart?.resize()
-      wordCloudChart?.resize()
-      networkChart?.resize()
-    }
-    window.addEventListener('resize', window.handleResize)
+    window.addEventListener('resize', handleResize)
 
   } catch (err) {
     console.error('Error loading data:', err)
@@ -813,7 +810,9 @@ onUnmounted(() => {
   networkChart?.dispose()
 
   // 移除事件监听器
-  window.removeEventListener('resize', window.handleResize)
+  themeObserver?.disconnect()
+  clearTimeout(themeRefreshTimer)
+  window.removeEventListener('resize', handleResize)
 })
 </script>
 
@@ -855,7 +854,7 @@ onUnmounted(() => {
 
       <!-- 柱状图 -->
       <div class="chart-container">
-        <div ref="barRef" class="chart"></div>
+        <div ref="barRef" class="chart research-bar-chart"></div>
       </div>
 
       <!-- 词云图 -->
@@ -864,7 +863,7 @@ onUnmounted(() => {
       </div>
       <div v-else class="chart-container">
         <div class="loading">
-          <p>词云插件加载中...</p>
+          <p>词云暂时无法显示，请刷新页面重试。</p>
         </div>
       </div>
 
@@ -927,6 +926,7 @@ onUnmounted(() => {
 }
 
 .chart-container {
+  height: auto;
   margin-bottom: 4rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
@@ -936,7 +936,7 @@ onUnmounted(() => {
   transition: box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
   overflow: hidden;
   position: relative;
-  min-height: 600px;
+  min-height: 0;
 }
 
 .chart-container:hover {
@@ -954,8 +954,8 @@ onUnmounted(() => {
 
 .chart {
   width: 100%;
-  height: 550px;
-  min-height: 500px;
+  height: 440px;
+  min-height: 0;
   max-width: 100%;
   overflow: hidden;
   position: relative;
@@ -963,13 +963,17 @@ onUnmounted(() => {
 
 .chart-large {
   width: 100%;
-  height: 800px;
-  min-height: 750px;
+  height: 600px;
+  min-height: 0;
   max-width: 100%;
   overflow: hidden;
   position: relative;
   padding: 20px;
   box-sizing: border-box;
+}
+
+.chart.research-bar-chart {
+  height: 480px;
 }
 
 /* 确保chart-large内部的ECharts容器也受约束 */
@@ -1002,8 +1006,8 @@ onUnmounted(() => {
 
 /* 词云图专用样式 */
 .chart[data-chart-type="wordcloud"] {
-  height: 450px;
-  min-height: 400px;
+  height: 400px;
+  min-height: 0;
   background: transparent;
   overflow: visible;
 }
@@ -1055,6 +1059,10 @@ onUnmounted(() => {
 
   .chart-large {
     height: 500px;
+  }
+
+  .chart[data-chart-type="wordcloud"] {
+    height: 320px;
   }
 
   .chart-container {

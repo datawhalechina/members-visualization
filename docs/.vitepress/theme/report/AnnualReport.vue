@@ -13,6 +13,14 @@ const searchSubmitted = ref(false)
 const selectedMember = ref(null)
 const cardRef = ref(null)
 const copyStatus = ref('')
+const linkStatus = ref('')
+const examples = computed(() => [...members.value]
+  .sort((a, b) => (Number(b.org_total_contributions) || 0) - (Number(a.org_total_contributions) || 0))
+  .slice(0, 3))
+
+function normalizeUsername(value) {
+  return value.trim().replace(/^(?:https?:\/\/)?(?:www\.)?github\.com\//i, '').replace(/^@/, '').split(/[/?#]/)[0].toLowerCase()
+}
 
 function mergeCommitsData(membersArr, commits) {
   if (!commits?.user_commits) return membersArr
@@ -25,11 +33,35 @@ function mergeCommitsData(membersArr, commits) {
 
 function findMember() {
   searchSubmitted.value = true
-  const q = searchQuery.value.trim().toLowerCase()
+  const q = normalizeUsername(searchQuery.value)
   if (!q) { selectedMember.value = null; return }
   selectedMember.value = members.value.find(m =>
     m.id.toLowerCase() === q || (m.name && m.name.toLowerCase() === q)
   ) || null
+  const url = new URL(window.location.href)
+  if (selectedMember.value) url.searchParams.set('user', selectedMember.value.id)
+  else url.searchParams.delete('user')
+  window.history.replaceState(window.history.state, '', url)
+}
+
+function useExample(member) {
+  searchQuery.value = member.id
+  findMember()
+}
+
+async function copyReportLink() {
+  try {
+    await navigator.clipboard.writeText(window.location.href)
+    linkStatus.value = '链接已复制'
+  } catch {
+    linkStatus.value = '可复制浏览器地址分享'
+  }
+  setTimeout(() => { linkStatus.value = '' }, 2500)
+}
+
+function topPercentage(ranking) {
+  const value = ranking.rank / members.value.length * 100
+  return Number(Math.max(0.1, value).toFixed(value < 1 ? 1 : 0))
 }
 
 function handleKeydown(e) {
@@ -65,7 +97,7 @@ const report = computed(() => {
 function generateSummary(m, rankings) {
   const parts = []
   if (rankings.stars.pct >= 90) parts.push('你是社区中的 Star 收割机')
-  else if (rankings.stars.pct >= 70) parts.push('你的项目很受欢迎')
+  else if (rankings.stars.pct >= 70) parts.push('你参与的项目很受欢迎')
   if (rankings.contribs.pct >= 90) parts.push('代码贡献量名列前茅')
   else if (rankings.contribs.pct >= 50) parts.push('持续为社区贡献代码')
   const domains = Array.isArray(m.domain) ? m.domain : []
@@ -127,6 +159,11 @@ onMounted(async () => {
     const [membersData, commits] = await Promise.all([loadMembers(), loadCommitsWeekly()])
     members.value = mergeCommitsData(membersData, commits)
     commitsData.value = commits
+    const initialUser = new URLSearchParams(window.location.search).get('user')
+    if (initialUser) {
+      searchQuery.value = initialUser
+      findMember()
+    }
   } catch (err) {
     error.value = err.message
   } finally {
@@ -146,14 +183,20 @@ onMounted(async () => {
           <input
             v-model="searchQuery"
             type="text"
-            placeholder="输入 GitHub 用户名..."
+            aria-label="报告用户"
+            placeholder="GitHub 用户名或个人主页链接"
             class="search-input"
             @keydown="handleKeydown"
           />
-          <button class="search-btn" @click="findMember">生成年报</button>
+          <button class="search-btn" :disabled="!searchQuery.trim()" @click="findMember">生成报告</button>
           <button class="search-btn secondary" :disabled="!report || copyStatus === '生成中...'" @click="copyAsPng" title="复制为高清 PNG 图片">{{ copyStatus || '📷 复制图片' }}</button>
+          <button v-if="report" class="search-btn secondary" @click="copyReportLink">{{ linkStatus || '复制报告链接' }}</button>
         </div>
-        <p class="search-hint">输入你的 GitHub 用户名，查看你在 Datawhale 社区的开源年报</p>
+        <p class="search-hint">基于社区已收录成员生成报告，可复制图片或通过链接分享。</p>
+        <div v-if="!report && !searchSubmitted" class="report-examples">
+          <span>先看看社区伙伴：</span>
+          <button v-for="member in examples" :key="member.id" @click="useExample(member)">@{{ member.id }}</button>
+        </div>
       </div>
 
       <!-- 未找到 -->
@@ -169,7 +212,7 @@ onMounted(async () => {
           <div class="report-inner">
             <!-- 头部 -->
             <div class="report-header">
-              <div class="report-badge-label">Datawhale 开源年报</div>
+              <div class="report-badge-label">Datawhale 个人开源报告</div>
               <img :src="getAvatarUrl(report.member)" :alt="report.member.name || report.member.id" class="report-avatar" />
               <h2 class="report-name">{{ report.member.name || report.member.id }}</h2>
               <p v-if="report.member.name && report.member.name !== report.member.id" class="report-id">@{{ report.member.id }}</p>
@@ -185,24 +228,26 @@ onMounted(async () => {
               <div class="metric-card">
                 <div class="metric-value">{{ report.member.org_repos_count || 0 }}</div>
                 <div class="metric-label">参与仓库</div>
-                <div class="metric-pct" :style="{ color: pctColor(report.rankings.repos.pct) }">Top {{ 100 - report.rankings.repos.pct }}%</div>
+                <div class="metric-pct" :style="{ color: pctColor(report.rankings.repos.pct) }">社区前 {{ topPercentage(report.rankings.repos) }}%</div>
               </div>
               <div class="metric-card">
                 <div class="metric-value">{{ report.member.org_total_stars || 0 }}</div>
-                <div class="metric-label">获得 Stars</div>
-                <div class="metric-pct" :style="{ color: pctColor(report.rankings.stars.pct) }">Top {{ 100 - report.rankings.stars.pct }}%</div>
+                <div class="metric-label">参与项目 Stars</div>
+                <div class="metric-pct" :style="{ color: pctColor(report.rankings.stars.pct) }">社区前 {{ topPercentage(report.rankings.stars) }}%</div>
               </div>
               <div class="metric-card">
                 <div class="metric-value">{{ report.member.org_total_contributions || 0 }}</div>
                 <div class="metric-label">贡献次数</div>
-                <div class="metric-pct" :style="{ color: pctColor(report.rankings.contribs.pct) }">Top {{ 100 - report.rankings.contribs.pct }}%</div>
+                <div class="metric-pct" :style="{ color: pctColor(report.rankings.contribs.pct) }">社区前 {{ topPercentage(report.rankings.contribs) }}%</div>
               </div>
               <div class="metric-card">
                 <div class="metric-value">{{ report.member.followers || 0 }}</div>
                 <div class="metric-label">关注者</div>
-                <div class="metric-pct" :style="{ color: pctColor(report.rankings.followers.pct) }">Top {{ 100 - report.rankings.followers.pct }}%</div>
+                <div class="metric-pct" :style="{ color: pctColor(report.rankings.followers.pct) }">社区前 {{ topPercentage(report.rankings.followers) }}%</div>
               </div>
             </div>
+
+            <p class="report-scope">累计指标来自成员采集快照；参与项目 Stars 按所参与的组织仓库汇总。近期活跃与深夜比例使用最近 {{ commitsData?.days_range || 7 }} 天的采集窗口<span v-if="commitsData?.update_time">，更新于 {{ commitsData.update_time.slice(0, 10) }}</span>。</p>
 
             <!-- 研究方向 -->
             <div v-if="report.member.domain && report.member.domain.length" class="section">
@@ -245,7 +290,7 @@ onMounted(async () => {
             <!-- 底部 -->
             <div class="report-footer">
               <span>Datawhale Members Visualization</span>
-              <span>{{ new Date().getFullYear() }}</span>
+              <span v-if="commitsData?.update_time">{{ commitsData.update_time.slice(0, 10) }}</span>
             </div>
           </div>
         </div>
@@ -286,6 +331,9 @@ onMounted(async () => {
 .search-btn.secondary:hover:not(:disabled) { border-color: var(--vp-c-brand-1); color: var(--vp-c-brand-1); }
 .search-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .search-hint { font-size: 13px; color: var(--vp-c-text-2); margin-top: 10px; }
+.report-examples { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 12px; margin-top: 18px; color: var(--vp-c-text-3); font-size: 12px; }
+.report-examples button { color: var(--vp-c-brand-1); text-decoration: underline; text-underline-offset: 3px; }
+.report-scope { margin: 0 0 24px; color: var(--vp-c-text-2); font-size: 12px; line-height: 1.8; }
 
 /* 未找到 */
 .not-found { text-align: center; padding: 48px 20px; }
@@ -318,7 +366,7 @@ onMounted(async () => {
   width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
   border: 3px solid var(--vp-c-brand-1); display: block; margin: 0 auto 12px;
 }
-.report-name { margin: 0; font-size: 24px; color: var(--vp-c-text-1); }
+.report-name { margin: 0; padding: 0; border: 0; font-size: 24px; color: var(--vp-c-text-1); }
 .report-id { margin: 2px 0 0; font-size: 14px; color: var(--vp-c-text-2); }
 .report-bio { margin: 8px 0 0; font-size: 13px; color: var(--vp-c-text-2); max-width: 400px; margin-left: auto; margin-right: auto; }
 .report-meta { margin-top: 8px; font-size: 13px; color: var(--vp-c-text-2); display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }

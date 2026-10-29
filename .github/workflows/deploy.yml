@@ -34,7 +34,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: npm
 
       - name: Setup Python
@@ -79,6 +79,7 @@ jobs:
         timeout-minutes: 10
         run: |
           echo "开始构建 (最大10分钟超时)..."
+          python scripts/check_case_collisions.py
           npm run docs:build
         env:
           NODE_ENV: production

@@ -5,20 +5,16 @@ import ProjectStar from './.vitepress/theme/projects/ProjectStar.vue'
 import ProjectStarAddTop5 from './.vitepress/theme/projects/ProjectStarAddTop5.vue'
 import NewProjectStarAddTop3 from './.vitepress/theme/projects/NewProjectStarAddTop3.vue'
 import { ref, onMounted } from 'vue'
+import { loadProjectStats } from './.vitepress/theme/projects/projectData'
 
-const startTime = ref('加载中...')
-const endTime = ref('加载中...')
+const startTime = ref('—')
+const endTime = ref('—')
 
 onMounted(async () => {
   try {
-    const basePath = import.meta.env.BASE_URL || '/'
-    const timePath = `${basePath}data/datawhalechina/fetch_time_key.json`.replace(/\/+/g, '/')
-    const response = await fetch(timePath)
-    if (response.ok) {
-      const res = await response.json()
-      startTime.value = res[res.length - 4]
-      endTime.value = res[res.length - 1]
-    }
+    const data = await loadProjectStats()
+    startTime.value = data.meta?.period_start || '—'
+    endTime.value = data.meta?.period_end || '—'
   } catch (error) {
     console.error('获取时间数据失败:', error)
   }
@@ -27,18 +23,18 @@ onMounted(async () => {
 
 ## 项目 Star 数
 
-Datawhale 所有 Star 数大于 1000 的项目近一年趋势。拖动右侧滚动条可缩放图表。
+Datawhale Star 数不少于 1000 的项目近一年趋势，默认展示前 8 个项目。数据来自每月采集时的仓库 Star 总数快照，当前月份随数据同步更新。
 
 <ProjectStar />
 
-## Star 增长 Top 5
+## Star 净增 Top 5
 
-{{ startTime }} 至 {{ endTime }} 统计周期内，Star 增长数前 5 名：
+{{ startTime }} 至 {{ endTime }} 的采集快照之间，Star 净增数前 5 名：
 
 <ProjectStarAddTop5 />
 
 ## 新秀项目 Top 3
 
-{{ startTime }} 至 {{ endTime }} 统计周期内，新秀项目 Star 增长数前 3 名：
+{{ startTime }} 至 {{ endTime }} 的采集快照之间，基期 Star 不超过 10 的项目中，当前 Star 总数前 3 名。条形图展示同期净增数；基期尚未收录的项目按 0 计算。
 
 <NewProjectStarAddTop3 />

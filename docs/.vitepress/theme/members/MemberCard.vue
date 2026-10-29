@@ -1,5 +1,6 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed } from 'vue'
+import { withBase } from 'vitepress'
 
 const props = defineProps({
   member: {
@@ -8,9 +9,15 @@ const props = defineProps({
   }
 })
 
-const githubData = ref(null)
-const loading = ref(true)  // 保持兼容性，但会在mounted中设为false
-const error = ref(null)
+const showAllRepos = ref(false)
+const showAllDomains = ref(false)
+const reportUrl = computed(() => withBase(`/report?user=${encodeURIComponent(props.member.id)}`))
+const visibleDomains = computed(() => showAllDomains.value ? props.member.domain : props.member.domain.slice(0, 3))
+
+function handleAvatarError(event) {
+  const fallback = withBase('/default-avatar.svg')
+  if (!event.target.src.endsWith(fallback)) event.target.src = fallback
+}
 
 // 注释：已移除实时GitHub API调用，改为使用本地CSV数据
 
@@ -36,11 +43,11 @@ const getDisplayName = (member) => {
   return name
 }
 
-onMounted(() => {
+const githubData = computed(() => {
   // 直接使用CSV中的数据，不再实时调用GitHub API
   const displayName = getDisplayName(props.member)
 
-  githubData.value = {
+  return {
     login: props.member.id,
     avatar_url: getAvatarUrl(props.member),
     html_url: props.member.github,
@@ -54,7 +61,6 @@ onMounted(() => {
     totalStars: props.member.total_stars || 0,
     repos: props.member.repositories || []  // 参与的组织仓库
   }
-  loading.value = false
 })
 </script>
 
@@ -67,6 +73,10 @@ onMounted(() => {
           :src="githubData.avatar_url"
           :alt="githubData?.name || member.id"
           class="avatar"
+          loading="lazy"
+          width="60"
+          height="60"
+          @error="handleAvatarError"
         />
         <div v-else class="avatar-placeholder">
           {{ (githubData?.name || member.id).charAt(0) }}
@@ -79,15 +89,19 @@ onMounted(() => {
             {{ githubData?.name || member.id }}
           </a>
         </h3>
-        <p v-if="githubData?.bio" class="member-bio">{{ githubData.bio }}</p>
+        <p class="member-id">@{{ member.id }}</p>
+        <p v-if="githubData?.bio" class="member-bio" :title="githubData.bio">{{ githubData.bio }}</p>
         <div class="member-domains">
           <span 
-            v-for="domain in member.domain" 
+            v-for="domain in visibleDomains"
             :key="domain" 
             class="domain-tag"
           >
             {{ domain }}
           </span>
+          <button v-if="member.domain.length > 3" class="domain-toggle" :aria-expanded="showAllDomains" @click="showAllDomains = !showAllDomains">
+            {{ showAllDomains ? '收起方向' : `+${member.domain.length - 3} 个方向` }}
+          </button>
         </div>
       </div>
     </div>
@@ -95,11 +109,11 @@ onMounted(() => {
     <div v-if="githubData" class="github-stats">
       <div class="stat-item">
         <span class="stat-number">{{ githubData.public_repos || 0 }}</span>
-        <span class="stat-label">仓库</span>
+        <span class="stat-label">公开仓库</span>
       </div>
       <div class="stat-item">
         <span class="stat-number">{{ githubData.totalStars || 0 }}</span>
-        <span class="stat-label">总 Stars</span>
+        <span class="stat-label">个人 Stars</span>
       </div>
       <div class="stat-item">
         <span class="stat-number">{{ githubData.followers || 0 }}</span>
@@ -112,10 +126,10 @@ onMounted(() => {
     </div>
 
     <div v-if="githubData?.repos?.length" class="recent-repos">
-      <h4>参与的组织仓库</h4>
+      <h4>参与项目 <span>{{ githubData.repos.length }}</span></h4>
       <div class="repo-list">
         <div
-          v-for="repoName in githubData.repos.slice(0, 5)"
+          v-for="repoName in showAllRepos ? githubData.repos : githubData.repos.slice(0, 3)"
           :key="repoName"
           class="repo-item"
         >
@@ -124,15 +138,17 @@ onMounted(() => {
             target="_blank"
             rel="noopener noreferrer"
             class="repo-name"
+            :title="repoName"
           >
             {{ repoName }}
           </a>
-          <div class="repo-meta">
-            <span class="repo-org">datawhalechina</span>
-          </div>
         </div>
       </div>
+      <button v-if="githubData.repos.length > 3" class="repos-toggle" :aria-expanded="showAllRepos" @click="showAllRepos = !showAllRepos">
+        {{ showAllRepos ? '收起项目' : `查看全部 ${githubData.repos.length} 个项目` }}
+      </button>
     </div>
+    <footer class="member-footer"><a :href="reportUrl">查看个人报告 <span class="vpi-arrow-right" aria-hidden="true"></span></a></footer>
   </div>
 </template>
 
@@ -141,9 +157,9 @@ onMounted(() => {
   background: var(--vp-c-bg);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 10px var(--vp-shadow-1);
+  margin: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid var(--vp-c-border);
+  border: 1px solid var(--vp-c-divider);
 }
 
 .member-card:hover {
@@ -190,10 +206,12 @@ onMounted(() => {
 }
 
 .member-name {
-  margin: 0 0 8px 0;
+  margin: 0;
   font-size: 1.2rem;
   font-weight: bold;
 }
+
+.member-id { margin: 2px 0 8px; color: var(--vp-c-text-3); font-size: 12px; overflow-wrap: anywhere; }
 
 .member-name a {
   color: var(--vp-c-text-1);
@@ -210,6 +228,10 @@ onMounted(() => {
   color: var(--vp-c-text-2);
   font-size: 0.9rem;
   line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .member-domains {
@@ -227,6 +249,12 @@ onMounted(() => {
   font-weight: 500;
   border: 1px solid var(--vp-c-border);
 }
+
+.domain-toggle, .repos-toggle { color: var(--vp-c-brand-1); font-size: 12px; cursor: pointer; }
+.domain-toggle { padding: 4px 2px; }
+.repos-toggle { margin-top: 10px; }
+.member-footer { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--vp-c-divider); }
+.member-footer a { display: inline-flex; gap: 10px; align-items: center; color: var(--vp-c-brand-1); font-size: 13px; font-weight: 600; text-decoration: none; }
 
 .github-stats {
   display: grid;
@@ -263,14 +291,16 @@ onMounted(() => {
   color: var(--vp-c-text-1);
 }
 
+.recent-repos h4 span { margin-left: 5px; color: var(--vp-c-text-3); font-weight: 400; font-size: 12px; }
+
 .repo-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
 }
 
 .repo-item {
-  padding: 12px;
+  padding: 7px 10px;
   background: var(--vp-c-bg-soft);
   border-radius: 8px;
   border-left: 3px solid var(--vp-c-brand-1);
@@ -282,6 +312,10 @@ onMounted(() => {
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .repo-name:hover {
@@ -328,10 +362,6 @@ onMounted(() => {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .member-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+  .member-header { gap: 12px; }
 }
 </style>

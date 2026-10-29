@@ -28,7 +28,7 @@ onMounted(async () => {
 
 ## 同类组织对比
 
-GitHub 上 Star 数排名前十的知识分享类组织在 {{ startTime }} 至 {{ endTime }} 统计周期内的变化情况：
+以下选取的 10 个知识分享类组织在 {{ startTime }} 至 {{ endTime }} 统计周期内的变化情况。排名为数据源中的组织排名：
 
 <Organization />
 
