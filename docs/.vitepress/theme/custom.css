@@ -71,15 +71,6 @@
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
 }
 
-/* 表格样式 */
-th,
-td {
-  /* white-space: nowrap !important; */
-  /* 不让th，td内容换行显示 */
-  width: 10%;
-  /* 强制均匀分配宽度 */
-}
-
 :root {
   /* 页面整体最大宽度
    * 默认值：1440px
@@ -140,4 +131,48 @@ td {
  */
 .VPDoc .container {
   margin: 0;
+}
+
+/* Keep the existing brand while making the homepage easier to scan. */
+.VPHome .VPHero .tagline {
+  max-width: 590px;
+  font-size: 19px;
+  line-height: 1.8;
+  color: var(--vp-c-text-2);
+}
+
+.VPHome .VPFeature .title {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.VPHome .VPFeature .details {
+  line-height: 1.8;
+  color: var(--vp-c-text-2);
+}
+
+.VPHome .VPFeature.link:hover {
+  background: var(--vp-c-bg);
+}
+
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 4px;
+}
+
+.vp-doc details > summary { cursor: pointer; }
+
+@media (max-width: 640px) {
+  .VPHome .VPHero .tagline { font-size: 16px; line-height: 1.8; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }

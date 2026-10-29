@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { communitySummary } from './communitySummary.mjs'
 
 // 1. 获取环境变量并判断
 // 如果环境变量 EDGEONE 等于 '1'，说明在 EdgeOne 环境，使用根路径 '/'
@@ -16,6 +17,12 @@ export default defineConfig({
 
   // 路由配置
   cleanUrls: true,
+
+  transformPageData(pageData) {
+    if (pageData.relativePath === 'index.md') {
+      pageData.frontmatter.communityOverview = communitySummary()
+    }
+  },
 
   // 构建配置
   vite: {
@@ -64,7 +71,7 @@ export default defineConfig({
         text: "👥 贡献者",
         items: [
           { text: "🏆 贡献者榜单", link: "/rankings" },
-          { text: "🎖️ 季度贡献者", link: "/quarterly" },
+          { text: "🎖️ 阶段贡献者", link: "/quarterly" },
           { text: "👥 贡献者列表", link: "/members" },
           { text: "🏅 开源荣誉", link: "/rewards" },
         ],
@@ -83,7 +90,7 @@ export default defineConfig({
         items: [
           { text: "🏅 成就徽章", link: "/badges" },
           { text: "🗺️ 新人引导", link: "/guide" },
-          { text: "📋 开源年报", link: "/report" },
+          { text: "📋 个人开源报告", link: "/report" },
         ],
       },
       { text: "⭐ 点 Star", link: "/star" },
@@ -108,7 +115,7 @@ export default defineConfig({
           items: [
             { text: "🏠 首页", link: "/" },
             { text: "🏆 贡献者榜单", link: "/rankings" },
-            { text: "🎖️ 季度贡献者", link: "/quarterly" },
+            { text: "🎖️ 阶段贡献者", link: "/quarterly" },
             { text: "👥 贡献者列表", link: "/members" },
             { text: "🏅 开源荣誉", link: "/rewards" },
           ],
@@ -127,7 +134,7 @@ export default defineConfig({
           items: [
             { text: "🏅 成就徽章", link: "/badges" },
             { text: "🗺️ 新人引导", link: "/guide" },
-            { text: "📋 开源年报", link: "/report" },
+            { text: "📋 个人开源报告", link: "/report" },
           ],
         },
         {

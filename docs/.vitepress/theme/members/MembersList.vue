@@ -7,8 +7,15 @@ const loading = ref(true)
 const error = ref(null)
 const searchQuery = ref('')
 const selectedDomain = ref('')
+const sortBy = ref('repos')
 const currentPage = ref(1)
 const pageSize = 24
+
+const displayName = member => {
+  const name = member.name
+  return typeof name === 'string' && name.trim() && !['null', 'undefined', 'None'].includes(name)
+    ? name : member.id
+}
 
 // 获取所有研究方向
 const allDomains = computed(() => {
@@ -27,11 +34,7 @@ const filteredMembers = computed(() => {
   if (searchQuery.value.trim()) {
     const query = searchQuery.value.toLowerCase().trim()
     filtered = filtered.filter(member => {
-      const displayName = (member.name && member.name !== 'null' && member.name !== 'undefined' && member.name !== 'None' && member.name.trim() !== '')
-        ? member.name
-        : member.id
-
-      return displayName.toLowerCase().includes(query) ||
+      return displayName(member).toLowerCase().includes(query) ||
         member.id.toLowerCase().includes(query)
     })
   }
@@ -43,11 +46,14 @@ const filteredMembers = computed(() => {
     )
   }
 
-  // 默认按负责项目数降序排序
+  // A stable tie-breaker keeps page boundaries predictable when values match.
   filtered = [...filtered].sort((a, b) => {
-    const aCount = Array.isArray(a.repositories) ? a.repositories.length : 0
-    const bCount = Array.isArray(b.repositories) ? b.repositories.length : 0
-    return bCount - aCount
+    const byId = String(a.id).localeCompare(String(b.id))
+    if (sortBy.value === 'name') return displayName(a).localeCompare(displayName(b), 'zh-CN') || byId
+    const value = member => sortBy.value === 'repos'
+      ? member.repositories.length
+      : Number(member[sortBy.value === 'contributions' ? 'org_total_contributions' : 'followers']) || 0
+    return value(b) - value(a) || byId
   })
 
   return filtered
@@ -84,17 +90,19 @@ const pageNumbers = computed(() => {
 const goToPage = (page) => {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
   }
 }
 
 // 筛选条件变化时重置到第一页
-watch([searchQuery, selectedDomain], () => {
+watch([searchQuery, selectedDomain, sortBy], () => {
   currentPage.value = 1
 })
 
 // 加载成员数据
 const loadMembers = async () => {
+  loading.value = true
+  error.value = null
   try {
     // 根据环境动态获取base路径
     const basePath = import.meta.env.BASE_URL || '/'
@@ -149,16 +157,25 @@ onMounted(() => {
     <!-- 搜索和筛选 -->
     <div class="filters">
       <div class="search-box">
-        <input v-model="searchQuery" type="text" placeholder="搜索成员姓名或ID..." class="search-input" />
+        <input v-model="searchQuery" type="search" aria-label="搜索贡献者" placeholder="搜索姓名或 GitHub 用户名" class="search-input" />
         <div class="search-icon">🔍</div>
       </div>
 
       <div class="filter-box">
-        <select v-model="selectedDomain" class="domain-select">
+        <select v-model="selectedDomain" class="domain-select" aria-label="研究方向">
           <option value="">所有研究方向</option>
           <option v-for="domain in allDomains" :key="domain" :value="domain">
             {{ domain }}
           </option>
+        </select>
+      </div>
+
+      <div class="filter-box sort-box">
+        <select v-model="sortBy" class="domain-select" aria-label="排序方式">
+          <option value="repos">参与项目最多</option>
+          <option value="contributions">社区贡献最多</option>
+          <option value="followers">关注者最多</option>
+          <option value="name">按姓名排序</option>
         </select>
       </div>
 
@@ -168,7 +185,7 @@ onMounted(() => {
     </div>
 
     <!-- 结果统计 -->
-    <div v-if="!loading && !error" class="results-info">
+    <div v-if="!loading && !error" class="results-info" role="status" aria-live="polite">
       <p>
         显示 <strong>{{ filteredMembers.length }}</strong> / {{ members.length }} 个成员
         <span v-if="selectedDomain">（研究方向：{{ selectedDomain }}）</span>
@@ -185,6 +202,7 @@ onMounted(() => {
     <!-- 错误状态 -->
     <div v-else-if="error" class="error">
       <p>加载失败: {{ error }}</p>
+      <button @click="loadMembers" class="clear-btn">重新加载</button>
     </div>
 
     <!-- 成员列表 -->
@@ -193,14 +211,14 @@ onMounted(() => {
     </div>
 
     <!-- 分页控件 -->
-    <div v-if="totalPages > 1" class="pagination">
+    <nav v-if="!loading && !error && totalPages > 1" class="pagination" aria-label="贡献者分页">
       <button class="page-btn" :disabled="currentPage === 1" @click="goToPage(currentPage - 1)">上一页</button>
-      <template v-for="page in pageNumbers" :key="page">
+      <template v-for="(page, index) in pageNumbers" :key="`${page}-${index}`">
         <span v-if="page === '...'" class="page-ellipsis">...</span>
-        <button v-else class="page-btn" :class="{ active: page === currentPage }" @click="goToPage(page)">{{ page }}</button>
+        <button v-else class="page-btn" :class="{ active: page === currentPage }" :aria-current="page === currentPage ? 'page' : undefined" :aria-label="`第 ${page} 页`" @click="goToPage(page)">{{ page }}</button>
       </template>
       <button class="page-btn" :disabled="currentPage === totalPages" @click="goToPage(currentPage + 1)">下一页</button>
-    </div>
+    </nav>
 
     <!-- 无结果 -->
     <div v-if="!loading && !error && filteredMembers.length === 0" class="no-results">
@@ -255,8 +273,10 @@ onMounted(() => {
 }
 
 .filter-box {
-  min-width: 200px;
+  min-width: 170px;
 }
+
+.sort-box { min-width: 155px; }
 
 .domain-select {
   width: 100%;
@@ -298,7 +318,7 @@ onMounted(() => {
   padding: 12px 16px;
   background: var(--vp-c-bg-soft);
   border-radius: 8px;
-  border-left: 4px solid var(--vp-c-brand-1);
+  border: 1px solid var(--vp-c-divider);
 }
 
 .results-info p {
@@ -335,8 +355,9 @@ onMounted(() => {
 
 .members-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 20px;
+  align-items: start;
 }
 
 .pagination {
