@@ -1,6 +1,7 @@
 // .vitepress/theme/index.js
 import { h } from 'vue'
 import DefaultTheme from 'vitepress/theme'
+import HomeOverview from './home/HomeOverview.vue'
 import './custom.css'
 import './styles/leaderboard-base.css'
 
@@ -8,7 +9,7 @@ export default {
   extends: DefaultTheme,
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
-      // https://vitepress.dev/guide/extending-default-theme#layout-slots
+      'home-hero-after': () => h(HomeOverview)
     })
   },
   enhanceApp({ app, router, siteData }) {
