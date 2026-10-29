@@ -1,660 +1,133 @@
-<div align="center">
+![Datawhale 贡献者可视化](banner.png)
 
-![banner](banner.png)
+# Datawhale 贡献者可视化
 
-# 🌟 Datawhale 贡献者可视化平台
+**看见开源项目背后的人，理解一个社区如何共同成长。**
 
-_智能化的开源社区贡献者分析与展示系统_
+[在线体验](https://mv.datawhale.cc/) · [GitHub Pages 镜像](https://datawhalechina.github.io/members-visualization/) · [反馈与建议](https://github.com/datawhalechina/members-visualization/issues)
 
-[![GitHub stars](https://img.shields.io/github/stars/datawhalechina/members-visualization?style=for-the-badge&logo=github)](https://github.com/datawhalechina/members-visualization/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/datawhalechina/members-visualization?style=for-the-badge&logo=github)](https://github.com/datawhalechina/members-visualization/network)
-[![GitHub issues](https://img.shields.io/github/issues/datawhalechina/members-visualization?style=for-the-badge&logo=github)](https://github.com/datawhalechina/members-visualization/issues)
-[![GitHub license](https://img.shields.io/github/license/datawhalechina/members-visualization?style=for-the-badge)](https://github.com/datawhalechina/members-visualization/blob/main/LICENSE)
+一份开源教程、一套学习材料、一个持续更新的工具，背后往往有许多人的共同投入。有人发起项目，有人补充内容、修正问题，也有人在长期维护中把项目一点点推进下去。
 
-[![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)](https://vuejs.org/)
-[![VitePress](https://img.shields.io/badge/VitePress-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitepress.dev/)
-[![ECharts](https://img.shields.io/badge/ECharts-AA344D?style=for-the-badge&logo=apache-echarts&logoColor=white)](https://echarts.apache.org/)
-[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
+这些贡献分散在不同的仓库和个人主页里。初次接触社区的人，很难一下找到感兴趣的项目与伙伴；已经参与其中的人，也需要一个地方回看自己的投入，了解大家正在共同做什么。
 
-### [🚀 在线体验](https://datawhalechina.github.io/members-visualization/) | [📖 使用文档](#-快速开始) | [🤝 参与贡献](#-贡献指南)
+**这个项目以 Datawhale 为起点，把贡献者、参与项目、研究方向和时间变化连接起来，让分散的开源记录成为一幅可以探索的社区地图。**
 
-- Github访问链接：[https://datawhalechina.github.io/members-visualization/](https://datawhalechina.github.io/members-visualization/)
-- Datawhale专属链接：[https://mv.datawhale.cc/](https://mv.datawhale.cc/)
+## 为什么要有一张社区地图
 
-</div>
+在开源学习社区里，认识一个项目，常常也是认识一群人的开始。
 
----
+你可能因为一份大模型教程来到 Datawhale，随后想知道：哪些人参与了这份教程？他们还在做什么？社区里有没有与你关注同一方向的伙伴？如果想贡献一点内容，该从哪里开始？
 
-## 📖 项目简介
+当视角扩展到整个社区，又会出现更多问题：近期有哪些项目在成长？哪些方向聚集了更多贡献者？一段时间里，有哪些人持续参与，又有哪些新伙伴加入？
 
-**Datawhale 贡献者可视化平台** 是一个现代化的开源社区贡献者分析与展示系统，专为开源组织和技术社区设计。通过智能化的数据收集和精美的可视化展示，帮助社区管理者和成员更好地了解社区生态和发展趋势。
+项目希望把这些问题变得更容易探索：
 
-### 🎯 核心价值
+- **让贡献被看见。** 为具体的人保留参与项目、贡献记录和阶段成果，帮助大家认识项目背后的投入。
+- **让参与有入口。** 从感兴趣的方向出发，找到项目、认识伙伴，再走向实际的开源贡献。
+- **让成长有脉络。** 把个人参与、项目变化和社区整体放在一起观察，了解持续共建是怎样发生的。
 
-- **📊 数据驱动决策** - 基于真实的 GitHub 数据，提供科学的社区分析
-- **🔍 深度洞察** - 多维度分析成员活跃度、研究方向和贡献模式
-- **🎨 直观展示** - 丰富的图表类型和交互式界面，让数据说话
-- **⚡ 自动化运维** - 全自动数据更新和部署，零维护成本
-- **🌐 开箱即用** - 简单配置即可适配任何 GitHub 组织
+对贡献者，这是回看开源足迹的窗口；对新人，这是认识社区的入口；对维护者，这是了解社区状态、整理贡献记录的辅助工具。
 
-## ✨ 功能特性
+## 在这里，你可以探索什么
 
-<table>
-<tr>
-<td width="50%">
+### 认识贡献者，找到有共同兴趣的伙伴
 
-### 📋 开源年报
+[贡献者列表](https://datawhalechina.github.io/members-visualization/members)把成员的研究方向、参与项目和 GitHub 信息整理到一起。你可以搜索姓名或用户名，按研究方向筛选，也可以从参与项目、贡献次数等角度浏览。
 
-- 🔍 **用户搜索** - 输入 GitHub 用户名生成专属报告
-- 📊 **百分位排名** - 仓库数、Stars、贡献次数、关注者排名
-- 🏅 **成就徽章** - 自动计算多维度成就徽章
-- 📷 **图片导出** - 一键复制高清 PNG 或下载
-- 🔗 **嵌入代码** - 生成 iframe 嵌入代码
+它提供了一条从“我对这个方向感兴趣”走向“我想进一步了解这些伙伴”的路径。发现感兴趣的成员后，可以查看个人报告，或回到其 GitHub 主页和具体项目继续探索。
 
-</td>
-<td width="50%">
+### 从人和项目的交集，理解社区的连接
 
-### 🏅 成就徽章 & 新人引导
+[成员与协作分析](https://datawhalechina.github.io/members-visualization/organization)展示研究方向分布，以及贡献者共同参与仓库形成的关系。
 
-- 🌟 **7 类徽章** - Star 收割机、高产贡献者、多面手、社区影响力等
-- 🥇 **三级评定** - 铜牌、银牌、金牌分级展示
-- 🗺️ **五步引导** - 了解组织→选择方向→找到项目→开始贡献→持续成长
-- 📊 **动态数据** - 基于真实成员数据的方向分布饼图
+同一个人可能参与多个项目，一个项目也可能连接不同方向的成员。把这些交集放在一起，可以帮助你发现跨项目的联系，理解社区的知识与协作网络。关系图中的连线来自共同参与的仓库，具体合作经历可以进一步回到项目记录了解。
 
-</td>
-</tr>
-<tr>
-<td width="50%">
+### 观察项目与组织，看到持续变化
 
-### 📊 OSS Insight 集成
+[项目统计](https://datawhalechina.github.io/members-visualization/projects)通过月度 Star 快照和净增排行，展示社区项目的发展轨迹。你可以回看一个熟悉项目的变化，也可以发现近期受到关注的新项目。
 
-- ⭐ **Stars 统计** - 组织 Stars 增长趋势和热门仓库排行
-- 👥 **参与者分析** - 活跃/新增参与者趋势和排名
-- 🤝 **参与度分析** - 最活跃贡献者和代码提交时间分布
-- 📈 **生产力分析** - PR、Code Review、Issues 统计
-- 🔄 **时间范围切换** - 支持 7天/28天/90天/12个月数据视图
-- 🎨 **主题自适应** - 自动适配明亮/暗黑模式
+[OSS Insight 统计](https://datawhalechina.github.io/members-visualization/stats)则补充组织层面的观察，包括参与者、提交、PR、Issue 和代码评审等维度。结合不同视角，可以进一步了解项目的关注度、参与情况与开发活动。
 
-</td>
-<td width="50%">
+### 留下个人足迹，也记住阶段性的共同成果
 
-### 🔍 强大搜索筛选
+[个人开源报告](https://datawhalechina.github.io/members-visualization/report)把已收录贡献者的参与项目、累计贡献和成就整理成一张报告，支持图片导出与链接分享。它让分散在多个仓库中的个人经历有了一个集中回看的入口。
 
-- ⚡ **实时搜索** - 毫秒级响应，支持模糊匹配
-- 🎯 **精确筛选** - 多维度条件组合筛选
-- 📋 **智能建议** - 搜索关键词自动补全
-- 📊 **结果统计** - 实时显示筛选结果数量
-- 🔖 **标签过滤** - 按研究方向快速定位
-- 💾 **搜索历史** - 记住常用搜索条件
+[成就徽章](https://datawhalechina.github.io/members-visualization/badges)从不同侧面呈现参与特点，为持续贡献增加一些反馈与趣味。[贡献者榜单](https://datawhalechina.github.io/members-visualization/rankings)帮助大家了解近期活跃情况；[阶段贡献者](https://datawhalechina.github.io/members-visualization/quarterly)支持按已发布的月份范围回顾贡献成果、整理名单。
 
-</td>
-</tr>
-<tr>
-<td width="50%">
+[开源荣誉](https://datawhalechina.github.io/members-visualization/rewards)保留社区已经发布的表彰记录，让阶段性的感谢能够被回看。
 
-### 👥 GitHub 深度集成
+### 为第一次参与找到落脚点
 
-- 🖼️ **头像管理** - 自动下载缓存，支持默认头像
-- 🔗 **一键跳转** - 直达 GitHub 个人主页
-- 📈 **仓库统计** - Stars、Forks、仓库数实时统计
-- 👥 **社交数据** - 关注者、关注数动态展示
-- 📦 **最新项目** - 展示成员最近更新的仓库
-- 🏃 **活跃分析** - Commit 频率和活跃度评估
+[新人引导](https://datawhalechina.github.io/members-visualization/guide)串起了了解组织、选择方向、找到项目、开始贡献和持续成长的过程，并结合社区已有的方向与项目数据提供探索入口。
 
-</td>
-<td width="50%">
+如果你对开源感兴趣，可以先从熟悉的知识领域出发，阅读一个项目，认识参与其中的人，再寻找适合自己的贡献机会。
 
-### 🛠️ 现代化技术架构
+### 把项目的故事带回项目本身
 
-- 🚀 **自动化流水线** - GitHub Actions 全自动部署
-- 📱 **响应式设计** - 完美适配桌面端和移动端
-- ⚡ **极速加载** - VitePress 静态生成，CDN 加速
-- 🔄 **实时更新** - 每日自动拉取最新数据
-- 🎨 **主题定制** - 支持亮色/暗色主题切换
-- 📊 **性能监控** - API 调用统计和性能分析
+[项目徽章](https://datawhalechina.github.io/members-visualization/repo-badge)将项目趋势和贡献者信息整理成可展示的卡片，提供适合项目 README 的图片链接，以及用于其他页面的嵌入方式。
 
-</td>
-</tr>
-</table>
+这样，读者在认识项目内容的同时，也能看到它的发展与参与者。
 
-## 🏗️ 技术架构
+## 可以从哪里开始
 
-<div align="center">
+| 你现在的想法 | 建议从这里进入 |
+| --- | --- |
+| 第一次听说 Datawhale，想了解这个社区 | [新人引导](https://datawhalechina.github.io/members-visualization/guide) → [成员与协作分析](https://datawhalechina.github.io/members-visualization/organization) |
+| 对某个方向感兴趣，想找项目和伙伴 | [贡献者列表](https://datawhalechina.github.io/members-visualization/members) → [项目统计](https://datawhalechina.github.io/members-visualization/projects) |
+| 已经参与过贡献，想回看或分享自己的经历 | [个人开源报告](https://datawhalechina.github.io/members-visualization/report) → [成就徽章](https://datawhalechina.github.io/members-visualization/badges) |
+| 负责维护项目，想了解参与情况、整理阶段成果 | [贡献者榜单](https://datawhalechina.github.io/members-visualization/rankings) → [阶段贡献者](https://datawhalechina.github.io/members-visualization/quarterly) |
+| 正在建设其他开源社区，想参考一种展示方式 | 从[在线站点](https://mv.datawhale.cc/)了解使用体验，再浏览[源码](https://github.com/datawhalechina/members-visualization) |
 
-### 🛠️ 核心技术栈
+例如，你对 AI Agent 感兴趣，可以先在贡献者列表中筛选相关方向，查看这些成员参与的项目；找到一个合适的仓库后，再回到 GitHub 阅读文档、了解问题和贡献约定。随着公开数据被采集，相关参与记录也可以在社区页面中被回看。
 
-[![Vue.js](https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=flat-square&logo=vue.js)](https://vuejs.org/)
-[![VitePress](https://img.shields.io/badge/VitePress-1.x-646CFF?style=flat-square&logo=vite)](https://vitepress.dev/)
-[![ECharts](https://img.shields.io/badge/ECharts-5.x-AA344D?style=flat-square&logo=apache-echarts)](https://echarts.apache.org/)
-[![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat-square&logo=python)](https://python.org/)
+这些页面共同构成了一条从了解社区、发现兴趣，到实际参与和记录成长的路径。
 
-</div>
+## 如何理解这里的数据
 
-| 层级           | 技术选型          | 说明                             |
-| -------------- | ----------------- | -------------------------------- |
-| **前端框架**   | Vue 3 + VitePress | 现代化静态站点生成，极速开发体验 |
-| **数据可视化** | ECharts 5.x       | 丰富的图表类型，强大的交互能力   |
-| **UI 组件**    | 自研组件库        | 轻量级定制组件，完美适配业务需求 |
-| **数据处理**   | Python 3.8+       | GitHub API 集成，智能数据分析    |
-| **自动化部署** | GitHub Actions    | CI/CD 流水线，零配置自动部署     |
-| **数据存储**   | CSV + JSON        | 轻量级数据格式，便于版本控制     |
+平台主要依据 GitHub 公开数据和定期采集的快照展示内容，部分组织分析由 OSS Insight 提供。不同页面有各自的统计范围和更新节奏，浏览时请结合页面标注的时间理解。
 
-## 📂 项目结构
+累计贡献、近期活跃、项目关注度，分别反映不同的侧面。“参与项目 Stars”汇总的是所参与组织仓库的关注度；协作关系来自共同参与项目的记录。理解这些信息时，需要结合具体项目、参与方式和持续时间。
 
-```
-📦 members-visualization/
-├── 🤖 .github/workflows/           # GitHub Actions 工作流
-│   ├── daily-data-update.yml      # 每日数据自动更新
-│   ├── quarterly-contributors.yml # 月份范围贡献者统计工作流
-│   └── deploy.yml                 # 自动构建部署
-├── 📄 docs/                       # VitePress 文档站点
-│   ├── .vitepress/                # VitePress 配置
-│   │   ├── config.mjs             # 站点配置
-│   │   └── theme/                 # 自定义主题
-│   │       ├── members/           # 成员可视化组件目录
-│   │       ├── organization/      # 组织可视化组件目录
-│   │       ├── projects/          # 项目可视化组件目录
-│   │       ├── quarterly/         # 月度贡献者组件目录
-│   │       ├── rankings/          # 排名可视化组件目录
-│   │       ├── stats/             # 组织统计组件目录
-│   │       ├── badges/            # 成就徽章组件目录
-│   │       ├── guide/             # 新人引导组件目录
-│   │       ├── report/            # 开源年报组件目录
-│   │       └── utils/             # 共享工具模块
-│   ├── public/                    # 静态资源
-│   │   ├── data/                  # 数据文件
-│   │   │   ├── members.json       # 贡献者基础数据
-│   │   │   ├── commits_weekly.json # 提交活跃度数据
-│   │   │   └── datawhalechina/    # 组织专属数据
-│   │   │       └── monthly_contributors_*.json # 月份范围贡献者数据
-│   │   └── avatars/               # 成员头像缓存
-│   ├── index.md                   # 首页
-│   ├── members.md                 # 成员列表页面
-│   ├── rankings.md                # 贡献者榜单页面
-│   ├── quarterly.md               # 月度贡献者页面
-│   ├── rewards.md                 # 开源荣誉页面
-│   ├── stats.md                   # 组织统计页面
-│   ├── organization.md            # 成员与协作分析页面
-│   ├── projects.md                # 项目统计页面
-│   ├── badges.md                  # 成就徽章页面
-│   ├── guide.md                   # 新人引导页面
-│   └── report.md                  # 开源年报页面
-├── 🐍 scripts/                    # Python 数据处理脚本
-│   ├── bot_filter.py              # 机器人账户过滤模块（共享）
-│   ├── fetch_members/             # 成员数据获取脚本
-│   ├── fetch_organization/        # 组织数据获取脚本
-│   └── quarterly_contributors/    # 月份范围贡献者统计脚本
-│       └── quarterly_contributors.py
-├── 📋 package.json                # Node.js 项目配置
-├── 🔧 .env.example               # 环境变量模板
-└── 📖 README.md                  # 项目文档
-```
+开源中的许多投入还包括文档打磨、问题解答、代码评审、组织协调和对新人的帮助。它们需要项目与社区的具体记录共同补充。榜单、徽章和图表提供了发现贡献的线索，我们也希望读者继续走近这些数字背后的人。
 
-## 📊 页面导航
+## 一起完善这幅社区地图
 
-| 页面 | 路径 | 说明 |
-|------|------|------|
-| 🏠 首页 | `/` | 项目介绍和功能展示 |
-| 👥 贡献者列表 | `/members` | 成员信息卡片展示，支持搜索筛选 |
-| 🏆 贡献者榜单 | `/rankings` | Commit 活跃度排行和卷王榜单 |
-| 📅 月度贡献者 | `/quarterly` | 按月份范围统计的贡献者分级展示 |
-| 🎖️ 开源荣誉 | `/rewards` | 开源贡献荣誉展示 |
-| 📊 组织统计 | `/stats` | OSS Insight 集成统计面板 |
-| 👍🏻 项目统计 | `/projects` | 组织项目 Stars 统计 |
-| 📚 成员与协作 | `/organization` | 成员与协作分析 |
-| 🏅 成就徽章 | `/badges` | 基于贡献数据的多维度成就徽章 |
-| 🗺️ 新人引导 | `/guide` | 五步开启开源之旅 |
-| 📋 开源年报 | `/report` | 输入用户名生成专属开源报告 |
-| ⭐ 点 Star | `/star` | 项目推荐页面 |
+项目本身也需要共同建设。你可以：
 
-## 📊 数据模型
+- **指出数据问题。** 反馈成员遗漏、研究方向识别或展示不准确的地方，附上相关用户名、项目或页面链接，帮助我们复核。
+- **改善阅读与参与体验。** 告诉我们哪些页面难懂、哪些信息不好找，也欢迎补充介绍文案和新人指引。
+- **改进可视化与功能。** 优化图表、手机端显示和交互，或提出能够帮助大家理解社区的新视角。
+- **参与开发与维护。** 改进数据采集、页面组件和自动更新流程，让内容更准确、体验更可靠。
 
-### 📋 贡献者数据结构 (`members.json`)
-
-```json
-[
-  {
-    "id": "logan-zou",
-    "name": "Logan Zou",
-    "github": "https://github.com/logan-zou",
-    "domain": "深度学习;LLM",
-    "repositories": "llm-cookbook;self-llm;llm-universe",
-    "public_repos": 18,
-    "total_stars": 571,
-    "followers": 246,
-    "following": 5,
-    "avatar": "avatars/logan-zou.jpg",
-    "bio": "",
-    "location": "Beijing, China",
-    "company": "rednote"
-  }
-]
-```
-
-| 字段           | 类型   | 说明                        |
-| -------------- | ------ | --------------------------- |
-| `id`           | String | GitHub 用户名（唯一标识符） |
-| `name`         | String | 成员真实姓名或昵称          |
-| `github`       | URL    | GitHub 个人主页链接         |
-| `domain`       | String | 研究方向，多个用 `;` 分隔   |
-| `repositories` | String | 参与的组织仓库列表          |
-| `public_repos` | Number | 个人公开仓库数量            |
-| `total_stars`  | Number | 获得的总 Star 数            |
-| `followers`    | Number | GitHub 关注者数量           |
-| `following`    | Number | 关注的用户数量              |
-| `avatar`       | String | 头像文件相对路径            |
-| `bio`          | String | 个人简介                    |
-| `location`     | String | 地理位置                    |
-| `company`      | String | 所属公司或组织              |
-
-### 📈 活跃度数据结构 (`commits_weekly.json`)
-
-```json
-{
-  "update_time": "2025-01-19T06:00:00Z",
-  "days_range": 7,
-  "total_commits": 156,
-  "total_repos": 12,
-  "user_commits": {
-    "logan-zou": {
-      "total_commits": 23,
-      "repos": ["happy-llm", "llm-cookbook"],
-      "daily_commits": {
-        "2025-01-13": 5,
-        "2025-01-14": 8,
-        "2025-01-15": 10
-      }
-    }
-  }
-}
-```
-
-### 📅 月度贡献者数据结构 (`monthly_contributors_YYYY_MM_MM.json`)
-
-```json
-{
-  "meta": {
-    "year": 2025,
-    "start_month": 10,
-    "end_month": 12,
-    "period_label": "2025年10-12月",
-    "period_type": "monthly_range",
-    "generated_at": "2026-02-06T07:30:00",
-    "total_contributors": 105,
-    "outstanding_count": 6,
-    "excellent_count": 13,
-    "active_count": 86,
-    "thresholds": {
-      "outstanding": 50,
-      "excellent": 10,
-      "valid_commit_threshold": 10
-    }
-  },
-  "contributors": {
-    "outstanding": [...],
-    "excellent": [...],
-    "active": [...]
-  }
-}
-```
-
-| 字段 | 类型 | 说明 |
-| --- | --- | --- |
-| `meta.year` | Number | 统计年份 |
-| `meta.start_month` | Number | 统计开始月份 (1-12) |
-| `meta.end_month` | Number | 统计结束月份 (1-12) |
-| `meta.period_label` | String | 统计周期展示文案 |
-| `meta.thresholds` | Object | 分级阈值配置 |
-| `contributors.outstanding` | Array | 卓越贡献者 (有效commit >= 50) |
-| `contributors.excellent` | Array | 优秀贡献者 (有效commit >= 10) |
-| `contributors.active` | Array | 活跃贡献者 (有效commit < 10) |
-
-每个贡献者对象包含：
-
-| 字段 | 类型 | 说明 |
-| --- | --- | --- |
-| `username` | String | GitHub 用户名 |
-| `verified` | Boolean | 用户名是否经过 GitHub API 验证 |
-| `valid_commits` | Number | 有效 commit 次数 |
-| `repos_count` | Number | 参与的仓库数量 |
-| `repos` | Array | 参与的仓库列表 |
-| `recent_commits` | Array | 最近的 commit 详情（最多10条） |
-
-## 🚀 快速开始
-
-### 📋 环境要求
-
-| 环境        | 版本要求  | 说明              |
-| ----------- | --------- | ----------------- |
-| **Node.js** | >= 16.0.0 | 推荐使用 LTS 版本 |
-| **Python**  | >= 3.8.0  | 数据收集脚本依赖  |
-| **Git**     | >= 2.0.0  | 版本控制工具      |
-
-### 🛠️ 本地开发
+欢迎通过 [Issue](https://github.com/datawhalechina/members-visualization/issues) 提出建议，或通过 [Pull Request](https://github.com/datawhalechina/members-visualization/pulls) 参与改进。
 
 <details>
-<summary><b>📦 1. 项目初始化</b></summary>
+<summary><strong>开发者入口：在本地运行</strong></summary>
 
-```bash
-# 克隆项目
+使用 Node.js 22，与项目工作流保持一致。本地可直接使用仓库中已有的数据启动站点：
+
+~~~bash
 git clone https://github.com/datawhalechina/members-visualization.git
 cd members-visualization
-
-# 安装前端依赖
-npm install
-
-# 安装 Python 依赖（可选）
-pip install requests python-dotenv
-```
-
-</details>
-
-<details>
-<summary><b>🔧 2. 环境配置</b></summary>
-
-```bash
-# 编辑 .env 文件
-vim .env
-```
-
-**环境变量说明：**
-
-```bash
-# GitHub API Token（推荐配置，避免速率限制）
-GITHUB_TOKEN=ghp_your_personal_access_token_here
-
-# 目标组织名称（默认：datawhalechina）
-GITHUB_ORG=your_organization_name
-
-# 数据收集配置
-MIN_CONTRIBUTIONS=10        # 最小贡献阈值
-COMMIT_DAYS_RANGE=7        # 统计最近N天的提交
-```
-
-> 💡 **获取 GitHub Token**：访问 [GitHub Settings > Developer settings > Personal access tokens](https://github.com/settings/tokens) 创建新的 Token
-
-</details>
-
-<details>
-<summary><b>🚀 3. 启动开发服务器</b></summary>
-
-```bash
-# 启动开发服务器
+npm ci
 npm run docs:dev
-```
+~~~
 
-🌐 **访问地址**：http://localhost:5173
+打开终端提示的本地地址，默认是 <http://localhost:5173/members-visualization/>。
 
-</details>
+构建和预览：
 
-### 📊 数据管理
-
-<details>
-<summary><b>🔄 手动更新数据</b></summary>
-
-```bash
-# 完整数据收集（推荐）
-python scripts/fetch_members/fetch_members.py
-
-# 快速测试模式（处理较少数据，适合开发调试）
-python scripts/fetch_members/fetch_members.py --test
-```
-
-**数据收集说明：**
-
-- 📊 **数据范围**：自动获取组织所有公开仓库的贡献者信息
-- 🤖 **智能过滤**：自动过滤机器人账户，确保数据质量
-- 🖼️ **头像管理**：自动下载并缓存成员头像
-
-</details>
-
-<details>
-<summary><b>📅 月度贡献者统计</b></summary>
-
-```bash
-# 统计上个月贡献者
-python scripts/quarterly_contributors/quarterly_contributors.py --last
-
-# 统计当前月贡献者
-python scripts/quarterly_contributors/quarterly_contributors.py --current
-
-# 统计指定月份范围（如 2025年10-12月）
-python scripts/quarterly_contributors/quarterly_contributors.py 2025 10 12
-
-# 统计非标准周期（如 2026年1-4月）
-python scripts/quarterly_contributors/quarterly_contributors.py 2026 1 4
-```
-
-**统计说明：**
-
-- 📊 **统计范围**：遍历组织所有公开非 fork 仓库的 commit 记录
-- 🤖 **机器人过滤**：使用 `bot_filter.py` 共享模块自动过滤机器人账户
-- 💾 **本地缓存**：commit 详情缓存在 `docs/public/data/cache/` 目录，避免重复 API 调用
-- 📧 **用户名解析**：多级回退策略（GitHub API -> noreply 邮箱解析 -> 邮箱搜索 -> 作者名）
-- 📁 **输出文件**：`docs/public/data/datawhalechina/monthly_contributors_YYYY_MM_MM.json`
-
-</details>
-
-<details>
-<summary><b>🏗️ 构建部署</b></summary>
-
-```bash
-# 构建生产版本
+~~~bash
 npm run docs:build
+npm run docs:preview
+~~~
 
-# 本地预览构建结果
-npm run docs:dev
-```
+页面位于 [docs](docs/)，数据采集脚本位于 [scripts](scripts/)，自动更新与部署流程见 [GitHub Actions 配置](.github/workflows/)。
 
-**部署说明：**
-
-- ⚡ **自动部署**：推送到 `main` 分支自动触发 GitHub Actions
-- 🕐 **构建时间**：通常 2-3 分钟完成构建和部署
-- 🌐 **访问地址**：`https://your-username.github.io/members-visualization/`
+重新采集数据需要 Python 和相应的 GitHub API 配置。当前站点围绕 Datawhale 的组织数据构建，迁移到其他社区时，需要同步调整数据源和相关页面配置。
 
 </details>
-
-## 🔧 使用指南
-
-### 🔄 自动化数据更新
-
-系统采用全自动化的数据更新机制：
-
-| 更新方式             | 触发时机                 | 说明                              |
-| -------------------- | ------------------------ | --------------------------------- |
-| **每日数据更新**     | 每日凌晨 6:00 (北京时间) | 自动拉取成员数据并重新部署        |
-| **月度贡献者统计**   | 手动触发 (workflow_dispatch) | 支持上个月/当前月/自定义月份范围模式 |
-| **代码推送部署**     | Push 到 main 分支        | 代码变更时自动构建部署            |
-| **手动触发部署**     | 随时                     | Actions 页面手动触发部署          |
-
-### ⚙️ 自定义配置
-
-<details>
-<summary><b>🎨 界面定制</b></summary>
-
-```javascript
-// .vitepress/config.mjs - 站点配置
-export default {
-  title: "你的组织名称 成员可视化",
-  description: "自定义描述信息",
-  themeConfig: {
-    nav: [
-      { text: "首页", link: "/" },
-      { text: "成员", link: "/members" },
-    ],
-  },
-};
-```
-
-</details>
-
-<details>
-<summary><b>📊 图表样式</b></summary>
-
-```vue
-<!-- .vitepress/theme/stats/Charts.vue - 图表组件 -->
-<script setup>
-// 自定义图表配置
-const chartOptions = {
-  color: ["#ff6b6b", "#4ecdc4", "#45b7d1"], // 自定义颜色
-  animation: true, // 启用动画
-  // 更多配置...
-};
-</script>
-```
-
-</details>
-
-<details>
-<summary><b>🤖 数据收集配置</b></summary>
-
-```bash
-# .env - 环境变量配置
-GITHUB_ORG=your-organization           # 目标组织
-MIN_CONTRIBUTIONS=10                   # 最小贡献阈值
-COMMIT_DAYS_RANGE=7                   # 统计天数范围
-MAX_CONTRIBUTORS_PER_REPO=100         # 每个仓库最大贡献者数
-```
-
-</details>
-
-## 🎯 核心功能详解
-
-### 📊 OSS Insight 统计面板
-
-集成 [OSS Insight](https://ossinsight.io/) 专业分析平台，提供以下统计维度：
-
-- **⭐ 受欢迎程度** - Stars 增长趋势、热门仓库排行
-- **👥 参与者分析** - 活跃/新增参与者趋势和排名
-- **🤝 参与度分析** - 最活跃贡献者、代码提交时间分布
-- **📈 生产力分析** - PR、Code Review、Issues 统计
-
-### 🏆 GitHub 活跃度分析
-
-- **📈 Commit 活跃度排行榜** - 展示最近一周的代码贡献情况
-- **📅 每日提交分布图** - 可视化成员的工作节奏和活跃时段
-- **🔥 卷王指数计算** - 基于多维度指标的综合活跃度评分
-- **📊 仓库贡献统计** - 展示成员在不同项目中的参与度
-
-### 📅 月度贡献者统计
-
-按月份范围统计组织内所有成员的有效贡献，并按等级分类展示：
-
-- **🏅 卓越贡献者** - 有效 commit >= 50 次
-- **⭐ 优秀贡献者** - 有效 commit >= 10 次
-- **👥 活跃贡献者** - 有效 commit < 10 次
-- **📋 一键复制** - 支持复制贡献者名单，方便汇报使用
-- **🤖 智能过滤** - 自动过滤机器人账户（bot_filter 共享模块）
-- **📧 用户名解析** - 多级回退策略解析 GitHub 用户名（API、邮箱、搜索）
-
-> **有效 commit 定义**：至少包含一个文件新增行数 >= 10 行
-
-### 🔍 智能搜索与筛选
-
-- **⚡ 实时搜索** - 毫秒级响应，支持拼音和模糊匹配
-- **🎯 多条件筛选** - 按研究方向、活跃度、地区等维度筛选
-- **📋 搜索建议** - 智能提示，快速定位目标成员
-- **💾 历史记录** - 记住常用搜索条件，提升使用效率
-
-## 🔧 开发指南
-
-### 🎨 添加新的图表类型
-
-<details>
-<summary><b>📊 创建自定义图表组件</b></summary>
-
-```vue
-<!-- 1. 在 .vitepress/theme/ 目录下创建新组件 -->
-<template>
-  <div ref="chartRef" class="custom-chart"></div>
-</template>
-
-<script setup>
-import { ref, onMounted } from "vue";
-import * as echarts from "echarts";
-
-const chartRef = ref(null);
-
-onMounted(() => {
-  const chart = echarts.init(chartRef.value);
-  const option = {
-    // 你的图表配置
-  };
-  chart.setOption(option);
-});
-</script>
-```
-
-</details>
-
-<details>
-<summary><b>🔄 修改数据源</b></summary>
-
-```javascript
-// 在组件中修改数据获取逻辑
-const fetchData = async () => {
-  try {
-    // 从 API 获取数据
-    const response = await fetch("/api/your-endpoint");
-    const data = await response.json();
-
-    // 处理数据
-    return processData(data);
-  } catch (error) {
-    console.error("数据获取失败:", error);
-    // 降级到本地数据
-    return await import("/data/fallback.json");
-  }
-};
-```
-
-</details>
-
-## 🤝 贡献指南
-
-我们热烈欢迎社区贡献！无论是 Bug 修复、新功能开发还是文档改进，都是对项目的宝贵贡献。
-
-## 📄 许可证
-
-本项目采用 [MIT 许可证](LICENSE) - 您可以自由使用、修改和分发本项目。
-
-## 🏆 贡献者
-
-感谢所有为本项目做出贡献的开发者们！您的每一份贡献都让这个项目变得更好。
-
-<div align="center">
-
-<a href="https://github.com/datawhalechina/members-visualization/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=datawhalechina/members-visualization" alt="贡献者" />
-</a>
-
-</div>
-
-## 📊 项目统计
-
-<div align="center">
-
-![GitHub repo size](https://img.shields.io/github/repo-size/datawhalechina/members-visualization?style=for-the-badge)
-![GitHub code size](https://img.shields.io/github/languages/code-size/datawhalechina/members-visualization?style=for-the-badge)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/datawhalechina/members-visualization?style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/datawhalechina/members-visualization?style=for-the-badge)
-
-</div>
-
-## ⭐ Star History
-
-<div align="center">
-
-[![members-visualization stats](https://datawhalechina.github.io/members-visualization/badges/members-visualization.png)](https://datawhalechina.github.io/members-visualization/repo-badge?repo=members-visualization)
-
-</div>
 
 ---
 
-<div align="center">
-
-**🌟 如果这个项目对您有帮助，请给我们一个 Star！**
-
-_由 [Datawhale](https://github.com/datawhalechina) 开源社区用 ❤️ 维护_
-
-</div>
+感谢所有参与 Datawhale 开源项目、维护社区内容，以及帮助这个平台变得更好的伙伴。
