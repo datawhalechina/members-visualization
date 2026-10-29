@@ -400,6 +400,16 @@ def collect_contributors_from_repos(org_name):
     return contributors_data
 
 
+def avatar_path_for_user(username):
+    """复用已有头像的实际大小写；新头像统一小写，避免跨平台文件冲突。"""
+    avatar_dir = CONFIG['AVATARS_DIR']
+    filename = f"{username}.jpg"
+    for existing in avatar_dir.iterdir():
+        if existing.name.casefold() == filename.casefold() and existing.is_file():
+            return existing
+    return avatar_dir / filename.lower()
+
+
 def download_avatar(avatar_url, username):
     """下载并缓存用户头像"""
     if not avatar_url or not requests:
@@ -409,8 +419,8 @@ def download_avatar(avatar_url, username):
     CONFIG['AVATARS_DIR'].mkdir(parents=True, exist_ok=True)
 
     # 头像文件路径
-    avatar_filename = f"{username}.jpg"
-    avatar_path = CONFIG['AVATARS_DIR'] / avatar_filename
+    avatar_path = avatar_path_for_user(username)
+    avatar_filename = avatar_path.name
 
     # 如果头像已存在，直接返回相对路径
     if avatar_path.exists():
@@ -439,8 +449,7 @@ def ensure_avatar_exists(username, avatar_url):
     CONFIG['AVATARS_DIR'].mkdir(parents=True, exist_ok=True)
 
     # 头像文件路径
-    avatar_filename = f"{username}.jpg"
-    avatar_path = CONFIG['AVATARS_DIR'] / avatar_filename
+    avatar_path = avatar_path_for_user(username)
 
     # 如果头像已存在，无需下载
     if avatar_path.exists():
@@ -716,9 +725,7 @@ def save_to_json(members, output_file):
                 # 组织贡献数据
                 'org_repos_count': member.get('org_repos_count', 0),
                 'org_total_stars': member.get('org_total_stars', 0),
-                'org_total_forks': member.get('org_total_forks', 0),
                 'org_total_contributions': member.get('org_total_contributions', 0),
-                'org_avg_stars_per_repo': round(member.get('org_avg_stars_per_repo', 0), 2),
                 'repo_contributions': member.get('repo_contributions', {}),
                 # 其他信息
                 'avatar': clean_csv_field(member.get('avatar', '')),
@@ -881,11 +888,6 @@ def main():
                     'total_commits': len(all_commits),
                     'total_repos': len(set(commit['repo'] for commit in all_commits)),
                     'user_commits': user_commits_agg,
-                    'optimization_stats': {
-                        'api_calls': api_stats,
-                        'execution_time': f"{time.time() - overall_start_time:.1f}s",
-                        'optimization_enabled': True
-                    }
                 }
 
                 save_commits_data(commits_data)
@@ -1039,87 +1041,6 @@ def collect_weekly_commits_data(org_name, days=7):
         'user_commits': user_commits,
         'raw_commits': all_commits[:1000]  # 只保存前1000个原始commit用于调试
     }
-
-
-def aggregate_commits_by_user(commits):
-    """按用户聚合commit数据"""
-    from collections import defaultdict
-
-    user_stats = defaultdict(lambda: {
-        'total_commits': 0,
-        'repos': set(),
-        'daily_commits': defaultdict(int),
-        'hourly_distribution': defaultdict(int),
-        'commit_messages': [],
-        'first_commit_date': None,
-        'last_commit_date': None
-    })
-
-    for commit in commits:
-        # 确定用户标识（优先使用GitHub用户名，否则使用邮箱）
-        user_key = commit.get('github_username') or commit['author']['email']
-
-        if not user_key:
-            continue
-
-        stats = user_stats[user_key]
-
-        # 更新统计信息
-        stats['total_commits'] += 1
-        stats['repos'].add(commit['repo'])
-        stats['daily_commits'][commit['date_str']] += 1
-        stats['hourly_distribution'][commit['hour']] += 1
-
-        # 保存commit消息（最多保存10个）
-        if len(stats['commit_messages']) < 10:
-            stats['commit_messages'].append({
-                'message': commit['message'],
-                'repo': commit['repo'],
-                'date': commit['date_str'],
-                'url': commit['url']
-            })
-
-        # 更新时间范围
-        commit_date = commit['date_parsed']
-        if not stats['first_commit_date'] or commit_date < stats['first_commit_date']:
-            stats['first_commit_date'] = commit_date
-        if not stats['last_commit_date'] or commit_date > stats['last_commit_date']:
-            stats['last_commit_date'] = commit_date
-
-    # 转换为可序列化的格式
-    result = {}
-    for user_key, stats in user_stats.items():
-        result[user_key] = {
-            'total_commits': stats['total_commits'],
-            'repos': list(stats['repos']),
-            'repo_count': len(stats['repos']),
-            'daily_commits': dict(stats['daily_commits']),
-            'hourly_distribution': dict(stats['hourly_distribution']),
-            'commit_messages': stats['commit_messages'],
-            'first_commit_date': stats['first_commit_date'].isoformat() if stats['first_commit_date'] else None,
-            'last_commit_date': stats['last_commit_date'].isoformat() if stats['last_commit_date'] else None,
-            'active_days': len(stats['daily_commits']),
-            'avg_commits_per_day': stats['total_commits'] / max(len(stats['daily_commits']), 1)
-        }
-
-    return result
-
-
-def save_commits_data(commits_data):
-    """保存commit数据到JSON文件"""
-    try:
-        # 确保目录存在
-        CONFIG['COMMITS_FILE'].parent.mkdir(parents=True, exist_ok=True)
-
-        with open(CONFIG['COMMITS_FILE'], 'w', encoding='utf-8') as f:
-            json.dump(commits_data, f, ensure_ascii=False, indent=2)
-
-        print(f"💾 commit数据已保存到: {CONFIG['COMMITS_FILE']}")
-        return True
-
-    except Exception as e:
-        print(f"❌ 保存commit数据失败: {e}")
-        return False
 
 
 def collect_unified_data(org_name, include_commits=False):
@@ -1342,12 +1263,9 @@ def aggregate_commits_by_user(all_commits):
         'repos': set(),
         'repo_commits': defaultdict(int),
         'daily_commits': defaultdict(int),
-        'hourly_distribution': defaultdict(int),
         'beijing_hourly_distribution': defaultdict(int),
         'night_owl_commits': 0,
-        'commit_messages': [],
-        'first_commit_date': None,
-        'last_commit_date': None
+        'commit_messages': []
     })
 
     for commit in all_commits:
@@ -1372,7 +1290,6 @@ def aggregate_commits_by_user(all_commits):
         stats['repos'].add(commit['repo'])
         stats['repo_commits'][commit['repo']] += 1
         stats['daily_commits'][commit['date_str']] += 1
-        stats['hourly_distribution'][commit['hour']] += 1
         stats['beijing_hourly_distribution'][commit['beijing_hour']] += 1
 
         # 统计深夜提交
@@ -1391,13 +1308,6 @@ def aggregate_commits_by_user(all_commits):
                 'url': commit['url']
             })
 
-        # 更新时间范围
-        commit_date = commit['date_parsed']
-        if not stats['first_commit_date'] or commit_date < stats['first_commit_date']:
-            stats['first_commit_date'] = commit_date
-        if not stats['last_commit_date'] or commit_date > stats['last_commit_date']:
-            stats['last_commit_date'] = commit_date
-
     # 转换为可序列化格式
     result = {}
     for username, stats in user_stats.items():
@@ -1408,13 +1318,10 @@ def aggregate_commits_by_user(all_commits):
                 'repo_commits': dict(stats['repo_commits']),
                 'repo_count': len(stats['repos']),
                 'daily_commits': dict(stats['daily_commits']),
-                'hourly_distribution': dict(stats['hourly_distribution']),
                 'beijing_hourly_distribution': dict(stats['beijing_hourly_distribution']),
                 'night_owl_commits': stats['night_owl_commits'],
                 'night_owl_percentage': round((stats['night_owl_commits'] / stats['total_commits']) * 100, 1) if stats['total_commits'] > 0 else 0,
                 'commit_messages': stats['commit_messages'],
-                'first_commit_date': stats['first_commit_date'].isoformat() if stats['first_commit_date'] else None,
-                'last_commit_date': stats['last_commit_date'].isoformat() if stats['last_commit_date'] else None,
                 'active_days': len(stats['daily_commits']),
                 'avg_commits_per_day': stats['total_commits'] / max(len(stats['daily_commits']), 1)
             }

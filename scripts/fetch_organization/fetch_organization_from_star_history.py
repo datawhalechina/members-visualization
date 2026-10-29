@@ -6,7 +6,8 @@ def get_organization_list(page):
     output = []
     try:
         response = requests.get(
-            f"https://gitstar-ranking.com/organizations?page={page}")
+            f"https://gitstar-ranking.com/organizations?page={page}", timeout=30)
+        response.raise_for_status()
         soup = BeautifulSoup(response.text, 'html.parser')
 
         # 获取两个列的组织数据
@@ -30,7 +31,10 @@ def get_organization_list(page):
                     })
     except Exception as e:
         print(f"fetch repo error: {e}")
-        return []
+        raise RuntimeError(f'Organization ranking page {page} failed') from e
+
+    if not output:
+        raise RuntimeError(f'Organization ranking page {page} contains no organizations')
 
     return output
 

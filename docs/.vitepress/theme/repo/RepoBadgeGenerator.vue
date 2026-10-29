@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import RepoBadge from './RepoBadge.vue'
 
 const repoName = ref('')
@@ -95,6 +95,10 @@ onMounted(async () => {
   await loadRepoOptions()
   const initialRepo = repoFromQuery || 'torch-rechub'
   chooseRepo(initialRepo)
+})
+
+onBeforeUnmount(() => {
+  document.body.classList.remove('embed-mode')
 })
 </script>
 

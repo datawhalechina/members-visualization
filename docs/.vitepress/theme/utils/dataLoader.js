@@ -20,7 +20,7 @@ export async function loadMembers() {
   return raw.map(item => {
     const cleaned = { ...item }
     for (const key of Object.keys(cleaned)) {
-      let value = cleaned[key] || ''
+      let value = cleaned[key] ?? ''
       if (typeof value === 'string') {
         value = value.trim().replace(/^"|"$/g, '')
       }

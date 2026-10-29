@@ -21,7 +21,7 @@ const loadData = async () => {
 
     const parsedMembers = responseJSON.map(item => {
       Object.keys(item).forEach((key) => {
-        let value = item[key] || ''
+        let value = item[key] ?? ''
         if (typeof value === 'string') {
           value = value.trim().replace(/^"|"$/g, '')
         }

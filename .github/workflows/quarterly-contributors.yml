@@ -32,6 +32,11 @@ permissions:
   id-token: write
   actions: write
 
+concurrency:
+  # 与每日同步/部署共用队列，避免同时提交或部署不同版本的数据。
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   update-monthly-data:
     runs-on: ubuntu-latest
@@ -53,6 +58,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
+      - name: Restore commit detail cache
+        id: commit-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/monthly-contributors
+          key: ${{ runner.os }}-monthly-commit-details-v2-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            ${{ runner.os }}-monthly-commit-details-v2-${{ github.ref_name }}-
+
       - name: Run monthly contributors script
         run: |
           if [ "${{ inputs.mode }}" == "custom" ]; then
@@ -66,10 +80,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PYTHONUNBUFFERED: "1"
 
+      - name: Save commit detail cache
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/monthly-contributors
+          key: ${{ steps.commit-cache.outputs.cache-primary-key }}
+
       - name: Check for data changes
         id: check-changes
         run: |
           git add docs/public/data/datawhalechina/monthly_contributors_*.json
+          python scripts/check_case_collisions.py
           if git diff --cached --quiet; then
             echo "No changes"
             echo "changes=false" >> $GITHUB_OUTPUT

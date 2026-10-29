@@ -26,12 +26,12 @@ def ensure_dir_and_write_files(file_path_list, data):
         ensure_dir_and_write_file(file_path, data)
 
 
-def get_object_by_month_key(month_object, month_count=12):
+def get_object_by_month_key(month_object, month_count=12, end_key=None, missing=None):
     """根据月份获取过去n个月的数据,比如2025-1,2025-2"""
     result = {}
     month_key = []
     # 获取当前日期
-    now = datetime.now()
+    now = datetime.strptime(end_key, '%Y-%m') if end_key else datetime.now()
     current_year = now.year
     current_month = now.month
 
@@ -50,5 +50,15 @@ def get_object_by_month_key(month_object, month_count=12):
     month_key.reverse()
 
     for month in month_key:
-        result[month] = month_object.get(month, 0)
+        result[month] = month_object.get(month, missing)
     return result
+
+
+def resolve_repo_path(directory, repo_name):
+    """Reuse a cached filename when GitHub changes only a repository's casing."""
+    directory = Path(directory)
+    filename = f'{repo_name}.json'
+    for candidate in directory.glob('*.json'):
+        if candidate.name.casefold() == filename.casefold():
+            return candidate
+    return directory / filename

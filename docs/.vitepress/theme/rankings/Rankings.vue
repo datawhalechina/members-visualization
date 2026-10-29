@@ -325,7 +325,7 @@ const loadData = async () => {
     const membersJSON = await membersResponse.json()
     members.value = membersJSON.map((item => {
       Object.keys(item).forEach((key) => {
-        let value = item[key] || ''
+        let value = item[key] ?? ''
         if (typeof value === 'string') {
           value = value.trim().replace(/^"|"$/g, '')
         }

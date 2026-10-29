@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import OrganizationTable from './OrganizationTable.vue'
 
 const organizationData = ref([]);
-const loading = ref(false)
+const loading = ref(true)
 const error = ref(null)
 
 const loadData = async () => {
@@ -14,7 +14,7 @@ const loadData = async () => {
         throw new Error(`HTTP error! status: ${response.status}`)
     }
     const source = await response.json()
-    return source.top10KnowledgeSharingOrganizationInfo
+    return Array.isArray(source.top10KnowledgeSharingOrganizationInfo) ? source.top10KnowledgeSharingOrganizationInfo : []
 }
 
 onMounted(async () => {
@@ -40,7 +40,8 @@ onMounted(async () => {
             <p>加载数据时出错: {{ error }}</p>
         </div>
 
-        <OrganizationTable :organization-data="organizationData" />
+        <OrganizationTable v-else-if="organizationData.length" :organization-data="organizationData" />
+        <p v-else class="empty-state">暂无组织对比数据，请稍后再试。</p>
     </div>
 </template>
 
@@ -56,7 +57,8 @@ onMounted(async () => {
 }
 
 .loading,
-.error {
+.error,
+.empty-state {
     text-align: center;
     padding: 60px;
     font-size: 18px;
@@ -65,14 +67,14 @@ onMounted(async () => {
 }
 
 .error {
-    color: #e74c3c;
-    background: #fdf2f2;
-    border: 1px solid #fecaca;
+    color: var(--vp-c-danger-1);
+    background: var(--vp-c-danger-soft);
+    border: 1px solid var(--vp-c-divider);
 }
 
 .loading {
-    color: #3498db;
-    background: #f0f9ff;
-    border: 1px solid #bae6fd;
+    color: var(--vp-c-text-2);
+    background: var(--vp-c-bg-soft);
+    border: 1px solid var(--vp-c-divider);
 }
 </style>

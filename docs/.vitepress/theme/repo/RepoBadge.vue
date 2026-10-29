@@ -185,11 +185,14 @@ const resizeChart = () => {
   if (chartInstance) chartInstance.resize()
 }
 
-const loadRepoData = async (repoSlug) => {
-  const candidates = [
-    normalizePath(`${basePath.value}data/datawhalechina/repo/${repoSlug}.json`),
-    normalizePath(`${basePath.value}data/datawhalechina/repo/${repoSlug.toLowerCase()}.json`)
-  ]
+const loadRepoData = async (repoName, repoListData) => {
+  const requestedName = repoName.trim().replace(/^datawhalechina\//i, '')
+  const repoSlug = normalizeRepoName(requestedName)
+  const matchingRepo = repoListData.find((item) => normalizeRepoName(String(item?.name || '')) === repoSlug)
+  const canonicalName = String(matchingRepo?.name || '').split('/').at(-1)
+  const candidates = [canonicalName, requestedName, repoSlug]
+    .filter(Boolean)
+    .map((name) => normalizePath(`${basePath.value}data/datawhalechina/repo/${encodeURIComponent(name)}.json`))
 
   let lastError = null
   const uniqueCandidates = [...new Set(candidates)]
@@ -233,6 +236,10 @@ const memberRepoSet = (member) =>
     .map((name) => normalizeRepoName(name))
     .filter(Boolean)
 
+const repoContributionCount = (member, repoSlug) => Object.entries(member?.repo_contributions || {})
+  .filter(([repoName]) => normalizeRepoName(repoName) === repoSlug)
+  .reduce((sum, [, count]) => sum + (Number(count) || 0), 0)
+
 const buildContributorData = (repoSlug, commitsData, membersData) => {
   const memberMap = new Map()
   for (const member of membersData) {
@@ -263,8 +270,7 @@ const buildContributorData = (repoSlug, commitsData, membersData) => {
     .sort((a, b) => b[1] - a[1])
     .map(([username, commitsRecent]) => {
       const member = memberMap.get(username) || memberMap.get(username.toLowerCase())
-      const repoContribs = member?.repo_contributions || {}
-      const repoContribCount = repoContribs[repoSlug] || 0
+      const repoContribCount = repoContributionCount(member, repoSlug)
       return {
         username,
         name: member?.name || username,
@@ -278,8 +284,7 @@ const buildContributorData = (repoSlug, commitsData, membersData) => {
   const fallbackRows = repoMembers
     .filter((member) => !seen.has(String(member.id || '').toLowerCase()))
     .map((member) => {
-      const repoContribs = member?.repo_contributions || {}
-      const repoContribCount = repoContribs[repoSlug] || 0
+      const repoContribCount = repoContributionCount(member, repoSlug)
       return {
         username: member.id,
         name: member.name || member.id,
@@ -335,11 +340,12 @@ const loadAllData = async (rawRepoName) => {
   error.value = ''
 
   try {
+    const repoListPromise = loadRepoListData()
     const [repo, commits, members, repoListData] = await Promise.all([
-      loadRepoData(repoSlug),
+      repoListPromise.then((repoList) => loadRepoData(rawRepoName, repoList)),
       loadCommitsData(),
       loadMembersData(),
-      loadRepoListData()
+      repoListPromise
     ])
 
     if (token !== loadToken) return
@@ -376,6 +382,7 @@ if (typeof window !== 'undefined') {
 }
 
 onBeforeUnmount(() => {
+  loadToken += 1
   if (typeof window !== 'undefined') {
     window.removeEventListener('resize', resizeChart)
   }
