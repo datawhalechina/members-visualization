@@ -1,8 +1,12 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 
 // 接收 props
 const props = defineProps({
+  period: {
+    type: String,
+    default: undefined
+  },
   group: {
     type: String,
     default: null  // null 表示显示所有分组
@@ -26,7 +30,25 @@ const periodOptions = [
 ]
 
 // 当前选中的日期范围（默认选中90天）
-const selectedPeriod = ref('past_90_days')
+const emit = defineEmits(['update:period'])
+const localPeriod = ref('past_90_days')
+const selectedPeriod = computed({
+  get: () => props.period ?? localPeriod.value,
+  set: (value) => {
+    localPeriod.value = value
+    emit('update:period', value)
+  }
+})
+
+const imageStates = ref({})
+const retryCounts = ref({})
+const setImageState = (id, state) => {
+  imageStates.value[id] = state
+}
+const retryImage = (id) => {
+  setImageState(id, 'loading')
+  retryCounts.value[id] = (retryCounts.value[id] || 0) + 1
+}
 
 // 暗黑模式状态
 const isDark = ref(false)
@@ -57,6 +79,11 @@ onUnmounted(() => {
 
 // 计算当前颜色方案
 const colorScheme = computed(() => isDark.value ? 'dark' : 'light')
+
+watch([selectedPeriod, colorScheme], () => {
+  imageStates.value = {}
+  retryCounts.value = {}
+})
 
 // 卡片分组配置
 const cardGroups = computed(() => [
@@ -214,6 +241,7 @@ const getCardImageUrl = (card) => {
     color_scheme: colorScheme.value,
     ...card.params
   })
+  if (retryCounts.value[card.id]) params.set('retry', String(retryCounts.value[card.id]))
   return `${baseUrl}?${params.toString()}`
 }
 </script>
@@ -229,6 +257,7 @@ const getCardImageUrl = (card) => {
           :key="option.value"
           class="period-btn"
           :class="{ active: selectedPeriod === option.value }"
+          :aria-pressed="selectedPeriod === option.value"
           @click="selectedPeriod = option.value"
         >
           {{ option.label }}
@@ -256,20 +285,33 @@ const getCardImageUrl = (card) => {
             class="card-wrapper"
             :class="`size-${card.imageSize}`"
           >
+            <div class="stats-card-heading">{{ card.title }}</div>
             <a
               :href="getCardUrl(card)"
               target="_blank"
               rel="noopener noreferrer"
               class="stats-card-link"
               :title="card.title"
+              :aria-label="`${card.title}，在 OSS Insight 查看详细分析`"
             >
               <img
+                :key="getCardImageUrl(card)"
+                v-show="imageStates[card.id] !== 'error'"
                 :src="getCardImageUrl(card)"
-                :alt="`${card.title} - ${selectedPeriod}`"
+                :alt="card.title"
                 class="stats-card-img"
+                :class="{ loaded: imageStates[card.id] === 'loaded' }"
                 loading="lazy"
+                @load="setImageState(card.id, 'loaded')"
+                @error="setImageState(card.id, 'error')"
               />
+              <span v-if="!imageStates[card.id] || imageStates[card.id] === 'loading'" class="stats-card-state" role="status">正在加载统计图…</span>
+              <span v-else-if="imageStates[card.id] === 'error'" class="stats-card-state">
+                <strong>统计图暂时无法加载</strong>
+                <span>点击在 OSS Insight 查看详细分析 ↗</span>
+              </span>
             </a>
+            <button v-if="imageStates[card.id] === 'error'" class="retry-btn" @click="retryImage(card.id)">重新加载</button>
           </div>
         </div>
       </div>
@@ -391,6 +433,7 @@ const getCardImageUrl = (card) => {
 }
 
 .card-wrapper {
+  position: relative;
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -417,17 +460,59 @@ const getCardImageUrl = (card) => {
 .size-2x2 { grid-column: span 4; }
 
 .stats-card-link {
+  position: relative;
   display: block;
   width: 100%;
-  height: 100%;
+  min-height: 200px;
+  text-decoration: none;
+  background: var(--vp-c-bg-soft);
 }
+
+.stats-card-heading {
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--vp-c-text-1);
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.stats-card-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+}
+
+.stats-card-state strong { color: var(--vp-c-text-1); }
+
+.retry-btn {
+  display: block;
+  margin: 0 auto 16px;
+  padding: 6px 14px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  color: var(--vp-c-brand-1);
+  font-size: 13px;
+}
+
+.retry-btn:hover { background: var(--vp-c-bg-soft); }
 
 .stats-card-img {
   display: block;
   width: 100%;
   height: auto;
   transition: opacity 0.3s ease;
+  opacity: 0;
 }
+
+.stats-card-img.loaded { opacity: 1; }
 
 /* 响应式设计 - 平板 */
 @media (max-width: 960px) {

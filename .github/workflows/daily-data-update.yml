@@ -14,6 +14,11 @@ permissions:
   pages: write
   id-token: write
 
+# 数据写入和页面部署串行执行，避免并发同步相互覆盖。
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   update-data-and-deploy:
     if: github.event_name == 'workflow_dispatch' || github.repository == 'datawhalechina/members-visualization'
@@ -29,7 +34,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: npm
 
       - name: Setup Python
@@ -45,6 +50,15 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
+      - name: Restore repository badge fingerprints
+        id: badge-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/repo-badges.json
+          key: ${{ runner.os }}-repo-badges-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            ${{ runner.os }}-repo-badges-v1-${{ github.ref_name }}-
+
       - name: Fetch latest member data
         run: python scripts/fetch_members/fetch_members.py
         env:
@@ -57,7 +71,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build with VitePress
-        run: npm run docs:build
+        run: |
+          python scripts/check_case_collisions.py
+          npm run docs:build
         env:
           NODE_ENV: production
 
@@ -71,6 +87,12 @@ jobs:
       - name: Generate repository badge screenshots
         run: node scripts/generate_repo_screenshots.js
 
+      - name: Save repository badge fingerprints
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/repo-badges.json
+          key: ${{ steps.badge-cache.outputs.cache-primary-key }}
+
       - name: Rebuild to include badges
         run: npm run docs:build
         env:
@@ -79,7 +101,9 @@ jobs:
       - name: Check for data changes
         id: check-changes
         run: |
-          git add -A
+          # 缓存、日志和其他运行时文件不进入数据提交。
+          git add -- docs/public/data/ docs/public/avatars/ docs/public/badges/
+          python scripts/check_case_collisions.py
           if git diff --cached --quiet; then
             echo "No changes in member data or avatars"
             echo "changes=false" >> $GITHUB_OUTPUT
@@ -93,7 +117,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add docs/public/data/members.json docs/public/data/commits_weekly.json docs/public/avatars/ docs/public/badges/
           git commit -m "🤖 Auto-update member data and avatars - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           git push
 

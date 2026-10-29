@@ -256,7 +256,7 @@ onMounted(async () => {
     const responseJSON = await res.json()
     members.value = responseJSON.map(item => {
       Object.keys(item).forEach(key => {
-        let value = item[key] || ''
+        let value = item[key] ?? ''
         if (typeof value === 'string') {
           value = value.trim().replace(/^"|"$/g, '')
         }

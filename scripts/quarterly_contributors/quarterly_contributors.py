@@ -34,8 +34,9 @@ CONFIG = {
     'GITHUB_TOKEN': os.getenv('GITHUB_TOKEN') or os.getenv('GITHUB_KEY'),
     'ORG_NAME': 'datawhalechina',
     'API_BASE': 'https://api.github.com',
-    # 缓存目录
-    'CACHE_DIR': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'data' / 'cache',
+    # API缓存不属于公开站点数据，由Actions cache保存，不进入Git和构建产物。
+    'CACHE_DIR': Path(__file__).parent.parent.parent / '.cache' / 'monthly-contributors',
+    'CACHE_MAX_ENTRIES': int(os.getenv('COMMIT_CACHE_MAX_ENTRIES', '20000')),
     # 输出目录
     'OUTPUT_DIR': Path(__file__).parent.parent.parent / 'docs' / 'public' / 'data' / 'datawhalechina',
     # 有效commit的阈值（单文件新增行数）
@@ -208,21 +209,40 @@ def format_period_label(year, start_month, end_month):
     return f"{year}年{start_month}-{end_month}月"
 
 
+def compact_commit_details(data):
+    """缓存只保留作者解析和有效提交判定需要的字段。"""
+    return {
+        'author': data.get('author', ''),
+        'author_email': data.get('author_email', ''),
+        'author_login': data.get('author_login'),
+        'max_file_additions': data.get('max_file_additions', max(
+            (file.get('additions', 0) for file in data.get('files', [])), default=None
+        )),
+    }
+
+
 class CacheManager:
     """缓存管理器 - 管理commit详情的本地缓存"""
 
-    def __init__(self, cache_dir):
+    def __init__(self, cache_dir, max_entries=None):
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.cache_file = self.cache_dir / 'commit_details.json'
+        self.max_entries = max(1, max_entries if max_entries is not None else CONFIG['CACHE_MAX_ENTRIES'])
         self.cache = self._load_cache()
+        self._prune()
+
+    def _prune(self):
+        """保留最近访问的有限条目；淘汰只影响API调用次数，不影响结果。"""
+        while len(self.cache) > self.max_entries:
+            self.cache.pop(next(iter(self.cache)))
 
     def _load_cache(self):
         """加载缓存"""
         if self.cache_file.exists():
             try:
                 with open(self.cache_file, 'r', encoding='utf-8') as f:
-                    return json.load(f)
+                    return {key: compact_commit_details(data) for key, data in json.load(f).items()}
             except Exception as e:
                 print(f"⚠️  加载缓存失败: {e}")
                 return {}
@@ -231,18 +251,23 @@ class CacheManager:
     def get(self, repo, sha):
         """获取缓存的commit详情"""
         key = f"{repo}:{sha}"
-        return self.cache.get(key)
+        data = self.cache.pop(key, None)
+        if data is not None:
+            self.cache[key] = data
+        return data
 
     def set(self, repo, sha, data):
         """设置缓存"""
         key = f"{repo}:{sha}"
-        self.cache[key] = data
+        self.cache.pop(key, None)
+        self.cache[key] = compact_commit_details(data)
+        self._prune()
 
     def save(self):
         """保存缓存到文件"""
         try:
             with open(self.cache_file, 'w', encoding='utf-8') as f:
-                json.dump(self.cache, f, ensure_ascii=False, indent=2)
+                json.dump(self.cache, f, ensure_ascii=False, separators=(',', ':'))
             print(f"💾 缓存已保存: {len(self.cache)} 条记录")
         except Exception as e:
             print(f"❌ 保存缓存失败: {e}")
@@ -332,24 +357,13 @@ def get_commit_details(org_name, repo_name, sha, cache_manager):
     if data:
         # 提取需要的信息
         details = {
-            'sha': sha[:8],
             'author': data['commit']['author']['name'],
             'author_email': data['commit']['author'].get('email', ''),
             'author_login': data['author']['login'] if data.get('author') else None,
-            'date': data['commit']['author']['date'],
-            'message': data['commit']['message'].split('\n')[0][:100],
-            'files': []
+            'max_file_additions': max(
+                (file.get('additions', 0) for file in data.get('files', [])), default=None
+            ),
         }
-
-        # 提取文件变更信息
-        if 'files' in data:
-            for file in data['files']:
-                details['files'].append({
-                    'filename': file['filename'],
-                    'additions': file.get('additions', 0),
-                    'deletions': file.get('deletions', 0),
-                    'changes': file.get('changes', 0)
-                })
 
         # 缓存结果
         cache_manager.set(repo_name, sha, details)
@@ -363,15 +377,12 @@ def is_valid_commit(commit_details):
     判断是否为有效commit
     有效commit定义：至少有一个文件的新增行数 >= 阈值
     """
-    if not commit_details or 'files' not in commit_details:
+    if not commit_details:
         return False
 
     threshold = CONFIG['VALID_COMMIT_THRESHOLD']
-    for file in commit_details['files']:
-        if file.get('additions', 0) >= threshold:
-            return True
-
-    return False
+    maximum = compact_commit_details(commit_details)['max_file_additions']
+    return maximum is not None and maximum >= threshold
 
 
 def process_repository(org_name, repo_name, since, until, cache_manager, stats):
@@ -462,25 +473,14 @@ def process_repository(org_name, repo_name, since, until, cache_manager, stats):
                     'username': author_login,
                     'verified': is_verified,
                     'valid_commits': 0,
-                    'total_commits': 0,
                     'repos': set(),
-                    'commits_detail': []
                 }
             # 如果之前是未验证的，现在有验证的commit，更新为已验证
             elif is_verified and not stats[author_login].get('verified'):
                 stats[author_login]['verified'] = True
 
             stats[author_login]['valid_commits'] += 1
-            stats[author_login]['total_commits'] += 1
             stats[author_login]['repos'].add(repo_name)
-            stats[author_login]['commits_detail'].append({
-                'repo': repo_name,
-                'sha': details['sha'],
-                'message': details['message'],
-                'date': details['date'],
-                'files_count': len(details['files']),
-                'total_additions': sum(f['additions'] for f in details['files'])
-            })
 
         # 显示进度
         if (i + 1) % 50 == 0:
@@ -512,14 +512,8 @@ def classify_contributors(stats):
             'username': username,
             'verified': data.get('verified', True),
             'valid_commits': valid_commits,
-            'total_commits': data['total_commits'],
             'repos_count': len(data['repos']),
             'repos': sorted(list(data['repos'])),
-            'recent_commits': sorted(
-                data['commits_detail'],
-                key=lambda x: x['date'],
-                reverse=True
-            )[:10]  # 只保留最近10个commit
         }
 
         if valid_commits >= CONFIG['OUTSTANDING_THRESHOLD']:

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { computed } from 'vue'
 
 // 接收organizationData作为props
 const props = defineProps({
@@ -10,20 +10,23 @@ const props = defineProps({
 })
 
 // 表格数据状态
-const tableData = ref(props.organizationData)
+const tableData = computed(() => props.organizationData)
 
 // 格式化数字（添加千位分隔符）
 const formatNumber = (num) => {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return Number.isFinite(Number(num)) && num !== null && num !== undefined
+    ? Number(num).toLocaleString('zh-CN')
+    : '—'
 }
 
-// 当props变化时更新表格数据
-watch(() => props.organizationData, (newData) => {
-  tableData.value = newData
-}, { deep: true })
+const formatChange = (num) => {
+  if (num === null || num === undefined || !Number.isFinite(Number(num))) return '—'
+  return `${Number(num) > 0 ? '+' : ''}${formatNumber(num)}`
+}
 </script>
 
 <template>
+  <div class="organization-table-scroll" tabindex="0" role="region" aria-label="知识分享组织对比，可横向滚动">
   <table class="organization-table">
     <thead>
       <tr>
@@ -60,7 +63,7 @@ watch(() => props.organizationData, (newData) => {
           </template>
         </td>
         <td>{{ formatNumber(item.star_count) }}</td>
-        <td>+{{ formatNumber(item.starAdd) }}</td>
+        <td>{{ formatChange(item.starAdd) }}</td>
         <td>
           <span v-if="item.rankAdd < 0" class="positive">{{ `↑${Math.abs(item.rankAdd)}` }} </span>
           <span v-if="item.rankAdd > 0" class="negative">{{ `↓${Math.abs(item.rankAdd)}` }} </span>
@@ -69,11 +72,26 @@ watch(() => props.organizationData, (newData) => {
       </tr>
     </tbody>
   </table>
+  </div>
+  <p class="scroll-hint">左右滑动可查看完整表格</p>
 </template>
 
 <style scoped>
+.organization-table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+}
+
+.organization-table-scroll:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 3px;
+}
+
 .organization-table {
+  display: table;
   width: 100%;
+  min-width: 560px;
   border-collapse: collapse;
   margin: 0;
 }
@@ -83,12 +101,19 @@ watch(() => props.organizationData, (newData) => {
   text-align: left;
   font-weight: 600;
   font-size: 14px;
+  white-space: nowrap;
+  width: auto;
 }
 
 .organization-table td {
   padding: 12px 16px;
   font-size: 14px;
+  white-space: nowrap;
+  width: auto;
+  font-variant-numeric: tabular-nums;
 }
+
+.scroll-hint { display: none; }
 
 .rank-number {
   display: inline-block;
@@ -161,6 +186,12 @@ watch(() => props.organizationData, (newData) => {
 }
 
 @media (max-width: 768px) {
+  .scroll-hint {
+    display: block;
+    color: var(--vp-c-text-3);
+    font-size: 12px;
+    margin: 8px 0 0;
+  }
   .search-box {
     max-width: 100%;
   }

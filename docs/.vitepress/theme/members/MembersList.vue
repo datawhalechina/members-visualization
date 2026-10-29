@@ -108,7 +108,7 @@ const loadMembers = async () => {
     const responseJSON = await response.json()
     const parsedMembers = responseJSON.map(item => {
       Object.keys(item).forEach((key) => {
-        let value = item[key] || '';
+        let value = item[key] ?? '';
         if (typeof value === 'string') {
           value = value.trim().replace(/^"|"$/g, '')
         }
@@ -203,7 +203,7 @@ onMounted(() => {
     </div>
 
     <!-- 无结果 -->
-    <div v-else class="no-results">
+    <div v-if="!loading && !error && filteredMembers.length === 0" class="no-results">
       <p>没有找到匹配的成员</p>
       <button @click="clearFilters" class="clear-btn">清除筛选条件</button>
     </div>
