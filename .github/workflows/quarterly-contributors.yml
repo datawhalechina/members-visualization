@@ -39,7 +39,8 @@ concurrency:
 
 jobs:
   update-monthly-data:
-    runs-on: ubuntu-latest
+    # Keep the runner compatible with the configured Python 3.9 runtime.
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout repository
