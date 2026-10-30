@@ -1,4 +1,4 @@
-# 🗺️ 新人引导
+# 新人引导
 
 <script setup>
 import NewcomerGuide from './.vitepress/theme/guide/NewcomerGuide.vue'

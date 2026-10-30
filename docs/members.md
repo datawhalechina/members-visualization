@@ -1,4 +1,4 @@
-# 👥 贡献者列表
+# 贡献者列表
 
 <script setup>
 import MembersList from './.vitepress/theme/members/MembersList.vue'

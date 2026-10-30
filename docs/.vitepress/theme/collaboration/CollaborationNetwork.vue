@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import * as echarts from 'echarts'
+import { getChartTheme } from '../utils/chartTheme'
 
 const members = ref([])
 const loading = ref(true)
@@ -108,10 +109,7 @@ const graphData = computed(() => {
   return { nodes, edges, categories }
 })
 
-const domainColors = [
-  '#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de',
-  '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#13c2c2'
-]
+const domainColors = computed(() => getChartTheme(isDark.value).palette)
 
 const checkDarkMode = () => {
   isDark.value = document.documentElement.classList.contains('dark')
@@ -170,7 +168,7 @@ const createChartOption = () => {
       links: edges,
       categories: categories.map((c, i) => ({
         name: c.name,
-        itemStyle: { color: domainColors[i % domainColors.length] }
+        itemStyle: { color: domainColors.value[i % domainColors.value.length] }
       })),
       roam: true,
       draggable: true,

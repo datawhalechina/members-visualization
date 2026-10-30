@@ -1,4 +1,4 @@
-# 📋 个人开源报告
+# 个人开源报告
 
 <script setup>
 import AnnualReport from './.vitepress/theme/report/AnnualReport.vue'

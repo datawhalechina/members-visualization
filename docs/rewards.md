@@ -1,4 +1,4 @@
-# 🏆 2025Datawhale第4季度开源贡献者颁奖名单
+# 2025Datawhale第4季度开源贡献者颁奖名单
 <div class="reward-card-container">
   <div class="reward-card">
     <img 

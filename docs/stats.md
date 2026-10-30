@@ -1,4 +1,4 @@
-# 📊 OSS Insight 统计
+# OSS Insight 统计
 
 <script setup>
 import OrgStatsCards from './.vitepress/theme/stats/OrgStatsCards.vue'

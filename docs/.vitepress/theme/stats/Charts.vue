@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue'
 import * as echarts from 'echarts'
+import { getChartTheme } from '../utils/chartTheme'
 
 // 动态导入 echarts-wordcloud
 const wordCloudLoaded = ref(false)
@@ -46,21 +47,8 @@ const getEChartsTheme = () => {
 
 // 获取主题相关的颜色配置
 const getThemeColors = () => {
-  if (isDark.value) {
-    return {
-      textColor: '#ffffff',
-      backgroundColor: '#1a1a1a',
-      axisLineColor: '#484848',
-      splitLineColor: '#484848'
-    }
-  } else {
-    return {
-      textColor: '#333333',
-      backgroundColor: '#ffffff',
-      axisLineColor: '#e0e0e0',
-      splitLineColor: '#f0f0f0'
-    }
-  }
+  const theme = getChartTheme(isDark.value)
+  return { textColor: theme.ink, backgroundColor: theme.paper, axisLineColor: theme.rule, splitLineColor: theme.rule }
 }
 
 // 重新创建图表配置的函数
@@ -73,6 +61,8 @@ const createPieChartOption = () => {
 
   return {
     backgroundColor: 'transparent',
+    color: getChartTheme(isDark.value).palette,
+    textStyle: { fontFamily: getChartTheme(isDark.value).font },
     title: {
       text: '研究方向分布',
       subtext: '成员研究方向统计',
@@ -115,7 +105,7 @@ const createPieChartOption = () => {
       avoidLabelOverlap: false,
       itemStyle: {
         borderRadius: 10,
-        borderColor: isDark.value ? '#1b1b1f' : '#fff',
+        borderColor: getThemeColors().backgroundColor,
         borderWidth: 2
       },
       label: {
@@ -147,6 +137,8 @@ const createBarChartOption = () => {
 
   return {
     backgroundColor: 'transparent',
+    color: getChartTheme(isDark.value).palette,
+    textStyle: { fontFamily: getChartTheme(isDark.value).font },
     title: {
       text: '研究方向统计',
       subtext: `平均每人涉及 ${stats.value.avgDomainsPerMember} 个方向`,
@@ -215,7 +207,7 @@ const createBarChartOption = () => {
       name: '成员数量',
       type: 'bar',
       barMaxWidth: 16,
-      itemStyle: { color: isDark.value ? '#8b9bff' : '#667eea', borderRadius: [0, 4, 4, 0] },
+      itemStyle: { color: getChartTheme(isDark.value).palette[0], borderRadius: [0, 2, 2, 0] },
       label: { show: true, position: 'right', color: getThemeColors().textColor, fontSize: 11 },
       data: domainEntries.map(([, count]) => count),
       animationDelay: function (idx) {
@@ -269,6 +261,8 @@ const createWordCloudOption = () => {
       }
     },
     backgroundColor: 'transparent',
+    color: getChartTheme(isDark.value).palette,
+    textStyle: { fontFamily: getChartTheme(isDark.value).font },
     series: [{
       type: 'wordCloud',
       gridSize: 4,
@@ -303,21 +297,7 @@ const createWordCloudOption = () => {
 }
 
 // 获取词云颜色的辅助函数
-const getWordCloudColors = () => {
-  if (isDark.value) {
-    return [
-      '#6b9bd2', '#a5d86c', '#ffcc5c', '#ff7875', '#87ceeb',
-      '#52c41a', '#ff9c6e', '#b37feb', '#f759ab', '#36cfc9',
-      '#ffc53d', '#ff85c0', '#95de64', '#5cdbd3', '#85a5ff'
-    ]
-  } else {
-    return [
-      '#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de',
-      '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#13c2c2',
-      '#faad14', '#eb2f96', '#52c41a', '#1890ff', '#722ed1'
-    ]
-  }
-}
+const getWordCloudColors = () => getChartTheme(isDark.value).palette
 
 const createNetworkChartOption = () => {
   // 过滤和清理数据，确保没有重复或无效的节点
@@ -340,7 +320,7 @@ const createNetworkChartOption = () => {
       // 对数变换控制节点大小
       symbolSize: Math.max(20, Math.min(50, Math.log2((m.domain && Array.isArray(m.domain) ? m.domain.length : 1) + 1) * 15)),
       itemStyle: {
-        color: '#5470c6'
+        color: getChartTheme(isDark.value).palette[0]
       }
     }
   }).filter(Boolean) // 移除null值
@@ -362,7 +342,7 @@ const createNetworkChartOption = () => {
       // 对数变换控制节点大小，避免过大
       symbolSize: Math.max(25, Math.min(80, Math.log2(count + 1) * 20)),
       itemStyle: {
-        color: '#91cc75'
+        color: getChartTheme(isDark.value).palette[2]
       }
     }
   }).filter(Boolean)
@@ -403,6 +383,8 @@ const createNetworkChartOption = () => {
 
   return {
     backgroundColor: 'transparent',
+    color: getChartTheme(isDark.value).palette,
+    textStyle: { fontFamily: getChartTheme(isDark.value).font },
     tooltip: {
       trigger: 'item',
       formatter: function (params) {
@@ -438,8 +420,8 @@ const createNetworkChartOption = () => {
       data: allNodes,
       links: edges,
       categories: [
-        { name: '成员', itemStyle: { color: '#5470c6' } },
-        { name: '研究方向', itemStyle: { color: '#91cc75' } }
+        { name: '成员', itemStyle: { color: getChartTheme(isDark.value).palette[0] } },
+        { name: '研究方向', itemStyle: { color: getChartTheme(isDark.value).palette[2] } }
       ],
       roam: true, // 保留缩放功能
       focusNodeAdjacency: true,
