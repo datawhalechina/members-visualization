@@ -328,7 +328,7 @@ onMounted(initialize)
   width: 40px;
   height: 40px;
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #667eea;
+  border-top: 3px solid var(--vp-c-text-1);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 0 auto 20px;

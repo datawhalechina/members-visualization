@@ -158,7 +158,7 @@ onMounted(() => {
     <div class="filters">
       <div class="search-box">
         <input v-model="searchQuery" type="search" aria-label="搜索贡献者" placeholder="搜索姓名或 GitHub 用户名" class="search-input" />
-        <div class="search-icon">🔍</div>
+        <div class="search-icon vpi-search" aria-hidden="true"></div>
       </div>
 
       <div class="filter-box">
@@ -251,8 +251,8 @@ onMounted(() => {
 .search-input {
   width: 100%;
   padding: 12px 16px 12px 44px;
-  border: 2px solid var(--vp-c-border);
-  border-radius: 8px;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 3px;
   font-size: 16px;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
@@ -281,8 +281,8 @@ onMounted(() => {
 .domain-select {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid var(--vp-c-border);
-  border-radius: 8px;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 3px;
   font-size: 16px;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
@@ -299,7 +299,7 @@ onMounted(() => {
   padding: 12px 20px;
   background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
+  border-radius: 3px;
   color: var(--vp-c-text-2);
   cursor: pointer;
   font-size: 14px;
@@ -315,10 +315,9 @@ onMounted(() => {
 
 .results-info {
   margin-bottom: 20px;
-  padding: 12px 16px;
-  background: var(--vp-c-bg-soft);
-  border-radius: 8px;
-  border: 1px solid var(--vp-c-divider);
+  padding: 0 0 16px;
+  background: transparent;
+  border: 0;
 }
 
 .results-info p {
@@ -356,7 +355,7 @@ onMounted(() => {
 .members-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-  gap: 20px;
+  gap: 36px;
   align-items: start;
 }
 
@@ -373,7 +372,7 @@ onMounted(() => {
 .page-btn {
   padding: 8px 14px;
   border: 1px solid var(--vp-c-border);
-  border-radius: 6px;
+  border-radius: 3px;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   cursor: pointer;
