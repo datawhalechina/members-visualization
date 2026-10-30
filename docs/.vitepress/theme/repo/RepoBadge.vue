@@ -14,6 +14,7 @@ const props = defineProps({
 })
 
 const loading = ref(false)
+const ready = ref(false)
 const error = ref('')
 const repoData = ref(null)
 const contributors = ref([])
@@ -90,12 +91,12 @@ const peakMonth = computed(() => {
 const chartMonths = computed(() => monthlyStarsEntries.value.map(([month]) => month))
 
 const renderChart = () => {
-  if (!chartRef.value || chartMonths.value.length === 0) return
-
   if (chartInstance) {
     chartInstance.dispose()
     chartInstance = null
   }
+
+  if (!chartRef.value || chartMonths.value.length === 0) return
 
   const monthLabels = chartMonths.value.map((month) => formatMonthLabel(month))
   const starBars = monthlyStars.value
@@ -327,6 +328,7 @@ const handleImageError = (event) => {
 }
 
 const loadAllData = async (rawRepoName) => {
+  ready.value = false
   const repoSlug = normalizeRepoName(rawRepoName)
   if (!repoSlug) {
     repoData.value = null
@@ -356,7 +358,9 @@ const loadAllData = async (rawRepoName) => {
 
     loading.value = false
     await nextTick()
+    if (token !== loadToken) return
     renderChart()
+    ready.value = true
   } catch (loadError) {
     if (token !== loadToken) return
     repoData.value = null
@@ -398,7 +402,7 @@ onBeforeUnmount(() => {
     <div v-if="loading" class="state loading">Loading repository pulse...</div>
     <div v-else-if="error" class="state error">{{ error }}</div>
 
-    <article v-else-if="repoData" class="badge-card">
+    <article v-else-if="repoData" class="badge-card" :data-ready="ready">
       <header class="badge-header">
         <div>
           <p class="eyebrow">Repository Pulse</p>
@@ -423,7 +427,8 @@ onBeforeUnmount(() => {
 
       <div class="badge-main">
         <section class="chart-panel">
-          <div ref="chartRef" class="star-chart" />
+          <div v-if="chartMonths.length === 0" class="chart-empty">暂无 Star 历史数据</div>
+          <div v-else ref="chartRef" class="star-chart" />
           <div class="metric-grid">
             <div class="metric-item">
               <div class="metric-label">30D Stars</div>
@@ -598,6 +603,14 @@ onBeforeUnmount(() => {
 .star-chart {
   width: 100%;
   height: 164px;
+}
+
+.chart-empty {
+  height: 164px;
+  display: grid;
+  place-items: center;
+  color: #57606a;
+  font-size: 13px;
 }
 
 .metric-grid {

@@ -141,12 +141,18 @@ async function captureRepoBadge(browser, repoName, outputPath, baseURL = BASE_UR
     await page.emulateMediaFeatures([{name: 'prefers-color-scheme', value: 'light'}]);
     await page.goto(baseURL + '/repo-badge?repo=' + encodeURIComponent(repoName) + '&embed=1',
       {waitUntil: 'networkidle0', timeout: 30000});
-    await page.waitForSelector('.badge-card canvas', {timeout: 15000});
+    // A valid card can have no Star history, so it need not contain a canvas.
+    await page.waitForFunction(() => document.querySelector('.badge-card[data-ready="true"]') ||
+      document.querySelector('.repo-badge .state.error'), {timeout: 15000});
+    const error = await page.$eval('.repo-badge', element => element.querySelector('.state.error')?.textContent);
+    if (error) throw new Error(error.trim());
     await page.evaluate(() => document.fonts.ready);
     const element = await page.$('.badge-card');
     const png = Buffer.from(await element.screenshot({omitBackground: true}));
     if (!fs.existsSync(outputPath) || !png.equals(fs.readFileSync(outputPath))) fs.writeFileSync(outputPath, png);
     return digest(png);
+  } catch (error) {
+    throw new Error(`Failed to capture badge for ${repoName}: ${error.message}`, {cause: error});
   } finally {
     await page.close();
   }
