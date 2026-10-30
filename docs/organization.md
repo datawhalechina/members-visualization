@@ -1,4 +1,4 @@
-# 📚 成员与协作分析
+# 成员与协作分析
 
 <script setup>
 import Organization from './.vitepress/theme/organization/Organization.vue'

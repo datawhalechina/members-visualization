@@ -3,6 +3,7 @@ import { ref, computed, onMounted, onBeforeUnmount, nextTick, watch } from 'vue'
 import { useData } from 'vitepress'
 import * as echarts from 'echarts'
 import { loadProjectStats, sortedMonths, formatStars } from './projectData'
+import { getChartTheme } from '../utils/chartTheme'
 
 const props = defineProps({
   dataKey: { type: String, required: true },
@@ -26,17 +27,18 @@ let disposed = false
 function renderChart() {
   if (!chartRef.value || loading.value || error.value || isEmpty.value) return
   const mobile = chartRef.value.clientWidth < 520
-  const color = isDark.value ? '#a6b1c2' : '#66758a'
-  const border = isDark.value ? '#303a48' : '#e5eaf0'
-  const palette = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4', '#f97316', '#64748b']
+  const theme = getChartTheme(isDark.value)
+  const color = theme.text
+  const border = theme.rule
+  const palette = theme.palette
   const months = sortedMonths(items.value)
   const common = {
     backgroundColor: 'transparent', color: palette,
-    textStyle: { fontFamily: 'sans-serif', color }, animationDuration: 350,
+    textStyle: { fontFamily: theme.font, color }, animationDuration: 350,
     tooltip: {
       trigger: 'axis', confine: true,
-      backgroundColor: isDark.value ? '#202938' : '#fff', borderColor: border,
-      textStyle: { color: isDark.value ? '#e2e8f0' : '#273449', fontSize: 12 },
+      backgroundColor: theme.paper, borderColor: border,
+      textStyle: { color: theme.ink, fontSize: 12 },
       valueFormatter: value => value == null ? '未采集' : `${Number(value).toLocaleString('zh-CN')} Stars`
     },
     aria: { enabled: true }
@@ -61,7 +63,7 @@ function renderChart() {
       series: [{
         name: '净增 Star', type: 'bar', barMaxWidth: 23,
         data: rows.map((item, index) => ({ value: item.starAdd, itemStyle: { color: palette[index % palette.length] } })),
-        itemStyle: { borderRadius: [0, 5, 5, 0] },
+        itemStyle: { borderRadius: [0, 2, 2, 0] },
         label: { show: true, position: 'right', color, fontSize: 12,
           formatter: ({ value }) => `${value > 0 ? '+' : ''}${formatStars(value)}` }
       }]
@@ -95,9 +97,9 @@ function renderChart() {
       },
       dataZoom: [{
         type: 'slider', xAxisIndex: 0, bottom: 4, height: 20,
-        borderColor: 'transparent', backgroundColor: isDark.value ? '#202938' : '#f1f5f9',
-        fillerColor: 'rgba(59,130,246,.12)', showDetail: false,
-        handleStyle: { color: '#3b82f6', borderColor: '#3b82f6' },
+        borderColor: 'transparent', backgroundColor: theme.soft,
+        fillerColor: 'rgba(39,101,189,.12)', showDetail: false,
+        handleStyle: { color: palette[0], borderColor: palette[0] },
         dataBackground: { lineStyle: { color: border }, areaStyle: { color: border } }
       }],
       series: items.value.map(item => ({
@@ -173,9 +175,9 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-.project-chart { margin: 20px 0 32px; padding: 18px 18px 12px; border: 1px solid var(--vp-c-divider); border-radius: 12px; background: var(--vp-c-bg); }
+.project-chart { margin: 20px 0 32px; padding: 18px 18px 12px; border: 1px solid var(--vp-c-divider); border-radius: 3px; background: transparent; }
 .chart-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; color: var(--vp-c-text-2); font-size: 12px; }
-.chart-toolbar button, .chart-state button { border: 1px solid var(--vp-c-divider); padding: 5px 10px; border-radius: 6px; color: var(--vp-c-brand-1); font: inherit; cursor: pointer; }
+.chart-toolbar button, .chart-state button { border: 1px solid var(--vp-c-divider); padding: 5px 10px; border-radius: 3px; color: var(--vp-c-brand-1); font: inherit; cursor: pointer; }
 .chart-toolbar button:hover, .chart-state button:hover { background: var(--vp-c-bg-soft); }
 .chart-toolbar button:focus-visible, .chart-state button:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 3px; }
 .chart-canvas { height: 440px; width: 100%; min-width: 0; }

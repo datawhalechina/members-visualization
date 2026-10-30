@@ -1,4 +1,4 @@
-# 🏆 贡献者榜单
+# 贡献者榜单
 
 <script setup>
 import Rankings from './.vitepress/theme/rankings/Rankings.vue'

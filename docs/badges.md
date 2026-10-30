@@ -1,4 +1,4 @@
-# 🏅 成就徽章
+# 成就徽章
 
 <script setup>
 import BadgeGallery from './.vitepress/theme/badges/BadgeGallery.vue'

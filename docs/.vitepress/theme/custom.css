@@ -1,178 +1,159 @@
-/**
- * 自定义样式
- * 确保VitePress默认主题样式正确加载
- */
-
-/* 确保基础样式正确应用 */
-:root {
-  --vp-c-brand-1: #667eea;
-  --vp-c-brand-2: #764ba2;
-  --vp-c-brand-3: #667eea;
-}
-
-/* 确保图表容器样式 */
-.chart-container {
-  width: 100%;
-  height: 400px;
-  margin: 20px 0;
-}
-
-/* 确保响应式设计 */
-@media (max-width: 768px) {
-  .chart-container {
-    height: 300px;
-  }
-}
-
-/* 确保成员卡片样式 */
-.member-card {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  padding: 16px;
-  margin: 8px;
-  background: var(--vp-c-bg);
-}
-
-/* 确保搜索框样式 */
-.search-container {
-  margin: 20px 0;
-}
-
-.search-input {
-  width: 100%;
-  max-width: 400px;
-  padding: 8px 12px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 4px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
-}
-
-/* 确保统计卡片样式 */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 24px;
-  margin: 32px 0;
-}
-
-.stat-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 32px 24px;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+/* C · 开源编辑部: shared paper, ink, typography and navigation. */
+@font-face {
+  font-family: 'Community Editorial';
+  src: url('/editorial/editorial-serif.woff') format('woff');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 :root {
-  /* 页面整体最大宽度
-   * 默认值：1440px
-   * 说明：控制整个页面内容的最大宽度，包括侧边栏和主内容区域
-   *
-   * 💡 调整内容区域宽度的主要变量
-   *
-   * 示例 1：增加内容宽度到 90% 视口宽度
-   * --vp-layout-max-width: 90%;
-   *
-   * 示例 2：固定宽度为 1600px
-   * --vp-layout-max-width: 1600px;
-   *
-   * 示例 3：使用 calc() 动态计算（视口宽度减去固定边距）
-   * --vp-layout-max-width: calc(100vw - 100px);
-   *
-   * ⚠️ 注意事项：
-   * - 修改此变量会影响整个页面的宽度，包括导航栏、侧边栏和内容区域
-   * - 在小屏幕设备上，VitePress 会自动调整布局为响应式
-   * - 建议值范围：1200px - 1800px（固定宽度）或 80% - 95%（百分比）
-   */
-  --vp-layout-max-width: 100%;
+  --editorial-serif: 'Community Editorial', 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', Georgia, serif;
+  --editorial-blue: #2765bd;
+  --editorial-red: #de513c;
+  --vp-font-family-base: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --vp-c-brand-1: #2765bd;
+  --vp-c-brand: var(--vp-c-brand-1);
+  --vp-c-brand-2: #1c519d;
+  --vp-c-brand-3: #2765bd;
+  --vp-c-brand-soft: rgba(39, 101, 189, .09);
+  --vp-c-bg: #f6f3eb;
+  --vp-c-bg-alt: #efede5;
+  --vp-c-bg-soft: #eeebe2;
+  --vp-c-bg-mute: #e6e3d9;
+  --vp-c-bg-elv: #fbf9f3;
+  --vp-c-text-1: #172629;
+  --vp-c-text-2: #626760;
+  --vp-c-text-3: #72776f;
+  --vp-c-border: #c6c7bb;
+  --vp-c-divider: #c6c7bb;
+  --vp-c-gutter: #d9d8ce;
+  --vp-c-default-soft: #eeebe2;
+  --vp-nav-bg-color: #f6f3eb;
+  --vp-sidebar-bg-color: #efede5;
+  --vp-local-search-bg: #f6f3eb;
+  --vp-layout-max-width: 1440px;
+  --vp-sidebar-width: 248px;
+  --vp-nav-height: 76px;
+  --vp-nav-logo-height: 38px;
+  --vp-button-brand-bg: #2765bd;
+  --vp-button-brand-hover-bg: #1c519d;
 }
 
-/* 1. 无侧边栏时的容器宽度
- * 说明：当页面没有左侧边栏时（如首页），容器的最大宽度
- * 默认值：约 1136px
- * 推荐值：1584px（适合 1920px 宽屏）/ 2000px（适合 2560px 宽屏）
- */
-.VPDoc:not(.has-sidebar) .container {
-  max-width: 2000px !important;
+.dark {
+  --editorial-red: #ed876f;
+  --vp-c-brand-1: #8eb4ed;
+  --vp-c-brand-2: #bad0f1;
+  --vp-c-brand-3: #2765bd;
+  --vp-c-brand-soft: rgba(142, 180, 237, .12);
+  --vp-c-bg: #202724;
+  --vp-c-bg-alt: #1b211f;
+  --vp-c-bg-soft: #2a322d;
+  --vp-c-bg-mute: #323b34;
+  --vp-c-bg-elv: #29312d;
+  --vp-c-text-1: #eee9dc;
+  --vp-c-text-2: #b6bcaf;
+  --vp-c-text-3: #a1aa9c;
+  --vp-c-border: #4b574d;
+  --vp-c-divider: #4b574d;
+  --vp-c-gutter: #38433a;
+  --vp-c-default-soft: #2a322d;
+  --vp-nav-bg-color: #202724;
+  --vp-sidebar-bg-color: #1b211f;
+  --vp-local-search-bg: #202724;
 }
 
-/* 2. 无侧边栏时的内容宽度
- * 说明：当页面没有左侧边栏时，主内容区域的最大宽度
- * 默认值：约 912px
- * 推荐值：1264px（适合 1920px 宽屏）/ 1600px（适合 2560px 宽屏）
- */
-.VPDoc:not(.has-sidebar) .content {
-  max-width: 1264px !important;
-}
+body { font-family: var(--vp-font-family-base); -webkit-font-smoothing: antialiased; }
+::selection { background: #2765bd; color: #fff; }
+.VPHome { margin-bottom: 0 !important; }
+.VPNavBarTitle .title { font-size: 20px; font-weight: 750; letter-spacing: -.04em; }
+.VPNavBar.home .container { max-width: 1328px; }
+.VPNavBar .content-body { background: var(--vp-nav-bg-color); }
+.VPNavBarMenuLink { font-size: 14px !important; }
+.VPNavBarMenuLink.active { text-decoration: underline; text-underline-offset: 12px; text-decoration-thickness: 2px; }
+.VPNavBarSearch .DocSearch-Button { border: 1px solid var(--vp-c-border); border-radius: 4px; background: transparent; }
+.VPNavBarSearch .DocSearch-Button-Key { border: 0; background: transparent; box-shadow: none; }
+.VPNavBarTitle .logo { margin-right: 12px; }
+.VPNavBar .divider-line { background: transparent; }
+.VPSidebar { border-right: 1px solid var(--vp-c-divider); }
+.VPSidebarItem.level-0 > .item > .text { font-family: var(--editorial-serif); font-size: 16px; font-weight: 800; }
+.VPSidebarItem .link:hover .text { color: var(--vp-c-brand-1); }
+.VPLocalNav { background: var(--vp-c-bg-alt); border-bottom-color: var(--vp-c-divider); }
+.VPFooter { border-top: 0 !important; padding: 12px 24px 24px !important; background: var(--vp-c-bg); }
+.VPFooter .message, .VPFooter .copyright { font-size: 11px; line-height: 1.8; color: var(--vp-c-text-3); }
 
-/* 3. 有右侧目录时的内容容器宽度（最重要）
- * 说明：当页面有右侧目录（Aside）时，内容容器的最大宽度
- * 这是导致 688px 限制的主要原因
- * 默认值：约 912px
- * 推荐值：1168px（适合 1920px 宽屏）/ 1500px（适合 2560px 宽屏）
- *
- * 💡 这是最关键的规则！
- * 如果你的内容区域被限制在 688px，主要就是这个选择器在起作用。
- */
-.VPDoc.has-aside .content-container {
-  max-width: 1168px !important;
-}
+.vp-doc h1, .vp-doc h2, .vp-doc h3 { font-family: var(--editorial-serif); font-weight: 800; }
+.vp-doc h1 { font-size: 38px; line-height: 1.4; letter-spacing: -.045em; padding-bottom: 24px; border-bottom: 2px solid var(--vp-c-text-1); margin-bottom: 24px; }
+.vp-doc h2 { font-size: 28px; letter-spacing: -.035em; border-top: 1px solid var(--vp-c-divider); padding-top: 24px; }
+.vp-doc h3 { font-size: 22px; letter-spacing: -.025em; }
+.vp-doc p { line-height: 1.9; }
+.vp-doc a { text-underline-offset: 4px; }
+.vp-doc th { background: var(--vp-c-bg-soft); }
+.vp-doc tr:nth-child(2n) { background: transparent; }
+.vp-doc .custom-block { border-radius: 3px; }
+.VPDoc .content-container { max-width: 1100px !important; }
+.VPDoc:not(.has-sidebar) .container { max-width: 1328px; }
+.VPDoc:not(.has-sidebar) .content { max-width: 1200px; }
 
-/* 4. 通用容器边距重置
- * 说明：移除容器的默认边距，让内容更靠近边缘
- */
-.VPDoc .container {
-  margin: 0;
-}
+/* Existing data surfaces share the editorial frame; their content/layout is retained. */
+.vp-doc .project-chart, .vp-doc .charts .chart-container { border-radius: 3px; box-shadow: none; background: transparent; }
+.vp-doc .charts .chart-container:hover { box-shadow: none; }
+.vp-doc .charts .stats-overview { gap: 0; border-block: 1px solid var(--vp-c-text-1); padding: 20px 0; }
+.vp-doc .charts .stat-card { border: 0; border-right: 1px solid var(--vp-c-divider); border-radius: 0; box-shadow: none; background: transparent; color: var(--vp-c-text-1); padding: 8px 14px; transform: none; }
+.vp-doc .charts .stat-card:last-child { border-right: 0; }
+.vp-doc .charts .stat-number { font-family: Georgia, var(--editorial-serif); font-size: 34px; text-shadow: none; line-height: 1.4; overflow-wrap: anywhere; }
+.vp-doc .charts .stat-label { font-size: 13px; color: var(--vp-c-text-2); }
+.vp-doc :is(.card-group, .stats-card, .leaderboard-card, .weekly-commits-card, .night-owl-card) { background: var(--vp-c-bg); border-radius: 4px; box-shadow: none; }
+.vp-doc :is(.period-btn, .retry-btn, .export-btn, .refresh-btn, .filter-btn) { border-radius: 3px; }
+.vp-doc :is(.leaderboard-header, .card-header) { background: var(--vp-c-bg-soft); }
+.vp-doc :is(.badge-card, .welcome-card, .step-detail, .export-card, .period-selector, .card-wrapper, .contributor-card) { border-radius: 3px; box-shadow: none; }
+.vp-doc :is(.badge-gallery, .quarterly-contributors-container) .stat-card { background: transparent; color: var(--vp-c-text-1); border: 0; border-top: 2px solid var(--vp-c-text-1); border-radius: 0; box-shadow: none; }
+.vp-doc :is(.badge-gallery, .quarterly-contributors-container) :is(.stat-number, .stat-value) { font-family: Georgia, var(--editorial-serif); }
+.vp-doc .badge-gallery .stat-number { line-height: 1.4; color: var(--vp-c-text-1); }
+.vp-doc .badge-gallery .badge-name { font-family: var(--editorial-serif); font-weight: 800; }
+.vp-doc :is(.badge-card, .welcome-card, .step-detail, .filter-bar, .quarter-selector, .filter-select) { border-radius: 3px; }
+.vp-doc .rankings-container { padding-inline: 0; }
+.vp-doc .rankings-container .filters-section { border-radius: 3px; border-block: 1px solid var(--vp-c-divider); }
+/* The legacy leaderboard styles use !important; keep the override scoped to that surface. */
+.vp-doc .rankings-container .leaderboard-card-base { border-radius: 3px !important; border-top: 2px solid var(--vp-c-text-1) !important; }
+.vp-doc .rankings-container .leaderboard-card-base:hover { transform: none !important; box-shadow: none !important; }
+.vp-doc .rankings-container .card-header { background: var(--vp-c-bg-soft) !important; }
+.vp-doc .rankings-container .card-header .title { background: none; -webkit-text-fill-color: currentColor; color: var(--vp-c-text-1); font-family: var(--editorial-serif); font-weight: 800; }
+.vp-doc .rankings-container .stats-badge { border-radius: 0; box-shadow: none; background: transparent; color: var(--editorial-red); border-left: 1px solid var(--vp-c-divider); }
+.vp-doc .rankings-container .stats-badge .count { font-family: Georgia, serif; font-size: 26px; }
+.vp-doc .annual-report :is(.search-input, .search-btn, .report-card, .report-inner, .metric-card, .summary-box) { border-radius: 3px; }
+.vp-doc .annual-report .report-card { padding: 0; background: transparent; border: 1px solid var(--vp-c-divider); border-top: 3px solid var(--vp-c-text-1); }
+.vp-doc .annual-report .report-inner { background: var(--vp-c-bg); }
+.vp-doc .annual-report .report-badge-label { border-radius: 0; background: transparent; font: 700 18px var(--editorial-serif); }
+.vp-doc .annual-report .metric-card { border: 0; border-top: 1px solid var(--vp-c-divider); background: transparent; }
+.vp-doc .annual-report .metric-value { font-family: Georgia, var(--editorial-serif); font-size: 32px; }
+.vp-doc .annual-report .section-title { border: 0; padding-top: 0; }
 
-/* Keep the existing brand while making the homepage easier to scan. */
-.VPHome .VPHero .tagline {
-  max-width: 590px;
-  font-size: 19px;
-  line-height: 1.8;
-  color: var(--vp-c-text-2);
-}
-
-.VPHome .VPFeature .title {
-  font-size: 17px;
-  line-height: 1.5;
-}
-
-.VPHome .VPFeature .details {
-  line-height: 1.8;
-  color: var(--vp-c-text-2);
-}
-
-.VPHome .VPFeature.link:hover {
-  background: var(--vp-c-bg);
-}
-
-button:focus-visible,
-a:focus-visible,
-summary:focus-visible {
-  outline: 2px solid var(--vp-c-brand-1);
-  outline-offset: 4px;
-}
-
+button:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 4px; }
 .vp-doc details > summary { cursor: pointer; }
-
-@media (max-width: 640px) {
-  .VPHome .VPHero .tagline { font-size: 16px; line-height: 1.8; }
+@media (min-width: 960px) {
+  .VPNavBar .VPNavBarSocialLinks, .VPNavBar .VPNavBarAppearance { display: flex !important; }
+  .VPNavBar .VPNavBarExtra { display: none !important; }
+  .VPNavBar:not(.has-sidebar) .content-body { gap: 10px; }
+  .VPNavBar:not(.has-sidebar) .VPNavBarSearch { order: 5; flex-grow: 0; padding-left: 16px; }
+  .VPNavBar:not(.has-sidebar) .VPNavBarSocialLinks { order: 4; }
+  .VPNavBar:not(.has-sidebar) .VPNavBarAppearance { order: 3; }
 }
-
+@media (min-width: 768px) and (max-width: 1099px) {
+  .VPNavBarSearch .DocSearch-Button { width: 40px; min-width: 40px; padding: 0; justify-content: center; border: 0; }
+  .VPNavBarSearch .DocSearch-Button-Placeholder, .VPNavBarSearch .DocSearch-Button-Keys { display: none; }
+}
+@media (max-width: 767px) {
+  :root { --vp-nav-height: 64px; --vp-nav-logo-height: 30px; }
+  .VPNavBarTitle .title { font-size: 17px; }
+  .VPNavBarSearch .DocSearch-Button { border: 0; height: 40px; width: 40px; }
+  .vp-doc h1 { font-size: 29px; padding-bottom: 20px; }
+  .vp-doc h2 { font-size: 25px; }
+  .vp-doc h3 { font-size: 21px; }
+  .vp-doc .charts .stats-overview { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 0; }
+  .vp-doc .charts .stat-card:nth-child(2n) { border-right: 0; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-  }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
