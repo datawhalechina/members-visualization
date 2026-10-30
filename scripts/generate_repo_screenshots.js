@@ -3,7 +3,9 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { spawn } = require('child_process');
+const http = require('node:http');
+const net = require('node:net');
+const { spawn } = require('node:child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const OUTPUT_DIR = path.join(ROOT, 'docs/public/badges');
@@ -62,30 +64,69 @@ function needsCapture(previous, inputHash, outputPath) {
     previous.image !== digest(fs.readFileSync(outputPath));
 }
 
-async function startPreviewServer() {
+// Readiness is an HTTP response, not a particular host name in VitePress's log.
+function waitForPreviewServer(server, url, { timeout = 30000, interval = 200, requestTimeout = 1000 } = {}) {
+  return new Promise((resolve, reject) => {
+    let settled = false;
+    let retryTimer;
+    let request;
+    let lastError = 'no response';
+    const finish = error => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      clearTimeout(retryTimer);
+      server.removeListener('error', onError);
+      server.removeListener('exit', onExit);
+      request?.destroy();
+      if (error) reject(error);
+      else resolve();
+    };
+    const onError = error => finish(error);
+    const onExit = (code, signal) => finish(new Error(`Preview server exited (${signal || code})`));
+    const timer = setTimeout(() => finish(new Error(`Preview server start timeout: ${url} (${lastError})`)), timeout);
+    const retry = () => {
+      if (!settled) retryTimer = setTimeout(probe, interval);
+    };
+    const probe = () => {
+      if (settled) return;
+      if (server.exitCode != null || server.signalCode != null) return onExit(server.exitCode, server.signalCode);
+      request = http.get(url, response => {
+        response.resume();
+        response.once('end', () => {
+          if (response.statusCode === 200) finish();
+          else {
+            lastError = `HTTP ${response.statusCode}`;
+            retry();
+          }
+        });
+      });
+      request.setTimeout(requestTimeout, () => request.destroy(new Error('HTTP probe timed out')));
+      request.once('error', error => {
+        lastError = error.message;
+        retry();
+      });
+    };
+    server.once('error', onError);
+    server.once('exit', onExit);
+    probe();
+  });
+}
+
+async function startPreviewServer({ port = 4173, timeout = 30000 } = {}) {
+  // Do not accidentally treat another process on this port as our preview.
+  await new Promise((resolve, reject) => {
+    const probe = net.createServer();
+    probe.once('error', error => reject(new Error(`Preview port ${port} is unavailable: ${error.message}`)));
+    probe.listen(port, '127.0.0.1', () => probe.close(resolve));
+  });
   const vitepressBin = path.join(path.dirname(require.resolve('vitepress/package.json')), 'bin/vitepress.js');
-  const server = spawn(process.execPath, [vitepressBin, 'preview', 'docs', '--host', '127.0.0.1', '--port', '4173', '--strictPort'],
-    {cwd: ROOT, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe']});
+  const server = spawn(process.execPath, [vitepressBin, 'preview', 'docs', '--host', '127.0.0.1', '--port', String(port), '--strictPort'],
+    { cwd: ROOT, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
+  server.stdout.on('data', data => process.stdout.write(data));
+  server.stderr.on('data', data => process.stderr.write(data));
   try {
-    await new Promise((resolve, reject) => {
-      const timer = setTimeout(() => { cleanup(); reject(new Error('Preview server start timeout')); }, 30000);
-      const cleanup = () => {
-        clearTimeout(timer);
-        server.removeListener('error', onError);
-        server.removeListener('exit', onExit);
-        server.stdout.removeListener('data', onData);
-      };
-      const onError = error => { cleanup(); reject(error); };
-      const onExit = code => { cleanup(); reject(new Error('Preview server exited (' + code + ')')); };
-      const onData = data => {
-        process.stdout.write(data);
-        if (data.toString().includes('127.0.0.1:4173')) { cleanup(); resolve(); }
-      };
-      server.on('error', onError);
-      server.on('exit', onExit);
-      server.stdout.on('data', onData);
-      server.stderr.on('data', data => process.stderr.write(data));
-    });
+    await waitForPreviewServer(server, `http://127.0.0.1:${port}/members-visualization/`, { timeout });
     return server;
   } catch (error) {
     server.kill();
