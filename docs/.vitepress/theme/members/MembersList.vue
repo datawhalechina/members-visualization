@@ -231,7 +231,7 @@ onMounted(() => {
 <style scoped>
 .members-list {
   width: 100%;
-  padding: 20px 0;
+  padding: 0;
 }
 
 .filters {

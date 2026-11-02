@@ -140,7 +140,8 @@ function toggleSeries() {
     [item.name, showAll.value || index < props.initialVisible])) } })
 }
 
-watch(isDark, renderChart)
+// Read CSS tokens after VitePress applies the new theme to the document.
+watch(isDark, renderChart, { flush: 'post' })
 onMounted(() => {
   observer = new ResizeObserver(renderChart)
   observer.observe(chartRef.value)

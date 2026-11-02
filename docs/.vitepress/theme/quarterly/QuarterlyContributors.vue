@@ -290,7 +290,7 @@ onMounted(initialize)
 .quarterly-contributors-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0;
 }
 
 .loading-state,
@@ -508,10 +508,6 @@ onMounted(initialize)
 }
 
 @media (max-width: 768px) {
-  .quarterly-contributors-container {
-    padding: 15px;
-  }
-
   .quarter-selector {
     flex-direction: column;
     align-items: stretch;

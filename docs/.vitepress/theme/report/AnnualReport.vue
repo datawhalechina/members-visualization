@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, nextTick, onMounted } from 'vue'
 import { domToPng } from 'modern-screenshot'
 import { loadMembers, loadCommitsWeekly } from '../utils/dataLoader.js'
 import { computeMemberBadges, TIER_COLORS } from '../utils/badges.js'
@@ -9,6 +9,8 @@ const error = ref(null)
 const members = ref([])
 const commitsData = ref(null)
 const searchQuery = ref('')
+const searchFocused = ref(false)
+const activeSuggestion = ref(-1)
 const searchSubmitted = ref(false)
 const selectedMember = ref(null)
 const cardRef = ref(null)
@@ -22,6 +24,33 @@ function normalizeUsername(value) {
   return value.trim().replace(/^(?:https?:\/\/)?(?:www\.)?github\.com\//i, '').replace(/^@/, '').split(/[/?#]/)[0].toLowerCase()
 }
 
+const suggestions = computed(() => {
+  const query = normalizeUsername(searchQuery.value)
+  if (!query) return []
+  const matchPriority = member => {
+    const values = [member.id, member.name || ''].map(value => value.toLowerCase())
+    if (values.some(value => value === query)) return 0
+    if (values.some(value => value.startsWith(query))) return 1
+    return 2
+  }
+  return members.value
+    .filter(member => [member.id, member.name || ''].some(value => value.toLowerCase().includes(query)))
+    .sort((a, b) => matchPriority(a) - matchPriority(b))
+    .slice(0, 8)
+})
+const suggestionsOpen = computed(() => searchFocused.value && !!normalizeUsername(searchQuery.value))
+
+function closeSuggestions() {
+  searchFocused.value = false
+  activeSuggestion.value = -1
+}
+
+function handleSearchInput() {
+  searchFocused.value = true
+  activeSuggestion.value = -1
+  searchSubmitted.value = false
+}
+
 function mergeCommitsData(membersArr, commits) {
   if (!commits?.user_commits) return membersArr
   return membersArr.map(m => ({
@@ -32,6 +61,7 @@ function mergeCommitsData(membersArr, commits) {
 }
 
 function findMember() {
+  closeSuggestions()
   searchSubmitted.value = true
   const q = normalizeUsername(searchQuery.value)
   if (!q) { selectedMember.value = null; return }
@@ -65,7 +95,24 @@ function topPercentage(ranking) {
 }
 
 function handleKeydown(e) {
-  if (e.key === 'Enter') findMember()
+  if (e.isComposing) return
+  if (e.key === 'Escape') {
+    e.preventDefault()
+    closeSuggestions()
+  } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    if (!suggestions.value.length) return
+    e.preventDefault()
+    searchFocused.value = true
+    const count = suggestions.value.length
+    activeSuggestion.value = e.key === 'ArrowDown'
+      ? (activeSuggestion.value + 1) % count
+      : (activeSuggestion.value <= 0 ? count : activeSuggestion.value) - 1
+    nextTick(() => document.getElementById(`report-member-option-${activeSuggestion.value}`)?.scrollIntoView({ block: 'nearest' }))
+  } else if (e.key === 'Enter') {
+    e.preventDefault()
+    if (suggestionsOpen.value && activeSuggestion.value >= 0) useExample(suggestions.value[activeSuggestion.value])
+    else findMember()
+  }
 }
 
 // 百分位计算
@@ -180,14 +227,47 @@ onMounted(async () => {
       <!-- 搜索区 -->
       <div class="search-section">
         <div class="search-box">
-          <input
-            v-model="searchQuery"
-            type="text"
-            aria-label="报告用户"
-            placeholder="GitHub 用户名或个人主页链接"
-            class="search-input"
-            @keydown="handleKeydown"
-          />
+          <div class="search-combobox">
+            <input
+              v-model="searchQuery"
+              type="text"
+              role="combobox"
+              aria-label="报告用户"
+              aria-autocomplete="list"
+              :aria-expanded="suggestionsOpen"
+              :aria-controls="suggestionsOpen ? 'report-member-options' : undefined"
+              :aria-activedescendant="suggestionsOpen && activeSuggestion >= 0 ? `report-member-option-${activeSuggestion}` : undefined"
+              autocomplete="off"
+              placeholder="搜索姓名、GitHub 用户名或主页链接"
+              class="search-input"
+              @input="handleSearchInput"
+              @focus="searchFocused = true"
+              @blur="closeSuggestions"
+              @keydown="handleKeydown"
+            />
+            <div v-if="suggestionsOpen" id="report-member-options" class="search-suggestions" role="listbox" aria-label="匹配的贡献者">
+              <button
+                v-for="(member, index) in suggestions"
+                :id="`report-member-option-${index}`"
+                :key="member.id"
+                type="button"
+                role="option"
+                :aria-selected="activeSuggestion === index"
+                tabindex="-1"
+                class="suggestion-option"
+                @pointerdown.prevent
+                @pointermove="activeSuggestion = index"
+                @click="useExample(member)"
+              >
+                <img :src="getAvatarUrl(member)" alt="" class="suggestion-avatar" />
+                <span class="suggestion-person">
+                  <span class="suggestion-name">{{ member.name || member.id }}</span>
+                  <span class="suggestion-id">@{{ member.id }}</span>
+                </span>
+              </button>
+              <p v-if="!suggestions.length" class="suggestions-empty" role="status">没有匹配的贡献者，试试其他姓名或用户名。</p>
+            </div>
+          </div>
           <button class="search-btn" :disabled="!searchQuery.trim()" @click="findMember">生成报告</button>
           <button class="search-btn secondary" :disabled="!report || copyStatus === '生成中...'" @click="copyAsPng" title="复制为高清 PNG 图片">{{ copyStatus || '📷 复制图片' }}</button>
           <button v-if="report" class="search-btn secondary" @click="copyReportLink">{{ linkStatus || '复制报告链接' }}</button>
@@ -242,7 +322,7 @@ onMounted(async () => {
               </div>
               <div class="metric-card">
                 <div class="metric-value">{{ report.member.followers || 0 }}</div>
-                <div class="metric-label">关注者</div>
+                <div class="metric-label" title="关注你的 GitHub 用户数（Followers）">粉丝量</div>
                 <div class="metric-pct" :style="{ color: pctColor(report.rankings.followers.pct) }">社区前 {{ topPercentage(report.rankings.followers) }}%</div>
               </div>
             </div>
@@ -300,7 +380,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.annual-report { width: 100%; padding: 20px 0; }
+.annual-report { width: 100%; padding: 0; }
 
 .status-box {
   text-align: center; padding: 60px 20px; border-radius: 12px;
@@ -312,12 +392,27 @@ onMounted(async () => {
 /* 搜索区 */
 .search-section { text-align: center; margin-bottom: 32px; }
 .search-box { display: flex; gap: 10px; max-width: 680px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+.search-combobox { position: relative; flex: 1 1 200px; min-width: 0; text-align: left; }
 .search-input {
-  flex: 1 1 200px; padding: 12px 16px; border: 2px solid var(--vp-c-border); border-radius: 10px;
+  display: block; width: 100%; min-width: 0; padding: 12px 16px; border: 2px solid var(--vp-c-border); border-radius: 10px;
   font-size: 15px; background: var(--vp-c-bg); color: var(--vp-c-text-1); outline: none;
   transition: border-color 0.2s;
 }
 .search-input:focus { border-color: var(--vp-c-brand-1); }
+.search-suggestions {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 30;
+  max-height: 300px; overflow-y: auto; padding: 4px;
+  border: 1px solid var(--vp-c-border); border-radius: 3px;
+  background: var(--vp-c-bg-elv); box-shadow: 0 10px 24px rgba(23, 38, 41, .12);
+}
+.suggestion-option { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; text-align: left; cursor: pointer; }
+.suggestion-option:hover, .suggestion-option[aria-selected="true"] { background: var(--vp-c-brand-soft); }
+.suggestion-avatar { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+.suggestion-person { min-width: 0; }
+.suggestion-name, .suggestion-id { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.suggestion-name { color: var(--vp-c-text-1); font-size: 14px; font-weight: 600; }
+.suggestion-id { color: var(--vp-c-text-2); font-size: 12px; }
+.suggestions-empty { margin: 0; padding: 12px; color: var(--vp-c-text-2); font-size: 13px; }
 .search-btn {
   padding: 12px 20px; background: var(--vp-c-brand-1); color: #fff; border: none;
   border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;
@@ -432,6 +527,6 @@ onMounted(async () => {
   .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .search-box { flex-direction: column; }
   .search-btn { width: 100%; }
-  .search-input { flex: 1 1 100%; }
+  .search-combobox { flex: none; width: 100%; }
 }
 </style>
