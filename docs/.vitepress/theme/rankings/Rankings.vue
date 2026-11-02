@@ -156,7 +156,7 @@ const leaderboards = computed(() => [
   {
     id: 'popularity',
     title: '人气王榜',
-    description: '综合个人 Followers 和组织仓库 Stars 的影响力排行',
+    description: '综合 GitHub 粉丝量和参与组织仓库 Stars 的影响力排行',
     icon: '👑',
     colorScheme: 'fire',
     showTrend: false,
@@ -173,8 +173,8 @@ const leaderboards = computed(() => [
   },
   {
     id: 'social',
-    title: '社交达人榜',
-    description: '基于 Following 数量的社交活跃度排行',
+    title: '粉丝榜',
+    description: '按 GitHub 粉丝量（Followers）排名',
     icon: '💬',
     colorScheme: 'green',
     showTrend: false,
@@ -222,7 +222,7 @@ function calculatePopularityRanking() {
     .map(member => ({
       ...member,
       score: (member.followers || 0) * 0.6 + (member.org_total_stars || 0) * 0.4,
-      scoreDisplay: `${member.followers || 0} followers + ${member.org_total_stars || 0} 组织stars`
+      scoreDisplay: `${member.followers || 0} 粉丝 + ${member.org_total_stars || 0} 参与项目 Stars`
     }))
     .filter(member => member.score > 0)
     .sort((a, b) => b.score - a.score)
@@ -245,14 +245,14 @@ function calculateProductiveRanking() {
 }
 
 function calculateSocialRanking() {
-  // 社交达人榜保持使用个人 following 数据（这是个人社交属性）
+  // 粉丝量衡量被关注程度，不使用关注他人的人数。
   return filteredMembers.value
     .map(member => ({
       ...member,
-      score: member.following || 0,
-      scoreDisplay: `关注 ${member.following || 0} 人`
+      score: Number(member.followers) || 0,
+      scoreDisplay: `${Number(member.followers) || 0} 位粉丝`
     }))
-    .filter(member => member.score >= 10)
+    .filter(member => member.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, topCount.value)
     .map((member, index) => ({ ...member, rank: index + 1 }))
@@ -283,12 +283,11 @@ function calculateComprehensiveRanking() {
   return filteredMembers.value
     .map(member => {
       const orgStars = (member.org_total_stars || 0) * 0.3  // 组织仓库stars影响力
-      const followers = (member.followers || 0) * 0.25      // 个人社交影响力
+      const followers = (member.followers || 0) * 0.4       // 粉丝量，合并原有的两项社交权重
       const orgRepos = (member.org_repos_count || 0) * 0.2  // 组织仓库参与度
-      const following = (member.following || 0) * 0.15      // 社交活跃度
       const contributions = (member.org_total_contributions || 0) * 0.1  // 代码贡献量
 
-      const score = orgStars + followers + orgRepos + following + contributions
+      const score = orgStars + followers + orgRepos + contributions
 
       return {
         ...member,

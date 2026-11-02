@@ -224,7 +224,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.newcomer-guide { width: 100%; padding: 20px 0; }
+.newcomer-guide { width: 100%; padding: 0; }
 
 .status-box {
   text-align: center; padding: 60px 20px; border-radius: 12px;

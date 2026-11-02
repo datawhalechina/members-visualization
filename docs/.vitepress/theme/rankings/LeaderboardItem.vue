@@ -56,7 +56,7 @@
       
       <!-- 详细数据 - 显示组织贡献数据 -->
       <div class="detailed-stats">
-        <div class="stat-item" v-if="member.followers" title="Followers">
+        <div class="stat-item" v-if="member.followers" title="GitHub 粉丝量（Followers）">
           <span class="stat-icon">👥</span>
           <span class="stat-value">{{ member.followers }}</span>
         </div>

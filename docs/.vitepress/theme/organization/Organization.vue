@@ -48,7 +48,7 @@ onMounted(async () => {
 <style scoped>
 .wrapper {
     width: 100%;
-    padding: 20px 0;
+    padding: 0;
 }
 
 .chart {

@@ -865,7 +865,7 @@ onUnmounted(() => {
 <style scoped>
 .charts {
   width: 100%;
-  padding: 20px 0;
+  padding: 0;
   clear: both;
   overflow: hidden;
   position: relative;

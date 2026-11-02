@@ -322,7 +322,7 @@ const getCardImageUrl = (card) => {
 <style scoped>
 .org-stats-cards {
   width: 100%;
-  padding: 20px 0;
+  padding: 0;
 }
 
 /* 日期范围选择器 */
@@ -331,7 +331,7 @@ const getCardImageUrl = (card) => {
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   padding: 16px 20px;
   background: var(--vp-c-bg-soft);
   border-radius: 12px;
@@ -400,7 +400,7 @@ const getCardImageUrl = (card) => {
 }
 
 .card-group.no-header {
-  padding: 16px;
+  padding: 0;
   background: transparent;
   border: none;
 }

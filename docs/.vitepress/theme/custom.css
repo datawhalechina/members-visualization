@@ -33,7 +33,7 @@
   --vp-sidebar-bg-color: #efede5;
   --vp-local-search-bg: #f6f3eb;
   --vp-layout-max-width: 1440px;
-  --vp-sidebar-width: 248px;
+  --vp-sidebar-width: 280px;
   --vp-nav-height: 76px;
   --vp-nav-logo-height: 38px;
   --vp-button-brand-bg: #2765bd;
@@ -67,6 +67,7 @@ body { font-family: var(--vp-font-family-base); -webkit-font-smoothing: antialia
 ::selection { background: #2765bd; color: #fff; }
 .VPHome { margin-bottom: 0 !important; }
 .VPNavBarTitle .title { font-size: 20px; font-weight: 750; letter-spacing: -.04em; }
+.VPNavBarTitle .title > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .VPNavBar.home .container { max-width: 1328px; }
 .VPNavBar .content-body { background: var(--vp-nav-bg-color); }
 .VPNavBarMenuLink { font-size: 14px !important; }
@@ -83,8 +84,14 @@ body { font-family: var(--vp-font-family-base); -webkit-font-smoothing: antialia
 .VPFooter .message, .VPFooter .copyright { font-size: 11px; line-height: 1.8; color: var(--vp-c-text-3); }
 
 .vp-doc h1, .vp-doc h2, .vp-doc h3 { font-family: var(--editorial-serif); font-weight: 800; }
-.vp-doc h1 { font-size: 38px; line-height: 1.4; letter-spacing: -.045em; padding-bottom: 24px; border-bottom: 2px solid var(--vp-c-text-1); margin-bottom: 24px; }
-.vp-doc h2 { font-size: 28px; letter-spacing: -.035em; border-top: 1px solid var(--vp-c-divider); padding-top: 24px; }
+.vp-doc h1 { font-size: 38px; line-height: 1.4; letter-spacing: -.045em; padding-bottom: 16px; border-bottom: 2px solid var(--vp-c-text-1); margin-bottom: 20px; }
+.vp-doc h2 { font-size: 28px; letter-spacing: -.035em; }
+/* Markdown section spacing should not add padding inside component headings. */
+.vp-doc h2:has(> .header-anchor) { margin: 32px 0 12px; padding-top: 16px; }
+.vp-doc h2 > .header-anchor { top: 16px; }
+.vp-doc h1 + h2:has(> .header-anchor) { margin-top: 0; border-top: 0; padding-top: 0; }
+.vp-doc h1 + h2 > .header-anchor { top: 0; }
+.vp-doc h1 + p, .vp-doc h2:has(> .header-anchor) + p { margin-top: 0; margin-bottom: 16px; }
 .vp-doc h3 { font-size: 22px; letter-spacing: -.025em; }
 .vp-doc p { line-height: 1.9; }
 .vp-doc a { text-underline-offset: 4px; }
@@ -92,6 +99,7 @@ body { font-family: var(--vp-font-family-base); -webkit-font-smoothing: antialia
 .vp-doc tr:nth-child(2n) { background: transparent; }
 .vp-doc .custom-block { border-radius: 3px; }
 .VPDoc .content-container { max-width: 1100px !important; }
+.VPContent .VPDoc { padding-top: 28px; }
 .VPDoc:not(.has-sidebar) .container { max-width: 1328px; }
 .VPDoc:not(.has-sidebar) .content { max-width: 1200px; }
 
@@ -112,7 +120,7 @@ body { font-family: var(--vp-font-family-base); -webkit-font-smoothing: antialia
 .vp-doc .badge-gallery .stat-number { line-height: 1.4; color: var(--vp-c-text-1); }
 .vp-doc .badge-gallery .badge-name { font-family: var(--editorial-serif); font-weight: 800; }
 .vp-doc :is(.badge-card, .welcome-card, .step-detail, .filter-bar, .quarter-selector, .filter-select) { border-radius: 3px; }
-.vp-doc .rankings-container { padding-inline: 0; }
+.vp-doc .rankings-container { padding: 0; }
 .vp-doc .rankings-container .filters-section { border-radius: 3px; border-block: 1px solid var(--vp-c-divider); }
 /* The legacy leaderboard styles use !important; keep the override scoped to that surface. */
 .vp-doc .rankings-container .leaderboard-card-base { border-radius: 3px !important; border-top: 2px solid var(--vp-c-text-1) !important; }
@@ -132,6 +140,17 @@ body { font-family: var(--vp-font-family-base); -webkit-font-smoothing: antialia
 button:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 4px; }
 .vp-doc details > summary { cursor: pointer; }
 @media (min-width: 960px) {
+  .VPNavBar.has-sidebar > .wrapper > .container > .title { padding-right: 24px; }
+  .Layout .VPSidebar {
+    top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px));
+    padding-top: 20px;
+    padding-bottom: 28px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--vp-c-border) transparent;
+    scrollbar-gutter: stable;
+  }
+  .VPSidebar .curtain { display: none; }
+  .VPDoc .aside-container { padding-top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + var(--vp-doc-top-height, 0px) + 28px); }
   .VPNavBar .VPNavBarSocialLinks, .VPNavBar .VPNavBarAppearance { display: flex !important; }
   .VPNavBar .VPNavBarExtra { display: none !important; }
   .VPNavBar:not(.has-sidebar) .content-body { gap: 10px; }
@@ -147,7 +166,8 @@ button:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visibl
   :root { --vp-nav-height: 64px; --vp-nav-logo-height: 30px; }
   .VPNavBarTitle .title { font-size: 17px; }
   .VPNavBarSearch .DocSearch-Button { border: 0; height: 40px; width: 40px; }
-  .vp-doc h1 { font-size: 29px; padding-bottom: 20px; }
+  .VPContent .VPDoc { padding-top: 24px; }
+  .vp-doc h1 { font-size: 29px; padding-bottom: 12px; margin-bottom: 16px; }
   .vp-doc h2 { font-size: 25px; }
   .vp-doc h3 { font-size: 21px; }
   .vp-doc .charts .stats-overview { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 0; }

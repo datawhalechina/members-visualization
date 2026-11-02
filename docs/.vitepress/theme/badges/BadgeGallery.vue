@@ -171,7 +171,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.badge-gallery { width: 100%; padding: 20px 0; }
+.badge-gallery { width: 100%; padding: 0; }
 
 .status-box {
   text-align: center; padding: 60px 20px; border-radius: 12px;
