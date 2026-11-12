@@ -67,17 +67,22 @@ def fetch_organization_data(key):
             origin_repo_detail_list.append(json.loads(repo_detail_data))
 
     # 1. 从starHistory网站中获取开源组织列表
-    star_history_res = fetch_organization_from_star_history(
-        10, CONFIG['TOP_10_KNOWLEDGE_SHARING_ORGANIZATION']
-    )
+    try:
+        ranking = fetch_organization_from_star_history(
+            10, CONFIG['TOP_10_KNOWLEDGE_SHARING_ORGANIZATION']
+        )['top_10_knowledge_sharing_organization']
+        if not ranking:
+            raise RuntimeError('Organization ranking fetch returned no usable data')
+    except RuntimeError as exc:
+        ranking = []
+        print(f'::warning::Skipping organization ranking refresh: {exc}')
     top_10_knowledge_sharing_organization_path = CONFIG['ORGANIZATION_DATA_DIR'] / \
         CONFIG['TOP_10_KNOWLEDGE_SHARING_ORGANIZATION_FILE_NAME']
     top_10_knowledge_sharing_organization_path_with_key = CONFIG['ORGANIZATION_DATA_DIR'] / \
         key / CONFIG['TOP_10_KNOWLEDGE_SHARING_ORGANIZATION_FILE_NAME']
-    if not star_history_res['top_10_knowledge_sharing_organization']:
-        raise RuntimeError('Organization ranking fetch returned no usable data')
-    ensure_dir_and_write_files([top_10_knowledge_sharing_organization_path, top_10_knowledge_sharing_organization_path_with_key], json.dumps(
-        star_history_res["top_10_knowledge_sharing_organization"], indent=2, ensure_ascii=False))
+    if ranking:
+        ensure_dir_and_write_files([top_10_knowledge_sharing_organization_path, top_10_knowledge_sharing_organization_path_with_key], json.dumps(
+            ranking, indent=2, ensure_ascii=False))
 
     # 2. 获取Datawhale的仓库列表和仓库详情，并进行写入
     repo_detail_res = fetch_organization_repo_detail(
@@ -109,8 +114,10 @@ def analyze_organization_data(previous_key, current_key):
         current_key / CONFIG['REPO_DATA_LIST_FILE_NAME']
 
     # 获取所有需要的数据
-    top10_knowledge_sharing_organization_info = get_top10_knowledge_sharing_organization_info(
-        previous_top_10_organization_path, current_top_10_organization_path)
+    top10_knowledge_sharing_organization_info = []
+    if previous_top_10_organization_path.is_file() and current_top_10_organization_path.is_file():
+        top10_knowledge_sharing_organization_info = get_top10_knowledge_sharing_organization_info(
+            previous_top_10_organization_path, current_top_10_organization_path)
     project_info = get_repo_star_more_than_1000(
         current_repo_list_path, CONFIG['REPO_DATA_DIR'], end_key=current_key)
     project_add_top5_info = get_add_star_top5_repo(
