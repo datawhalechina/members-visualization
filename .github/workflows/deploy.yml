@@ -70,6 +70,12 @@ jobs:
           GITHUB_ORG: datawhalechina
         continue-on-error: true
 
+      - name: Restore published badges at their existing URLs
+        run: |
+          if git show-ref --verify --quiet refs/remotes/origin/gh-pages && git cat-file -e origin/gh-pages:badges; then
+            git archive origin/gh-pages badges | tar -x -C docs/public
+          fi
+
       - name: Clean build cache
         run: |
           rm -rf docs/.vitepress/.temp

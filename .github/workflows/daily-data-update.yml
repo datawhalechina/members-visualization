@@ -71,6 +71,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Restore published badges at their existing URLs
+        run: |
+          if git show-ref --verify --quiet refs/remotes/origin/gh-pages && git cat-file -e origin/gh-pages:badges; then
+            git archive origin/gh-pages badges | tar -x -C docs/public
+          fi
+
       - name: Build with VitePress
         run: |
           python scripts/check_case_collisions.py
@@ -103,7 +109,7 @@ jobs:
         id: check-changes
         run: |
           # 缓存、日志和其他运行时文件不进入数据提交。
-          git add -- docs/public/data/ docs/public/avatars/ docs/public/badges/
+          git add -- docs/public/data/ docs/public/avatars/
           python scripts/check_case_collisions.py
           if git diff --cached --quiet; then
             echo "No changes in member data or avatars"
@@ -122,7 +128,6 @@ jobs:
           git push
 
       - name: Deploy to gh-pages
-        if: steps.check-changes.outputs.changes == 'true'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
