@@ -43,6 +43,25 @@ CONFIG = {
 }
 
 
+def fetch_top_knowledge_sharing_organization_data(cache_path):
+    try:
+        ranking = fetch_organization_from_star_history(
+            10, CONFIG['TOP_10_KNOWLEDGE_SHARING_ORGANIZATION']
+        )['top_10_knowledge_sharing_organization']
+        if not ranking:
+            raise RuntimeError('Organization ranking fetch returned no usable data')
+        return ranking
+    except RuntimeError as error:
+        cached_ranking = read_file(cache_path)
+        if cached_ranking is None:
+            raise
+        ranking = json.loads(cached_ranking)
+        if not isinstance(ranking, list) or not ranking:
+            raise RuntimeError('Cached organization ranking is unavailable') from error
+        print(f'::warning::Organization ranking refresh failed; using cached data: {error}')
+        return ranking
+
+
 def fetch_organization_data(key):
     # 确保数据目录存在
     CONFIG['DATA_DIR'].mkdir(parents=True, exist_ok=True)
@@ -67,17 +86,15 @@ def fetch_organization_data(key):
             origin_repo_detail_list.append(json.loads(repo_detail_data))
 
     # 1. 从starHistory网站中获取开源组织列表
-    star_history_res = fetch_organization_from_star_history(
-        10, CONFIG['TOP_10_KNOWLEDGE_SHARING_ORGANIZATION']
-    )
     top_10_knowledge_sharing_organization_path = CONFIG['ORGANIZATION_DATA_DIR'] / \
         CONFIG['TOP_10_KNOWLEDGE_SHARING_ORGANIZATION_FILE_NAME']
     top_10_knowledge_sharing_organization_path_with_key = CONFIG['ORGANIZATION_DATA_DIR'] / \
         key / CONFIG['TOP_10_KNOWLEDGE_SHARING_ORGANIZATION_FILE_NAME']
-    if not star_history_res['top_10_knowledge_sharing_organization']:
-        raise RuntimeError('Organization ranking fetch returned no usable data')
+    top_10_knowledge_sharing_organization = fetch_top_knowledge_sharing_organization_data(
+        top_10_knowledge_sharing_organization_path
+    )
     ensure_dir_and_write_files([top_10_knowledge_sharing_organization_path, top_10_knowledge_sharing_organization_path_with_key], json.dumps(
-        star_history_res["top_10_knowledge_sharing_organization"], indent=2, ensure_ascii=False))
+        top_10_knowledge_sharing_organization, indent=2, ensure_ascii=False))
 
     # 2. 获取Datawhale的仓库列表和仓库详情，并进行写入
     repo_detail_res = fetch_organization_repo_detail(
